@@ -6,7 +6,7 @@ from django.db.models import Q
 from django.db import connection
 from django.db import transaction
 
-from django.utils.encoding import smart_unicode
+from django.utils.encoding import smart_text
 class BulkManager(models.Manager):
 	""" This Manager adds additional methods to Feedback.objects. That allows
 	for bulk inserting via custom SQL query (calling INSERT INTO on a list of
@@ -172,7 +172,7 @@ class BulkManager(models.Manager):
 ### 				    "attrsuffix",
 ### 				    "attributive", )
 ### 
-### 	def __unicode__(self):
+### 	def __str__(self):
 ### 		attrs = [
 ### 				self.stem,
 ### 				self.wordclass,
@@ -310,20 +310,20 @@ class Log(models.Model):
 class Semtype(models.Model):
 	semtype = models.CharField(max_length=50)
 
-	def __unicode__(self):
-		return smart_unicode(self.semtype)
+	def __str__(self):
+		return smart_text(self.semtype)
 
 class Source(models.Model):
 	type = models.CharField(max_length=20)
 	name = models.CharField(max_length=20)
 
 
-	def __unicode__(self):
+	def __str__(self):
 		if self.type and self.name:
 			S = "%s: %s" % (self.type, self.name)
 		elif self.name:
 			S = "%s" % self.name
-		return smart_unicode(S)
+		return smart_text(S)
 
 # First, define the Manager subclass.
 class NPosManager(models.Manager):
@@ -334,14 +334,14 @@ class Dialect(models.Model):
 	dialect = models.CharField(max_length=5)
 	name = models.CharField(max_length=100)
 
-	def __unicode__(self):
+	def __str__(self):
 		if self.dialect and self.name:
 			S = "%s: %s" % (self.dialect, self.name)
 		elif self.name:
 			S = "%s" % self.name
 		elif self.dialect:
 			S = "%s" % self.dialect
-		return smart_unicode(S)
+		return smart_text(S)
 
 def Translations2(target_lang):
 	if target_lang in ["nob", "liv", "eng", "dan", "no"]:
@@ -373,7 +373,7 @@ class MorphPhonTag(models.Model): # redone for Russian
 
 # PI: Do we encode minor things like problematic plurals etc.?
 
-	def __unicode__(self):
+	def __str__(self):
 		attrs = [self.stem,
 			 self.gender,
 			 self.animate,
@@ -382,7 +382,7 @@ class MorphPhonTag(models.Model): # redone for Russian
 #			 self.stress_class,
 			 self.reflexive]
 
-		S = smart_unicode('/'.join([a for a in attrs if a.strip()])).encode('utf-8')
+		S = smart_text('/'.join([a for a in attrs if a.strip()])).encode('utf-8')
 		return S
 
 	class Meta:
@@ -541,8 +541,8 @@ class Word(models.Model):
 
 		super(Word, self).save(*args, **kwargs)
 
-	def __unicode__(self):
-		return smart_unicode(self.lemma)
+	def __str__(self):
+		return smart_text(self.lemma)
 
 	def sem_types_admin(self):
 		return ', '.join([item.semtype for item in self.semtype.order_by('semtype').all()])
@@ -641,8 +641,8 @@ class WordTranslation(models.Model):
 			word_answers.append(self.phrase)
 		return word_answers
 
-	def __unicode__(self):
-		return smart_unicode(self._getTrans())
+	def __str__(self):
+		return smart_text(self._getTrans())
 
 	def save(self, *args, **kwargs):
 		self.definition = self._getTrans()
@@ -674,15 +674,15 @@ class WordTranslation(models.Model):
 class Tagset(models.Model):
 	tagset = models.CharField(max_length=25)
 
-	def __unicode__(self):
-		return smart_unicode(self.tagset)
+	def __str__(self):
+		return smart_text(self.tagset)
 
 class Tagname(models.Model):
 	tagname = models.CharField(max_length=25)
 	tagset = models.ForeignKey(Tagset)
 
-	def __unicode__(self):
-		return smart_unicode(self.tagname)
+	def __str__(self):
+		return smart_text(self.tagname)
 
 class Tag(models.Model):
 	string = models.CharField(max_length=40, unique=True) # tag sequence
@@ -705,8 +705,8 @@ class Tag(models.Model):
 	class Admin:
 		pass
 
-	def __unicode__(self):
-		return smart_unicode(self.string)
+	def __str__(self):
+		return smart_text(self.string)
 
 	def fix_attributes(self):
 
@@ -764,8 +764,8 @@ class Form(models.Model):
  	def dialect(self):
  		return [d.dialect for d in self.dialects.all() if len(d.dialect) == 2]
 
-	def __unicode__(self):
-		return smart_unicode(self.fullform)
+	def __str__(self):
+		return smart_text(self.fullform)
 		# Testing-- related lookups seem to be quite slow in MySQL...?
 		# return '%s; %s+%s' % (self.fullform, self.word.lemma, self.tag)
 
@@ -934,7 +934,7 @@ class Feedbackmsg(models.Model):
 	"""
 	msgid = models.CharField(max_length=100)
 
-	def __unicode__(self):
+	def __str__(self):
 		return self.msgid
 
 
@@ -947,14 +947,14 @@ class Feedbacktext(models.Model):
 	feedbackmsg = models.ForeignKey(Feedbackmsg)
 	order = models.CharField(max_length=3, blank=True)
 
-	def __unicode__(self):
+	def __str__(self):
 		attrs = [
 				self.language,
 				self.order,
 				self.message,
 			]
 		S = unicode('/'.join([a for a in attrs if a.strip()])).encode('utf-8')
-		return smart_unicode(self.language + u':' + self.message)
+		return smart_text(self.language + u':' + self.message)
 
 
 
@@ -975,7 +975,7 @@ class Question(models.Model):
 	gametype = models.CharField(max_length=7)
 	lemmacount = models.IntegerField(max_length=3)
 	source = models.ManyToManyField(Source)
-	def __unicode__(self):
+	def __str__(self):
 		return self.qid + ': ' + self.string
 
 class QElement(models.Model):
@@ -1006,8 +1006,8 @@ class QElement(models.Model):
 							 blank=True,
 							 null=True,
 							 related_name='copy_set')
-	def __unicode__(self):
-		return smart_unicode(self.question.string + ': ' + self.identifier)
+	def __str__(self):
+		return smart_text(self.question.string + ': ' + self.identifier)
 
 class WordQElement(models.Model):
 	"""

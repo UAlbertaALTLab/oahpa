@@ -31,7 +31,7 @@ class UserProfile(models.Model):
     last_login = models.DateTimeField(null=True)
     site_cookie = models.IntegerField(null=True)
     
-    def __unicode__(self):
+    def __str__(self):
         return self.user.username.encode('utf-8')
     
     @property
@@ -115,7 +115,7 @@ class UserGradeSummary(models.Model):
     def game_name(self):
         return self.game.name
 
-    def __unicode__(self):
+    def __str__(self):
         return '%s grade totals for %s' % (self.user.user.username, self.game)
 
 class UserGrade(models.Model):
@@ -131,7 +131,7 @@ class UserGrade(models.Model):
     score = models.IntegerField()
     total = models.IntegerField(default=5)
     
-    def __unicode__(self):
+    def __str__(self):
         return u'Summary for %s from %s' % (self.user.user.username, self.game.name)
 
     class Meta:
@@ -148,7 +148,7 @@ class Activity(models.Model):
         verbose_name = 'activity'
         verbose_name_plural = 'activities'
     
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
 #### 
@@ -229,7 +229,7 @@ class Course(models.Model):
         course_token = dangerous_signer.dumps(48)
         return course_token
 
-    def __unicode__(self):
+    def __str__(self):
         if self.identifier:
             return u"%s: %s" % (self.identifier, self.name)
         else:
@@ -303,7 +303,7 @@ class CourseGoal(models.Model):
     threshold = models.FloatField(help_text="Complete goals must average this amount.", blank=True, null=True)
     percent_goals_completed = models.FloatField(default=80.0, help_text="This percentage of associated goals must be completed", blank=True, null=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return u"%s - %s" % (self.course, self.short_name)
 
     @property
@@ -535,7 +535,7 @@ class Goal(models.Model):
         ])
         return "/%s%s?%s" % (URL_PREFIX, self.url_base, urlencode(params))
 
-    def __unicode__(self):
+    def __str__(self):
         if self.course:
             return "%s - %s" % (unicode(self.course), self.short_name)
         else:
@@ -698,7 +698,7 @@ class UserGoalInstance(models.Model):
     class Meta(object):
         unique_together = (("user", "goal", "attempt_count"),)
 
-    def __unicode__(self):
+    def __str__(self):
         return "%s: %.2f" % (self.goal.short_name, self.progress)
 
     @property
@@ -794,7 +794,7 @@ class UserFeedbackLog(models.Model):
     objects = models.Manager()
     levels = LevelAssessment()
 
-    def __unicode__(self):
+    def __str__(self):
         return "%s: %s" % (self.user.username, self.feedback_texts)
 
 class UserActivityLog(models.Model):

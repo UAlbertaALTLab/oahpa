@@ -27,7 +27,7 @@ import codecs
 import operator
 from itertools import product
 
-from django.utils.encoding import force_unicode
+from django.utils.encoding import force_text
 
 def fix_encoding(s):
 	try:
@@ -35,7 +35,7 @@ def fix_encoding(s):
 	except:
 		pass
 	
-	return force_unicode(s)
+	return force_text(s)
 
 try:
 	from collections import OrderedDict

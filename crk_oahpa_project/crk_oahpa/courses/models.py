@@ -34,7 +34,7 @@ class UserProfile(models.Model):
 	last_login = models.DateTimeField(null=True)
 	site_cookie = models.IntegerField(null=True)
 
-	def __unicode__(self):
+	def __str__(self):
 		return self.user.username.encode('utf-8')
 
 	@property
@@ -111,7 +111,7 @@ class UserGradeSummary(models.Model):
 	def game_name(self):
 		return self.game.name
 
-	def __unicode__(self):
+	def __str__(self):
 		return '%s grade totals for %s' % (self.user.user.username, self.game)
 
 class UserGrade(models.Model):
@@ -127,7 +127,7 @@ class UserGrade(models.Model):
 	score = models.IntegerField()
 	total = models.IntegerField(default=5)
 
-	def __unicode__(self):
+	def __str__(self):
 		return u'Summary for %s from %s' % (self.user.user.username, self.game.name)
 
 	class Meta:
@@ -146,7 +146,7 @@ class Activity(models.Model):
 		verbose_name = 'activity'
 		verbose_name_plural = 'activities'
 
-	def __unicode__(self):
+	def __str__(self):
 		return self.name
 
 ####

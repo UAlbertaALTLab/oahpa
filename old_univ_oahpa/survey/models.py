@@ -30,7 +30,7 @@ class Survey(models.Model):
 
     target_course = models.ForeignKey(Course, blank=True, null=True, help_text=TARGET)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.title
 
     def serialize_survey(self):
@@ -113,7 +113,7 @@ class SurveyQuestion(models.Model):
     question_text = models.TextField()
     question_type = models.CharField(max_length=18, choices=question_types, help_text=TYPE_H)
 
-    def __unicode__(self):
+    def __str__(self):
         if len(self.question_text) > 15:
             return "%s: %s" % (self.survey, self.question_text[0:15])
         else:
@@ -140,7 +140,7 @@ class SurveyQuestionAnswerValue(models.Model):
     question = models.ForeignKey(SurveyQuestion, related_name='answer_values')
     answer_text = models.TextField()
 
-    def __unicode__(self):
+    def __str__(self):
         return "(%s) %s: %s" % (self.question.question_type,
                                 self.question.question_text,
                                 self.answer_text)

@@ -5,7 +5,7 @@ from django.core.management.base import BaseCommand, CommandError
 from django.db.models import Q
 
 from optparse import make_option
-from django.utils.encoding import force_unicode
+from django.utils.encoding import force_text
 
 import sys
 
@@ -729,7 +729,7 @@ class QObj(GrammarDefaults):
             else:
                 sentence.append(item)
 
-        return ' '.join([force_unicode(s) for s in sentence])
+        return ' '.join([force_text(s) for s in sentence])
 
     def personQA(self, tag):
         QA_tags = []
@@ -1051,8 +1051,8 @@ class QObj(GrammarDefaults):
             answer.task = self.selectTask(queried_elements)
             
             answer.answer_elements = queried_elements
-            answer.answer_full_text = force_unicode(sentence_text + '.')
-            answer.answer_text_blank = force_unicode(sentence_text_blank + '.')
+            answer.answer_full_text = force_text(sentence_text + '.')
+            answer.answer_text_blank = force_text(sentence_text_blank + '.')
             self.answer_set.append(answer)
             
     def reselect(self):
@@ -1118,7 +1118,7 @@ class FileLog(object):
         if not string.endswith('\n'):
             string += '\n'
         
-        string = force_unicode(string).encode('utf-8')
+        string = force_text(string).encode('utf-8')
 
         if self.logfile:
             self.logfile.write(string)

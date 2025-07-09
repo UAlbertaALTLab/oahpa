@@ -3,7 +3,7 @@ from django.core.management.base import BaseCommand, CommandError
 # from_yaml(cls, loader, node)
 
 from optparse import make_option
-from django.utils.encoding import force_unicode
+from django.utils.encoding import force_text
 
 import sys
 

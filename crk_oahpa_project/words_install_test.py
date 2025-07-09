@@ -6,7 +6,7 @@ sdm = importlib.import_module(LLL1+'_oahpa.drill.models')
 
 from django.db.models import Q
 from xml.dom import minidom as _dom
-from django.utils.encoding import force_unicode
+from django.utils.encoding import force_text
 import sys
 
 from collections import OrderedDict
@@ -543,7 +543,7 @@ class Words(object):
 									.values_list('wordid',flat=True)
 
 			for a in allids:
-				if force_unicode(a) not in set(self.all_wordids):
+				if force_text(a) not in set(self.all_wordids):
 					print >> _STDOUT, "Word id not found from xml. Deleting:", a.encode('utf-8')
 					word = sdm.Word.objects.get(pos=pos,wordid=a)
 					word.delete()
@@ -835,10 +835,10 @@ class Words(object):
 				if not COUNT_ONLY:
 					if dialect:
 						if VERBOSE:
-							OUT_STRS.append(force_unicode("Created form: %s\t%s\t\t%s" % (tag.string, g.form, dialect.dialect)))
+							OUT_STRS.append(force_text("Created form: %s\t%s\t\t%s" % (tag.string, g.form, dialect.dialect)))
 					else:
 						if VERBOSE:
-							OUT_STRS.append(force_unicode("Created form: %s\t%s" % (tag.string, g.form)))
+							OUT_STRS.append(force_text("Created form: %s\t%s" % (tag.string, g.form)))
 		elif paradigmfile:
 
 			# Create a dictionary that with keys for the tag and wordform, and

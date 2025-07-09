@@ -195,7 +195,7 @@ class SahkaGame(Game):
         if utterance.links.filter(~Q(target="")):
             target_els = utterance.links.filter(~Q(target=""))
             for t in target_els:
-                targets.append(force_unicode(t.target))
+                targets.append(force_text(t.target))
         qwords = db_info['qwords']
         global_targets = db_info['global_targets']
 

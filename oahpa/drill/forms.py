@@ -7,7 +7,7 @@ from django import forms
 from django.http import Http404
 from django.db.models import Q
 from django.utils.translation import ugettext_lazy as _
-from django.utils.encoding import force_unicode
+from django.utils.encoding import force_text
 from random import randint
 from models import *
 import time
@@ -405,7 +405,7 @@ class OahpaQuestion(forms.Form):
                          'Du1':'mun','Du2':'don','Du3':'son'}
         
         for item in fullforms:
-            self.correct_anslist.append(force_unicode(item))
+            self.correct_anslist.append(force_text(item))
 
     def generate_fields(self,answer_size, maxlength):
         self.fields['answer'] = forms.CharField(max_length = maxlength, \
@@ -528,21 +528,21 @@ class QuizzQuestion(OahpaQuestion):
 
         self.generate_fields(30,30)
         self.fields['word_id'] = forms.CharField(widget=lemma_widget, required=False)
-        self.lemma = force_unicode(word.lemma)
+        self.lemma = force_text(word.lemma)
         oo = u'å '
         # Sometimes these are in utf8 and sometimes they are not.
 
         if word.pos == 'V':
             if transtype == "nobsme":
                 if not self.lemma.startswith(oo):
-                    self.lemma = force_unicode(oo + self.lemma)
+                    self.lemma = force_text(oo + self.lemma)
             if transtype == "smenob":
-                userans_val = force_unicode(userans_val)
-                correct = force_unicode(correct)
+                userans_val = force_text(userans_val)
+                correct = force_text(correct)
                 if not userans_val.startswith(oo):
-                    userans_val = force_unicode(oo + userans_val)
+                    userans_val = force_text(oo + userans_val)
                 if not correct.startswith(oo):
-                    correct = force_unicode(oo + correct)
+                    correct = force_text(oo + correct)
 
 
         self.is_correct("leksa", self.lemma)
@@ -577,10 +577,10 @@ class NumQuestion(OahpaQuestion):
 
         # Initialize variables
         if gametype == "string":
-            self.init_variables(force_unicode(numeral), userans_val, [ numeral ])
+            self.init_variables(force_text(numeral), userans_val, [ numeral ])
             example = num_string
         else:
-            self.init_variables(force_unicode(num_list[0]), userans_val, num_list)
+            self.init_variables(force_text(num_list[0]), userans_val, num_list)
             example = numeral
         # field length in numra set to 45
         self.generate_fields(45,30)
@@ -701,7 +701,7 @@ class ContextMorfaQuestion(OahpaQuestion):
             raise Http404(task + " " + atext + " " + str(qanswer.id))            
         if len(selected_awords[task]['fullform'])>0:
             for f in selected_awords[task]['fullform']:                
-                self.correct_anslist.append(force_unicode(f))
+                self.correct_anslist.append(force_text(f))
             self.is_correct("contextual morfa")
             self.correct_ans = self.correct_anslist[0]
                 
@@ -731,12 +731,12 @@ class ContextMorfaQuestion(OahpaQuestion):
         # Format question string
         qtext = question.string
         for w in qtext.split():
-            if not qwords.has_key(w): qstring = qstring + " " + force_unicode(w)
+            if not qwords.has_key(w): qstring = qstring + " " + force_text(w)
             else:
                 if qwords[w].has_key('fullform'):
-                    qstring = qstring + " " + force_unicode(qwords[w]['fullform'][0])
+                    qstring = qstring + " " + force_text(qwords[w]['fullform'][0])
                 else:
-                    qstring = qstring + " " + force_unicode(w)
+                    qstring = qstring + " " + force_text(w)
         qstring=qstring.replace(" -","-");
         qstring=qstring.replace(" .",".");
 
@@ -777,9 +777,9 @@ class ContextMorfaQuestion(OahpaQuestion):
             if w.count("(") > 0: continue
             
             if not selected_awords.has_key(w) or not selected_awords[w].has_key('fullform'):
-                astring = astring + " " + force_unicode(w)
+                astring = astring + " " + force_text(w)
             else:
-                astring = astring + " " + force_unicode(selected_awords[w]['fullform'][0])
+                astring = astring + " " + force_text(selected_awords[w]['fullform'][0])
                     
         # Remove leading whitespace and capitalize.
         astring = astring.lstrip()
@@ -1069,10 +1069,10 @@ class VastaQuestion(OahpaQuestion):
         # Format question string
         qtext = question.string
         for w in qtext.split():
-            if not qwords.has_key(w): qstring = qstring + " " + force_unicode(w)
+            if not qwords.has_key(w): qstring = qstring + " " + force_text(w)
             else:
                 if qwords[w].has_key('fullform'):
-                    qstring = qstring + " " + force_unicode(qwords[w]['fullform'][0])
+                    qstring = qstring + " " + force_text(qwords[w]['fullform'][0])
                 else:
                     qstring = qstring + " " + w
         # this is for -guovttos
@@ -1193,11 +1193,11 @@ class SahkaQuestion(OahpaQuestion):
             qtext = utterance.utterance
             for w in qtext.split():
                 if not qwords.has_key(w):
-                    qstring = qstring + " " + force_unicode(w)
-                    self.qattrs['question_fullform_' + w] = force_unicode(w)
+                    qstring = qstring + " " + force_text(w)
+                    self.qattrs['question_fullform_' + w] = force_text(w)
                 else:
                     if qwords[w].has_key('fullform'):
-                        qstring = qstring + " " + force_unicode(qwords[w]['fullform'][0])
+                        qstring = qstring + " " + force_text(qwords[w]['fullform'][0])
                         self.qattrs['question_fullform_' + w] = qwords[w]['fullform'][0]
                     else:
                         qstring = qstring + " " + w

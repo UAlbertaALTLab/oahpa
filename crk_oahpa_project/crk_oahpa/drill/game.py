@@ -12,7 +12,7 @@ from django.db.models import Q, Count
 from django.http import HttpResponse, Http404
 from django.shortcuts import get_list_or_404, render_to_response
 from django.core.exceptions import ObjectDoesNotExist
-from django.utils.encoding import smart_str, smart_unicode
+from django.utils.encoding import smart_bytes, smart_text
 from random import randint
 
 import os
@@ -1080,7 +1080,7 @@ class NumGame(Game):
 
 		random_num = randint(1, int(self.settings['maxnum']))
 
-		db_info['numeral_id'] = smart_str(random_num)
+		db_info['numeral_id'] = smart_bytes(random_num)
 
 		if self.settings['gametype'] == 'ord':
 			db_info['numeral_id'] += u"."
@@ -1157,7 +1157,7 @@ class NumGame(Game):
 			elif gametype == 'numeral':
 				fstfile = self.answers_fst
 
-			output, err = self.generate_forms(smart_unicode(forms), fstfile)
+			output, err = self.generate_forms(smart_text(forms), fstfile)
 
 			num_list = self.clean_fst_output(output)
 			num_list = self.strip_unknown(num_list)
@@ -1307,7 +1307,7 @@ class Klokka(NumGame):
 			elif gametype == 'numeral':
 				fstfile = self.answers_fst
 
-			output, err = self.generate_forms(smart_unicode(forms), fstfile)
+			output, err = self.generate_forms(smart_text(forms), fstfile)
 
 			num_list = self.clean_fst_output(output)
 			num_list = self.strip_unknown(num_list)

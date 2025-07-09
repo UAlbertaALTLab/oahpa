@@ -12,7 +12,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
 
-from django.utils.encoding import smart_str
+from django.utils.encoding import smart_bytes
 try:
     from django.views.decorators.csrf import csrf_exempt
 except ImportError:
@@ -182,8 +182,8 @@ class SafeQueryDict(QueryDict):
         else:
             encode = lambda k, v: urlencode({k: v})
         for k, list_ in self.lists():
-            k = smart_str(k, self.encoding)
-            output.extend([encode(k, smart_str(v, self.encoding))
+            k = smart_bytes(k, self.encoding)
+            output.extend([encode(k, smart_bytes(v, self.encoding))
                            for v in list_])
         return '&'.join(output)
 

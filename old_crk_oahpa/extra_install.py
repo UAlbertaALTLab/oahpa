@@ -3,7 +3,7 @@ from settings import *
 from crk_drill.models import *
 from django.db.models import Q
 from xml.dom import minidom as _dom
-from django.utils.encoding import force_unicode
+from django.utils.encoding import force_text
 import sys
 import re
 import string

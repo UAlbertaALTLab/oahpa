@@ -3,7 +3,7 @@ from django import forms
 from django.db.models import Q
 from django.http import Http404
 from django.utils.translation import ugettext_lazy as _
-from django.utils.encoding import force_unicode
+from django.utils.encoding import force_text
 import crk_oahpa.settings as settings
 
 from crk_oahpa.conf.tools import switch_language_code
@@ -64,7 +64,7 @@ CASE_CHOICES = (
 
 NOUN_QUESTION_ANSWER = {
 	# gametype			question		answer
-	'N-PL': [('N+Animacy+Sg', 'N+Animacy+Pl')]
+	'N-PL': [('N+Animacy+Sg', 'N+Animacy+Pl')],
 	'N-LOC': [('N+Animacy+Sg', 'N+Animacy+Loc')],
 	'N-DIM': [('N+Animacy+Der/Dim+N+Animacy+Sg', 'N+Animacy+Sg')],
 }
@@ -552,7 +552,7 @@ def relax(strict):
 				... but ...
 				*miele is accepted for mïele.
 	"""
-	from django.utils.encoding import force_unicode
+	from django.utils.encoding import force_text
 
 	relaxed = strict
 	sub_str = lambda _string, _target, _sub: _string.replace(_target, _sub)
@@ -595,7 +595,7 @@ def relax(strict):
 
 	# Return list of unique possibilities
 	relaxed_perms = list(set(relaxed_perms))
-	relaxed_perms = [force_unicode(item) for item in relaxed_perms]
+	relaxed_perms = [force_text(item) for item in relaxed_perms]
 
 	return relaxed_perms
 
@@ -953,11 +953,11 @@ class OahpaQuestion(forms.Form):
 			if self.translang == 'crk': # caused a problem in Numra, as NumQuestion does not have the attribute translang 
 				# Relax spellings.
 			
-				accepted_answers = [force_unicode(item) for item in accepted_answers]
-				forms = sum([relax(force_unicode(item)) for item in accepted_answers], [])
+				accepted_answers = [force_text(item) for item in accepted_answers]
+				forms = sum([relax(force_text(item)) for item in accepted_answers], [])
                                 #print "relaxed forms: ", forms
 				# need to subtract legal answers and make an only relaxed list.
-				relaxings = [item for item in forms if force_unicode(item) not in accepted_answers]
+				relaxings = [item for item in forms if force_text(item) not in accepted_answers]
 		if (hasattr(self, 'gametype') and self.gametype == 'leksa'): # this applies only to Leksa, was: elif
 			# PI: commented out at this stage
 			# # add infinitives as possible answers
@@ -966,12 +966,12 @@ class OahpaQuestion(forms.Form):
 					infin_s = infinitives_sub[self.translang]
 				        infin_a = infinitives_add[self.translang]
 				        lemma = re.compile(infin_s)
-				        infins = [lemma.sub(infin_a, force_unicode(ax)) for ax in accepted_answers]
+				        infins = [lemma.sub(infin_a, force_text(ax)) for ax in accepted_answers]
 				        accepted_answers = infins + accepted_answers
 
                 #forms = accepted_answers  # This is wrong: the relaxed pairs are overwritten!
 
-		self.correct_anslist = [force_unicode(item) for item in accepted_answers] + [force_unicode(f) for f in forms]
+		self.correct_anslist = [force_text(item) for item in accepted_answers] + [force_text(f) for f in forms]
 		print "correct_anslist:",self.correct_anslist
 		self.relaxings = relaxings
 
@@ -1068,8 +1068,8 @@ class LeksaQuestion(OahpaQuestion):
 				infin_a = infinitives_add[word.language]
 
 				lemma = re.compile(infin_s)
-				lemmax = lemma.sub(infin_a, force_unicode(self.lemma))
-				self.lemma = force_unicode(lemmax)
+				lemmax = lemma.sub(infin_a, force_text(self.lemma))
+				self.lemma = force_text(lemmax)
 
 		self.init_variables(possible=translations,
 							userans_val=userans_val,
@@ -1100,8 +1100,8 @@ class LeksaQuestion(OahpaQuestion):
 
 				lemma = re.compile(infin_s)
 
-				self.correct_ans = [lemma.sub(infin_a, force_unicode(ax)) for ax in self.correct_ans]
-				self.correct_ans = [force_unicode(ax) for ax in self.correct_ans]
+				self.correct_ans = [lemma.sub(infin_a, force_text(ax)) for ax in self.correct_ans]
+				self.correct_ans = [force_text(ax) for ax in self.correct_ans]
 
 
 
@@ -1312,7 +1312,7 @@ class MorfaQuestion(OahpaQuestion):
 				noun_pres = DEMONSTRATIVE_PRESENTATION.get(tag.number, False)
 
 				if noun_pres:
-					self.lemma += ' (%s)' % force_unicode(noun_pres).encode('utf-8')
+					self.lemma += ' (%s)' % force_text(noun_pres).encode('utf-8')
 
 		log_name = "morfa_%s" % tag.pos
 		try:
@@ -1407,18 +1407,18 @@ class NumQuestion(OahpaQuestion):
 
 		# Initialize variables
 		if gametype == "string":
-			self.init_variables(force_unicode(numeral), userans_val, [ numeral ])
+			self.init_variables(force_text(numeral), userans_val, [ numeral ])
 			example = num_string
 			self.question_str = num_string
 		else:
-			self.init_variables(force_unicode(num_list[0]), userans_val, num_list)
-			wforms = sum([relax(force_unicode(item)) for item in num_list], [])
+			self.init_variables(force_text(num_list[0]), userans_val, num_list)
+			wforms = sum([relax(force_text(item)) for item in num_list], [])
 			# need to subtract legal answers and make an only relaxed list.
 			self.relaxings = [item for item in wforms if item not in num_list]
 			example = numeral
 			self.question_str = numeral
 
-		self.correct_anslist = self.correct_anslist + [force_unicode(f) for f in wforms]
+		self.correct_anslist = self.correct_anslist + [force_text(f) for f in wforms]
 
 		self.fields['numeral_id'] = forms.CharField(widget=numeral_widget, required=False)
 
@@ -1523,17 +1523,17 @@ class KlokkaQuestion(NumQuestion):
 		self.relaxings = []
 		# Initialize variables
 		if gametype == "string":
-			self.init_variables(force_unicode(numeral), userans_val, [ numeral ])
+			self.init_variables(force_text(numeral), userans_val, [ numeral ])
 			example = num_string
 
 		else:
-			self.init_variables(force_unicode(accept_list), userans_val, present_list)
-			wforms = sum([relax(force_unicode(item)) for item in accept_list], [])
+			self.init_variables(force_text(accept_list), userans_val, present_list)
+			wforms = sum([relax(force_text(item)) for item in accept_list], [])
 			# need to subtract legal answers and make an only relaxed list.
 			self.relaxings = [item for item in wforms if item not in accept_list]
 			example = numeral
 
-		self.correct_anslist = self.correct_anslist + [force_unicode(f) for f in wforms]
+		self.correct_anslist = self.correct_anslist + [force_text(f) for f in wforms]
 
 
 		self.fields['numeral_id'] = forms.CharField(widget=numeral_widget, required=False)
@@ -1679,9 +1679,9 @@ class ContextMorfaQuestion(OahpaQuestion):
 			raise Http404(task + " " + atext + " " + str(qanswer.id))
 		if len(selected_awords[task]['fullform'])>0:
 			for f in selected_awords[task]['fullform']:
-				self.correct_anslist.append(force_unicode(f))
+				self.correct_anslist.append(force_text(f))
 
-			accepted = sum([relax(force_unicode(item)) for item in self.correct_anslist], [])
+			accepted = sum([relax(force_text(item)) for item in self.correct_anslist], [])
 			self.relaxings = [item for item in accepted if item not in self.correct_anslist]
 			self.correct_anslist.extend(self.relaxings)
 			log_w = Word.objects.get(id=selected_awords[task]['word'])
@@ -1693,7 +1693,7 @@ class ContextMorfaQuestion(OahpaQuestion):
 			self.is_correct(log_name, log_value)
 			self.correct_ans = self.correct_anslist[0]
 
-		self.correct_anslist = [force_unicode(item) for item in accepted]
+		self.correct_anslist = [force_text(item) for item in accepted]
 
 		self.qattrs = {}
 		self.aattrs = {}
@@ -1722,12 +1722,12 @@ class ContextMorfaQuestion(OahpaQuestion):
 		qtext = question.string
 		for w in qtext.split():
 			if not qwords.has_key(w):
-				qstring = qstring + " " + force_unicode(w)
+				qstring = qstring + " " + force_text(w)
 			else:
 				if qwords[w].has_key('fullform'):
-					qstring = qstring + " " + force_unicode(qwords[w]['fullform'][0])
+					qstring = qstring + " " + force_text(qwords[w]['fullform'][0])
 				else:
-					qstring = qstring + " " + force_unicode(w)
+					qstring = qstring + " " + force_text(w)
 		qstring=qstring.replace(" -","-")
 		qstring=qstring.replace(" .",".")
 
@@ -1805,9 +1805,9 @@ class ContextMorfaQuestion(OahpaQuestion):
 			  continue
 
 			if not selected_awords.has_key(w) or not selected_awords[w].has_key('fullform'):
-				astring = astring + " " + force_unicode(w)
+				astring = astring + " " + force_text(w)
 			else:
-				astring = astring + " " + force_unicode(selected_awords[w]['fullform'][0])
+				astring = astring + " " + force_text(selected_awords[w]['fullform'][0])
 
 		# Remove leading whitespace and capitalize.
 		astring = astring.lstrip()
@@ -1931,7 +1931,7 @@ def vasta_is_correct(self,question,qwords,language,utterance_name=None):
         for qword in words: # or qwords ?
             cohort=""
             w = qword.lstrip().rstrip()
-            word_lookup = "echo \"" + force_unicode(w).encode('utf-8') + "\"" + lookup + lookup2cg  # on Heli's machine
+            word_lookup = "echo \"" + force_text(w).encode('utf-8') + "\"" + lookup + lookup2cg  # on Heli's machine
             morfanal = os.popen(word_lookup).readlines()
             for row in morfanal:
                 row = row.strip()
@@ -1956,7 +1956,7 @@ def vasta_is_correct(self,question,qwords,language,utterance_name=None):
         analyzed=""
         for w in words:
             w=w.strip()
-            word_lookup = "echo \"" + force_unicode(w).encode('utf-8') + "\"" + lookup + lookup2cg  # on Heli's machine
+            word_lookup = "echo \"" + force_text(w).encode('utf-8') + "\"" + lookup + lookup2cg  # on Heli's machine
             morfanal = os.popen(word_lookup).readlines()
             ans_cohort=""
             for row in morfanal:
@@ -2135,10 +2135,10 @@ class VastaQuestion(OahpaQuestion):
         # Format question string
         qtext = question.string
         for w in qtext.split():
-            if not qwords.has_key(w): qstring = qstring + " " + force_unicode(w)
+            if not qwords.has_key(w): qstring = qstring + " " + force_text(w)
             else:
                 if qwords[w].has_key('fullform'):
-                    qstring = qstring + " " + force_unicode(qwords[w]['fullform'][0])
+                    qstring = qstring + " " + force_text(qwords[w]['fullform'][0])
                 else:
                     qstring = qstring + " " + w
         # this is for -guovttos
@@ -2260,11 +2260,11 @@ class SahkaQuestion(OahpaQuestion):
             qtext = utterance.utterance
             for w in qtext.split():
                 if not qwords.has_key(w):
-                    qstring = qstring + " " + force_unicode(w)
-                    self.qattrs['question_fullform_' + w] = force_unicode(w)
+                    qstring = qstring + " " + force_text(w)
+                    self.qattrs['question_fullform_' + w] = force_text(w)
                 else:
                     if qwords[w].has_key('fullform'):
-                        qstring = qstring + " " + force_unicode(qwords[w]['fullform'][0])
+                        qstring = qstring + " " + force_text(qwords[w]['fullform'][0])
                         self.qattrs['question_fullform_' + w] = qwords[w]['fullform'][0]
                     else:
                         qstring = qstring + " " + w
@@ -2374,7 +2374,7 @@ def cealkka_is_correct(self,question,qwords,awords,language,question_id=None):  
             cohort=""
             print word
             # All the words will go through morph.analyser, even if they have a tag-attribute already. We do it to avoid problems with compound words.
-            w = force_unicode(word).encode('utf-8')
+            w = force_text(word).encode('utf-8')
             w=w.lstrip().rstrip()
             s.send(w) # on victorio
             cohort = s.recv(size)
@@ -2390,7 +2390,7 @@ def cealkka_is_correct(self,question,qwords,awords,language,question_id=None):  
 	        #logfile.write(aword)
             if aword.has_key('taskword') and aword['taskword']:
                 tlemma = aword['fullform']
-                tlemma = force_unicode(tlemma).encode('utf-8')
+                tlemma = force_text(tlemma).encode('utf-8')
                 tlemma = tlemma.strip()
                 print tlemma
 		        #logfile.write(tlemma+" ")
@@ -2431,7 +2431,7 @@ def cealkka_is_correct(self,question,qwords,awords,language,question_id=None):  
         #####
         print analysis
 	   #logfile.write(analysis)
-        data_lookup = "echo \"" + force_unicode(answer).encode('utf-8') + "\"" + preprocess
+        data_lookup = "echo \"" + force_text(answer).encode('utf-8') + "\"" + preprocess
         word = os.popen(data_lookup).readlines()
         #print word
         analyzed=""
@@ -2457,9 +2457,9 @@ def cealkka_is_correct(self,question,qwords,awords,language,question_id=None):  
             cohort=""
             print word
             # All the words will go through morph.analyser, even if they have a tag-attribute already. We do it to avoid problems with compound words.
-            w = force_unicode(word).encode('utf-8')
+            w = force_text(word).encode('utf-8')
             w=w.lstrip().rstrip()
-            word_lookup = "echo \"" + force_unicode(w).encode('utf-8') + "\"" + lookup + lookup2cg  # on Heli's machine
+            word_lookup = "echo \"" + force_text(w).encode('utf-8') + "\"" + lookup + lookup2cg  # on Heli's machine
             morfanal = os.popen(word_lookup).readlines()
             for row in morfanal:
                 cohort = cohort + row
@@ -2471,7 +2471,7 @@ def cealkka_is_correct(self,question,qwords,awords,language,question_id=None):  
 	       #logfile.write(aword)
             if aword.has_key('taskword') and aword['taskword']:
                 tlemma = aword['fullform']
-                tlemma = force_unicode(tlemma).encode('utf-8')
+                tlemma = force_text(tlemma).encode('utf-8')
                 tlemma = tlemma.strip()
                 print tlemma
 		        #logfile.write(tlemma+" ")
@@ -2507,13 +2507,13 @@ def cealkka_is_correct(self,question,qwords,awords,language,question_id=None):  
 
         analysis = analysis + "\"<^vastas>\"\n\t\"^vastas\" QDL " + question_id + " " + tasklemmas + "\n"
         # analyse the user's answer
-        data_lookup = "echo \"" + force_unicode(answer).encode('utf-8') + "\"" + preprocess
+        data_lookup = "echo \"" + force_text(answer).encode('utf-8') + "\"" + preprocess
         word = os.popen(data_lookup).readlines()
         #print word
         analyzed=""
         for c in word:
             c=c.strip()
-            word_lookup = "echo \"" + force_unicode(c).encode('utf-8') + "\"" + lookup + lookup2cg  # on Heli's machine
+            word_lookup = "echo \"" + force_text(c).encode('utf-8') + "\"" + lookup + lookup2cg  # on Heli's machine
             morfanal = os.popen(word_lookup).readlines()
             ans_cohort=""
             for row in morfanal:
@@ -2698,13 +2698,13 @@ class CealkkaQuestion(OahpaQuestion):
             if token.isupper():  # added because of keyerror
                 word = selected_awords[token]
                 if word.has_key('fullform') and word['fullform']:
-                    word['fullform'] = force_unicode(word['fullform'][0])
+                    word['fullform'] = force_text(word['fullform'][0])
             else:
                 word = {}
                 word['fullform'] = token
                 word['taskword'] = ""
             awords.append(word)
-            astring=astring+" "+force_unicode(word['fullform'])
+            astring=astring+" "+force_text(word['fullform'])
 
         astring = astring.lstrip()
         #print astring
@@ -2741,10 +2741,10 @@ class CealkkaQuestion(OahpaQuestion):
         # Format question string
         qtext = question.string
         for w in qtext.split():
-            if not qwords.has_key(w): qstring = qstring + " " + force_unicode(w)
+            if not qwords.has_key(w): qstring = qstring + " " + force_text(w)
             else:
                 if qwords[w].has_key('fullform'):
-                    qstring = qstring + " " + force_unicode(qwords[w]['fullform'][0])
+                    qstring = qstring + " " + force_text(qwords[w]['fullform'][0])
                 else:
                     qstring = qstring + " " + w
         # this is for -guovttos

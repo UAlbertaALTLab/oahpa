@@ -9,7 +9,7 @@ import sys
 import re
 import string
 import codecs
-from django.utils.encoding import force_unicode
+from django.utils.encoding import force_text
 def monitor(function):
 	from functools import wraps
 
@@ -311,7 +311,7 @@ class Questions:
 							# Should pop those that don't match, or else
 							# problems may arise
 							# TODO: this for other POS
-							fenc = lambda x: force_unicode(x).encode('utf-8')
+							fenc = lambda x: force_text(x).encode('utf-8')
 							possible_forms = [repr(w.lemma) + '+' + form.tag.string
 												for form in w.form_set.all()]
 							not_found.append(
@@ -440,7 +440,7 @@ class Questions:
 						if semty:
 							err_ += u"\t(no matching forms with semtype %s)" % semty
 						elif word_elements:
-							_msg = force_unicode(','.join(ws_.values_list('lemma', flat=True)))
+							_msg = force_text(','.join(ws_.values_list('lemma', flat=True)))
 							err_ += u"\t(no matching forms with words: %s)" % _msg
 						print '\t\t%s' % err_
 						continue

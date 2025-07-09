@@ -13,7 +13,7 @@ class OpenID(models.Model):
         verbose_name_plural = _('OpenIDs')
         ordering = ['openid']
 
-    def __unicode__(self):
+    def __str__(self):
         return u"%s|%s" % (self.user.username, self.openid)
 
     def save(self, *args, **kwargs):
@@ -34,7 +34,7 @@ class TrustedRoot(models.Model):
     openid = models.ForeignKey(OpenID)
     trust_root = models.CharField(max_length=200)
 
-    def __unicode__(self):
+    def __str__(self):
         return unicode(self.trust_root)
 
 

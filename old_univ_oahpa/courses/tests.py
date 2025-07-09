@@ -40,7 +40,7 @@ class SimpleTest(TestCase):
         factory = APIRequestFactory()
 
         test_data = {
-            'task_id': self.test_task.id
+            'task_id': self.test_task.id,
             'is_correct': True,
             'user_input': "asdf bbq",
         }

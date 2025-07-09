@@ -17,7 +17,7 @@ settings.DEBUG = False
 
 from smadrill.models import Word, Semtype
 from django.db.models import Q, Count
-from django.utils.encoding import force_unicode
+from django.utils.encoding import force_text
 import timeit
 
 

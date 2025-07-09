@@ -3,7 +3,7 @@ from settings import *
 from drill.models import *
 from django.db.models import Q
 from xml.dom import minidom as _dom
-from django.utils.encoding import force_unicode
+from django.utils.encoding import force_text
 import sys
 import re
 import string
@@ -34,7 +34,7 @@ class Words:
         if delete and pos and not placenamefile:
             allids = Word.objects.filter(Q(pos=pos) & ~Q(semtype__semtype="PLACE-NAME-LEKSA")).values_list('wordid',flat=True)
             for a in allids:
-                if force_unicode(a) not in set(self.all_wordids):
+                if force_text(a) not in set(self.all_wordids):
                     print "Word id not found from xml. Deleting:", a
                     word = Word.objects.get(pos=pos,wordid=a)
                     word.delete()
@@ -42,7 +42,7 @@ class Words:
         if delete and placenamefile:
             allids = Word.objects.filter(Q(pos="N") & Q(semtype__semtype="PLACE-NAME-LEKSA")).values_list('wordid',flat=True)
             for a in allids:
-                if force_unicode(a) not in set(self.all_wordids):
+                if force_text(a) not in set(self.all_wordids):
                     print "Word id not found from xml. Deleting:", a
                     word = Word.objects.get(pos=pos,wordid=a)
                     word.delete()

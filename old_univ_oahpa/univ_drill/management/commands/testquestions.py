@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 # from_yaml(cls, loader, node)
 from django.core.management.base import BaseCommand
-from django.utils.encoding import force_unicode
+from django.utils.encoding import force_text
 
 
 # # #
@@ -711,7 +711,7 @@ class QObj(GrammarDefaults):
                                     add_item = wf.fullform
             sentence.append(add_item)
 
-        return ' '.join([force_unicode(s) for s in sentence])
+        return ' '.join([force_text(s) for s in sentence])
 
     def personQA(self, tag):
         tag_elem = tag.split('+')
@@ -952,8 +952,8 @@ class QObj(GrammarDefaults):
             answer.task = self.selectTask(queried_elements)
 
             answer.answer_elements = queried_elements
-            answer.answer_full_text = force_unicode(sentence_text + '.')
-            answer.answer_text_blank = force_unicode(sentence_text_blank + '.')
+            answer.answer_full_text = force_text(sentence_text + '.')
+            answer.answer_text_blank = force_text(sentence_text_blank + '.')
             self.answer_set.append(answer)
 
     def reselect(self):
@@ -1013,7 +1013,7 @@ class FileLog(object):
         if not string.endswith('\n'):
             string += '\n'
 
-        string = force_unicode(string).encode('utf-8')
+        string = force_text(string).encode('utf-8')
 
         if self.logfile:
             self.logfile.write(string)
@@ -1236,7 +1236,7 @@ class Command(BaseCommand):
                     finally:
                         error = True
 
-                    qword = force_unicode(qword)
+                    qword = force_text(qword)
                     q_fmt = '    Q: ' + '%s (%s)' % (q.question_text, qword)
                     a_fmt = '    A: ' + '%s' % answer.answer_text_blank
 

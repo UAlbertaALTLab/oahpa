@@ -16,7 +16,7 @@ class UserProfile(models.Model):
 	login_count = models.IntegerField(default=0)
 	last_login = models.DateTimeField(null=True)
 	
-	def __unicode__(self):
+	def __str__(self):
 		return self.user.username
 	
 
@@ -45,7 +45,7 @@ class UserGradeSummary(models.Model):
 		verbose_name_plural = 'User grade summaries'
 		ordering = ['average']
 
-	def __unicode__(self):
+	def __str__(self):
 		return '%s grade totals for %s' % (self.user.user.username, self.game)
 
 
@@ -62,7 +62,7 @@ class UserGrade(models.Model):
 	score = models.IntegerField()
 	total = models.IntegerField(default=5)
 	
-	def __unicode__(self):
+	def __str__(self):
 		return u'Summary for %s from %s' % (self.user.user.username, self.game.name)
 
 	class Meta:
@@ -81,7 +81,7 @@ class Activity(models.Model):
 		verbose_name = 'activity'
 		verbose_name_plural = 'activities'
 	
-	def __unicode__(self):
+	def __str__(self):
 		return self.name
 	
 
