@@ -4,7 +4,7 @@
 # files.
 
 echo "Rolling new keys..."
-for lang in sma sme sms smn myv vro fkv crk est; do
+for lang in crk; do
     FILE="/app/${lang}_oahpa_project/${lang}_oahpa/settings_not_in_svn.py"
     KEY=$(tr -dc 'A-Za-z0-9!"#$%()*+,-.:;<=>?@[]^_`{|}~' </dev/urandom | head -c 52)
     sed --in-place "s/^SECRET_KEY\\s*=.*$/SECRET_KEY = '$KEY'/" $FILE

@@ -92,15 +92,15 @@ RUN dpkg --install --force-all /tmp/uwsgi-plugin-python_2.0.18-1_amd64.deb
 RUN mkdir -p /run/mysqld
 
 # Import database
-COPY containerized_deploy/sme_oahpa.sql.gz /tmp/sme_oahpa.sql.gz
-COPY containerized_deploy/sma_oahpa.sql.gz /tmp/sma_oahpa.sql.gz
-COPY containerized_deploy/sms_oahpa.sql.gz /tmp/sms_oahpa.sql.gz
-COPY containerized_deploy/smn_oahpa.sql.gz /tmp/smn_oahpa.sql.gz
-COPY containerized_deploy/myv_oahpa.sql.gz /tmp/myv_oahpa.sql.gz
-COPY containerized_deploy/vro_oahpa.sql.gz /tmp/vro_oahpa.sql.gz
-COPY containerized_deploy/fkv_oahpa.sql.gz /tmp/fkv_oahpa.sql.gz
+#COPY containerized_deploy/sme_oahpa.sql.gz /tmp/sme_oahpa.sql.gz
+#COPY containerized_deploy/sma_oahpa.sql.gz /tmp/sma_oahpa.sql.gz
+#COPY containerized_deploy/sms_oahpa.sql.gz /tmp/sms_oahpa.sql.gz
+#COPY containerized_deploy/smn_oahpa.sql.gz /tmp/smn_oahpa.sql.gz
+#COPY containerized_deploy/myv_oahpa.sql.gz /tmp/myv_oahpa.sql.gz
+#COPY containerized_deploy/vro_oahpa.sql.gz /tmp/vro_oahpa.sql.gz
+#COPY containerized_deploy/fkv_oahpa.sql.gz /tmp/fkv_oahpa.sql.gz
 COPY containerized_deploy/crk_oahpa.sql.gz /tmp/crk_oahpa.sql.gz
-COPY containerized_deploy/est_oahpa.sql.gz /tmp/est_oahpa.sql.gz
+#COPY containerized_deploy/est_oahpa.sql.gz /tmp/est_oahpa.sql.gz
 COPY containerized_deploy/init_db.sh /tmp/init_db.sh
 RUN chmod +x /tmp/init_db.sh && /tmp/init_db.sh
 
@@ -135,25 +135,25 @@ WORKDIR /app
 
 # Copy in files we need to run the project vessels
 COPY crk_oahpa_project /app/crk_oahpa_project
-COPY est_oahpa_project /app/est_oahpa_project
-COPY fkv_oahpa_project /app/fkv_oahpa_project
-COPY myv_oahpa_project /app/myv_oahpa_project
-COPY sma_oahpa_project /app/sma_oahpa_project
-COPY sme_oahpa_project /app/sme_oahpa_project
-COPY smn_oahpa_project /app/smn_oahpa_project
-COPY sms_oahpa_project /app/sms_oahpa_project
-COPY vro_oahpa_project /app/vro_oahpa_project
+#COPY est_oahpa_project /app/est_oahpa_project
+#COPY fkv_oahpa_project /app/fkv_oahpa_project
+#COPY myv_oahpa_project /app/myv_oahpa_project
+#COPY sma_oahpa_project /app/sma_oahpa_project
+#COPY sme_oahpa_project /app/sme_oahpa_project
+#COPY smn_oahpa_project /app/smn_oahpa_project
+#COPY sms_oahpa_project /app/sms_oahpa_project
+#COPY vro_oahpa_project /app/vro_oahpa_project
 
 # Copy settings_not_in_svn.py to where it needs to be.
 RUN cp /app/crk_oahpa_project/settings_not_in_svn.py /app/crk_oahpa_project/crk_oahpa/settings_not_in_svn.py
-RUN cp /app/est_oahpa_project/settings_not_in_svn.py /app/est_oahpa_project/est_oahpa/settings_not_in_svn.py
-RUN cp /app/fkv_oahpa_project/settings_not_in_svn.py /app/fkv_oahpa_project/fkv_oahpa/settings_not_in_svn.py
-RUN cp /app/myv_oahpa_project/settings_not_in_svn.py /app/myv_oahpa_project/myv_oahpa/settings_not_in_svn.py
-RUN cp /app/sma_oahpa_project/settings_not_in_svn.py /app/sma_oahpa_project/sma_oahpa/settings_not_in_svn.py
-RUN cp /app/sme_oahpa_project/settings_not_in_svn.py /app/sme_oahpa_project/sme_oahpa/settings_not_in_svn.py
-RUN cp /app/smn_oahpa_project/settings_not_in_svn.py /app/smn_oahpa_project/smn_oahpa/settings_not_in_svn.py
-RUN cp /app/sms_oahpa_project/settings_not_in_svn.py /app/sms_oahpa_project/sms_oahpa/settings_not_in_svn.py
-RUN cp /app/vro_oahpa_project/settings_not_in_svn.py /app/vro_oahpa_project/vro_oahpa/settings_not_in_svn.py
+#RUN cp /app/est_oahpa_project/settings_not_in_svn.py /app/est_oahpa_project/est_oahpa/settings_not_in_svn.py
+#RUN cp /app/fkv_oahpa_project/settings_not_in_svn.py /app/fkv_oahpa_project/fkv_oahpa/settings_not_in_svn.py
+#RUN cp /app/myv_oahpa_project/settings_not_in_svn.py /app/myv_oahpa_project/myv_oahpa/settings_not_in_svn.py
+#RUN cp /app/sma_oahpa_project/settings_not_in_svn.py /app/sma_oahpa_project/sma_oahpa/settings_not_in_svn.py
+#RUN cp /app/sme_oahpa_project/settings_not_in_svn.py /app/sme_oahpa_project/sme_oahpa/settings_not_in_svn.py
+#RUN cp /app/smn_oahpa_project/settings_not_in_svn.py /app/smn_oahpa_project/smn_oahpa/settings_not_in_svn.py
+#RUN cp /app/sms_oahpa_project/settings_not_in_svn.py /app/sms_oahpa_project/sms_oahpa/settings_not_in_svn.py
+#RUN cp /app/vro_oahpa_project/settings_not_in_svn.py /app/vro_oahpa_project/vro_oahpa/settings_not_in_svn.py
 
 # Update the paths in these settings_not_in_svn.py files
 RUN find . -name settings_not_in_svn.py -exec sed --in-place -e 's,/home/oahpa/,/app/,g' {} \;
@@ -163,11 +163,11 @@ COPY containerized_deploy/roll_keys.sh /tmp/roll_keys.sh
 RUN /tmp/roll_keys.sh
 
 # vro: crashes on no attribute in settings, so just add this
-RUN echo "MEDIA_DIR = '/app/oahpa/media/'" >> /app/vro_oahpa_project/vro_oahpa/settings_not_in_svn.py
+# RUN echo "MEDIA_DIR = '/app/oahpa/media/'" >> /app/vro_oahpa_project/vro_oahpa/settings_not_in_svn.py
 # TODO: what even is this directory?
 
 # vro complained "template liv_oahpa.html not found", so lets try to install it
-COPY liv_oahpa /app/liv_oahpa
+# COPY liv_oahpa /app/liv_oahpa
 
 # Compile translations for all instances
 RUN cd /app && django-admin compilemessages
