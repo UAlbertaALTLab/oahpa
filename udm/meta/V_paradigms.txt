@@ -1,7 +1,0 @@
-V+ConNeg
-V+Ind+Prs+Sg1
-V+Ind+Prs+Sg2
-V+Ind+Prs+Sg3
-V+Ind+Prs+Pl1
-V+Ind+Prs+Pl2
-V+Ind+Prs+Pl3

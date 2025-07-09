@@ -1,7 +1,0 @@
-V+Pass+Ind+Prs
-V+Pass+Ind+Prs+ConNeg
-V+Pass+Prt
-V+Pass+Cond
-V+Pass+Imprt
-V+Pass+PrsPrc
-V+Pass+PrfPrc
