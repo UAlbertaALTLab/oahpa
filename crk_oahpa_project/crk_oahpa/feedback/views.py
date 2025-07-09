@@ -2,7 +2,7 @@ from django.template import RequestContext
 from django.shortcuts import render_to_response
 import datetime
 
-from models import FeedbackForm
+from .models import FeedbackForm
 
 
 def feedback(request):

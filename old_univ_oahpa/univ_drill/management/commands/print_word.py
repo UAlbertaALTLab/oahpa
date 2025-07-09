@@ -41,7 +41,7 @@ def printword(word_key):
 	ws = Word.objects.filter(lemma=word_key)
 
 	if ws.count() == 0:
-		print >> sys.stderr, "No words found for '%s'." % word_key
+		print("No words found for '%s'." % word_key, file=sys.stderr)
 
 	for w in ws:
 		forms = w.form_set.all()
@@ -49,25 +49,25 @@ def printword(word_key):
 		for attr in word_attrs:
 			v = w.__getattribute__(attr)
 			if v:
-				print "%s:\t%s" % (attr, v)
+				print("%s:\t%s" % (attr, v))
 
-		print 'semtypes: %s' % ', '.join(w.semtype.all().values_list('semtype', flat=True))
-		print 'dialects: %s' % ', '.join(w.dialects.all().values_list('dialect', flat=True))
-		print 'sources: %s' % ', '.join(w.source.all().values_list('name', flat=True))
-		print 'Wordforms: %d forms generated\n' % forms.count()
+		print('semtypes: %s' % ', '.join(w.semtype.all().values_list('semtype', flat=True)))
+		print('dialects: %s' % ', '.join(w.dialects.all().values_list('dialect', flat=True)))
+		print('sources: %s' % ', '.join(w.source.all().values_list('name', flat=True)))
+		print('Wordforms: %d forms generated\n' % forms.count())
 		for form in w.form_set.all():
 			dialects = form.dialects.all().values_list('dialect', flat=True)
 			if len(dialects) > 0:
 				dialects = ', '.join(dialects)
 			else:
 				dialects = ""
-			print "\t%s\t\t%s\t\t%s" % (form.tag.string, form.fullform, dialects)
+			print("\t%s\t\t%s\t\t%s" % (form.tag.string, form.fullform, dialects))
 
-		print
+		print()
 		for translation in w.wordtranslation_set.all():
-			print "\t%s - %s" % (translation.language, translation.definition)
+			print("\t%s - %s" % (translation.language, translation.definition))
 
-		print '\nQuestion membership:'
+		print('\nQuestion membership:')
 		question_memberships = w.wordqelement_set.all().values_list(
 			'qelement__question__qid',
 			'qelement__question__question__qid', 
@@ -81,9 +81,9 @@ def printword(word_key):
 		ordered_qms.sort()
 		ordered_qms.reverse()
 		for q_ms in ordered_qms:
-			print '\t' + q_ms
+			print('\t' + q_ms)
 
-		print "--"
+		print("--")
 
 
 class Command(BaseCommand):

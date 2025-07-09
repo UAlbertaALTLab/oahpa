@@ -6,7 +6,7 @@ from django.http import Http404
 from django.db.models import Q
 from django.utils.translation import ugettext as _
 from random import randint
-from models import *
+from .models import *
 
 
 GAME_CHOICES = (

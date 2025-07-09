@@ -1,5 +1,5 @@
 from openid.yadis.parsehtml import YadisHTMLParser, ParseDone
-from HTMLParser import HTMLParseError
+from html.parser import HTMLParseError
 
 import os.path, unittest, sys
 
@@ -17,7 +17,7 @@ class _TestCase(unittest.TestCase):
         p = YadisHTMLParser()
         try:
             p.feed(self.case)
-        except ParseDone, why:
+        except ParseDone as why:
             found = why[0]
 
             # make sure we protect outselves against accidental bogus
@@ -29,11 +29,11 @@ class _TestCase(unittest.TestCase):
                 found = 'None'
 
             msg = "%r != %r for case %s" % (found, self.expected, self.case)
-            self.failUnlessEqual(found, self.expected, msg)
+            self.assertEqual(found, self.expected, msg)
         except HTMLParseError:
-            self.failUnless(self.expected == 'None', (self.case, self.expected))
+            self.assertTrue(self.expected == 'None', (self.case, self.expected))
         else:
-            self.failUnless(self.expected == 'EOF', (self.case, self.expected))
+            self.assertTrue(self.expected == 'EOF', (self.case, self.expected))
 
     def shortDescription(self):
         return "%s (%s<%s>)" % (

@@ -7,7 +7,7 @@ from django.core.cache import cache
 # Set the dialect for the user
 def dialect(request):
     next = request.REQUEST.get('next', None)
-    print next
+    print(next)
     if not next:
         next = request.META.get('HTTP_REFERER', None)
     if not next:

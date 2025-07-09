@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.forms import ModelForm, Form
 from django.utils.translation import ugettext as _
-from models import Feedback
+from .models import Feedback
 
 GAME_CHOICES = (
 	('morfa', 'Morfa'),

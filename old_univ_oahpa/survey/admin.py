@@ -37,7 +37,7 @@ class EditLinkToInlineObject(object):
         url = reverse('admin:%s_%s_change' % (
             instance._meta.app_label,  instance._meta.module_name),  args=[instance.pk] )
         if instance.pk:
-            return mark_safe(u'<a href="{u}" target="blank">edit</a>'.format(u=url))
+            return mark_safe('<a href="{u}" target="blank">edit</a>'.format(u=url))
         else:
             return ''
 
@@ -78,7 +78,7 @@ class SurveyAdmin(admin.ModelAdmin):
         from django.core import serializers
         from django.http import HttpResponse
 
-        from cStringIO import StringIO
+        from io import StringIO
         import csv
 
         # only serialize one at a time

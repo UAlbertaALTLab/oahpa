@@ -8,11 +8,11 @@ Changes required to settings (will elaborate on this more later):
 
  * see also: views in courses views for cookie_login and cookie_logout
 """
-from local_conf import LLL1
+from .local_conf import LLL1
 import importlib
 oahpa_module = importlib.import_module(LLL1+'_oahpa')
 
-from urllib import urlencode
+from urllib.parse import urlencode
 
 from django.http import HttpResponseRedirect, HttpResponseForbidden
 from django.conf import settings

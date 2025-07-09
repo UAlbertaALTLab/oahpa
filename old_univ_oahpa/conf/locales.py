@@ -20,7 +20,7 @@ EXTRA_LANG_INFO = {
         'bidi': False, # left-to-right, True = right-to-left
         'code': 'sme',
         'name': 'North Saami',
-        'name_local': u'Davvisámegiella',
+        'name_local': 'Davvisámegiella',
     },
 }
 
@@ -29,7 +29,7 @@ RIGHT_TO_LEFT_LANGUAGES = ()
 
 import django.conf.locale
 
-LANG_INFO = dict(django.conf.locale.LANG_INFO.items() + EXTRA_LANG_INFO.items())
+LANG_INFO = dict(list(django.conf.locale.LANG_INFO.items()) + list(EXTRA_LANG_INFO.items()))
 
 django.conf.locale.LANG_INFO = LANG_INFO
 

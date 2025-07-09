@@ -126,7 +126,7 @@ various permutations of morphosyntactic features.
 """
 
 from settings import *
-from univ_drill.models import Feedbackmsg,Feedbacktext,Dialect,Comment,Tag
+from .univ_drill.models import Feedbackmsg,Feedbacktext,Dialect,Comment,Tag
 from xml.dom import minidom as _dom
 from django.db.models import Q
 import sys
@@ -135,12 +135,13 @@ import string
 import codecs
 import operator
 
-from univ_drill.models import Form
+from .univ_drill.models import Form
 
 from django.db import transaction
 from itertools import product
 
 from django.utils.encoding import force_text
+from functools import reduce
 
 def fix_encoding(s):
     try:
@@ -153,12 +154,12 @@ def fix_encoding(s):
 try:
     from collections import OrderedDict
 except ImportError:
-    from conf.ordereddict import OrderedDict
+    from .conf.ordereddict import OrderedDict
 
 def chunks(l, n):
     """ Yield successive n-sized chunks from l.
     """
-    for i in xrange(0, len(l), n):
+    for i in range(0, len(l), n):
         yield l[i:i+n]
 
 def get_attrs(item, attr_names):
@@ -175,7 +176,7 @@ def get_attrs(item, attr_names):
 
 def render_kwargs(D):
     lines = []
-    for k, vs in D.iteritems():
+    for k, vs in D.items():
         line = ' %s = %s ' % (k, ', '.join(vs))
         lines.append(line)
     
@@ -201,7 +202,7 @@ def get_attrs_with_defaults(element, attr_list, defaults):
             val = [fix_encoding(val)]
         vals.append(val)
             
-    x = OrderedDict(zip(attr_list, vals))
+    x = OrderedDict(list(zip(attr_list, vals)))
     grade = x.get('grade', False)
     if grade:
         if x['grade'] == ['Pos']:
@@ -233,14 +234,14 @@ class Entry(object):
 
         args = []
         self.kwarg_ordering = []
-        for attr, arg in self.word_kwargs.iteritems():
+        for attr, arg in self.word_kwargs.items():
             self.kwarg_ordering.append(attr)
             if isinstance(arg, list) or isinstance(arg, set):
                 args.append(list(arg))
             else:
                 args.append([arg])
 
-        for attr, arg in self.tag_kwargs.iteritems():
+        for attr, arg in self.tag_kwargs.items():
             self.kwarg_ordering.append(attr)
             if isinstance(arg, list) or isinstance(arg, set):
                 args.append(list(arg))
@@ -325,7 +326,7 @@ class Feedback_install(object):
                 # else:
                     # link = node.toxml(encoding="utf-8") # in case the feedback contains a link
                     # message = message + link  
-            print >> sys.stdout, message.encode('utf-8')
+            print(message.encode('utf-8'), file=sys.stdout)
             fm, created = Feedbackmsg.objects.get_or_create(msgid=mid)
             fm.save()
 
@@ -425,7 +426,7 @@ class Feedback_install(object):
             " For a lexicon word element, get all of the morphological attributes " 
             vals = [el.getAttribute(attr) for attr in attr_names_list]
             # attributes and lemma
-            return (OrderedDict(zip(attr_names_list, vals)), el.firstChild.data)
+            return (OrderedDict(list(zip(attr_names_list, vals))), el.firstChild.data)
 
         def get_word_argument(el):
             return get_word_argument_and_lemma(el)[0]
@@ -434,7 +435,7 @@ class Feedback_install(object):
             " For a lexicon word element, get all of the morphological attributes " 
             vals = [el.getAttribute(attr) for attr in self.tag_attr_names]
             # attributes and lemma
-            return OrderedDict(zip(self.tag_attr_names, vals))
+            return OrderedDict(list(zip(self.tag_attr_names, vals)))
         
         def get_tag_argument(attr_):
             " For a Tag object, get all of the morphological attributes "
@@ -447,7 +448,7 @@ class Feedback_install(object):
             return (attr_, vals)
 
         # Fetch all word attributes for all entries in the lexicon
-        word_attributes = map(get_word_argument_and_lemma, self.lexicon_word_elements)
+        word_attributes = list(map(get_word_argument_and_lemma, self.lexicon_word_elements))
         
         # Collate all the possible values in a dictionary
         # {'rime': ['a', 'e', 'i', 'o', 'u', etc ... ], 
@@ -460,17 +461,17 @@ class Feedback_install(object):
 
         # Do the same for Tag objects.
         # 
-        self.tag_possible_values = OrderedDict(map(get_tag_argument, self.tag_attr_names))
+        self.tag_possible_values = OrderedDict(list(map(get_tag_argument, self.tag_attr_names)))
 
         # Collect Feedback <l /> attributes
-        feedback_attributes = map(get_word_argument, self.feedback_elements)
+        feedback_attributes = list(map(get_word_argument, self.feedback_elements))
         self.feedback_possible_values = OrderedDict([
             (attr_name, list(set([''] + [word_attr.get(attr_name, None) for word_attr in feedback_attributes])))
             for attr_name in self.word_attr_names
         ])
 
         # Collect Feedback <msg /> attributes
-        feedback_msg_attributes = map(get_msg_argument, self.feedback_msg_elements)
+        feedback_msg_attributes = list(map(get_msg_argument, self.feedback_msg_elements))
         self.feedback_msg_possible_values = OrderedDict([
             (attr_name, list(set([''] + [tag_attr.get(attr_name, None) for tag_attr in feedback_msg_attributes])))
             for attr_name in self.tag_attr_names
@@ -501,8 +502,8 @@ class Feedback_install(object):
         ])
 
         self.default_attributes = OrderedDict(
-            list(self.attributes_intersection.iteritems()) + 
-            list(self.tag_attributes_intersection.iteritems())
+            list(self.attributes_intersection.items()) + 
+            list(self.tag_attributes_intersection.items())
         )
         
         return self.attributes_intersection
@@ -511,7 +512,7 @@ class Feedback_install(object):
 
         def fmt_dict(D):
             lines = []
-            for k, v in D.iteritems():
+            for k, v in D.items():
                 vs = ', '.join(sorted(v))
                 line = "        %s: %s" % (k, vs)
                 lines.append(line)
@@ -521,48 +522,48 @@ class Feedback_install(object):
                 return '\n'.join(lines)
 
 
-        print >> sys.stdout, "\n  LEXICON"
-        print >> sys.stdout, "    Attributes in word file:"
-        print >> sys.stdout, fmt_dict(self.word_possible_values).encode('utf-8')
+        print("\n  LEXICON", file=sys.stdout)
+        print("    Attributes in word file:", file=sys.stdout)
+        print(fmt_dict(self.word_possible_values).encode('utf-8'), file=sys.stdout)
 
-        print >> sys.stdout, "    Tag attributes in lexicon for %s:" % self.file_pos 
-        print >> sys.stdout, fmt_dict(self.tag_possible_values)
+        print("    Tag attributes in lexicon for %s:" % self.file_pos, file=sys.stdout) 
+        print(fmt_dict(self.tag_possible_values), file=sys.stdout)
 
-        print >> sys.stdout, "\n  FEEDBACK"
-        print >> sys.stdout, "    Attributes in feedback file:"
-        print >> sys.stdout, fmt_dict(self.feedback_possible_values)
+        print("\n  FEEDBACK", file=sys.stdout)
+        print("    Attributes in feedback file:", file=sys.stdout)
+        print(fmt_dict(self.feedback_possible_values), file=sys.stdout)
 
-        print >> sys.stdout, "    <msg />  attributes in feedback file:"
-        print >> sys.stdout, fmt_dict(self.feedback_msg_possible_values)
+        print("    <msg />  attributes in feedback file:", file=sys.stdout)
+        print(fmt_dict(self.feedback_msg_possible_values), file=sys.stdout)
 
 
-        print >> sys.stdout, "\n  COMPARISON"
-        print >> sys.stdout, "    Symmetric difference between lexicon and feedback:"
+        print("\n  COMPARISON", file=sys.stdout)
+        print("    Symmetric difference between lexicon and feedback:", file=sys.stdout)
 
-        for attribute_name, lexicon_attribute_values in self.word_possible_values.iteritems():
+        for attribute_name, lexicon_attribute_values in self.word_possible_values.items():
             fb_attr_vals = self.feedback_possible_values.get(attribute_name, False)
             missing = []
             if fb_attr_vals:
                 missing.extend(list(set(fb_attr_vals) ^ set(lexicon_attribute_values)))
             _str = "        %s: %s" % (attribute_name, ', '.join(missing))
             try:
-                print >> sys.stdout, _str.encode('utf-8')
+                print(_str.encode('utf-8'), file=sys.stdout)
             except:
-                print >> sys.stdout, _str
+                print(_str, file=sys.stdout)
 
 
-        print >> sys.stdout, '\n'
+        print('\n', file=sys.stdout)
 
-        print >> sys.stdout, "    Symmetric difference between Tag and <msg />:"
+        print("    Symmetric difference between Tag and <msg />:", file=sys.stdout)
 
-        for attribute_name, lexicon_attribute_values in self.tag_possible_values.iteritems():
+        for attribute_name, lexicon_attribute_values in self.tag_possible_values.items():
             fb_attr_vals = self.feedback_msg_possible_values.get(attribute_name, False)
             missing = []
             if fb_attr_vals:
                 missing.extend(list(set(fb_attr_vals) ^ set(lexicon_attribute_values)))
-            print >> sys.stdout, "        %s: %s" % (attribute_name, ', '.join(missing))
+            print("        %s: %s" % (attribute_name, ', '.join(missing)), file=sys.stdout)
 
-        print >> sys.stdout, '\n'
+        print('\n', file=sys.stdout)
 
 
     def read_feedback(self, feedbackfile, wordfile, append):
@@ -571,16 +572,16 @@ class Feedback_install(object):
         """
 
         if Feedbackmsg.objects.count() == 0:
-            print >> sys.stderr, "No message strings have been installed (messages.sme.xml, etc)."
+            print("No message strings have been installed (messages.sme.xml, etc).", file=sys.stderr)
             sys.exit()
         self.feedbackfilename = feedbackfile
         self.wordfilename = wordfile
 
-        print >> sys.stdout, self.feedbackfilename
-        print >> sys.stdout, self.wordfilename
+        print(self.feedbackfilename, file=sys.stdout)
+        print(self.wordfilename, file=sys.stdout)
 
         if not append:
-            print >> sys.stdout, " * Deleting existing feedbacks"
+            print(" * Deleting existing feedbacks", file=sys.stdout)
             Form.objects.bulk_remove_form_messages(self.form_objects)
 
         # Get intersection of elements and tags
@@ -592,13 +593,13 @@ class Feedback_install(object):
             vals = tuple(get_attrs(f.word, self.word_attr_names) + \
                             get_attrs(f.tag, self.tag_attr_names))
             keys = list(self.word_attr_names) + list(self.tag_attr_names)
-            return OrderedDict(zip(keys, vals))
+            return OrderedDict(list(zip(keys, vals)))
 
         values = ['word__' + w_attr for w_attr in self.word_attr_names] + \
                     ['tag__' + t_attr for t_attr in self.tag_attr_names] + \
                     ['dialects__dialect', 'id', 'word__lemma', 'tag__string']
 
-        print >> sys.stdout, "Fetching wordform attributes."
+        print("Fetching wordform attributes.", file=sys.stdout)
         
         forms = self.form_objects.only(*values) # Get only the things we need.
         
@@ -660,7 +661,7 @@ class Feedback_install(object):
                 form_keys[w_keys] = [w_vals]
 
             if total%1000 == 0:
-                print "  Fetching wordform attributes: %d left" % total 
+                print("  Fetching wordform attributes: %d left" % total) 
 
         form_keys_key_set = set(form_keys.keys())
         # print list(form_keys_key_set)[0:20]
@@ -695,7 +696,7 @@ class Feedback_install(object):
         # defined. Each permutation is then associated with a message id
         # (n-suffix, etc.)
         # 
-        print >> sys.stdout, "Compiling word/tag attribute permutations and msg names"
+        print("Compiling word/tag attribute permutations and msg names", file=sys.stdout)
         attrs_and_messages = {}
         # collect form and msg ids here
         form_infos = []
@@ -723,11 +724,11 @@ class Feedback_install(object):
                 # Px_DuPl - possessive dual 1-3 and plural 1-3
                 if 'possessive' in tagkwargs:
                     if tagkwargs['possessive'][0] == 'Px_all':
-                        tagkwargs['possessive'] = [u'PxSg1', u'PxSg2', u'PxSg3', u'PxDu1', u'PxDu2', u'PxDu3', u'PxPl1', u'PxPl2', u'PxPl3']
+                        tagkwargs['possessive'] = ['PxSg1', 'PxSg2', 'PxSg3', 'PxDu1', 'PxDu2', 'PxDu3', 'PxPl1', 'PxPl2', 'PxPl3']
                     if tagkwargs['possessive'][0] == 'Px_Sg':
-                        tagkwargs['possessive'] = [u'PxSg1', u'PxSg2', u'PxSg3']
+                        tagkwargs['possessive'] = ['PxSg1', 'PxSg2', 'PxSg3']
                     if tagkwargs['possessive'][0] == 'Px_DuPl':
-                        tagkwargs['possessive'] = [u'PxDu1', u'PxDu2', u'PxDu3', u'PxPl1', u'PxPl2', u'PxPl3']
+                        tagkwargs['possessive'] = ['PxDu1', 'PxDu2', 'PxDu3', 'PxPl1', 'PxPl2', 'PxPl3']
             
                 # TODO: global dialects
                 dial = msg.getAttribute("dialect")
@@ -748,17 +749,17 @@ class Feedback_install(object):
                 if self.feedback_global_dialect:
                     feedback_dialects = [self.feedback_global_dialect]
 
-                print >> sys.stderr, "\nSearching for Wordforms matching ... " 
-                print >> sys.stderr, render_kwargs(kwargs)
-                print >> sys.stderr, render_kwargs(tagkwargs)
+                print("\nSearching for Wordforms matching ... ", file=sys.stderr) 
+                print(render_kwargs(kwargs), file=sys.stderr)
+                print(render_kwargs(tagkwargs), file=sys.stderr)
 
                 prod_count = reduce(
                     operator.mul, 
-                    [len(a) for a in kwargs.values() + tagkwargs.values()]
+                    [len(a) for a in list(kwargs.values()) + list(tagkwargs.values())]
                 )
                 
                 def intersect_param_set(param_set):
-                    print >> sys.stderr, "Intersecting..."
+                    print("Intersecting...", file=sys.stderr)
 
                     intersection = form_keys_key_set & param_set
 
@@ -789,11 +790,11 @@ class Feedback_install(object):
                         else:
                             attrs_and_messages[item] = [m]
 
-                    print >> sys.stdout, "Identified %d\n" % len(intersection)
+                    print("Identified %d\n" % len(intersection), file=sys.stdout)
                     del param_set
                 
                 param_set_ = set()
-                print >> sys.stderr, "Permutation count: %d" % prod_count
+                print("Permutation count: %d" % prod_count, file=sys.stderr)
                 perm_count = 0
                 for perm in Entry(kwargs, tagkwargs).permutations:
                     # p, e, r, m, i, n, a = perm
@@ -804,7 +805,7 @@ class Feedback_install(object):
                     perm_count += 1
                     if prod_count > 100000:
                         if perm_count%100000 == 0:
-                            print "  %s processed." % perm_count
+                            print("  %s processed." % perm_count)
 
                     if len(param_set_) > 1000000:
                         intersect_param_set(param_set_)
@@ -837,7 +838,7 @@ class Feedback_install(object):
         # into the database in bulk.
         #
 
-        print >> sys.stdout, "Collecting for insert."
+        print("Collecting for insert.", file=sys.stdout)
 
         form_id_msg_id = []
         for f_id, f_lemma, f_tag, f_msg in form_infos:
@@ -867,20 +868,20 @@ class Feedback_install(object):
 
         # All of the Feedback objects are inserted chunk by chunk
         progress = 0
-        print >> sys.stdout, " * Bulk inserting... "
+        print(" * Bulk inserting... ", file=sys.stdout)
         for chunk in arg_chunks:
             try:
                 Form.objects.bulk_add_form_messages(chunk)
-            except Exception, e:
-                print >> sys.stderr, Exception, e
-                print >> sys.stderr, repr(chunk[0:10]) + " ... " 
-                print >> sys.stderr, "Chunk contains null values, are messages.xml files installed?"
-                print >> sys.stderr, "Removing null values and inserting..."
+            except Exception as e:
+                print(Exception, e, file=sys.stderr)
+                print(repr(chunk[0:10]) + " ... ", file=sys.stderr) 
+                print("Chunk contains null values, are messages.xml files installed?", file=sys.stderr)
+                print("Removing null values and inserting...", file=sys.stderr)
                 chunk = [(a, b) for a, b in chunk if a and b]
                 Form.objects.bulk_add_form_messages(chunk)
             progress += chunk_size
             if progress%10000 == 0:
-                print '%d/%d Form-Feedbackmsg relations' % (progress, total_objs)
+                print('%d/%d Form-Feedbackmsg relations' % (progress, total_objs))
 
-        print >> sys.stdout, "Done!"
+        print("Done!", file=sys.stdout)
 

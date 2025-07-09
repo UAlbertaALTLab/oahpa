@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from settings import *
-from liv_drill.models import *
+from .liv_drill.models import *
 from django.db.models import Q
 from xml.dom import minidom as _dom
 from django.utils.encoding import force_text
@@ -80,9 +80,9 @@ class Extra:
 			try:
 				link.create_obj()
 
-				print >> sys.stdout, 'Created link for %s/%s' % (link.obj.language, link.obj.name)
+				print('Created link for %s/%s' % (link.obj.language, link.obj.name), file=sys.stdout)
 			except Exception:
-				print >> sys.stderr, 'Check the source file and reinstall.'
+				print('Check the source file and reinstall.', file=sys.stderr)
 
 
 
@@ -103,7 +103,7 @@ class Extra:
 			level = el.getAttribute("level")
 			for com in el.getElementsByTagName("text"):
 				text = com.firstChild.data
-				print text
+				print(text)
 				comment, created = Comment.objects.get_or_create(lang=lang, comment=text, level=level)
 				comment.save()
 
@@ -116,18 +116,18 @@ class Extra:
 
 		for el in tree.getElementsByTagName("subclasses"):
 			semclass=el.getAttribute("class")
-			print semclass
+			print(semclass)
 			s, created = Semtype.objects.get_or_create(semtype=semclass)
 			for el2 in el.getElementsByTagName('sem'):
 			   subclass  = el2.getAttribute("class")
-			   print "\t" + subclass
+			   print("\t" + subclass)
 			   for w in Word.objects.filter(Q(semtype__semtype=subclass) & ~Q(semtype__semtype=semclass)):
 				   w.semtype.add(s)
-				   print u"\t%s added to word id: %d" % (s, w.id)
+				   print("\t%s added to word id: %d" % (s, w.id))
 				   w.save()
 			   for w in WordTranslation.objects.filter(Q(semtype__semtype=subclass) & ~Q(semtype__semtype=semclass)):
 				   w.semtype.add(s)
-				   print u"\t%s added to %d" % (s, w.id)
+				   print("\t%s added to %d" % (s, w.id))
 				   w.save()
 
 

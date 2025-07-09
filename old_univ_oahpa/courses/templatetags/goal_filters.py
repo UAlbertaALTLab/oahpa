@@ -59,7 +59,7 @@ def highlight_differences(a, b):
     okay = []
     for (_a, _b, _len) in matches:
         if _len > 0:
-            okay.extend(range(_a, _a + _len))
+            okay.extend(list(range(_a, _a + _len)))
         else:
             okay.append(_a)
 

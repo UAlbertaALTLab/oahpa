@@ -46,10 +46,11 @@ class Server:
             self.server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             self.server.bind((self.host,self.port))
             self.server.listen(5)
-        except socket.error, (value,message):
+        except socket.error as xxx_todo_changeme1:
+            (value,message) = xxx_todo_changeme1.args
             if self.server:
                 self.server.close()
-                print "Could not open socket: " + message
+                print("Could not open socket: " + message)
                 sys.exit(1)
                     
     def run(self):
@@ -73,7 +74,8 @@ class Server:
                             
 class Client(threading.Thread):
 	
-    def __init__(self,(client,address),look,lock):
+    def __init__(self, xxx_todo_changeme,look,lock):
+        (client,address) = xxx_todo_changeme
         threading.Thread.__init__(self)
         self.client = client
         self.address = address
@@ -102,7 +104,7 @@ class Client(threading.Thread):
 			# Take out non-breaking space. Try to avoid errors.
             try:
 				data2 = data.decode('utf-8')
-				data2 = data2.replace(unichr(160),"")
+				data2 = data2.replace(chr(160),"")
 				data = data2.encode('utf8')
             except:
                 #data = data.encode('utf-8')

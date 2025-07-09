@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-from models import *
-from forms import *
+from .models import *
+from .forms import *
 from django.db.models import Q
-from game import Game
+from .game import Game
 from random import randint
 
 class SahkaGame(Game):
@@ -34,7 +34,7 @@ class SahkaGame(Game):
         for w in u.split():
             if w== "": continue
             word = {'fullform' : [] }
-            if self.global_targets.has_key(w):
+            if w in self.global_targets:
                 fullform=""
                 wstring = self.global_targets[w]['target']
                 if UElement.objects.filter(utterance=utterance, syntax=w).count()>0:
@@ -189,7 +189,7 @@ class SahkaGame(Game):
         utterance = Utterance.objects.get(Q(id=db_info['utterance_id']))
         targets = []
         language="eng"
-        if self.settings.has_key('language'):
+        if 'language' in self.settings:
             language = self.settings['language']
 
         if utterance.links.filter(~Q(target="")):

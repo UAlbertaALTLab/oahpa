@@ -72,7 +72,7 @@ def gtlab():
 def redeploy():
     """ SVN up some places and re-run the fastcgi initiation process """
     if env.no_svn_up:
-        print(yellow("** skipping svn up **"))
+        print((yellow("** skipping svn up **")))
         return
 
     with cd(env.meta_data_path):
@@ -80,7 +80,7 @@ def redeploy():
             'sme',
             'univ_oahpa',
         ]
-        print(cyan("** svn up **"))
+        print((cyan("** svn up **")))
 
         for p in paths:
             _p = os.path.join(env.meta_data_path, p)
@@ -95,13 +95,13 @@ def restart_service(dictionary=False):
     fail = False
 
     with cd(env.univ_oahpa_path):
-        print(cyan("** Restarting fastcgi process"))
+        print((cyan("** Restarting fastcgi process")))
         stop = env.run("sh run_fastcgi_courses_test.sh")
         if not stop.failed:
-            print(green("** Success"))
+            print((green("** Success")))
         else:
             fail = True
 
     if fail:
-        print(red("** something went wrong while restarting <%s> **" % dictionary))
+        print((red("** something went wrong while restarting <%s> **" % dictionary)))
 

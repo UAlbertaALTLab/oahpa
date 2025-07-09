@@ -82,9 +82,9 @@
 
 from modeltranslation.translator import translator, TranslationOptions, AlreadyRegistered
 
-from survey.models import Survey, SurveyQuestion, SurveyQuestionAnswerValue
+from .survey.models import Survey, SurveyQuestion, SurveyQuestionAnswerValue
 
-from courses.models import Goal, CourseGoal
+from .courses.models import Goal, CourseGoal
 
 class SurveyOptions(TranslationOptions):
     fields = ('title', 'description', )

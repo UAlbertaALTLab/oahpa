@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from settings import *
-from drill.models import *
+from .settings import *
+from .drill.models import *
 from django.db.models import Q
 from xml.dom import minidom as _dom
 from django.utils.encoding import force_text
@@ -22,7 +22,7 @@ class Extra:
         links = {}
         langs = ['no','sme']
         for lang in langs:
-            print lang
+            print(lang)
             links[lang] = []
             linkobjects = Grammarlinks.objects.filter(language=lang)
             for l in linkobjects:
@@ -43,7 +43,7 @@ class Extra:
                     t.address=address
                     t.save()
                     links[lang].append(link)
-                    print lang, link, address
+                    print(lang, link, address)
 
 				
     #The comments presented to the user after completing the game.
@@ -61,7 +61,7 @@ class Extra:
             level = el.getAttribute("level")
             for com in el.getElementsByTagName("text"):
                 text = com.firstChild.data
-                print text
+                print(text)
                 comment, created = Comment.objects.get_or_create(lang=lang, comment=text, level=level)
                 comment.save()
 
@@ -74,11 +74,11 @@ class Extra:
 
         for el in tree.getElementsByTagName("subclasses"):
             semclass=el.getAttribute("class")
-            print semclass
+            print(semclass)
             s, created = Semtype.objects.get_or_create(semtype=semclass)
             for el2 in el.getElementsByTagName('sem'):
                subclass  = el2.getAttribute("class")
-               print "\t" + subclass
+               print("\t" + subclass)
                for w in Word.objects.filter(Q(semtype__semtype=subclass) & ~Q(semtype__semtype=semclass)):
                    w.semtype.add(s)
                    w.save()

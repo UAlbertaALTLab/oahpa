@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.views.static import serve
 from django.conf.urls import i18n
 
-from settings import LLL1
+from .settings import LLL1
 import importlib
 oahpa_module = importlib.import_module(LLL1+'_oahpa')
 sdv = importlib.import_module(LLL1+'_oahpa.drill.views')

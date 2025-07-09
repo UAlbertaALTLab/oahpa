@@ -37,7 +37,7 @@ def cookie_login(request, next_page=None, required=False, **kwargs):
         # request.user.message_set.create(message=message)
         return HttpResponseRedirect(next_page)
 
-    matching_cookies = [(c, v) for c, v in request.COOKIES.iteritems() 
+    matching_cookies = [(c, v) for c, v in request.COOKIES.items() 
                                 if c.startswith(settings.COOKIE_NAME_STARTSWITH)]
 
     try:

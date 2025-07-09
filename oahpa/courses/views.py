@@ -42,7 +42,7 @@ def trackGrade(gamename, request, c):
 						game_type += ' ' + SETTINGS['grade']
 				elif 'num_bare' in SETTINGS:
 					game_type = SETTINGS['num_bare']
-					game_type += u' level ' + SETTINGS['num_level']
+					game_type += ' level ' + SETTINGS['num_level']
 				else:
 					game_type = ''
 				

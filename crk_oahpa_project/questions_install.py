@@ -24,19 +24,19 @@ def monitor(function):
 
 	@wraps(function)
 	def wrapper(*args, **kwargs):
-		print '--\n'
-		print ' %s args'
-		print '    ' + repr(args)
-		print ' %s kwargs'
-		print '    ' + repr(kwargs)
+		print('--\n')
+		print(' %s args')
+		print('    ' + repr(args))
+		print(' %s kwargs')
+		print('    ' + repr(kwargs))
 		result = function(*args, **kwargs)
-		print ' %s args'
-		print '    ' + repr(args)
-		print ' %s kwargs'
-		print '    ' + repr(kwargs)
-		print ' %s result'
-		print '    ' + repr(result)
-		print '--\n'
+		print(' %s args')
+		print('    ' + repr(args))
+		print(' %s kwargs')
+		print('    ' + repr(kwargs))
+		print(' %s result')
+		print('    ' + repr(result))
+		print('--\n')
 		return result
 
 	return wrapper
@@ -58,7 +58,7 @@ class TagError(Exception):
 				"    the <id /> refers to a word in the database that has forms  \n"
 				"    with the tags specified.\n")
 		if self.additional_messages:
-			for k, v in self.additional_messages.iteritems():
+			for k, v in self.additional_messages.items():
 				values = "\n".join(["        %s" % i for i in v])
 				append = ("\n"
 						"    %s:\n" % k)
@@ -79,17 +79,17 @@ class Questions:
 
 		semclasses = False
 
-		print
+		print()
 		#print "\tCreating element %s (%s)" % (el_id, qaelement.qatype)
 
 		# Syntactic function of the element
-		if self.grammar_defaults.has_key(el_id) and self.grammar_defaults[el_id].syntax:
+		if el_id in self.grammar_defaults and self.grammar_defaults[el_id].syntax:
 			syntax = self.grammar_defaults[el_id].syntax
 		else:
 			syntax = el_id
 
 		if not el:
-			print '\t', syntax, "No element given."
+			print('\t', syntax, "No element given.")
 
 		# Some of the answer elements share content of question elements.
 		content_id = ""
@@ -139,7 +139,7 @@ class Questions:
 			agr_id=["SUBJ"]
 			if syntax == "MAINVOBJ":
 				agr_id.append("OBJECT")
-			print "\tTRYING verb agreement (" + ', '.join(agr_id) + ") " + qaelement.qatype
+			print("\tTRYING verb agreement (" + ', '.join(agr_id) + ") " + qaelement.qatype)
 			if sdm.QElement.objects.filter(question=qaelement, syntax__in=agr_id,
 									   question__qatype=qaelement.qatype).count() > 0:
 				agr_elements = sdm.QElement.objects.filter(question=qaelement,
@@ -149,7 +149,7 @@ class Questions:
 
 		agreement = ""
 		if el: agreement = el.getElementsByTagName("agreement")
-		if agreement: print "\tAgreement:", agreement[0].getAttribute("id")
+		if agreement: print("\tAgreement:", agreement[0].getAttribute("id"))
 
 		# Agreement from xml-files
 		# Try first inside question or answer
@@ -171,7 +171,7 @@ class Questions:
 															   syntax=agr_id)
 
 			if not agr_elements:
-				print "* ERROR: no agreement elements found"
+				print("* ERROR: no agreement elements found")
 
 		############ WORDS
 		# Search for existing word in the database.
@@ -188,14 +188,14 @@ class Questions:
 			word_id_hid = i.getAttribute("hid").strip()
 			if word_id:
 				if word_id_hid:
-					print "\tfound word %s/%s" % (word_id, word_id_hid)
+					print("\tfound word %s/%s" % (word_id, word_id_hid))
 					word_elements = sdm.Word.objects.filter(wordid=word_id, hid=int(word_id_hid))
 				else:
-					print "\tfound word %s" % word_id
+					print("\tfound word %s" % word_id)
 					word_elements = sdm.Word.objects.filter(wordid=word_id)
 				# Add pos information here!
 				if not word_elements:
-					print "\tWord not found! " + word_id
+					print("\tWord not found! " + word_id)
 
 		# Search for existing semtype
 		# Semtype overrides the word id selection
@@ -229,7 +229,7 @@ class Questions:
 
 		if word_elements:
 			for w in word_elements:
-				if not words.has_key(w.pos): words[w.pos] = []
+				if w.pos not in words: words[w.pos] = []
 				words[w.pos].append(w)
 
 		############# GRAMMAR
@@ -266,11 +266,11 @@ class Questions:
 				has_copies = False
 
 			if preceding:
-				print " * Element already declared in the question"
+				print(" * Element already declared in the question")
 				return
 			if has_copies:
 				tagelements = sum([list(p.tags.all()) for p in has_copies], [])
-			elif self.grammar_defaults.has_key(el_id):
+			elif el_id in self.grammar_defaults:
 				if self.grammar_defaults[el_id].tags:
 					tagelements = self.grammar_defaults[el_id].tags
 
@@ -286,7 +286,7 @@ class Questions:
 				poses.append(gr.getAttribute("pos"))
 			tagstrings = []
 			if poses:
-				if self.grammar_defaults.has_key(el_id):
+				if el_id in self.grammar_defaults:
 					if self.grammar_defaults[el_id].tags:
 						tagelements = self.grammar_defaults[el_id].tags.filter(pos__in=poses)
 			if tags:
@@ -304,7 +304,7 @@ class Questions:
 			# If pronoun id is given, only the tags related to that pronoun are preserved.
 			for t in tagelements:
 				if t.pos == 'Pron':
-					if not words.has_key('Pron'): break
+					if 'Pron' not in words: break
 					found = False
 					for w in words['Pron'][:]:
 						corresponding_forms = sdm.Form.objects.filter(tag__in=tagelements,
@@ -325,7 +325,7 @@ class Questions:
 						tagelements = tagelements.exclude(id=t.id)
 
 			# Remove those words which do not have any forms with the tags.
-			if words.has_key('N'):
+			if 'N' in words:
 				for w in words['N']:
 					found = False
 					for t in tagelements:
@@ -340,7 +340,7 @@ class Questions:
 		task = ""
 		# Elements that do not inflection information are not created.
 		if not tagelements and not agr_elements:
-			print "\tno inflection for", el_id
+			print("\tno inflection for", el_id)
 			if len(grammars) > 0:
 				additional_messages = OrderedDict([
 					('Grammar tags available for word id',
@@ -364,7 +364,7 @@ class Questions:
 		if el:
 			task = el.getAttribute("task")
 			if task:
-				print "\tsetting", el_id, "as task"
+				print("\tsetting", el_id, "as task")
 				qaelement.task = syntax
 				qaelement.save()
 		else:
@@ -403,11 +403,11 @@ class Questions:
 				# sys.exit(2)
 
 		############# CREATE ELEMENTS
-		print '\tCREATING ELEMENTS'
-		print '\tElements for the following keys...'
-		print '\t\tpos: ' + ', '.join(posvalues.keys())
+		print('\tCREATING ELEMENTS')
+		print('\tElements for the following keys...')
+		print('\t\tpos: ' + ', '.join(list(posvalues.keys())))
 		# Add an element for each pos:
-		for p in posvalues.keys():
+		for p in list(posvalues.keys()):
 			qe = sdm.QElement.objects.create(question=qaelement,\
 										 identifier=el_id,\
 										 syntax=syntax)
@@ -421,9 +421,9 @@ class Questions:
 				qe.save()
 
 			if semclasses:
-				print '\t\tsemtype: ', ', '.join(semclasses)
+				print('\t\tsemtype: ', ', '.join(semclasses))
 			else:
-				print '\t\tno semtype'
+				print('\t\tno semtype')
 			# Add links to corresponding question elements.
 			if question_qelements:
 				for q in question_qelements:
@@ -433,14 +433,14 @@ class Questions:
 
 			if tagelements:
 				for t in tagelements:
-					print '\t\ttag: ', t.string
+					print('\t\ttag: ', t.string)
 					if t.pos == p:
 						qe.tags.add(t)
 
 			# Create links to words.
-			if not words.has_key(p):
+			if p not in words:
 				word_pks = None
-				print "\tlooking for words..", el_id, p
+				print("\tlooking for words..", el_id, p)
 				# word_elements = sdm.Word.objects.filter(form__tag__in=qe.tags.all()) # pos=p)
 
 				# Just filtering isn't enough; .filter() doesn't return a list of unique items with this kind of query.
@@ -452,12 +452,12 @@ class Questions:
 
 				word_pks = list(set(word_pks))
 				if len(word_pks) == 0:
-					print 'Error: Elements with zero possibilities not permitted.'
-					print ' > ', qe.question
-					print ' > Word tags: %s' % repr(qe.tags.all())
-					print ' > semtypes: %s' % repr(qe.semtype)
+					print('Error: Elements with zero possibilities not permitted.')
+					print(' > ', qe.question)
+					print(' > Word tags: %s' % repr(qe.tags.all()))
+					print(' > semtypes: %s' % repr(qe.semtype))
 					sys.exit(2)
-				print '\t%d elements available. ' % len(word_pks)
+				print('\t%d elements available. ' % len(word_pks))
 
 				word_elements_gen = (sdm.Word.objects.get(pk=int(b)) for b in word_pks)
 
@@ -468,9 +468,9 @@ class Questions:
 
 				if word_elements_gen:
 					for w in word_elements_gen:
-						if not words.has_key(p):
+						if p not in words:
 							words[w.pos] = []
-						if not words.has_key(w.pos):
+						if w.pos not in words:
 							words[w.pos] = []
 						words[w.pos].append(w)
 						word_elements.append(w)
@@ -560,16 +560,16 @@ class Questions:
 		self.source_language = qs.getAttribute("source_language") or default_source_language
 		if not gametype: gametype="morfa"
 
-		print "Created questions:"
+		print("Created questions:")
 		for q in tree.getElementsByTagName("q"):
 			qid = q.getAttribute('id')
 			if not qid:
-				print "ERROR Missing question id, stopping."
+				print("ERROR Missing question id, stopping.")
 				exit()
 
-			print "\n##"
-			print "### INSTALLING QUESTION: %s" % qid.encode('utf-8')
-			print "##\n"
+			print("\n##")
+			print("### INSTALLING QUESTION: %s" % qid.encode('utf-8'))
+			print("##\n")
 
 			level = q.getAttribute('level')
 			if not level: level="1"
@@ -610,7 +610,7 @@ class Questions:
 						# Leave this if DTD is used
 						book_entry, created = sdm.Source.objects.get_or_create(name=book)
 						if created:
-							print "\tCreated book entry with name ", book
+							print("\tCreated book entry with name ", book)
 					question_element.source.add(book_entry)
 					question_element.save()
 
@@ -619,7 +619,7 @@ class Questions:
 				# Add book to the database
 				book_entry, created = sdm.Source.objects.get_or_create(name=book)
 				if created:
-					print "\tCreated book entry with name ", book
+					print("\tCreated book entry with name ", book)
 				question_element.source.add(book_entry)
 				question_element.save()
 
@@ -791,7 +791,7 @@ class Questions:
 				else:
 					return [item]
 
-			return list(product(*map(make_list, tags)))
+			return list(product(*list(map(make_list, tags))))
 
 		def parse_tag(tag):
 			""" Iterate through a tag string by chunks, and check for tag sets
@@ -812,7 +812,7 @@ class Questions:
 
 		if type(tags) == list:
 			tags = [a for a in tags if a]
-			parsed = sum(map(parse_tag, tags), [])
+			parsed = sum(list(map(parse_tag, tags)), [])
 			return parsed
 		else:
 			return False

@@ -40,12 +40,12 @@ def fix_encoding(s):
 try:
 	from collections import OrderedDict
 except ImportError:
-	from conf.ordereddict import OrderedDict
+	from .conf.ordereddict import OrderedDict
 
 def chunks(l, n):
 	""" Yield successive n-sized chunks from l.
 	"""
-	for i in xrange(0, len(l), n):
+	for i in range(0, len(l), n):
 		yield l[i:i+n]
 
 def get_attrs(item, attr_names):
@@ -62,7 +62,7 @@ def get_attrs(item, attr_names):
 
 def render_kwargs(D):
 	lines = []
-	for k, vs in D.iteritems():
+	for k, vs in D.items():
 		line = ' %s = %s ' % (k, ', '.join(vs))
 		lines.append(line)
 	
@@ -85,27 +85,27 @@ def read_messages(infiles):
 	
 	from itertools import permutations
 	total_differences = set()
-	for set1, set2 in permutations(file_sets.items(), 2):
+	for set1, set2 in permutations(list(file_sets.items()), 2):
 		diff = set1[1] ^ set2[1]
-		print >> sys.stdout, 'Symmetric distance in:'
-		print >> sys.stdout, '  %s' % set1[0] 
-		print >> sys.stdout, '  %s' % set2[0]
-		print >> sys.stdout, ''
-		print >> sys.stdout, '  %s' % ', '.join(diff)
-		print >> sys.stdout, ''
-		print >> sys.stdout, ''
+		print('Symmetric distance in:', file=sys.stdout)
+		print('  %s' % set1[0], file=sys.stdout) 
+		print('  %s' % set2[0], file=sys.stdout)
+		print('', file=sys.stdout)
+		print('  %s' % ', '.join(diff), file=sys.stdout)
+		print('', file=sys.stdout)
+		print('', file=sys.stdout)
 		for a in diff:
 			total_differences.add(a)
 
 	if len(list(total_differences)) > 0:
-		print >> sys.stderr, ' ! Missing feedback messages in one or many files:'
+		print(' ! Missing feedback messages in one or many files:', file=sys.stderr)
 		for a in list(total_differences):
-			print >> sys.stderr, '    ' + a
-			missing_files = [f for f, _is in file_sets.items() if a not in _is]
-			print >> sys.stderr, '    ' + ', '.join(missing_files)
-		print >> sys.stderr, ''
+			print('    ' + a, file=sys.stderr)
+			missing_files = [f for f, _is in list(file_sets.items()) if a not in _is]
+			print('    ' + ', '.join(missing_files), file=sys.stderr)
+		print('', file=sys.stderr)
 	else:
-		print >> sys.stdout, " * No asymmetricalities between feedback files"
+		print(" * No asymmetricalities between feedback files", file=sys.stdout)
 	
 
 

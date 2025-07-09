@@ -9,7 +9,7 @@ Changes required to settings (will elaborate on this more later):
  * see also: views in courses views for cookie_login and cookie_logout
 """
 
-from urllib import urlencode
+from urllib.parse import urlencode
 
 from django.http import HttpResponseRedirect, HttpResponseForbidden
 from django.conf import settings

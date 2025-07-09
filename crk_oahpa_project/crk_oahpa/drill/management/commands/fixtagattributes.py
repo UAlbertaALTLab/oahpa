@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from local_conf import LLL1
+from .local_conf import LLL1
 import importlib
 oahpa_module = importlib.import_module(LLL1+'_oahpa')
 
@@ -22,13 +22,13 @@ def fixtags():
 	Tag = oahpa_module.drill.models.Tag
 	tags = Tag.objects.all()
 
-	print 'Fixing attributes...'
+	print('Fixing attributes...')
 	for tag in tags:
-		print tag.string
+		print(tag.string)
 		tag.fix_attributes()
 		tag.save()
 
-	print 'Done'
+	print('Done')
 
 class Command(BaseCommand):
 	help = """

@@ -167,17 +167,17 @@ OLD_NEW_ISO_CODES = {
 # have word forms in the system.
 
 INFINITIVE_SUBTRACT = {
-    'nob': ur'^(?P<inf>å )?(?P<lemma>.*)$',
-    'swe': ur'^(?P<inf>att )?(?P<lemma>.*)$',
-    'eng': ur'^(?P<inf>to )?(?P<lemma>.*)$',
-    'deu': ur'^(?P<inf>zu )?(?P<lemma>.*)$',
+    'nob': r'^(?P<inf>å )?(?P<lemma>.*)$',
+    'swe': r'^(?P<inf>att )?(?P<lemma>.*)$',
+    'eng': r'^(?P<inf>to )?(?P<lemma>.*)$',
+    'deu': r'^(?P<inf>zu )?(?P<lemma>.*)$',
 }
 
 INFINITIVE_ADD = {
-    'nob': ur'å \g<lemma>',
-    'swe': ur'att \g<lemma>',
-    'eng': ur'to \g<lemma>',
-    'deu': ur'zu \g<lemma>',
+    'nob': r'å \g<lemma>',
+    'swe': r'att \g<lemma>',
+    'eng': r'to \g<lemma>',
+    'deu': r'zu \g<lemma>',
 }
 
 DIALECTS = {

@@ -19,7 +19,7 @@ def render_to_response(*args, **kwargs):
 
 from django.contrib.auth.decorators import login_required
 
-from models import UserProfile, Course, UserGrade, Activity
+from .models import UserProfile, Course, UserGrade, Activity
 
 def cookie_login(request, next_page=None, required=False, **kwargs):
 	""" Check for existing site.uit.no cookie

@@ -21,7 +21,7 @@ urlpatterns = patterns('django.contrib.auth.views',
     url(r'^cookie_logout/$', cookie_logout),
 )
 
-from views import ( courses_main
+from .views import ( courses_main
                   , instructor_student_detail
                   , begin_course_task
                   , courses_goal_construction

@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from models import ( UserGrade
+from .models import ( UserGrade
                    , UserGradeSummary
                    , UserProfile
                    , Course
@@ -17,7 +17,7 @@ from modeltranslation.admin import ( TranslationAdmin
                                    )
 
 
-from models import CourseRelationship
+from .models import CourseRelationship
 
 from django.db.models import Q
 import datetime
@@ -83,7 +83,7 @@ def merge_activities(modeladmin, request, queryset):
         valnames.setdefault(r.model, []).append(r.field.name)
 
     for model_object in tail:
-        for model, field_names in valnames.iteritems():
+        for model, field_names in valnames.items():
             for field_name in field_names:
                 model.objects.filter(**{field_name: model_object}).update(**{field_name: main})
         model_object.delete()

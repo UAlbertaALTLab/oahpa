@@ -8,7 +8,7 @@ import liv_oahpa.settings as settings
 
 from liv_oahpa.conf.tools import switch_language_code
 
-from models import *
+from .models import *
 #from game import *
 #from liv_oahpa.liv_drill.game import relax
 import datetime
@@ -19,32 +19,32 @@ from random import choice
 
 # TODO: These should be accessible in the admin interface, not hardcoded.
 
-PRONOUNS_LIST = {'Sg1':u'ma', 'Sg2':u'sa', 'Sg3':u'ta',
-		  'Pl1':u'mēg', 'Pl2':u'tēg', 'Pl3':u'ne'}
+PRONOUNS_LIST = {'Sg1':'ma', 'Sg2':'sa', 'Sg3':'ta',
+		  'Pl1':'mēg', 'Pl2':'tēg', 'Pl3':'ne'}
 
 # DEMONSTRATIVE_PRESENTATION plus Sg3/Pl3
-PASSIVE_PRONOUNS_LIST = {'Sg1':u'ma', 'Sg2':u'sa', 'Sg3':u'ta',
-                         'Pl1':u'mēg', 'Pl2':u'tēg', 'Pl3':u'ne'}
+PASSIVE_PRONOUNS_LIST = {'Sg1':'ma', 'Sg2':'sa', 'Sg3':'ta',
+                         'Pl1':'mēg', 'Pl2':'tēg', 'Pl3':'ne'}
 
 
 NEGATIVE_VERB_PRES = {'Sg1':'in', 'Sg2':'it', 'Sg3':'ii',
 		  'Pl1':'eat', 'Pl2':'ehpet', 'Pl3':'eai'}
 
 TENSE_PRESENTATION = {
-	'Prt': u'eʼggiļ',
-	'Prs': u'tämpõ',
+	'Prt': 'eʼggiļ',
+	'Prs': 'tämpõ',
 }
 
 RECIPROCATIVE_PRESENTATION = {
-	'Du': u'guhtet',
-	'Pl': u'goabbat',
+	'Du': 'guhtet',
+	'Pl': 'goabbat',
 }
 
 DEMONSTRATIVE_PRESENTATION = {
-	'Sg': u'okta',
-	'Sg3': u'okta',
-	'Pl': u'máŋga',
-	'Pl3': u'máŋga',
+	'Sg': 'okta',
+	'Sg3': 'okta',
+	'Pl': 'máŋga',
+	'Pl3': 'máŋga',
 }
 
 POS_CHOICES = (
@@ -142,8 +142,8 @@ CASE_CONTEXT_CHOICES = (
 )
 
 NOUN_TYPE_CHOICES =(
-	('N-FEM-other', _(u'feminine in -a/-я')),
-	('N-FEM-8', _(u'feminine in -ь')),
+	('N-FEM-other', _('feminine in -a/-я')),
+	('N-FEM-8', _('feminine in -ь')),
 	('N-MASC-INANIM', _('masculine inanimate')),
 	('N-MASC-ANIM', _('masculine animate')),
 	('N-NEUT', _('neuter')),
@@ -316,7 +316,7 @@ DERIVATION_CHOICES_CONTEXT = (
 )
 
 BOOK_CHOICES = (
-    ('all', _(u'all')),
+    ('all', _('all')),
     ('K1', _('Book 1')),
     ('K2', _('Book 2')),
 )
@@ -547,7 +547,7 @@ def relax(strict):
 
 	# Create an iterator. We want to generate as many possibilities as
 	# possible (very fast), so more relaxed options are available.
-	searches = relax_pairs.items()
+	searches = list(relax_pairs.items())
 	# HU: Commented out the following complex code because it was causing an infinite loop or similar. And the generation of relaxed forms works fine without it. :)
 	#print "searches composed", searches
 	#permutations = itertools.chain(itertools.permutations(searches))
@@ -598,7 +598,7 @@ def is_correct(self, game, example=None):
 
 	# Log information about user answers.
 
-	correctlist = u",".join([a for a in self.correct_anslist])
+	correctlist = ",".join([a for a in self.correct_anslist])
 	self.correctlist = correctlist
 	self.log_response()
 
@@ -645,21 +645,21 @@ def set_settings(self):
 	# get the first tuple item. Also makes it easier to read. And, there are
 	# no many-to-many relationships in these tuples of tuples
 
-	self.allsem = dict(SEMTYPE_CHOICES).keys()
-	self.allcase = dict(CASE_CHOICES).keys()
-	self.allcase_context = dict(CASE_CONTEXT_CHOICES).keys()
-	self.proncase_context = dict(PRON_CONTEXT_CHOICES).keys()
-	self.allvtype_context = dict(VTYPE_CONTEXT_CHOICES).keys()
-	self.alladjcase = dict(ADJCASE_CHOICES).keys()  # added by Heli
-	self.allgrade = dict(GRADE_CHOICES).keys() # added by Heli
-	self.alladj_context = dict(ADJ_CONTEXT_CHOICES).keys()
-	self.allnum_context = dict(NUM_CONTEXT_CHOICES).keys()
-	self.allnum_bare = dict(NUM_BARE_CHOICES).keys()
-	self.allnum_type = dict(NUM_TYPE_CHOICES).keys() # added by Heli
-	self.sources = dict(BOOK_CHOICES).keys()
-	self.geography = dict(GEOGRAPHY_CHOICES).keys()
-	self.frequency = dict(FREQUENCY_CHOICES).keys() # added by Heli
-	self.allnoun_type = dict(NOUN_TYPE_CHOICES).keys() # added by Pavel
+	self.allsem = list(dict(SEMTYPE_CHOICES).keys())
+	self.allcase = list(dict(CASE_CHOICES).keys())
+	self.allcase_context = list(dict(CASE_CONTEXT_CHOICES).keys())
+	self.proncase_context = list(dict(PRON_CONTEXT_CHOICES).keys())
+	self.allvtype_context = list(dict(VTYPE_CONTEXT_CHOICES).keys())
+	self.alladjcase = list(dict(ADJCASE_CHOICES).keys())  # added by Heli
+	self.allgrade = list(dict(GRADE_CHOICES).keys()) # added by Heli
+	self.alladj_context = list(dict(ADJ_CONTEXT_CHOICES).keys())
+	self.allnum_context = list(dict(NUM_CONTEXT_CHOICES).keys())
+	self.allnum_bare = list(dict(NUM_BARE_CHOICES).keys())
+	self.allnum_type = list(dict(NUM_TYPE_CHOICES).keys()) # added by Heli
+	self.sources = list(dict(BOOK_CHOICES).keys())
+	self.geography = list(dict(GEOGRAPHY_CHOICES).keys())
+	self.frequency = list(dict(FREQUENCY_CHOICES).keys()) # added by Heli
+	self.allnoun_type = list(dict(NOUN_TYPE_CHOICES).keys()) # added by Pavel
 
 
 # comment
@@ -714,29 +714,29 @@ def select_words(self, qwords, awords):
 	from random import choice
 	selected_awords = {}
 
-	for syntax in awords.keys():
+	for syntax in list(awords.keys()):
 		word = None
 		tag = None
 		selected_awords[syntax] = {}
 
 		# Select answer words and fullforms for interface
-		if awords.has_key(syntax) and len(awords[syntax]) > 0:
+		if syntax in awords and len(awords[syntax]) > 0:
 			aword = choice(awords[syntax])
-			if aword.has_key('tag'):
+			if 'tag' in aword:
 				selected_awords[syntax]['tag'] = aword['tag']
-			if aword.has_key('task'):
+			if 'task' in aword:
 				selected_awords[syntax]['task'] = aword['task']
-			if aword.has_key('taskword'):
+			if 'taskword' in aword:
 				selected_awords[syntax]['taskword'] = aword['taskword']
-			if aword.has_key('qelement'):
+			if 'qelement' in aword:
 				qelem = aword['qelement']
-				if type(qelem) is not long:  # to exclude MorfaC
+				if type(qelem) is not int:  # to exclude MorfaC
 				    if qelem.task:  # words in VastaS answer frame where task="yes".
 				        selected_awords[syntax]['taskword'] = qelem.task
-			if aword.has_key('word') and aword['word']:
+			if 'word' in aword and aword['word']:
 				selected_awords[syntax]['word'] = aword['word']
 			else:
-				if aword.has_key('qelement') and selected_awords[syntax].has_key('tag'):
+				if 'qelement' in aword and 'tag' in selected_awords[syntax]:
 					# get form_list for a given qelement
 
 					wqelems = WordQElement.objects.filter(qelement__id=aword['qelement'])
@@ -766,14 +766,14 @@ def select_words(self, qwords, awords):
 						fullf = [f.fullform for f in form_list]
 						selected_awords[syntax]['fullform'] = fullf[:]
 
-				if not selected_awords[syntax].has_key('fullform'):
-					if aword.has_key('fullform') and len(aword['fullform']) > 0:
+				if 'fullform' not in selected_awords[syntax]:
+					if 'fullform' in aword and len(aword['fullform']) > 0:
 						selected_awords[syntax]['fullform'] = aword['fullform'][:]
 
-		if not selected_awords[syntax].has_key('fullform'):
+		if 'fullform' not in selected_awords[syntax]:
 
-			if selected_awords[syntax].has_key('word')\
-				and selected_awords[syntax].has_key('tag'):
+			if 'word' in selected_awords[syntax]\
+				and 'tag' in selected_awords[syntax]:
 
 				form_list = Form.objects.filter(
 								word__id=selected_awords[syntax]['word'],
@@ -797,11 +797,11 @@ def select_words(self, qwords, awords):
 					selected_awords[syntax]['fullform'] = fullf[:]
 
 		# make sure that there is something to print
-		if not selected_awords[syntax].has_key('fullform'):
+		if 'fullform' not in selected_awords[syntax]:
 			selected_awords[syntax]['fullform'] = []
 			selected_awords[syntax]['fullform'].append(syntax)
-        print "selected awords: "
-        print selected_awords
+        print("selected awords: ")
+        print(selected_awords)
 	return selected_awords
 
 
@@ -822,7 +822,7 @@ class OahpaSettings(forms.Form):
 
 	def clean(self):
 		x = self.cleaned_data['bisyllabic']
-		print 'clean: ', x
+		print('clean: ', x)
 		return self.cleaned_data
 
 	def set_default_data(self):
@@ -943,7 +943,7 @@ class OahpaQuestion(forms.Form):
                 #forms = accepted_answers  # This is wrong: the relaxed pairs are overwritten!
 
 		self.correct_anslist = [force_text(item) for item in accepted_answers] + [force_text(f) for f in forms]
-		print "correct_anslist:",self.correct_anslist
+		print("correct_anslist:",self.correct_anslist)
 		self.relaxings = relaxings
 
 		#def generate_fields(self,answer_size, maxlength):
@@ -1174,7 +1174,7 @@ class MorfaQuestion(OahpaQuestion):
 			if conneg:
 				conneg_agr = conneg
 			else:
-				conneg_agr = choice(self.PronPNBase.keys())
+				conneg_agr = choice(list(self.PronPNBase.keys()))
 		else:
 			conneg_agr = False
 
@@ -1354,7 +1354,7 @@ class NumQuestion(OahpaQuestion):
 			self.error = "correct"
 			self.iscorrect = True
 
-		self.correctlist = u",".join(list(set(self.correct_anslist)))
+		self.correctlist = ",".join(list(set(self.correct_anslist)))
 
 		self.log_response()
 
@@ -1558,7 +1558,7 @@ class KlokkaQuestion(NumQuestion):
 			self.error = "correct"
 			self.iscorrect = True
 
-		self.correctlist = u",".join(list(set(self.correct_anslist)))
+		self.correctlist = ",".join(list(set(self.correct_anslist)))
 
 		self.log_response()
 
@@ -1627,7 +1627,7 @@ class ContextMorfaQuestion(OahpaQuestion):
 		atext = qanswer.string
 		task = qanswer.task
 		if not task:
-			error_msg = u"not task: %s %s (%s)" % (atext, question.qid, question.qatype)
+			error_msg = "not task: %s %s (%s)" % (atext, question.qid, question.qatype)
 
 			raise Http404(error_msg)
 		super(ContextMorfaQuestion, self).__init__(*args, **kwargs)
@@ -1646,7 +1646,7 @@ class ContextMorfaQuestion(OahpaQuestion):
 		relaxed = []
 		form_list=[]
 
-		if not selected_awords.has_key(task):
+		if task not in selected_awords:
 			raise Http404(task + " " + atext + " " + str(qanswer.id))
 		if len(selected_awords[task]['fullform'])>0:
 			for f in selected_awords[task]['fullform']:
@@ -1668,21 +1668,21 @@ class ContextMorfaQuestion(OahpaQuestion):
 
 		self.qattrs = {}
 		self.aattrs = {}
-		for syntax in qwords.keys():
+		for syntax in list(qwords.keys()):
 			qword = qwords[syntax]
-			if qword.has_key('word'):
+			if 'word' in qword:
 				self.qattrs['question_word_' + syntax] = qword['word']
-			if qword.has_key('tag') and qword['tag']:
+			if 'tag' in qword and qword['tag']:
 				self.qattrs['question_tag_' + syntax] = qword['tag']
-			if qword.has_key('fullform') and qword['fullform']:
+			if 'fullform' in qword and qword['fullform']:
 				self.qattrs['question_fullform_' + syntax] = qword['fullform'][0]
 
-		for syntax in selected_awords.keys():
-			if selected_awords[syntax].has_key('word'):
+		for syntax in list(selected_awords.keys()):
+			if 'word' in selected_awords[syntax]:
 				self.aattrs['answer_word_' + syntax] = selected_awords[syntax]['word']
-			if selected_awords[syntax].has_key('tag'):
+			if 'tag' in selected_awords[syntax]:
 				self.aattrs['answer_tag_' + syntax] = selected_awords[syntax]['tag']
-			if selected_awords[syntax].has_key('fullform') and len(selected_awords[syntax]['fullform']) == 1:
+			if 'fullform' in selected_awords[syntax] and len(selected_awords[syntax]['fullform']) == 1:
 				self.aattrs['answer_fullform_' + syntax] = selected_awords[syntax]['fullform'][0]
 
 		# Forms question string and answer string out of grammatical elements and other strings.
@@ -1692,10 +1692,10 @@ class ContextMorfaQuestion(OahpaQuestion):
 		# Format question string
 		qtext = question.string
 		for w in qtext.split():
-			if not qwords.has_key(w):
+			if w not in qwords:
 				qstring = qstring + " " + force_text(w)
 			else:
-				if qwords[w].has_key('fullform'):
+				if 'fullform' in qwords[w]:
 					qstring = qstring + " " + force_text(qwords[w]['fullform'][0])
 				else:
 					qstring = qstring + " " + force_text(w)
@@ -1775,7 +1775,7 @@ class ContextMorfaQuestion(OahpaQuestion):
 			if w.count("(") > 0:
 			  continue
 
-			if not selected_awords.has_key(w) or not selected_awords[w].has_key('fullform'):
+			if w not in selected_awords or 'fullform' not in selected_awords[w]:
 				astring = astring + " " + force_text(w)
 			else:
 				astring = astring + " " + force_text(selected_awords[w]['fullform'][0])
@@ -2009,9 +2009,9 @@ def vasta_is_correct(self,question,qwords,language,utterance_name=None):
     #if language == "fi" : language = "fin"
     #if language == "en" : language = "eng"
     if not language in ["nob","sme","fin","eng","swe","liv"]: language="nob"
-    for w in msgstrings.keys():
+    for w in list(msgstrings.keys()):
         if found: break
-        for m in msgstrings[w].keys():
+        for m in list(msgstrings[w].keys()):
             if spelling and m.count("spelling") == 0: continue
             m = m.replace("&","")
             if Feedbackmsg.objects.filter(msgid=m).count() > 0:
@@ -2030,10 +2030,10 @@ def vasta_is_correct(self,question,qwords,language,utterance_name=None):
                         break
             if m.count("dia-") > 0:
                 dia_msg.append(m)
-        if msgstrings[w].has_key('dia-target'):
+        if 'dia-target' in msgstrings[w]:
             constant = msgstrings[w]['dia-lemma']
             variable = msgstrings[w]['dia-target']
-        if msgstrings[w].has_key('dia-unknown'):
+        if 'dia-unknown' in msgstrings[w]:
             constant = msgstrings[w]['dia-lemma']
             variable = msgstrings[w]['dia-unknown']
 
@@ -2091,13 +2091,13 @@ class VastaQuestion(OahpaQuestion):
         self.fields['question_id'] = forms.CharField(widget=question_widget, required=False)
 
         self.qattrs= {}
-        for syntax in qwords.keys():
+        for syntax in list(qwords.keys()):
             qword = qwords[syntax]
-            if qword.has_key('word'):
+            if 'word' in qword:
                 self.qattrs['question_word_' + syntax] = qword['word']
-            if qword.has_key('tag') and qword['tag']:
+            if 'tag' in qword and qword['tag']:
                 self.qattrs['question_tag_' + syntax] = qword['tag']
-            if qword.has_key('fullform') and qword['fullform']:
+            if 'fullform' in qword and qword['fullform']:
                 self.qattrs['question_fullform_' + syntax] = qword['fullform'][0]
 
         # Forms question string and answer string out of grammatical elements and other strings.
@@ -2106,9 +2106,9 @@ class VastaQuestion(OahpaQuestion):
         # Format question string
         qtext = question.string
         for w in qtext.split():
-            if not qwords.has_key(w): qstring = qstring + " " + force_text(w)
+            if w not in qwords: qstring = qstring + " " + force_text(w)
             else:
-                if qwords[w].has_key('fullform'):
+                if 'fullform' in qwords[w]:
                     qstring = qstring + " " + force_text(qwords[w]['fullform'][0])
                 else:
                     qstring = qstring + " " + w
@@ -2139,7 +2139,7 @@ def sahka_is_correct(self,utterance,targets,language):
     if not self.is_valid():
         return False
 
-    if not self.cleaned_data.has_key('answer'):
+    if 'answer' not in self.cleaned_data:
         return
     qwords = {}
     # Split the question to words for analaysis.
@@ -2230,11 +2230,11 @@ class SahkaQuestion(OahpaQuestion):
             # Format question string
             qtext = utterance.utterance
             for w in qtext.split():
-                if not qwords.has_key(w):
+                if w not in qwords:
                     qstring = qstring + " " + force_text(w)
                     self.qattrs['question_fullform_' + w] = force_text(w)
                 else:
-                    if qwords[w].has_key('fullform'):
+                    if 'fullform' in qwords[w]:
                         qstring = qstring + " " + force_text(qwords[w]['fullform'][0])
                         self.qattrs['question_fullform_' + w] = qwords[w]['fullform'][0]
                     else:
@@ -2276,8 +2276,8 @@ class SahkaQuestion(OahpaQuestion):
                 if constant:
                     self.qattrs['target_' + constant] = self.variables[1]
                     self.global_targets[constant] = { 'target' : self.variables[1] }
-        for t in self.global_targets.keys():
-            if not self.qattrs.has_key(t):
+        for t in list(self.global_targets.keys()):
+            if t not in self.qattrs:
                 self.qattrs['target_' + t] = self.global_targets[t]['target']
 
         #self.error="correct"
@@ -2337,13 +2337,13 @@ def cealkka_is_correct(self,question,qwords,awords,language,question_id=None):  
         analysis = ""
         data_lookup = "echo \"" + qtext + "\"" + preprocess
         words = os.popen(data_lookup).readlines()
-        print question_id
+        print(question_id)
         #print words
         #print qwords
         for word in words:
             w=""
             cohort=""
-            print word
+            print(word)
             # All the words will go through morph.analyser, even if they have a tag-attribute already. We do it to avoid problems with compound words.
             w = force_text(word).encode('utf-8')
             w=w.lstrip().rstrip()
@@ -2351,25 +2351,25 @@ def cealkka_is_correct(self,question,qwords,awords,language,question_id=None):  
             cohort = s.recv(size)
             analysis = analysis + cohort
             #logfile.write(analysis+"\n")
-            print analysis
+            print(analysis)
         ### Lemmas and POS tags of task words are gathered into the variables
         ### tasklemmas and taskpos respectively. Tasklemmas and taskpos will be
         ### sent to CG together with the morph. analysed question and answer.
         tasklemmas = ""
         for aword in awords:
-            print aword
+            print(aword)
 	        #logfile.write(aword)
-            if aword.has_key('taskword') and aword['taskword']:
+            if 'taskword' in aword and aword['taskword']:
                 tlemma = aword['fullform']
                 tlemma = force_text(tlemma).encode('utf-8')
                 tlemma = tlemma.strip()
-                print tlemma
+                print(tlemma)
 		        #logfile.write(tlemma+" ")
                 tasktag = Tag.objects.filter(id=aword['tag'])
                 tasktagstring = tasktag[0].string
                 taskpos = tasktag[0].pos
                 ttag = tasktagstring.replace("+"," ")
-                print ttag
+                print(ttag)
 		        #logfile.write(ttag+"\n")
                 s.send(tlemma)  # on vic
                 word_lookup = s.recv(size)  # on vic
@@ -2391,16 +2391,16 @@ def cealkka_is_correct(self,question,qwords,awords,language,question_id=None):  
                         if entag not in row:
                             tag_match = 0
                     if tag_match and tlemma == malemma_without_hash:  # 'Sg Nom' or 'V Inf' is not enough - exact tag sequence needed, and also need to compare the primary form to the analysed word, to resolve ambiguities
-                        print malemmas
+                        print(malemmas)
 			             #logfile.write(malemma+"\n")
-                        print malemma
-                        print malemma_without_hash
+                        print(malemma)
+                        print(malemma_without_hash)
                         tasklemmas = tasklemmas + "\n\t\"" + malemma + "\" "+taskpos
                     morfanal = morfanal + ans_cohort  # END
 
         analysis = analysis + "\"<^vastas>\"\n\t\"^vastas\" QDL " + question_id + " " + tasklemmas + "\n"
         #####
-        print analysis
+        print(analysis)
 	   #logfile.write(analysis)
         data_lookup = "echo \"" + force_text(answer).encode('utf-8') + "\"" + preprocess
         word = os.popen(data_lookup).readlines()
@@ -2408,7 +2408,7 @@ def cealkka_is_correct(self,question,qwords,awords,language,question_id=None):  
         analyzed=""
         for c in word:
             c=c.strip()
-            print c
+            print(c)
             s.send(c) # on vic
             analyzed = analyzed + s.recv(size)
 
@@ -2420,13 +2420,13 @@ def cealkka_is_correct(self,question,qwords,awords,language,question_id=None):  
         analysis = ""
         data_lookup = "echo \"" + qtext + "\"" + preprocess
         words = os.popen(data_lookup).readlines()
-        print question_id
+        print(question_id)
         #print words
         #print qwords
         for word in words:
             w=""
             cohort=""
-            print word
+            print(word)
             # All the words will go through morph.analyser, even if they have a tag-attribute already. We do it to avoid problems with compound words.
             w = force_text(word).encode('utf-8')
             w=w.lstrip().rstrip()
@@ -2438,19 +2438,19 @@ def cealkka_is_correct(self,question,qwords,awords,language,question_id=None):  
             analysis = analysis + cohort
         tasklemmas = ""
         for aword in awords:
-            print aword
+            print(aword)
 	       #logfile.write(aword)
-            if aword.has_key('taskword') and aword['taskword']:
+            if 'taskword' in aword and aword['taskword']:
                 tlemma = aword['fullform']
                 tlemma = force_text(tlemma).encode('utf-8')
                 tlemma = tlemma.strip()
-                print tlemma
+                print(tlemma)
 		        #logfile.write(tlemma+" ")
                 tasktag = Tag.objects.filter(id=aword['tag'])
                 tasktagstring = tasktag[0].string
                 taskpos = tasktag[0].pos
                 ttag = tasktagstring.replace("+"," ")
-                print ttag
+                print(ttag)
 		        #logfile.write(ttag+"\n")
                 ans_cohort = ""
                 word_lookup = "echo \"" + tlemma + "\"" + lookup + lookup2cg  # on Heli's machine
@@ -2469,10 +2469,10 @@ def cealkka_is_correct(self,question,qwords,awords,language,question_id=None):  
                         if entag not in row:
                             tag_match = 0
                     if tag_match and tlemma == malemma_without_hash:  # 'Sg Nom' or 'V Inf' is not enough - exact tag sequence needed, and also need to compare the primary form to the analysed word, to resolve ambiguities
-                        print malemmas
+                        print(malemmas)
 			             #logfile.write(malemma+"\n")
-                        print malemma
-                        print malemma_without_hash
+                        print(malemma)
+                        print(malemma_without_hash)
                         tasklemmas = tasklemmas + "\n\t\"" + malemma + "\" "+taskpos
                     morfanal = morfanal + ans_cohort  # END
 
@@ -2499,7 +2499,7 @@ def cealkka_is_correct(self,question,qwords,awords,language,question_id=None):  
     analysis = analysis + "\"<.>\"\n\t\".\" CLB"
     analysis = analysis.rstrip()
     analysis = analysis.replace("\"","\\\"")
-    print analysis
+    print(analysis)
     #logfile.write(analysis)
     ped_cg3 = "echo \"" + analysis + "\"" + vislcg3
     checked = os.popen(ped_cg3).readlines()
@@ -2568,9 +2568,9 @@ def cealkka_is_correct(self,question,qwords,awords,language,question_id=None):  
     #if language == "en" : language = "eng"
     if not language in ["nob","sme","fin","eng","swe"]: language="nob"
 
-    for w in msgstrings.keys():
+    for w in list(msgstrings.keys()):
         if found: break
-        for m in msgstrings[w].keys():
+        for m in list(msgstrings[w].keys()):
             if spelling and m.count("spelling") == 0: continue
             m = m.replace("&","")
             if Feedbackmsg.objects.filter(msgid=m).count() > 0:
@@ -2589,10 +2589,10 @@ def cealkka_is_correct(self,question,qwords,awords,language,question_id=None):  
                         break
             if m.count("dia-") > 0:
                 dia_msg.append(m)
-        if msgstrings[w].has_key('dia-target'):
+        if 'dia-target' in msgstrings[w]:
             constant = msgstrings[w]['dia-lemma']
             variable = msgstrings[w]['dia-target']
-        if msgstrings[w].has_key('dia-unknown'):
+        if 'dia-unknown' in msgstrings[w]:
             constant = msgstrings[w]['dia-lemma']
             variable = msgstrings[w]['dia-unknown']
 
@@ -2660,15 +2660,15 @@ class CealkkaQuestion(OahpaQuestion):
 
         # Select words for the answer
         astring = ""
-        print "awords that come in CealkkaQuestion as parameter: "
-        print awords
+        print("awords that come in CealkkaQuestion as parameter: ")
+        print(awords)
         selected_awords = self.select_words(qwords, awords)
 
         awords = []
         for token in atext.split():	   # det här har jag (Heli) hittat på
             if token.isupper():  # added because of keyerror
                 word = selected_awords[token]
-                if word.has_key('fullform') and word['fullform']:
+                if 'fullform' in word and word['fullform']:
                     word['fullform'] = force_text(word['fullform'][0])
             else:
                 word = {}
@@ -2687,34 +2687,34 @@ class CealkkaQuestion(OahpaQuestion):
 
         self.qattrs= {}
         self.aattrs = {}
-        for syntax in qwords.keys():
+        for syntax in list(qwords.keys()):
             qword = qwords[syntax]
-            if qword.has_key('word'):
+            if 'word' in qword:
                 self.qattrs['question_word_' + syntax] = qword['word']
-            if qword.has_key('tag') and qword['tag']:
+            if 'tag' in qword and qword['tag']:
                 self.qattrs['question_tag_' + syntax] = qword['tag']
-            if qword.has_key('fullform') and qword['fullform']:
+            if 'fullform' in qword and qword['fullform']:
                 self.qattrs['question_fullform_' + syntax] = qword['fullform'][0]
-        for syntax in selected_awords.keys():
-            if selected_awords[syntax].has_key('word'):
+        for syntax in list(selected_awords.keys()):
+            if 'word' in selected_awords[syntax]:
                 self.aattrs['answer_word_' + syntax] = selected_awords[syntax]['word']
-            if selected_awords[syntax].has_key('tag'):
+            if 'tag' in selected_awords[syntax]:
                 self.aattrs['answer_tag_' + syntax] = selected_awords[syntax]['tag']
-            if selected_awords[syntax].has_key('fullform') and len(selected_awords[syntax]['fullform']) == 1:
+            if 'fullform' in selected_awords[syntax] and len(selected_awords[syntax]['fullform']) == 1:
                 self.aattrs['answer_fullform_' + syntax] = selected_awords[syntax]['fullform'][0]
-            if selected_awords[syntax].has_key('taskword'):
+            if 'taskword' in selected_awords[syntax]:
                 self.aattrs['answer_taskword_' + syntax] = selected_awords[syntax]['taskword']  # to track the taskword attribute
-		print question.qid
-        print self.awords
+		print(question.qid)
+        print(self.awords)
         # Forms question string and answer string out of grammatical elements and other strings.
         qstring = ""
 
         # Format question string
         qtext = question.string
         for w in qtext.split():
-            if not qwords.has_key(w): qstring = qstring + " " + force_text(w)
+            if w not in qwords: qstring = qstring + " " + force_text(w)
             else:
-                if qwords[w].has_key('fullform'):
+                if 'fullform' in qwords[w]:
                     qstring = qstring + " " + force_text(qwords[w]['fullform'][0])
                 else:
                     qstring = qstring + " " + w

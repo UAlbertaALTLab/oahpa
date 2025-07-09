@@ -7,7 +7,7 @@ from django.conf.urls.defaults import *
 
 from django.contrib.auth.views import login, logout
 
-from views import ( builder_main
+from .views import ( builder_main
                   )
 
 from rest_framework import routers

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from settings import *
-from drill.models import *
+from .settings import *
+from .drill.models import *
 from xml.dom import minidom as _dom
 from optparse import OptionParser
 from django.db.models import Q
@@ -15,16 +15,16 @@ class Questions:
 
     def read_element(self,qaelement,el,el_id,qtype):
 
-        print
-        print "Creating element", el_id
+        print()
+        print("Creating element", el_id)
 
         # Syntactic function of the element
-        if self.values.has_key(el_id) and self.values[el_id].has_key('syntax'):
+        if el_id in self.values and 'syntax' in self.values[el_id]:
             syntax = self.values[el_id]['syntax']
         else:
             syntax = el_id
 
-        if not el: print syntax, "No element given."
+        if not el: print(syntax, "No element given.")
 
         # Some of the answer elements share content of question elements.
         content_id=""
@@ -49,7 +49,7 @@ class Questions:
                                                                  Q(identifier=content_id))
             
         if not el and question_qelements:
-            print "CREATING", syntax
+            print("CREATING", syntax)
             for q in question_qelements:
                 qe = QElement.objects.create(question=qaelement,\
                                              identifier=el_id,\
@@ -65,7 +65,7 @@ class Questions:
         agr_elements=None
         if syntax=="MAINV":
             agr_id="SUBJ"
-            print "TRYING verb agreement " + agr_id + " " + qaelement.qatype
+            print("TRYING verb agreement " + agr_id + " " + qaelement.qatype)
             if QElement.objects.filter(Q(question=qaelement) & Q(syntax=agr_id) &\
                                        Q(question__qatype=qaelement.qatype)).count() > 0:
                 agr_elements = QElement.objects.filter(Q(question=qaelement) & \
@@ -75,7 +75,7 @@ class Questions:
 
         agreement = ""
         if el: agreement = el.getElementsByTagName("agreement")
-        if agreement: print "Agreement:", agreement[0].getAttribute("id")
+        if agreement: print("Agreement:", agreement[0].getAttribute("id"))
         
         # Agreement from xml-files
         # Try first inside question or answer
@@ -97,7 +97,7 @@ class Questions:
                                                                Q(syntax=agr_id))
 
             if not agr_elements:
-                print "ERROR: no agreement elements found"
+                print("ERROR: no agreement elements found")
 				
         ############ WORDS
         # Search for existing word in the database.
@@ -108,11 +108,11 @@ class Questions:
         for i in ids:
             word_id = i.firstChild.data
             if word_id:
-                print "found word", word_id
+                print("found word", word_id)
                 # Add pos information here!
                 word_elements = Word.objects.filter(Q(wordid=word_id))
                 if not word_elements:
-                    print "Word not found! " + word_id
+                    print("Word not found! " + word_id)
                     
         # Search for existing semtype
         # Semtype overrides the word id selection
@@ -130,12 +130,12 @@ class Questions:
 
         # If still no words, get the default words for this element:
         if not word_elements:
-            if self.values.has_key(el_id) and self.values[el_id].has_key('words'):
+            if el_id in self.values and 'words' in self.values[el_id]:
                 word_elements = self.values[el_id]['words']
 
         if word_elements:
             for w in word_elements:
-                if not words.has_key(w.pos): words[w.pos] = []
+                if w.pos not in words: words[w.pos] = []
                 words[w.pos].append(w)
 
 
@@ -146,8 +146,8 @@ class Questions:
         if not el or not grammars:
             # If there is no grammatical specification, the element is created solely
             # on the basis of grammar.
-            if self.values.has_key(el_id):
-                if self.values[el_id].has_key('tags'):
+            if el_id in self.values:
+                if 'tags' in self.values[el_id]:
                     tagelements = self.values[el_id]['tags']
         # An element for each different grammatical specification.
         else:
@@ -158,8 +158,8 @@ class Questions:
                 poses.append(gr.getAttribute("pos"))
             tagstrings = []
             if poses:
-                if self.values.has_key(el_id):
-                    if self.values[el_id].has_key('tags'):
+                if el_id in self.values:
+                    if 'tags' in self.values[el_id]:
                         tagelements = self.values[el_id]['tags'].filter(pos__in=poses)
 
             if tags:
@@ -177,7 +177,7 @@ class Questions:
             # If pronoun id is given, only the tags related to that pronoun are preserved.
             for t in tagelements:
                 if t.pos == 'Pron':
-                    if not words.has_key('Pron'): break
+                    if 'Pron' not in words: break
                     found = False
                     for w in words['Pron']:
                         if Form.objects.filter(Q(tag=t) & Q(word=w)).count()>0:
@@ -187,7 +187,7 @@ class Questions:
                         tagelements = tagelements.filter(~Q(id=t.id))
 
             # Remove those words which do not have any forms with the tags.
-            if words.has_key('N'): 
+            if 'N' in words: 
                 for w in words['N']:
                     found = False
                     for t in tagelements:
@@ -201,7 +201,7 @@ class Questions:
         posvalues = {}
         # Elements that do not inflection information are not created.
         if not tagelements and not agr_elements:
-            print "no inflection for", el_id
+            print("no inflection for", el_id)
             return
         if not tagelements: posvalues[""] = 1
         else:
@@ -211,7 +211,7 @@ class Questions:
         if el:
             task = el.getAttribute("task")
             if task:
-                print "setting", el_id, "as task"
+                print("setting", el_id, "as task")
                 qaelement.task = syntax
                 qaelement.save()
         else:
@@ -222,7 +222,7 @@ class Questions:
         ############# CREATE ELEMENTS
 
         # Add an element for each pos:
-        for p in posvalues.keys():
+        for p in list(posvalues.keys()):
             qe = QElement.objects.create(question=qaelement,\
                                          identifier=el_id,\
                                          syntax=syntax)
@@ -240,12 +240,12 @@ class Questions:
                         qe.tags.add(t)
 
             # Create links to words.
-            if not words.has_key(p):
-                print "looking for words..", el_id, p
+            if p not in words:
+                print("looking for words..", el_id, p)
                 word_elements = Word.objects.filter(pos=p)
                 if word_elements:
                     for w in word_elements:
-                        if not words.has_key(p): words[w.pos] = []
+                        if p not in words: words[w.pos] = []
                         words[w.pos].append(w)
 
             for w in words[p]:
@@ -308,14 +308,14 @@ class Questions:
         gametype = qs.getAttribute("game")
         if not gametype: gametype="morfa"
 
-        print "Created questions:"
+        print("Created questions:")
         for q in tree.getElementsByTagName("q"):
 
             qid = q.getAttribute('id')
             if not qid:
-                print "ERROR Missing question id, stopping."
+                print("ERROR Missing question id, stopping.")
                 exit()
-            print qid.encode('utf-8')
+            print(qid.encode('utf-8'))
             level = q.getAttribute('level')
             if not level: level="1"
 
@@ -351,7 +351,7 @@ class Questions:
                         # Leave this if DTD is used
                         book_entry, created = Source.objects.get_or_create(name=book)
                         if created:
-                            print "Created book entry with name ", book
+                            print("Created book entry with name ", book)
                     question_element.source.add(book_entry)
                     question_element.save()                    
 
@@ -360,7 +360,7 @@ class Questions:
                 # Add book to the database
                 book_entry, created = Source.objects.get_or_create(name=book)
                 if created:
-                    print "Created book entry with name ", book
+                    print("Created book entry with name ", book)
                 question_element.source.add(book_entry)
                 question_element.save()
 

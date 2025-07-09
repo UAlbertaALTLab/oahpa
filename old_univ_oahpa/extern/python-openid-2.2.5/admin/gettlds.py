@@ -9,7 +9,7 @@ Usage:
 Then cut-n-paste.
 """
 
-import urllib2
+import urllib.request, urllib.error, urllib.parse
 
 import sys
 
@@ -28,7 +28,7 @@ langs = {
 lang = sys.argv[1]
 prefix, line_prefix, separator, line_suffix, suffix = langs[lang]
 
-f = urllib2.urlopen('http://data.iana.org/TLD/tlds-alpha-by-domain.txt')
+f = urllib.request.urlopen('http://data.iana.org/TLD/tlds-alpha-by-domain.txt')
 tlds = []
 output_line = ""
 for input_line in f:
@@ -38,10 +38,10 @@ for input_line in f:
     tld = input_line.strip().lower()
     new_output_line = output_line + prefix + tld
     if len(new_output_line) > 60:
-        print output_line + line_suffix
+        print(output_line + line_suffix)
         output_line = line_prefix + tld
     else:
         output_line = new_output_line
     prefix = separator
 
-print output_line + suffix
+print(output_line + suffix)

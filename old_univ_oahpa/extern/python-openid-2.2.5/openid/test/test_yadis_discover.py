@@ -7,7 +7,7 @@
 """
 
 import unittest
-import urlparse
+import urllib.parse
 import re
 import types
 
@@ -15,7 +15,7 @@ from openid.yadis.discover import discover, DiscoveryFailure
 
 from openid import fetchers
 
-import discoverdata
+from . import discoverdata
 
 status_header_re = re.compile(r'Status: (\d+) .*?$', re.MULTILINE)
 
@@ -48,7 +48,7 @@ class TestFetcher(object):
     def fetch(self, url, headers, body):
         current_url = url
         while True:
-            parsed = urlparse.urlparse(current_url)
+            parsed = urllib.parse.urlparse(current_url)
             path = parsed[2][1:]
             try:
                 data = discoverdata.generateSample(path, self.base_url)
@@ -88,7 +88,7 @@ class TestSecondGet(unittest.TestCase):
 
     def test_404(self):
         uri = "http://something.unittest/"
-        self.failUnlessRaises(DiscoveryFailure, discover, uri)
+        self.assertRaises(DiscoveryFailure, discover, uri)
 
 
 class _TestCase(unittest.TestCase):
@@ -122,27 +122,27 @@ class _TestCase(unittest.TestCase):
 
     def runCustomTest(self):
         if self.expected is DiscoveryFailure:
-            self.failUnlessRaises(DiscoveryFailure,
+            self.assertRaises(DiscoveryFailure,
                                   discover, self.input_url)
         else:
             result = discover(self.input_url)
-            self.failUnlessEqual(self.input_url, result.request_uri)
+            self.assertEqual(self.input_url, result.request_uri)
 
             msg = 'Identity URL mismatch: actual = %r, expected = %r' % (
                 result.normalized_uri, self.expected.normalized_uri)
-            self.failUnlessEqual(
+            self.assertEqual(
                 self.expected.normalized_uri, result.normalized_uri, msg)
 
             msg = 'Content mismatch: actual = %r, expected = %r' % (
                 result.response_text, self.expected.response_text)
-            self.failUnlessEqual(
+            self.assertEqual(
                 self.expected.response_text, result.response_text, msg)
 
             expected_keys = dir(self.expected)
             expected_keys.sort()
             actual_keys = dir(result)
             actual_keys.sort()
-            self.failUnlessEqual(actual_keys, expected_keys)
+            self.assertEqual(actual_keys, expected_keys)
 
             for k in dir(self.expected):
                 if k.startswith('__') and k.endswith('__'):

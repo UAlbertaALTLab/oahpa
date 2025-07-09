@@ -91,10 +91,10 @@ ERROR_FST_SETTINGS = settings.ERROR_FST_SETTINGS
 _fst_file = ERROR_FST_SETTINGS.get('fst_path')
 
 if not os.path.isfile(_fst_file):
-    print >> sys.stderr, "FST file at <%s> does not exist."
-    print >> sys.stderr, "Check the path in settings.py and try again."
+    print("FST file at <%s> does not exist.", file=sys.stderr)
+    print("Check the path in settings.py and try again.", file=sys.stderr)
 
-error_files = ERROR_FST_SETTINGS.get('error_message_files', {}).values()
+error_files = list(ERROR_FST_SETTINGS.get('error_message_files', {}).values())
 feedback_messages = FeedbackMessageStore(*error_files)
 feedback = FeedbackFST(feedback_messages)
 

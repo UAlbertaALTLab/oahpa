@@ -7,7 +7,7 @@ oahpa_module = importlib.import_module(LLL1+'_oahpa')
 import settings
 from os import environ
 import os, sys
-print " * Correcting paths"
+print(" * Correcting paths")
 cur_path = os.getcwd()
 parent_path = '/' + '/'.join([a for a in cur_path.split('/') if a][0:-1]) + '/'
 sys.path.insert(0, parent_path)

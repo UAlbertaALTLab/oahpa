@@ -42,7 +42,7 @@ class BulkManager(models.Manager):
 
 		flds = ', '.join([qn(f) for f in fields])
 		values_list = [ r[f] for r in objs for f in fields]
-		arg_string = ', '.join([u'(' + ', '.join(['%s']*len(fields)) + ')'] * len(objs))
+		arg_string = ', '.join(['(' + ', '.join(['%s']*len(fields)) + ')'] * len(objs))
 		sql = "INSERT INTO %s (%s) VALUES %s" % (self.model._meta.db_table, flds, arg_string,)
 		cursor.execute(sql, values_list)
 		#transaction.commit()
@@ -56,11 +56,11 @@ class BulkManager(models.Manager):
 
 		fields = ['form_id', 'feedbackmsg_id']
 
-		vals = [dict(zip(fields, a)) for a in objs]
+		vals = [dict(list(zip(fields, a))) for a in objs]
 		flds = ', '.join([qn(f) for f in fields])
 		values_list = [ r[f] for r in vals for f in fields]
 
-		arg_string = ', '.join([u'(' + ', '.join(['%s']*len(fields)) + ')'] * len(vals))
+		arg_string = ', '.join(['(' + ', '.join(['%s']*len(fields)) + ')'] * len(vals))
 
 		# postgres seems to automatically ignore, mysql does not
 		try:
@@ -103,11 +103,11 @@ class BulkManager(models.Manager):
 
 		fields = ['feedback_id', 'feedbackmsg_id']
 
-		vals = [dict(zip(fields, a)) for a in objs]
+		vals = [dict(list(zip(fields, a))) for a in objs]
 		flds = ', '.join([qn(f) for f in fields])
 		values_list = [ r[f] for r in vals for f in fields]
 
-		arg_string = ', '.join([u'(' + ', '.join(['%s']*len(fields)) + ')'] * len(vals))
+		arg_string = ', '.join(['(' + ', '.join(['%s']*len(fields)) + ')'] * len(vals))
 		sql = "INSERT INTO %s (%s) VALUES %s" % ("drill_feedback_messages", flds, arg_string,)
 
 		cursor.execute(sql, values_list)
@@ -122,11 +122,11 @@ class BulkManager(models.Manager):
 
 		fields = ['feedback_id', 'dialect_id']
 
-		vals = [dict(zip(fields, a)) for a in objs]
+		vals = [dict(list(zip(fields, a))) for a in objs]
 		flds = ', '.join([qn(f) for f in fields])
 		values_list = [ r[f] for r in vals for f in fields]
 
-		arg_string = ', '.join([u'(' + ', '.join(['%s']*len(fields)) + ')'] * len(vals))
+		arg_string = ', '.join(['(' + ', '.join(['%s']*len(fields)) + ')'] * len(vals))
 		sql = "INSERT INTO %s (%s) VALUES %s" % ("drill_feedback_dialects", flds, arg_string,)
 
 		cursor.execute(sql, values_list)
@@ -296,7 +296,7 @@ class Log(models.Model):
 		for a in attrs:
 			ap = self.__getattribute__(a)
 
-			if not type(ap) in [str, unicode]:
+			if not type(ap) in [str, str]:
 				if type(ap) == datetime.date:
 					ap = '%d/%d/%d' % (ap.year, ap.month, ap.day)
 				else:
@@ -313,7 +313,7 @@ class Log(models.Model):
 			vals.append(ap)
 
 
-		return unicode(delimiter.join(vals))
+		return str(delimiter.join(vals))
 
 	def __str__(self):
 		return self.outputEntry()
@@ -762,7 +762,7 @@ class Tag(models.Model):
 		}
 
 		tagname_to_set = {}
-		for attr, tsetname in tagset_names.items():
+		for attr, tsetname in list(tagset_names.items()):
 			tagnames = Tagname.objects.filter(tagset__tagset=tsetname)\
 							.values_list('tagname', flat=True)
 
@@ -928,7 +928,7 @@ class Form(models.Model):
 			else:
 				subclass = ''
 
-			print subclass
+			print(subclass)
 			baseform = self.word.form_set.filter(tag__case='Nom',
 													tag__number=number,
 													tag__grade='',
@@ -988,8 +988,8 @@ class Feedbacktext(models.Model):
 				self.order,
 				self.message,
 			]
-		S = unicode('/'.join([a for a in attrs if a.strip()])).encode('utf-8')
-		return smart_text(self.language + u':' + self.message)
+		S = str('/'.join([a for a in attrs if a.strip()])).encode('utf-8')
+		return smart_text(self.language + ':' + self.message)
 
 
 

@@ -5,7 +5,7 @@ from django.utils.translation import ugettext_lazy as _
 register = template.Library()
 
 FILTER_EXCEPTIONS = dict([
-	(u'Contextual Morfa', u'Morfa C'),
+	('Contextual Morfa', 'Morfa C'),
 ])
 
 from univ_drill.forms import ALL_CHOICES
@@ -15,7 +15,7 @@ key_to_string = {}
 for s in ALL_CHOICES:
 	for k, v in s:
 		if k.lower() not in key_to_string:
-			key_to_string[unicode(k.lower())] = v
+			key_to_string[str(k.lower())] = v
 		elif k.lower() in key_to_string:
 			continue
 			# print 'possible duplicate? ', k.lower(), ' ', v
@@ -47,7 +47,7 @@ def filter_log(value):
 		for subitem in subitems:
 			if subitem not in FILTER_EXCEPTIONS:
 				sub = key_to_string.get(subitem.lower(), subitem)
-				if type(sub) not in [str, unicode]:
+				if type(sub) not in [str, str]:
 					sub_subs.append(sub)
 				else:
 					sub_subs.append(subitem)

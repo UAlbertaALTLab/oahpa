@@ -87,7 +87,7 @@ class FeedbackLogView(viewsets.ModelViewSet):
         fb_texts = list(set([a.get('feedback_texts') for a in with_ids if a.get('feedback_texts', False)]))
 
         if len(fb_texts) > 0:
-            print UserFeedbackLog.levels.get_user_level(request.user, fb_texts)
+            print(UserFeedbackLog.levels.get_user_level(request.user, fb_texts))
 
         serialized = self.serializer_class(data=with_ids, many=True)
 
@@ -133,7 +133,7 @@ class CourseGoalView(viewsets.ModelViewSet):
 
         try:
             obj = self.queryset.filter(pk=pk).update(**data)
-        except Exception, e:
+        except Exception as e:
             success = False
             errors.append(repr(e))
 
@@ -145,7 +145,7 @@ class CourseGoalView(viewsets.ModelViewSet):
             CourseGoalGoal.objects.filter(coursegoal=obj).delete()
             for g in goal_objs:
                 CourseGoalGoal.objects.create(coursegoal=obj, goal=g)
-        except Exception, e:
+        except Exception as e:
             errors.append(repr(e))
 
         success = True
@@ -244,7 +244,7 @@ class GoalParametersView(viewsets.ModelViewSet):
     def exercise_type_url_bases(self):
         return dict([
             (subtype.get('value'), subtype.get('path'))
-            for k, v in prepare_goal_params()[0].iteritems()
+            for k, v in prepare_goal_params()[0].items()
             for subtype in v.get('subtypes', [])
         ])
 
@@ -274,7 +274,7 @@ class GoalParametersView(viewsets.ModelViewSet):
         try:
             goal = self.queryset.filter(pk=pk)
             goal.update(**new_obj)
-        except Exception, e:
+        except Exception as e:
             success = False
 
         goal = goal[0]
@@ -283,7 +283,7 @@ class GoalParametersView(viewsets.ModelViewSet):
         # them.
         if success:
             GoalParameter.objects.filter(goal=goal).delete()
-            for p_k, p_v in params.iteritems():
+            for p_k, p_v in params.items():
                 goal.params.create(parameter=p_k, value=p_v)
 
             # Reset user progress.
@@ -321,7 +321,7 @@ class GoalParametersView(viewsets.ModelViewSet):
         goal = Goal.objects.create(created_by=request.user, **new_obj)
 
         if success:
-            for p_k, p_v in params.iteritems():
+            for p_k, p_v in params.items():
                 goal.params.create(parameter=p_k, value=p_v)
 
         from django.core.urlresolvers import reverse
@@ -381,7 +381,7 @@ class NotificationsView(viewsets.ModelViewSet):
         notify.send(request.user,
                     recipient=request.user,
                     description=request.DATA.get('description'),
-                    verb=u'tested notifications',)
+                    verb='tested notifications',)
 
         return Response({'success': True})
 
@@ -396,10 +396,10 @@ def equal_url_base(a, b):
     TODO: do we require a.query == b.query as option?
     """
 
-    import urlparse
+    import urllib.parse
 
-    _a = urlparse.urlparse(a)
-    _b = urlparse.urlparse(b)
+    _a = urllib.parse.urlparse(a)
+    _b = urllib.parse.urlparse(b)
 
     return all([
         _a.scheme == _b.scheme,
@@ -408,7 +408,7 @@ def equal_url_base(a, b):
     ])
 
 
-from data_authentication import CookieAuthentication
+from .data_authentication import CookieAuthentication
 from rest_framework.authentication import SessionAuthentication
 
 from schematics.models import Model as SchematicsModel
@@ -441,7 +441,7 @@ class SubmissionMixin(object):
             'date': today
         }
 
-        if request.session.has_key('country'):
+        if 'country' in request.session:
             log_kwargs['user_country'] = request.session['country']
         else:
             log_kwargs['user_country'] = False
@@ -458,7 +458,7 @@ class SubmissionMixin(object):
         request.session['answered'][log.correct] = True
         request.session['question_try_count'][log.correct] = 1
 
-        print request.session
+        print(request.session)
 
         return [log]
 
@@ -469,7 +469,7 @@ class SubmissionMixin(object):
         the errors.
 
         """
-        import urlparse
+        import urllib.parse
 
         from schematics.types.compound import ListType, ModelType
 
@@ -494,7 +494,7 @@ class SubmissionMixin(object):
             sub = Submission(self.request.DATA)
             try:
                 sub.validate()
-            except ModelValidationError, e:
+            except ModelValidationError as e:
                 return False, Response({'success': False, 'errors': e.messages})
             return sub, None
         else:

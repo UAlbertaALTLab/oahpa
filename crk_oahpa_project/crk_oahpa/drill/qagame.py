@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from local_conf import LLL1
+from .local_conf import LLL1
 import importlib
 oahpa_module = importlib.import_module(LLL1+'_oahpa')
 
@@ -7,9 +7,9 @@ from django.http import HttpResponse, Http404
 from django.db.models import Q, Count
 from random import randint
 
-from models import *
-from forms import *
-from game import Game
+from .models import *
+from .forms import *
+from .game import Game
 
 from collections import Counter
 
@@ -125,7 +125,7 @@ class QAGame(Game):
 
 		# Available values for Number
 		self.PronPN=['Sg1','Sg2','Sg3','Pl1','Pl2','Pl3']
-		self.PronPNBase={'Sg1':'я','Sg2':'ты','Sg3':u'он',\
+		self.PronPNBase={'Sg1':'я','Sg2':'ты','Sg3':'он',\
 						 'Pl1':'мы','Pl2':'вы','Pl3':'они'}
 		self.NounPN=['Sg','Pl']
 		self.NountoPronPN={'Sg':'Sg3','Pl':'Pl3'}
@@ -136,13 +136,13 @@ class QAGame(Game):
 				  but these should reduced once we come along to testing numbers.
 		"""
 
-		if self.settings.has_key('dialect'):
+		if 'dialect' in self.settings:
 			dialect = self.settings['dialect']
 		else:
 			dialect = DEFAULT_DIALECT
 
 		word=None
-		if tag_el.pos=="Num" and self.settings.has_key('num_level') and str(self.settings['num_level'])=="1":
+		if tag_el.pos=="Num" and 'num_level' in self.settings and str(self.settings['num_level'])=="1":
 			smallnum = ["1","2","3","4","5","6","7","8","9","10"]
 			word = Word.objects.filter(wordqelement__qelement=qelement,
 									 form__tag=tag_el.id)
@@ -155,7 +155,7 @@ class QAGame(Game):
 			if possible_words.count() > 0:
 				word = possible_words.order_by('?')[0]
 			else:
-				print >> sys.stderr, "Could not find word-qelements for %s / %s" % (qelement.question.qid, qelement.identifier)
+				print("Could not find word-qelements for %s / %s" % (qelement.question.qid, qelement.identifier), file=sys.stderr)
 				return None
 
 		form_set_filter = self.filter_forms_by_dialect(
@@ -442,7 +442,7 @@ class QAGame(Game):
 					tag_el=mainv_el.tags.all()[0]
 				else:
 					# Subject-verb agreement
-					if qwords.has_key('SUBJ') and qwords['SUBJ'].has_key('number'):
+					if 'SUBJ' in qwords and 'number' in qwords['SUBJ']:
 						subjnumber=qwords['SUBJ']['number']
 						v_number = self.SVPN[subjnumber]
 
@@ -458,7 +458,7 @@ class QAGame(Game):
 						mainv_tag_count = mainv_el.tags.count()
 						mainv_tags = mainv_el.tags.all()
 					# Object-verb agreement
-					if qwords.has_key('OBJECT') and qwords['OBJECT'].has_key('number'):
+					if 'OBJECT' in qwords and 'number' in qwords['OBJECT']:
 						objnumber=qwords['OBJECT']['number']
 						obj_v_number = self.OBJ_AGR[objnumber]
 
@@ -507,16 +507,16 @@ class QAGame(Game):
 					copy = QElement.objects.filter(id=copy_id)[0]
 					copy_syntax = copy.syntax
 
-					if qwords.has_key(copy_syntax):
+					if copy_syntax in qwords:
 						word = qwords[copy_syntax]
 
 				if element.agreement:
 					agr_id = element.agreement_id
 					agr_el = QElement.objects.get(id=agr_id)
 					agr_syntax = agr_el.identifier
-					if qwords.has_key(agr_syntax):
+					if agr_syntax in qwords:
 						qword = qwords[agr_syntax]
-						if qword.has_key('tag'):
+						if 'tag' in qword:
 							agr_tag_id = qword['tag']
 							agr_tag = Tag.objects.get(id=agr_tag_id)
 							if agr_tag.personnumber:
@@ -554,7 +554,7 @@ class QAGame(Game):
 		""" Filters forms by the current session dialect
 		"""
 
-		if self.settings.has_key('dialect'):
+		if 'dialect' in self.settings:
 			dialect = self.settings['dialect']
 		else:
 			dialect = DEFAULT_DIALECT
@@ -748,7 +748,7 @@ class QAGame(Game):
 		if subj_el.copy:
 			subj_copy = subj_el.copy
 			copy_syntax = subj_copy.syntax
-			if qwords.has_key(copy_syntax):
+			if copy_syntax in qwords:
 				qword = qwords[copy_syntax]
 
 				subjtag_id = qword['tag']
@@ -766,7 +766,7 @@ class QAGame(Game):
 				asubjtag_el = Tag.objects.get(string=asubjtag)
 
 				# If pronoun, get the correct form
-				if self.PronPNBase.has_key(a_number):
+				if a_number in self.PronPNBase:
 					pronbase = self.PronPNBase[a_number]
 					words = self.get_words(None, asubjtag_el, pronbase)
 					for word in words:
@@ -834,7 +834,7 @@ class QAGame(Game):
 				copy_syntax = copy_element.identifier
 		# It is assumed that all subjects cause the same inflection
 		# for verb, so it does not matter which subject is selected.
-		if awords.has_key('SUBJ') and len(awords['SUBJ'])>0:
+		if 'SUBJ' in awords and len(awords['SUBJ'])>0:
 			# mainverb number depends on the number of the subject.
 			asubj = awords['SUBJ'][0]
 			a_number=asubj['number']
@@ -844,7 +844,7 @@ class QAGame(Game):
 		else:
 			# No SUBJ defined, MAINV is a copy of the question MAINV
 			# and needs to have Question-Answer subject change
-			if qwords.has_key(copy_syntax):
+			if copy_syntax in qwords:
 				qmainv = qwords[copy_syntax]
 				q_number = qmainv['number']
 				if q_number:
@@ -852,7 +852,7 @@ class QAGame(Game):
 			else:
 				# No SUBJ defined, and MAINV is defined (and not a copy from Q)
 				# but MAINV still needs to have Question-Answer subject change
-				if qwords.has_key(element):
+				if element in qwords:
 					qmainv = qwords[element]
 					q_number = qmainv['number']
 					if q_number:
@@ -860,7 +860,7 @@ class QAGame(Game):
 
 				# The element we're looking at is not present in qwords,
 				# but it is present in awords; which means that it's probably NEG
-				if awords.has_key(element) and not qwords.has_key(element):
+				if element in awords and element not in qwords:
 					qmainv = qwords.get(mainv_element_name, False)
 					if qmainv:
 						q_number = qmainv['number']
@@ -873,7 +873,7 @@ class QAGame(Game):
 		mainv_fullform = False
 		mainv_form = False
 		mainv_word_obj = None
-		if qwords.has_key(copy_syntax):
+		if copy_syntax in qwords:
 
 			qmainv = qwords[copy_syntax]
 			mainv_word = qwords[copy_syntax]['word']
@@ -946,7 +946,7 @@ class QAGame(Game):
 					info = { 'tag' : mainv_tag.id, 'word' : mainv_word }
 					mainv_words.append(info)
 
-		if not mainv_words and qwords.has_key(element):
+		if not mainv_words and element in qwords:
 			mainv_words.append(qwords[element])
 
 		awords[element] = mainv_words
@@ -958,7 +958,7 @@ class QAGame(Game):
 		if s in self.generated_syntaxes:
 			return awords
 
-		if not awords.has_key(s):
+		if s not in awords:
 			awords[s] = []
 
 		word_id=None
@@ -978,11 +978,11 @@ class QAGame(Game):
 			copy_id = element.copy_id
 			copy_element = QElement.objects.get(id=copy_id)
 			copy_syntax = copy_element.identifier
-			if qwords.has_key(copy_syntax):
+			if copy_syntax in qwords:
 				qword = qwords[copy_syntax]
-				if qword.has_key('word'):
+				if 'word' in qword:
 					word_id=qword['word']
-				if qword.has_key('tag'):
+				if 'tag' in qword:
 					tag = Tag.objects.get(id=qword['tag'])
 					tag_elements.append(tag)
 
@@ -990,9 +990,9 @@ class QAGame(Game):
 			agr_id = element.agreement_id
 			agr_el = QElement.objects.get(id=agr_id)
 			agr_syntax = agr_el.identifier
-			if qwords.has_key(agr_syntax):
+			if agr_syntax in qwords:
 				qword = qwords[agr_syntax]
-				if qword.has_key('tag'):
+				if 'tag' in qword:
 					agr_tag_id = qword['tag']
 					agr_tag = Tag.objects.get(id=agr_tag_id)
 					if agr_tag.personnumber:
@@ -1095,7 +1095,7 @@ class QAGame(Game):
 		question_query = Q(qtype__contains=qtype) & Q(gametype="morfa")
 		if books:
 			question_query = question_query & (Q(source__name__in=books) | Q(source__name="all" ))
-		print "question query", question_query
+		print("question query", question_query)
 
 		### Generate question. If it fails, select another one.
 		i, max_ = 0, 20
@@ -1107,7 +1107,7 @@ class QAGame(Game):
 				question = question.order_by('?')[0]
 			else:
 				counts = Counter([a for a in Question.objects.values_list('qtype', flat=True) if a.strip()])
-				count_str = ', '.join(["%s (%s)" % (k, v) for k, v in counts.iteritems()])
+				count_str = ', '.join(["%s (%s)" % (k, v) for k, v in counts.items()])
 				errormsg = 'Database may not be properly loaded. No questions found for query.'
 				errormsg += '\n qtype was: %s' % repr(qtype)
 				errormsg += '\n available: %s' % count_str
@@ -1129,7 +1129,7 @@ class QAGame(Game):
 		# Select answer using the id from the interface.
 		# Otherwise select answer that is related to the question.
 		awords = {}
-		if db_info.has_key('answer_id'):
+		if 'answer_id' in db_info:
 			answer = Question.objects.get(id=db_info['answer_id'])
 		else:
 			try:
@@ -1137,13 +1137,13 @@ class QAGame(Game):
 			except IndexError:
 				counts = Counter([a for a in Question.objects.values_list('qtype', flat=True) if a.strip()])
 				errormsg = "No answer found for qid %s, check that questions are properly installed." % question.qid
-				count_str = ', '.join(["%s (%s)" % (k, v) for k, v in counts.iteritems()])
+				count_str = ', '.join(["%s (%s)" % (k, v) for k, v in counts.items()])
 				errormsg += '\n available: %s' % count_str
 				raise Http404(errormsg)
 
 		# Generate the set of possible answers if they are not coming from the interface
 		# Or if the gametype is qa.
-		if db_info.has_key('answer_id') and self.settings['gametype'] == 'context':
+		if 'answer_id' in db_info and self.settings['gametype'] == 'context':
 			awords=db_info['awords']
 		else:
 			# Generate the set of possible answers
@@ -1225,7 +1225,7 @@ class QAGame(Game):
 				if not awords:
 					if self.test: raise Http404("problem" + s)
 					return "error"
-				if not awords.has_key(s):
+				if s not in awords:
 					if self.test: raise Http404("problem2" + s)
 					return "error"
 
@@ -1239,13 +1239,13 @@ class QAGame(Game):
 
 	def get_db_info(self, db_info,qtype=None,default_qid=None):
 		anslist=[]
-		print 'bbq db info'
+		print('bbq db info')
 
 		self.get_qtype(db_info)
 
 		# If the question id is received from the interface, use that question info
 		# Otherwise select random question
-		if db_info.has_key('question_id'):
+		if 'question_id' in db_info:
 			question = Question.objects.get(id=db_info['question_id'])
 			qwords=db_info['qwords']
 		else:
@@ -1273,13 +1273,13 @@ class QAGame(Game):
 		question = Question.objects.get(Q(id=db_info['question_id']))
 		# print question.string
 		answer = None
-		if self.settings.has_key('dialect'):
+		if 'dialect' in self.settings:
 			dialect = self.settings['dialect']
 		else:
 			dialect = DEFAULT_DIALECT
 		# TODO: language setting
 		language = "eng"
-		if self.settings.has_key('language'):
+		if 'language' in self.settings:
 			language = self.settings['language']
 		if not self.gametype == "qa":
 			answer = Question.objects.get(Q(id=db_info['answer_id']))

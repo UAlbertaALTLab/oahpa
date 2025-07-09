@@ -10,6 +10,7 @@ import sys
 # # #
 
 from univ_drill.models import Question, Word
+from functools import reduce
 
 def count_activities(gametype='morfa'):
     from operator import mul
@@ -119,20 +120,20 @@ def count_activities(gametype='morfa'):
         if q_count:
             q_c_str = '*'.join([str(b) for b in q_counts])
 
-            print question.qid
-            print "  question:"
+            print(question.qid)
+            print("  question:")
             for c in question_answer_counts:
-                print "    %s - %d possibilities" % c
-            print "  total possible questions: %d " % q_count
+                print("    %s - %d possibilities" % c)
+            print("  total possible questions: %d " % q_count)
             totals.append(q_count)
-            print "    (%s)" % q_c_str
-            print
+            print("    (%s)" % q_c_str)
+            print()
         else:
-            print question.qid
-            print "  question has no elements"
-            print
+            print(question.qid)
+            print("  question has no elements")
+            print()
 
-    print "Grand total: %d" % sum(totals)
+    print("Grand total: %d" % sum(totals))
 
 
 class Command(BaseCommand):
@@ -146,10 +147,10 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         if not options.get('gametype'):
-            print "Please specify a gametype with --type"
-            print "--type=cealkka, --type=morfa"
+            print("Please specify a gametype with --type")
+            print("--type=cealkka, --type=morfa")
         else:
             if options.get('gametype') not in ['cealkka', 'morfa']:
-                print "Please specify a gametype with --type"
-                print "--type=cealkka, --type=morfa"
+                print("Please specify a gametype with --type")
+                print("--type=cealkka, --type=morfa")
             count_activities(options.get('gametype'))

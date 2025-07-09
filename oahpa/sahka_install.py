@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from settings import *
-from drill.models import *
+from .settings import *
+from .drill.models import *
 from xml.dom import minidom as _dom
 from django.db.models import Q
 from django.utils.encoding import force_text
@@ -17,7 +17,7 @@ class Sahka:
         cgfile="/opt/smi/sme/bin/sme-ped.cg3"
 
         wordclass = word.getAttribute("class")
-        print wordclass
+        print(wordclass)
         listObj=re.compile(r'^\#LIST\s*' + wordclass + '\s*=\s?(?P<listString>.*).*;.*$', re.U)
         cgfileObj = codecs.open(cgfile, "r", "utf-8" )
         while True:
@@ -30,20 +30,20 @@ class Sahka:
                 for w in list.split():
                     w = w.strip("\"")
                     w = w.replace('#','')
-                    print w
+                    print(w)
                     if Form.objects.filter(fullform=w).count()>0:
                         word = Form.objects.filter(fullform=w)[0]
                         t.formlist.add(word)
                         t.save()
                     else:
-                        print "***ERROR: no word found from database:", w 
+                        print("***ERROR: no word found from database:", w) 
         if t.formlist.all().count()==0:
-            print "***ERROR: no words found for", wordclass
+            print("***ERROR: no words found for", wordclass)
         cgfileObj.close()                        
 
     def read_dialogue(self,infile):
 
-        print infile
+        print(infile)
 
         xmlfile=file(infile)
         tree = _dom.parse(infile)
@@ -143,18 +143,18 @@ class Sahka:
                                                                topic=t,\
                                                                name=u['name'])
                 if u['word']:
-                    print "Adding wordlist", u['text']
+                    print("Adding wordlist", u['text'])
                     self.add_wordlist(u['word'],utt)
                 utt.save()
 
                 # Create syntactic specifictation for variables
-                if u.has_key('elements'):
+                if 'elements' in u:
                     tag=None
                     if u['elements']['tag']:
                         if Tag.objects.filter(string=u['elements']['tag']).count()>0:
                             tag = Tag.objects.filter(string=u['elements']['tag'])[0]
                         else:
-                            print "*******ERRROR: tag not found", u['elements']['tag'] 
+                            print("*******ERRROR: tag not found", u['elements']['tag']) 
                     uelement, created = UElement.objects.get_or_create(syntax=u['elements']['id'],\
                                                                        tag=tag,\
                                                                        utterance=utt)
@@ -184,10 +184,10 @@ class Sahka:
                 linkutt=None
                 linkutt2=None
                 utterance = Utterance.objects.get(name=u['name'],topic=t)
-                print utterance.utterance
+                print(utterance.utterance)
                 if u['link']:
                     next_utterance = Utterance.objects.get(Q(name=u['link']) & Q(topic__dialogue=t.dialogue))
-                    print "..linking to", next_utterance.utterance
+                    print("..linking to", next_utterance.utterance)
                     linkutt0, created = LinkUtterance.objects.get_or_create(link=next_utterance,target="default")
                     linkutt0.save()
                     utterance.links.add(linkutt0)
@@ -209,13 +209,13 @@ class Sahka:
                         utterance2.save()
 
                         # Create syntactic specifictation for variables
-                        if a.has_key('elements'):
+                        if 'elements' in a:
                             tag=None
                             if a['elements']['tag']:
                                 if Tag.objects.filter(string=a['elements']['tag']).count()>0:
                                     tag = Tag.objects.filter(string=a['elements']['tag'])[0]
                                 else:
-                                    print "*******ERRROR: tag not found", a['elements']['tag'] 
+                                    print("*******ERRROR: tag not found", a['elements']['tag']) 
                             uelement, created = UElement.objects.get_or_create(syntax=a['elements']['id'],\
                                                                                tag=tag,\
                                                                                utterance=utterance2)

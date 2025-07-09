@@ -1,4 +1,4 @@
-from local_conf import LLL1
+from .local_conf import LLL1
 import importlib
 oahpa_module = importlib.import_module(LLL1+'_oahpa')
 settings = oahpa_module.settings
@@ -26,7 +26,7 @@ def render_to_response(*args, **kwargs):
 
 from django.contrib.auth.decorators import login_required
 
-from models import UserProfile, Course, UserGrade, Activity
+from .models import UserProfile, Course, UserGrade, Activity
 
 def cookie_login(request, next_page=None, required=False, **kwargs):
 	""" Check for existing site.uit.no cookie

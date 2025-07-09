@@ -10,7 +10,7 @@ Changes required to settings (will elaborate on this more later):
  * see also: views in courses views for cookie_login and cookie_logout
 """
 
-from urllib import urlencode
+from urllib.parse import urlencode
 
 from django.http import HttpResponseRedirect, HttpResponseForbidden
 from django.conf import settings
@@ -35,7 +35,7 @@ class CookieAuthMiddleware(object):
 
     def get_cookie_user(self, request):
         # DEV_LOG.error("CookieAuthMiddleware.get_cookie_user - check for matching cookies:")
-        matching_cookies = [(c, v) for c, v in request.COOKIES.iteritems()
+        matching_cookies = [(c, v) for c, v in request.COOKIES.items()
                                     if c.startswith(settings.COOKIE_NAME_STARTSWITH)]
         # DEV_LOG.error(repr(matching_cookies))
 
@@ -46,7 +46,7 @@ class CookieAuthMiddleware(object):
             cookie_name, wp_cookie = matching_cookies[0]
             wp_username, expiration, session, session_hex = wp_cookie.split('%7C')
             cookie_uid = wp_username
-        except Exception, e:
+        except Exception as e:
             # DEV_LOG.error("Except " + repr(e))
             cookie_uid = False
 

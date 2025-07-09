@@ -30,11 +30,11 @@ def lookup(tool_name, input_string, host='127.0.0.1', port=9001, timeout=2, unti
     return True, d
 
 def main():
-    print lookup("sme-cg", "son manai dohko.")
-    print lookup("sme-analyze", "manai")
+    print(lookup("sme-cg", "son manai dohko."))
+    print(lookup("sme-analyze", "manai"))
 
     # This is purposefully an error
-    print lookup("sme-analyzer", "manai")
+    print(lookup("sme-analyzer", "manai"))
 
 if __name__ == "__main__":
     import sys

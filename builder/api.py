@@ -43,7 +43,7 @@ class WordView(viewsets.ModelViewSet):
         This view should return a list of all the goals
         for the currently authenticated user.
         """
-        print self.request.QUERY_PARAMS
+        print(self.request.QUERY_PARAMS)
         semtypes = False
         sems = self.request.QUERY_PARAMS.get('semtypes', None)
         if sems:
@@ -57,10 +57,10 @@ class WordView(viewsets.ModelViewSet):
             ps['semtype__semtype__in'] = semtypes
 
         kwargs = {}
-        for k, v in ps.iteritems():
+        for k, v in ps.items():
             if v is not None:
                 kwargs[k] = v
-        print kwargs
+        print(kwargs)
         return queryset.filter(**kwargs)
 
     def metadata(self, request):
@@ -117,7 +117,7 @@ class FormView(viewsets.ModelViewSet):
             'word__lemma': self.request.QUERY_PARAMS.get('lemma', None),
         }
         kwargs = {}
-        for k, v in ps.iteritems():
+        for k, v in ps.items():
             if v is not None:
                 kwargs[k] = v
         return queryset.filter(**kwargs)

@@ -40,5 +40,5 @@ def initialize_loggers():
         DEV_LOG.addHandler(DEV_LOG_FILE)
 
         _logging_initialized = True
-        print >> sys.stderr, "Loggers initialized."
+        print("Loggers initialized.", file=sys.stderr)
 

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import settings
-from liv_drill.models import *
+from .liv_drill.models import *
 # from xml.dom import minidom as _dom
 # from django.db.models import Q
 import sys
@@ -64,16 +64,16 @@ def Popen(cmd, data=False, ret_err=False, ret_proc=False):
 				data = data.encode('utf-8')
 			except UnicodeDecodeError:
 				pass
-			except Exception, e:
-				print >> STDERR, "omg, str"
-				print >> STDERR, Exception, e
+			except Exception as e:
+				print("omg, str", file=STDERR)
+				print(Exception, e, file=STDERR)
 				sys.exit(2)
-		if type(data) == unicode:
+		if type(data) == str:
 			try:
 				data = str(data)
-			except Exception, e:
-				print >> STDERR, "omg, unicode"
-				print >> STDERR, Exception, e
+			except Exception as e:
+				print("omg, unicode", file=STDERR)
+				print(Exception, e, file=STDERR)
 				sys.exit(2)
 		kwargs = {'input': data}
 	else:
@@ -100,12 +100,12 @@ def FSTLookup(data, fst_file):
 	
 	if type(data) == list:
 		data = [a.strip() for a in list(set(data)) if a.strip()]
-		data = u'\n'.join(data).encode('utf-8')
-	print >> STDOUT, "Generating forms in %s" % gen_fst
+		data = '\n'.join(data).encode('utf-8')
+	print("Generating forms in %s" % gen_fst, file=STDOUT)
 	try:
 		lookups = Popen(cmd, data)
 	except OSError:
-		print >> STDERR, "Problem in command: %s" % cmd
+		print("Problem in command: %s" % cmd, file=STDERR)
 		sys.exit(2)
 	lookups = lookups.decode('utf-8')
 	
@@ -154,7 +154,7 @@ class Paradigm:
 						#print "adding " + tagclass + " " + string
 						tagset, created = Tagset.objects.get_or_create(tagset=tagclass)
 						pos, created = Tagname.objects.get_or_create(tagname=string, tagset=tagset)
-						print "%s added to %s" % (string, tagclass)
+						print("%s added to %s" % (string, tagclass))
 		else:
 			tagname_tagset = Tagname.objects.all().values_list('tagname', 'tagset__tagset')
 			tagset_dict = dict()
@@ -177,7 +177,7 @@ class Paradigm:
 		
 		while True:
 			line = fileObj.readline()
-			print >> STDOUT, 'A line from paradigms: %s' % line
+			print('A line from paradigms: %s' % line, file=STDOUT)
 			
 			if not line: break
 			if not line.strip(): continue
@@ -187,11 +187,11 @@ class Paradigm:
 			if matchObj:
 				pos = matchObj.expand(r'\g<posString>')
 			try:
-				if not self.paradigms.has_key(pos):
+				if pos not in self.paradigms:
 					self.paradigms[pos]=[]
 			except UnboundLocalError:
-				print >> STDERR, ' * Could not match pos. Check format of paradigm file.'
-				print >> STDERR, ' * Error on line: %s' % line
+				print(' * Could not match pos. Check format of paradigm file.', file=STDERR)
+				print(' * Error on line: %s' % line, file=STDERR)
 				sys.exit()
 			self.paradigms[pos].append(line)
 			# print >> STDERR, '%s paradigm: %s' % (pos,self.paradigms[pos])
@@ -221,7 +221,7 @@ class Paradigm:
 			lemma = lemma
 			g.form, g.tags = wordform
 			for t in g.tags:
-				if self.tagset.has_key(t):
+				if t in self.tagset:
 					tagclasses = self.tagset[t]
 					for tagclass in tagclasses:
 						g.classes[tagclass] = t
@@ -297,7 +297,7 @@ class Paradigm:
 			wordtype = '+' + w.capitalize() + rest
 		"""
 
-		if self.paradigms.has_key(pos):
+		if pos in self.paradigms:
 			for a in self.paradigms[pos]:
 				#if wordtype.strip():
 				#	if not wordtype in a:
@@ -322,7 +322,7 @@ class Paradigm:
 	def generate_all(self, dialects):		
 		
 		if not self.tagset:
-			print >> STDERR, 'No tags generated or supplied'
+			print('No tags generated or supplied', file=STDERR)
 			self.handle_tags()
 		
 		data = self.generate_data[:]
@@ -332,7 +332,7 @@ class Paradigm:
 		# isma-norm.fst
 		# dialects = {'main': ('isma-norm.fst', 'Unrestricted'), etc... }
 		gen_dialects = {}
-		for dialect, d_data in dialects.items():
+		for dialect, d_data in list(dialects.items()):
 			if d_data[0]:
 				gen_dialects[dialect] = d_data
 
@@ -364,8 +364,8 @@ class Paradigm:
 
 		try:
 			lines_tmp = self.master_paradigm[dialect][lemma].split('\n')
-		except Exception, e:
-			print >> STDERR, 'No forms generated for %s in dialect %s' % (lemma.encode('utf-8'), dialect.encode('utf-8'))
+		except Exception as e:
+			print('No forms generated for %s in dialect %s' % (lemma.encode('utf-8'), dialect.encode('utf-8')), file=STDERR)
 			lines_tmp = False
 			if not forms:
 				self.paradigm = False
@@ -377,7 +377,7 @@ class Paradigm:
 					tagstring = f.getAttribute("tag")
 					wordform = f.firstChild.data
 					extraforms[tagstring] = wordform
-					print >> STDOUT, "adding extra wordform..", wordform.encode('utf-8')
+					print("adding extra wordform..", wordform.encode('utf-8'), file=STDOUT)
 		# HIDCHANGES
 		if lines_tmp:
 			
@@ -430,7 +430,7 @@ class Paradigm:
 					g.tags = tag
 
 					for t in g.tags.split('+'):
-						if self.tagset.has_key(t):
+						if t in self.tagset:
 							tagclasses = self.tagset[t]
 							for tagclass in tagclasses:
 								g.classes[tagclass] = t
@@ -453,20 +453,20 @@ class Paradigm:
 						# subclass is also part of another tag group,
 						# thus not only a subclass, so none.
 						# Kind of hacky, for Der/PassL which
-						if g_wordtype in g.classes.values():
+						if g_wordtype in list(g.classes.values()):
 							g_wordtype = False
 						if g_wordtype:
 							continue
 						else:
 							self.paradigm.append(g)
 
-					if extraforms.has_key(g.tags):
+					if g.tags in extraforms:
 						g.form = extraforms[g.tags]
 				else:
 					err_msg = 'No form created: %s+%s' % (lemma.encode('utf-8'), tag.encode('utf-8'))
 					if dialect:
 						err_msg += ' (%s)' % dialect.encode('utf-8')
-					print >> STDERR, err_msg
+					print(err_msg, file=STDERR)
 		else:
 			self.paradigm = False
 
@@ -491,7 +491,7 @@ class Paradigm:
 		genObj=re.compile(genObj_re, re.U)
 		lookups = ""
 		
-		if self.paradigms.has_key(pos):
+		if pos in self.paradigms:
 			for a in self.paradigms[pos]:
 				lookups = lookups + lemma + "+" + a
 		
@@ -503,7 +503,7 @@ class Paradigm:
 		# None of these dialects in sma. Obs! Dialects! sme-specific!!!
 		# gen_gg_restr_fst = fstdir + "/isme-KJ.restr.fst"			
 		# gen_kj_restr_fst = fstdir + "/isme-GG.restr.fst"			
-		print >> _D, lookups.encode('utf-8')
+		print(lookups.encode('utf-8'), file=_D)
 		gen_norm_lookup = "echo \"" + lookups.encode('utf-8') + "\" | " + lookup + " -flags mbTT -utf8 -d " + gen_norm_fst
 		
 		# gen_gg_restr_lookup = "echo \"" + lookups.encode('utf-8') + "\" | " + lookup + " -flags mbTT -utf8 -d " + gen_gg_restr_fst
@@ -523,7 +523,7 @@ class Paradigm:
 					tagstring = f.getAttribute("tag")
 					wordform = f.firstChild.data
 					extraforms[tagstring] = wordform
-					print >> STDOUT, "adding extra wordform..", wordform
+					print("adding extra wordform..", wordform, file=STDOUT)
 
 		# TODO: reproduce word type stuff up here
 		for line in lines_tmp:
@@ -536,18 +536,18 @@ class Paradigm:
 				g.form = matchObj.expand(r'\g<formString>')
 				if re.compile("\?").match(g.form): continue
 				g.tags = matchObj.expand(r'\g<tagString>')
-				print 'amagad: '
-				print repr(g.tags)
+				print('amagad: ')
+				print(repr(g.tags))
 				for t in g.tags.split('+'):
-					if self.tagset.has_key(t):
+					if t in self.tagset:
 						tagclasses = self.tagset[t]
 						for tagclass in tagclasses:
 							g.classes[tagclass] = t
-				print g.classes
-				raw_input()
+				print(g.classes)
+				input()
 				self.paradigm.append(g)
 				#extraforms override generated ones
-				if extraforms.has_key(g.tags):
+				if g.tags in extraforms:
 					g.form=extraforms[g.tags]
 
 	def generate_numerals(self):
@@ -555,7 +555,7 @@ class Paradigm:
 		Generate all the cardinal numbers
 		Create paradigms and store to db
 		"""
-		print >> _D, 'generate_numerals called'
+		print('generate_numerals called', file=_D)
 		
 		# Moving paths up
 		# language = "liv"

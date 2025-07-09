@@ -19,9 +19,9 @@ def trans_to(parser, token):
     try:
         tag_name, value, lc = token.split_contents()
     except ValueError:
-        raise TemplateSyntaxError, "%r tag requires arguments" % token.contents.split()[0]
+        raise TemplateSyntaxError("%r tag requires arguments" % token.contents.split()[0])
     if not (lc[0] == lc[-1] and lc[0] in ('"', "'")):
-        raise TemplateSyntaxError, "%r locale should be in quotes" % tag_name 
+        raise TemplateSyntaxError("%r locale should be in quotes" % tag_name) 
     return TransNode(value, lc[1:-1])
 
 register.tag('trans_to', trans_to)

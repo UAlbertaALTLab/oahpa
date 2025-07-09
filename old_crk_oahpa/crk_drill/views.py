@@ -8,11 +8,11 @@ from crk_oahpa.conf.tools import switch_language_code
 
 from random import randint
 
-from game import *
-from forms import *
-from qagame import *
-from sahka import *
-from cealkka import *
+from .game import *
+from .forms import *
+from .qagame import *
+from .sahka import *
+from .cealkka import *
 
 # comment this out
 # DEBUG = open('/dev/ttys001', 'w')
@@ -105,7 +105,7 @@ class Gameview(object):
 	def create_deeplink(self, game, settings_form):
 		""" Produces a string of all of the settings parameters.
 		"""
-		keys = self.SettingsClass().fields.keys()
+		keys = list(self.SettingsClass().fields.keys())
 
 		values = {}
 
@@ -125,10 +125,10 @@ class Gameview(object):
 		key_filter = self.deeplink_keys(game, settings_form)
 
 		if key_filter:
-			key_values = ['%s=%s' % (k, v) for k, v in values.iteritems()
+			key_values = ['%s=%s' % (k, v) for k, v in values.items()
 														if k in key_filter]
 		else:
-			key_values = ['%s=%s' % k for k in values.iteritems()]
+			key_values = ['%s=%s' % k for k in values.items()]
 
 		return '?' + '&'.join(key_values)
 
@@ -198,11 +198,11 @@ class Gameview(object):
 		# the settings form values with the default initial values that were
 		# not specified in the link.
 
-		if len(settings_form.data.keys()) > 0:
+		if len(list(settings_form.data.keys())) > 0:
 			post_like_data = settings_form.data.copy()
 
 			# set initial values...
-			for field, val in self.SettingsClass().fields.iteritems():
+			for field, val in self.SettingsClass().fields.items():
 				if field not in post_like_data:
 					post_like_data[field] = val.initial
 		else:
@@ -225,20 +225,20 @@ class Gameview(object):
 		
 		# All form creation operations are complete, so now we copy form values
 		# to the game settings object. 
-		for k in settings_source.keys():
+		for k in list(settings_source.keys()):
 			if k not in self.settings:
 				self.settings[k] = settings_source[k]
 
 		# Settings values which aren't set from the form, but from the session
-		if request.session.has_key('country'):
+		if 'country' in request.session:
 			self.settings['user_country'] = request.session['country']
 		else:
 			self.settings['user_country'] = False
 
-		if request.session.has_key('dialect'):
+		if 'dialect' in request.session:
 			self.settings['dialect'] = request.session['dialect']
 
-		if request.session.has_key('django_language'):
+		if 'django_language' in request.session:
 			self.settings['language'] = request.session['django_language']
 		else:
 			self.settings['language'] = request.COOKIES.get("django_language", None)
@@ -246,7 +246,7 @@ class Gameview(object):
 				self.settings['language'] = request.LANGUAGE_CODE
 				request.session['django_language'] = request.LANGUAGE_CODE
         
-                print "get_settings_form language: "+self.settings['language']
+                print("get_settings_form language: "+self.settings['language'])
 				
 				
 		if request.user.is_authenticated():
@@ -348,7 +348,7 @@ class LeksaPlaceview(Gameview):
 	def additional_settings(self, settings_form):
 		
 		def true_false_filter(val):
-			if val in ['on', 'On', u'on', u'On']:
+			if val in ['on', 'On', 'on', 'On']:
 				return True
 			else:
 				return False
@@ -427,7 +427,7 @@ def leksa_game(request, place=False):
 		template = 'leksa.html'
 
 	sess_lang = request.session.get('django_language')
-	print sess_lang
+	print(sess_lang)
 
 	if sess_lang:
 		sess_lang = switch_language_code(sess_lang)
@@ -436,9 +436,9 @@ def leksa_game(request, place=False):
 	else:
 		sess_lang = 'eng' # was: nob
 
-	print sess_lang
+	print(sess_lang)
 	default_langpair = 'crk%s' % sess_lang
-	print default_langpair
+	print(default_langpair)
 
 	c = leksagame.create_game(request, initial_transtype=default_langpair)
 
@@ -633,7 +633,7 @@ class Morfaview(Gameview):
 	def syll_settings(self,settings_form):
 
 		def true_false_filter(val):
-			if val in ['on', 'On', u'on', u'On','True']:
+			if val in ['on', 'On', 'on', 'On','True']:
 				return True
 			else:
 				return False

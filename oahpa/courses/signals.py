@@ -1,6 +1,6 @@
 # from smaoahpa.courses.models import CourseMembership
 from django.contrib.auth.models import User, Group
-from models import UserProfile
+from .models import UserProfile
 from django.db.models import Avg, Max, Min, Count
 
 # TODO: export fixtures with group and base permissions.

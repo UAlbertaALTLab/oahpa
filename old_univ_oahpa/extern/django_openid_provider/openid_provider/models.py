@@ -14,14 +14,14 @@ class OpenID(models.Model):
         ordering = ['openid']
 
     def __str__(self):
-        return u"%s|%s" % (self.user.username, self.openid)
+        return "%s|%s" % (self.user.username, self.openid)
 
     def save(self, *args, **kwargs):
-        if self.openid in ['', u'', None]:
+        if self.openid in ['', '', None]:
             from hashlib import sha1
             import random, base64
             sha = sha1()
-            sha.update(unicode(self.user.username).encode('utf-8'))
+            sha.update(str(self.user.username).encode('utf-8'))
             sha.update(str(random.random()))
             value = str(base64.b64encode(sha.digest()))
             value = value.replace('/', '').replace('+', '').replace('=', '')
@@ -35,7 +35,7 @@ class TrustedRoot(models.Model):
     trust_root = models.CharField(max_length=200)
 
     def __str__(self):
-        return unicode(self.trust_root)
+        return str(self.trust_root)
 
 
 # from django.db.models.signals import post_save

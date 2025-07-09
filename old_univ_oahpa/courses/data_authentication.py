@@ -25,7 +25,7 @@ class CookieAuthentication(authentication.BaseAuthentication):
 
     def get_cookie_user(self, request):
 
-        matching_cookies = [(c, v) for c, v in request.COOKIES.iteritems()
+        matching_cookies = [(c, v) for c, v in request.COOKIES.items()
                                     if c.startswith(settings.COOKIE_NAME_STARTSWITH)]
 
         try:

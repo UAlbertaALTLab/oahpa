@@ -57,7 +57,8 @@ class Survey(models.Model):
                 db_value = self.questions.get(id=q).answer_values.get(id=ans_id)
             except ValueError:
                 return "ERROR: Client sent invalid answer"
-            except Exception, self.DoesNotExist:
+            except Exception as xxx_todo_changeme:
+                self.DoesNotExist = xxx_todo_changeme
                 return "ERROR: retrieving value"
             return db_value.answer_text.encode('utf-8')
 

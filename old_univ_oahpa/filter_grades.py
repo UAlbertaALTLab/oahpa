@@ -162,10 +162,10 @@ def main(infile, outfile):
         # raw_input()
     	return model_funcs.get(modelname).fix(item)
 
-    print >> sys.stderr, "%d items read." % len(json_data)
+    print("%d items read." % len(json_data), file=sys.stderr)
     with open(outfile, 'w') as F:
-        json.dump(map(replace, json_data), F, indent=2)
-    print >> sys.stderr, "Done."
+        json.dump(list(map(replace, json_data)), F, indent=2)
+    print("Done.", file=sys.stderr)
     
 
 if __name__ == "__main__":

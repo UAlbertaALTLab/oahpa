@@ -38,8 +38,8 @@ class Pipeline(threading.Thread):
                                                close_fds=True)
         except OSError:
             # TODO: handle better.
-            print "Problem executing cmd string. Check yaml defs"
-            print self.cmd_string
+            print("Problem executing cmd string. Check yaml defs")
+            print(self.cmd_string)
 
         return self._subprocess
 
@@ -81,7 +81,7 @@ class Pipeline(threading.Thread):
         socket_type = 'REP'
 
         listen = "ipc://socket_tmp/lserv-" + self.options.get('name')
-        print >> sys.stdout, " ... Opening <%s>:<%s>" % (listen, socket_type)
+        print(" ... Opening <%s>:<%s>" % (listen, socket_type), file=sys.stdout)
         socket = self.context.socket(zmq.REP)
         socket.bind(listen)
 

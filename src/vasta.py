@@ -70,17 +70,17 @@ game = QAGame(qasettings)
 game.init_tags()
 game.gametype = 'qa'
 
-print "++++++"
-print "Write the answer and press enter."
-print "Quit the game with \"q\" or \"quit\" or \"exit\"."
-print "+++++++"
+print("++++++")
+print("Write the answer and press enter.")
+print("Quit the game with \"q\" or \"quit\" or \"exit\".")
+print("+++++++")
 
 db_info = {}
 contin=True
 while contin:
     if not db_info:
         new_db_info = {}
-        if qasettings.has_key('qid'):
+        if 'qid' in qasettings:
             db_info = game.get_db_info(new_db_info, None, qasettings['qid'])
         else:
             db_info = game.get_db_info(new_db_info, qasettings['qtype'])
@@ -95,16 +95,16 @@ while contin:
 
     for w in qtext.split():
         cohort=""
-        if qwords.has_key(w):
+        if w in qwords:
             qword = qwords[w]
-            if qword.has_key('word'):
-                if qword.has_key('fullform') and qword['fullform']:
+            if 'word' in qword:
+                if 'fullform' in qword and qword['fullform']:
                     cohort = cohort + "\"<" + qword['fullform'][0].encode('utf-8') + ">\"\n"
                     qstring = qstring + " " + qwords[w]['fullform'][0]
 
                     lemma = Word.objects.filter(id=qword['word'])[0].lemma
                     cohort = cohort + "\t\"" + lemma.encode('utf-8') + "\""
-                if qword.has_key('tag') and qword['tag']:
+                if 'tag' in qword and qword['tag']:
                     string = Tag.objects.filter(id=qword['tag'])[0].string
                     tag = string.replace("+"," ")
                     cohort = cohort + " " + tag.encode('utf+8') + "\n"
@@ -129,7 +129,7 @@ while contin:
     qstring = qstring[0].capitalize() + qstring[1:]
 
     qstring = qstring + "?"
-    print qstring
+    print(qstring)
     data = sys.stdin.readline()
     data = ''.join(data)
     data = data.rstrip()
@@ -162,7 +162,7 @@ while contin:
     for line in checked:
         line = line.rstrip()
         if options.cgout:
-            print line
+            print(line)
         matchObj=messageObj.search(line)
         if matchObj:
             msgstring = matchObj.expand(r'\g<msgString>')
@@ -172,11 +172,11 @@ while contin:
         m = m.replace("&","")
         if Feedbackmsg.objects.filter(msgid=m).count() > 0:
             message = Feedbackmsg.objects.filter(msgid=m)[0].message
-            print message
+            print(message)
         else:
-            print m
+            print(m)
 
     if not msgstrings or (len(msgstrings) == 1 and m == "dia-target"):
-        print "Buorre."
+        print("Buorre.")
         db_info = None
-	print
+	print()

@@ -39,7 +39,7 @@ class Telnet(Component):
 
     def broadcast(self, data, exclude=None):
         exclude = exclude or []
-        targets = (sock for sock in self.clients.keys() if sock not in exclude)
+        targets = (sock for sock in list(self.clients.keys()) if sock not in exclude)
         for target in targets:
             self.fire(write(target, data))
 
@@ -70,7 +70,7 @@ class Telnet(Component):
     def read(self, sock, data):
         """Read Event -- Triggered for when client connections have data"""
 
-        print repr(data)
+        print(repr(data))
         try:
             data = data.strip().decode("utf-8")
         except UnicodeDecodeError:
@@ -146,7 +146,7 @@ class TelnetListener(threading.Thread):
         # do whatever to run server and handle clients
         from circuits import Debugger
 
-        print 'preparing telnet host on <%s:%d>' % (self.host, self.port)
+        print('preparing telnet host on <%s:%d>' % (self.host, self.port))
         self.t = Telnet(bind=(self.host, self.port),
                         utilities=self.utilities, debug=True)
         self.t.run()

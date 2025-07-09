@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from settings import *
-from drill.models import *
+from .settings import *
+from .drill.models import *
 from django.db.models import Q
 from xml.dom import minidom as _dom
 from django.utils.encoding import force_text
@@ -22,7 +22,7 @@ class Words:
         lex = tree.getElementsByTagName("lexicon")[0]
         mainlang = lex.getAttribute("xml:lang")
         if not mainlang and not placenamefile:
-            print "Attribute mainlang not defined in", infile, "stop."
+            print("Attribute mainlang not defined in", infile, "stop.")
             sys.exit()
 
         self.all_wordids=[]
@@ -35,7 +35,7 @@ class Words:
             allids = Word.objects.filter(Q(pos=pos) & ~Q(semtype__semtype="PLACE-NAME-LEKSA")).values_list('wordid',flat=True)
             for a in allids:
                 if force_text(a) not in set(self.all_wordids):
-                    print "Word id not found from xml. Deleting:", a
+                    print("Word id not found from xml. Deleting:", a)
                     word = Word.objects.get(pos=pos,wordid=a)
                     word.delete()
 
@@ -43,7 +43,7 @@ class Words:
             allids = Word.objects.filter(Q(pos="N") & Q(semtype__semtype="PLACE-NAME-LEKSA")).values_list('wordid',flat=True)
             for a in allids:
                 if force_text(a) not in set(self.all_wordids):
-                    print "Word id not found from xml. Deleting:", a
+                    print("Word id not found from xml. Deleting:", a)
                     word = Word.objects.get(pos=pos,wordid=a)
                     word.delete()
 
@@ -124,7 +124,7 @@ class Words:
                     if placenamefile:
                         sem_entry, created = Semtype.objects.get_or_create(semtype="PLACE-NAME-LEKSA")
                         if created:
-                            print "Created semtype entry with name PLACE-NAME-LEKSA"
+                            print("Created semtype entry with name PLACE-NAME-LEKSA")
                             #transl.semtype.add(sem_entry)
                             #transl.frequency=w.frequency
                             #transl.geography=w.geography
@@ -142,7 +142,7 @@ class Words:
         if placenamefile:
             sem_entry, created = Semtype.objects.get_or_create(semtype="PLACE-NAME-LEKSA")
             if created:
-                print "Created semtype entry with name PLACE-NAME-LEKSA"
+                print("Created semtype entry with name PLACE-NAME-LEKSA")
             w.semtype.add(sem_entry)
             w.save()
 
@@ -153,12 +153,12 @@ class Words:
             for el in elements:
                 sem=el.getAttribute("class")
                 if sem:
-                    print sem					
+                    print(sem)					
                     # Add semantics entry if not found.
                     # Leave this if DTD is used.
                     sem_entry, created = Semtype.objects.get_or_create(semtype=sem)
                     if created:
-                        print "Created semtype entry with name ", sem
+                        print("Created semtype entry with name ", sem)
                     w.semtype.add(sem_entry)
                     w.save()        
 
@@ -173,10 +173,10 @@ class Words:
                 book_entry, created = Source.objects.get_or_create(name=book)
                 # Mind the gap/indentation
                 if created:
-                    print "Created book entry with name ", book
+                    print("Created book entry with name ", book)
                 w.source.add(book_entry)
                 w.save()
-                print w.lemma, " added to book ", book
+                print(w.lemma, " added to book ", book)
 
     def store_word(self,e,linginfo,mainlang,paradigmfile,placenamefile,delete):
         
@@ -202,7 +202,7 @@ class Words:
         only_sg = 0
         only_pl = 0
         noleksa = 0
-        print lemma
+        print(lemma)
         if e.getElementsByTagName("forms"):
             forms=e.getElementsByTagName("forms")[0]
 			
@@ -249,7 +249,7 @@ class Words:
         # Part of speech information
         pos=e.getElementsByTagName("pos")[0].getAttribute("class") 
         if not pos:
-            print "Part of speech information not found for ", lemma, ". give it command line: --pos=N"
+            print("Part of speech information not found for ", lemma, ". give it command line: --pos=N")
             sys.exit()
 
         # Search for existing word in the database.
@@ -270,7 +270,7 @@ class Words:
         w.pos=pos
         w.lemma=lemma
         w.presentationform=presentationform
-        print presentationform
+        print(presentationform)
         w.stem=stem
         w.rime=rime
         w.compare = compare
@@ -326,7 +326,7 @@ class Words:
                 t.save()
                 
                 form = Form(fullform=f.form,tag=t,word=w)				
-                print f.form
+                print(f.form)
                 form.save()
                 if len(f.dialects)==1: dialects2 = f.dialects[:]
                 else: dialects2 = dialects[:]
@@ -337,13 +337,13 @@ class Words:
                 form.save()
 
         if only_sg:
-            print "deleting plural forms for", w.lemma
+            print("deleting plural forms for", w.lemma)
             Form.objects.filter(Q(word=w.id) & Q(tag__number="Pl")).delete()
         if only_pl:
-            print "deleting singular forms for", w.lemma
+            print("deleting singular forms for", w.lemma)
             Form.objects.filter(Q(word=w.id) & Q(tag__number="Sg")).delete
         if noleksa:
-            print "word not in leksa", w.lemma
+            print("word not in leksa", w.lemma)
             w.leksa=0
         else:
             w.leksa=1
@@ -371,19 +371,19 @@ class Words:
         wordfins = Wordfin.objects.filter(wordid=wid)
 
         for w in words:
-            print "Removing", w.wordid
+            print("Removing", w.wordid)
             w.delete()
 	if not words:
-            print wid, "not found in sma-db ... searching nob-db"
+            print(wid, "not found in sma-db ... searching nob-db")
 	    for w in wordnobs:
-                print "Removing", w.wordid
+                print("Removing", w.wordid)
 		w.delete()
             if not wordnobs:
-                print wid, "not found in nob-db either ... searching fin-db"
+                print(wid, "not found in nob-db either ... searching fin-db")
                 for w in wordfins:
-                    print "Removing", w.wordid
+                    print("Removing", w.wordid)
                     w.delete()
                     if not wordfins:
-                        print wid, "not found in fin-db either. Beklager!"
+                        print(wid, "not found in fin-db either. Beklager!")
 
 

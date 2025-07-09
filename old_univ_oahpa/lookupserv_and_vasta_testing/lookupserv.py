@@ -44,10 +44,11 @@ class Server(object):
             self.server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
             self.server.bind((self.host,self.port))
             self.server.listen(5)
-        except socket.error, (value,message):
+        except socket.error as xxx_todo_changeme1:
+            (value,message) = xxx_todo_changeme1.args
             if self.server:
                 self.server.close()
-                print "Could not open socket: " + message
+                print("Could not open socket: " + message)
                 sys.exit(1)
                     
     def run(self):
@@ -71,7 +72,8 @@ class Server(object):
                             
 class Client(threading.Thread):
     
-    def __init__(self,(client,address),look,lock):
+    def __init__(self, xxx_todo_changeme,look,lock):
+        (client,address) = xxx_todo_changeme
         threading.Thread.__init__(self)
         self.client = client
         self.address = address
@@ -113,13 +115,13 @@ class Client(threading.Thread):
             # Take out non-breaking space. Try to avoid errors.
             try:
                 data2 = data.decode('utf-8')
-                data2 = data2.replace(unichr(160),"")
+                data2 = data2.replace(chr(160),"")
                 data = data2.encode('utf8')
             except UnicodeDecodeError:
                 # If something cannot be decoded, better to quit.
                 self.client.send("error")
                 self.client.close()
-            except Exception, e:
+            except Exception as e:
                 #data = data.encode('utf-8')
                 #f.write("Not utf-8: " + data)
                 self.client.send("error")

@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import os.path
-import urlparse
+import urllib.parse
 
 from openid.test import discoverdata
 
@@ -49,9 +49,9 @@ def buildDiscover(base_url, out_dir):
             continue
         writeTestFile(input_name)
 
-        input_url = urlparse.urljoin(base_url, input_name)
-        id_url = urlparse.urljoin(base_url, id_name)
-        result_url = urlparse.urljoin(base_url, result_name)
+        input_url = urllib.parse.urljoin(base_url, input_name)
+        id_url = urllib.parse.urljoin(base_url, id_name)
+        result_url = urllib.parse.urljoin(base_url, result_name)
 
         manifest.append('\t'.join((input_url, id_url, result_url)))
         manifest.append('\n')

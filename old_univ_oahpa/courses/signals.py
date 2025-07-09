@@ -1,6 +1,6 @@
 # from univ_oahpa.courses.models import CourseMembership
 from django.contrib.auth.models import User, Group
-from models import UserProfile
+from .models import UserProfile
 from django.db.models import Avg, Max, Min, Count
 
 # TODO: instructors do not need admin access anymore, should disable those bits
@@ -200,10 +200,10 @@ def new_message_notification(sender, instance, signal, *args, **kwargs):
                 instance.sender,
                 actor=instance.sender,
                 recipient=instance.recipient,
-                verb=u'sent you message',
+                verb='sent you message',
                 action_object=instance,
             )
-        except Exception, e:
+        except Exception as e:
             pass
 
 # vim: set ts=4 sw=4 tw=72 syntax=python :

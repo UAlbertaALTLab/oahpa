@@ -69,8 +69,8 @@
         if not hasattr(self, '_error_tags'):
             # Extract tags we care about from XML
             e_tags = []
-            for l, msgs in self.messages.iteritems():
-                _ks = sum( [list(k) for k in msgs.keys()], [])
+            for l, msgs in self.messages.items():
+                _ks = sum( [list(k) for k in list(msgs.keys())], [])
                 e_tags.extend(_ks)
             self._error_tags = set(e_tags)
         return self._error_tags
@@ -96,7 +96,7 @@
                 task_messages = [a for a in map(copy_item, messages) if a.get('task', '') == task]
                 return task_messages
             else:
-                return map(copy_item, messages)
+                return list(map(copy_item, messages))
 
         return False
 

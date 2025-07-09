@@ -25,23 +25,23 @@ def WordGeneration(conf, install_summary, options):
 				open(kwargs['infile'], 'r')
 			except IOError:
 				errmsg = " * File %s not found." % kwargs['infile']
-				print >> sys.stderr, errmsg
+				print(errmsg, file=sys.stderr)
 				raise Exception(errmsg)
 
-			if item.has_key('tagfile'):
+			if 'tagfile' in item:
 				linginfo.handle_tags(item['tagfile'], False)
 
-			if item.has_key('paradigmfile'):
+			if 'paradigmfile' in item:
 				linginfo.read_paradigms(item['paradigmfile'], item['tagfile'], False)
 				kwargs['paradigmfile'] = item['paradigmfile']
 			kwargs['linginfo'] = linginfo
-			if options.has_key('verbose'):
+			if 'verbose' in options:
 				kwargs['verbose'] = options['verbose']
 			words.install_lexicon(**kwargs)
 
-			print "%s done processing." % fname
+			print("%s done processing." % fname)
 			install_summary[fname] = ("Success", "")
-		except Exception, e:
+		except Exception as e:
 			install_summary[fname] = ("Fail", e)
 
 	return install_summary
@@ -122,13 +122,13 @@ class Command(BaseCommand):
 		if not options.get('skip_generation'):
 			install_summary = WordGeneration(config_data, install_summary, options)
 		else:
-			print >> sys.stderr, "*** Skipping word generation"
+			print("*** Skipping word generation", file=sys.stderr)
 		
 		# Install semantics
 		if options.get('skip_semantics'):
-			print >> sys.stderr, "*** Skipping processing of semantics"
+			print("*** Skipping processing of semantics", file=sys.stderr)
 		else:
-			if config_data.has_key('Supersets'):
+			if 'Supersets' in config_data:
 				fname = config_data['Supersets']
 				extra = Extra()
 				for f in fname:
@@ -136,16 +136,16 @@ class Command(BaseCommand):
 					try:
 						extra.read_semtypes(f)
 						install_summary[f] = ("Success", "")
-					except Exception, e:
+					except Exception as e:
 						install_summary[f] = ("Fail", str(e))
 
 		
 		# Install feedback
 
 		if options.get('skip_feedback'):
-			print >> sys.stderr, "*** Skipping feedback"
+			print("*** Skipping feedback", file=sys.stderr)
 		else:
-			if config_data.has_key('Feedback'):
+			if 'Feedback' in config_data:
 				feedback = Feedback_install()
 				
 				# Read messagefiles
@@ -153,7 +153,7 @@ class Command(BaseCommand):
 					try:
 						feedback.read_messages(mfile)
 						install_summary[mfile] = ("Success", '')
-					except Exception, e:
+					except Exception as e:
 						install_summary[mfile] = ("Fail", e)
 
 				# Read feedbacks
@@ -162,12 +162,12 @@ class Command(BaseCommand):
 						feedback.read_feedback(items['feedbackfile'],
 												items['wordfile'])
 						install_summary[items['feedbackfile'] + ', ' + items['wordfile']] = ("Success", '')
-					except Exception, e:
+					except Exception as e:
 						install_summary[items['feedbackfile'] + ', ' + items['wordfile']] = ("Fail", e)
 
 		# Install questions
 		if options.get('skip_questions'):
-			print >> sys.stderr, "*** Skipping questions"
+			print("*** Skipping questions", file=sys.stderr)
 		else:
 			for question_set in config_data['MorfaC_Install']['questionfiles']:
 				qfile = question_set['questions']
@@ -176,12 +176,12 @@ class Command(BaseCommand):
 				try:
 					questions.read_questions(qfile, gfile)
 					install_summary[qfile] = ("Success", '')
-				except Exception, e:
+				except Exception as e:
 					install_summary[qfile] = ("Fail", e)
 		
-		print >> sys.stderr, " === Install summary === "
-		for k, v in install_summary.items():
-			print >> sys.stderr, "%s\t\t%s\t\t%s" % (v[0], k, v[1])
+		print(" === Install summary === ", file=sys.stderr)
+		for k, v in list(install_summary.items()):
+			print("%s\t\t%s\t\t%s" % (v[0], k, v[1]), file=sys.stderr)
 
 	def handle(self, *args, **options):
 		# TODO: specify install yaml file 

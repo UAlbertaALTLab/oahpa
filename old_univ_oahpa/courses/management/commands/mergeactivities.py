@@ -18,12 +18,12 @@ def merge(queryset):
         valnames.setdefault(r.model, []).append(r.field.name)
     
     for model_object in tail:
-        for model, field_names in valnames.iteritems():
+        for model, field_names in valnames.items():
             for field_name in field_names:
                 model.objects.filter(**{field_name: model_object}).update(**{field_name: main})
         model_object.delete()
     
-    print " %s is merged with other activities, now you can give it a canonical name." % main
+    print(" %s is merged with other activities, now you can give it a canonical name." % main)
 
 
 # # # 
@@ -38,12 +38,12 @@ def mergeactivities(tfilter=False):
 	strings = qset.values_list('name', flat=True)
 	strings = list(set(strings))
 
-	print 'Merging:'
+	print('Merging:')
 	for string in strings:
 		tag = Activity.objects.filter(name=string)
 
 		if tag.count() > 1:
-			print 'Merging conflict in %s' % tag[0].name
+			print('Merging conflict in %s' % tag[0].name)
 			merge(tag)
 
 class Command(BaseCommand):

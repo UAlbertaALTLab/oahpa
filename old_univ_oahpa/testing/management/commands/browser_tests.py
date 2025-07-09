@@ -29,22 +29,22 @@ def test_morfas():
 	test_keys = {
 		'/univ_oahpa/morfas/': { 	
 				# form value, values to iterate
-				'case': map(itemgetter(0), CASE_CHOICES),
+				'case': list(map(itemgetter(0), CASE_CHOICES)),
 				'bisyllabic': [True],
 				'trisyllabic': [False],
 				'contracted': [False],
 				'book': ['all'],
 		},
 		'/univ_oahpa/morfas/v/': {
-				'vtype': map(itemgetter(0), VTYPE_CHOICES),
+				'vtype': list(map(itemgetter(0), VTYPE_CHOICES)),
 				'bisyllabic': [True],
 				'trisyllabic': [False],
 				'contracted': [False],
 				'book': ['all'],
 		},
 		'/univ_oahpa/morfas/a/': {
-				'adjcase': map(itemgetter(0), ADJCASE_CHOICES),
-				'grade': map(itemgetter(0), ADJEX_CHOICES),
+				'adjcase': list(map(itemgetter(0), ADJCASE_CHOICES)),
+				'grade': list(map(itemgetter(0), ADJEX_CHOICES)),
 				'bisyllabic': [True],
 				'trisyllabic': [False],
 				'contracted': [False],
@@ -72,65 +72,65 @@ def test_morfas():
 	count = 0
 	failed_url_params = []
 
-	for url, parameter_set in test_keys.iteritems():
+	for url, parameter_set in test_keys.items():
 		path = {
 			'host': HOST,
 			'path': url,
 		}
 		uri = '%(host)s%(path)s' % path
-		print 'trying: %s' % uri
+		print('trying: %s' % uri)
 		count += 1
 		r = requests.get(uri)
 		try:
 			assert r.status_code == 200
-			print 'status: %d' % r.status_code
-			print 'testing form values ... '
+			print('status: %d' % r.status_code)
+			print('testing form values ... ')
 			pass_count += 1
 			clear_for_subtest = True
 		except AssertionError:
-			print 'Error %d on %s' % (r.status_code, uri)
+			print('Error %d on %s' % (r.status_code, uri))
 			fail_count += 1
 			clear_for_subtest = False
 			failed_url_params.append((uri,))
 			continue
 
-		parameters = [(key, vals) for key, vals in parameter_set.items()]
+		parameters = [(key, vals) for key, vals in list(parameter_set.items())]
 		keys, values = [a[0] for a in parameters], [a[1] for a in parameters]
 
 		value_iterations = product(*values)
 
 		for iter_ in value_iterations:
-			post_data = zip(keys, iter_)
-			print '  trying:'
+			post_data = list(zip(keys, iter_))
+			print('  trying:')
 			for k, v in post_data:
-				print '    %s - %s' % (k, v)
+				print('    %s - %s' % (k, v))
 
 			if clear_for_subtest:
 				count += 1
 				u = requests.post(uri, data=dict(post_data))
 			else:
-				print '    SKIP'
+				print('    SKIP')
 				fail_count += 1
 				continue
 
 			try:
 				assert u.status_code == 200
-				print '    pass: %d' % u.status_code
+				print('    pass: %d' % u.status_code)
 				pass_count += 1
 			except AssertionError:
-				print '    FAIL: %d' % u.status_code
+				print('    FAIL: %d' % u.status_code)
 				fail_count += 1
 				failed_url_params.append((uri,dict(post_data)))
 				continue
 
 
 
-	print 'Successful: %d/%d' % (pass_count, count)
-	print 'FAILED: %d/%d' % (fail_count, count)
+	print('Successful: %d/%d' % (pass_count, count))
+	print('FAILED: %d/%d' % (fail_count, count))
 	
-	print 'Tests failed:'
+	print('Tests failed:')
 	for k in failed_url_params:
-		print k
+		print(k)
 		# print '  %s: %s' % (k, repr(v))
 
 	return True

@@ -39,10 +39,10 @@ ERROR_FST_SETTINGS = settings.ERROR_FST_SETTINGS
 _fst_file = ERROR_FST_SETTINGS.get('fst_path')
 
 if not os.path.isfile(_fst_file):
-    print >> sys.stderr, "FST file at <%s> does not exist."
-    print >> sys.stderr, "Check the path in settings.py and try again."
+    print("FST file at <%s> does not exist.", file=sys.stderr)
+    print("Check the path in settings.py and try again.", file=sys.stderr)
 
-error_files = ERROR_FST_SETTINGS.get('error_message_files', {}).values()
+error_files = list(ERROR_FST_SETTINGS.get('error_message_files', {}).values())
 feedback_messages = FeedbackMessageStore(*error_files)
 feedback_api = FeedbackFST(feedback_messages)
 
@@ -64,7 +64,7 @@ def parse_tag(tag):
 			else:
 				return [item]
 
-		return list(product(*map(make_list, tags)))
+		return list(product(*list(map(make_list, tags))))
 
 	tag_string = []
 	for item in tag.split('+'):
@@ -96,13 +96,13 @@ class Game(object):
 		self.num_fields = 6
 		self.global_targets = {}
 		# .has_key deprecated, is there a way to use in with this?
-		if not self.settings.has_key('gametype'):
+		if 'gametype' not in self.settings:
 			self.settings['gametype'] = "bare"
 
-		if self.settings['gametype'] == "bare" and self.settings.has_key('pron_type') and self.settings['pron_type'] in ['Rel', 'Dem']:
+		if self.settings['gametype'] == "bare" and 'pron_type' in self.settings and self.settings['pron_type'] in ['Rel', 'Dem']:
 			self.num_fields = 4
 
-		if self.settings.has_key('semtype'):
+		if 'semtype' in self.settings:
 			if self.settings['semtype'] in ('all','All'):  # upper- or lowercase
 				# self.settings['semtype'] = self.settings['allsem']
 				self.settings['semtype'] = 'all'
@@ -154,7 +154,7 @@ class Game(object):
 
 			try:
 				form, word_id = self.create_form(db_info, i, 0)
-			except Http404, e:
+			except Http404 as e:
 				raise e
 			except ObjectDoesNotExist:
 				continue
@@ -181,7 +181,7 @@ class Game(object):
 		matchObj = reObj.search(string)
 		if matchObj:
 			syntax = matchObj.expand(r'\g<syntaxString>')
-			if not words.has_key(syntax):
+			if syntax not in words:
 				words[syntax] = {}
 
 			words[syntax][t_type] = value
@@ -220,7 +220,7 @@ class Game(object):
 				# u'tag_id': u'66',
 				# u'word_id': u'628'}
 
-			for fieldname, value in data.items():
+			for fieldname, value in list(data.items()):
 				# print >> DEBUG, d, value
 				if fieldname.count(str(n) + '-') > 0:
 					fieldname = fieldname.lstrip(str(n) + '-')
@@ -242,24 +242,24 @@ class Game(object):
 			# This appears to not be used for leksa and morfa
 			# Or if it is to be used with morfa, last stanza has problem.
 			# Furthermore, qwords has no keys, and thus doesn't iterate.
-			for syntax in qwords.keys():
-				if qwords[syntax].has_key('fullform'):
+			for syntax in list(qwords.keys()):
+				if 'fullform' in qwords[syntax]:
 					qwords[syntax]['fullform'] = [qwords[syntax]['fullform']]
 
 			# This also appears to not be used for leksa and morfa
 			# Or else there's a problem in the initial forloop.
 			# Dictionary here comes out empty.
 			# tmpawords doesn't iterate here; no keys
-			for syntax in tmpawords.keys():
+			for syntax in list(tmpawords.keys()):
 				awords[syntax] = []
 				info = {}
-				if tmpawords[syntax].has_key('word'):
+				if 'word' in tmpawords[syntax]:
 					info['word'] = tmpawords[syntax]['word']
-					if tmpawords[syntax].has_key('tag'):
+					if 'tag' in tmpawords[syntax]:
 						info['tag'] = tmpawords[syntax]['tag']
-					if tmpawords[syntax].has_key('fullform'):
+					if 'fullform' in tmpawords[syntax]:
 						info['fullform'] = [ tmpawords[syntax]['fullform']]
-				if tmpawords[syntax].has_key('taskword'):
+				if 'taskword' in tmpawords[syntax]:
 					info['taskword'] = tmpawords[syntax]['taskword']  # added by Heli
 				awords[syntax].append(info)
 
@@ -272,7 +272,7 @@ class Game(object):
 			new_db_info = {}
 
 			# Generate possible answers for contextual Morfa.
-			if self.settings.has_key('gametype') and self.settings['gametype'] == 'context':
+			if 'gametype' in self.settings and self.settings['gametype'] == 'context':
 				new_db_info = self.get_db_info(db_info)
 			if not new_db_info:
 				new_db_info = db_info
@@ -310,7 +310,7 @@ class Game(object):
 				i = 3
 			if i == 1:
 				i = 2
-			if self.settings.has_key('language'):
+			if 'language' in self.settings:
 				language = switch_language_code(self.settings['language'])
 
 				com_count = Comment.objects.filter(Q(level=i) & Q(lang=language)).count()
@@ -452,7 +452,7 @@ class BareGame(Game):
 
 	def get_db_info(self, db_info):
 
-		if self.settings.has_key('pos'):
+		if 'pos' in self.settings:
 			pos = self.settings['pos']
 
 		# PI: isn't this what the second argument of .get() does?..
@@ -534,7 +534,7 @@ class BareGame(Game):
 			"POT":	("Pot", "Prs", "")
 		}
 
-		if pos == "V" and self.settings.has_key('vtype'):
+		if pos == "V" and 'vtype' in self.settings:
 			mood, tense, infinite = pos_mood_tense[self.settings['vtype']]
 
 		pos2 = ''
@@ -617,7 +617,7 @@ class BareGame(Game):
 					else:
 						return [item]
 
-				return list(product(*map(make_list, tags)))
+				return list(product(*list(map(make_list, tags))))
 
 			tag_string = []
 
@@ -848,7 +848,7 @@ class BareGame(Game):
 			db_info['tag_id'] = tag.id
 			#print db_info
 			if tag.string.lower().find('conneg') > -1:
-				db_info['conneg'] = choice(PRONOUNS_LIST.keys())
+				db_info['conneg'] = choice(list(PRONOUNS_LIST.keys()))
 			else:
 				db_info['conneg'] = False
 
@@ -868,7 +868,7 @@ class BareGame(Game):
 
 
 	def create_form(self, db_info, n, data=None):
-		print "creating form..."
+		print("creating form...")
 		#if not 'word_id' in db_info:
 		#	return None, None
 
@@ -882,10 +882,10 @@ class BareGame(Game):
 		Q_DIALECT = Dialect.objects.get(dialect="main")
 
 		word = Word.objects.get(id=db_info['word_id'])
-		print "word id: ", db_info['word_id']
-		print "word: ", word
+		print("word id: ", db_info['word_id'])
+		print("word: ", word)
 		tag = Tag.objects.get(id=db_info['tag_id'])
-		print tag
+		print(tag)
 
 		# A little exception for derivation, we want to be able to accept PassS
 		# and PassL, but show only PassL in the answers.
@@ -917,7 +917,7 @@ class BareGame(Game):
 			correct = form_list.filter(tag__string__contains='PassL')
 
 		correct = form_list[0]
-		print "correct form: ", correct
+		print("correct form: ", correct)
 
 		# Due to the pronoun ambiguity potential (gii 'who', gii 'which'),
 		# we need to make sure that the word is the right one.
@@ -946,7 +946,7 @@ class BareGame(Game):
 			#	NOTE: Need to use getBaseform on Form object, not Word,
 			#	because Word.getBaseform doesn't pay attention to number.
 
-			if self.settings.has_key('dialect'):
+			if 'dialect' in self.settings:
 				UI_Dialect = self.settings['dialect']
 			else:
 				UI_Dialect = DEFAULT_DIALECT
@@ -978,7 +978,7 @@ class BareGame(Game):
 			#else:
 			#	return list(filtered)
 
-		base_forms = map(baseformFilter, form_list)
+		base_forms = list(map(baseformFilter, form_list))
 
 		# Flatten the lists, but if this isn't an iterateable object, don't worry
 		try:
@@ -1079,7 +1079,7 @@ class NumGame(Game):
 		db_info['numeral_id'] = smart_str(random_num)
 
 		if self.settings['gametype'] == 'ord':
-			db_info['numeral_id'] += u"."
+			db_info['numeral_id'] += "."
 
 		return db_info
 
@@ -1172,9 +1172,9 @@ class NumGame(Game):
 				error_fst = \
 					feedback_api.get_all_feedback_for_form(useranswer.strip(),
 												**message_kwargs)
-			except Exception, e:
-				print >> sys.stderr, "Error from feedback API"
-				print >> sys.stderr, e
+			except Exception as e:
+				print("Error from feedback API", file=sys.stderr)
+				print(e, file=sys.stderr)
 				error_fst = False
 
 			# 'string' refers to the question here, not the answer
@@ -1256,7 +1256,7 @@ class NumGame(Game):
 
 		return form, numstring
 
-from forms import KlokkaQuestion
+from .forms import KlokkaQuestion
 
 class Klokka(NumGame):
 
@@ -1390,7 +1390,7 @@ class Klokka(NumGame):
 ##
 
 class Dato(Klokka):
-	from forms import DatoQuestion as QuestionForm
+	from .forms import DatoQuestion as QuestionForm
 
 	# QuestionForm = DatoQuestion
 
@@ -1410,7 +1410,7 @@ class Dato(Klokka):
 		from random import choice
 
 		def dayrange(x):
-			return range(1,x+1)
+			return list(range(1,x+1))
 
 		# List of tuples with all possible days
 		# built from (month, maxdays)
@@ -1454,7 +1454,7 @@ class Dato(Klokka):
 ##
 
 class Money(Klokka):
-	from forms import MoneyQuestion as QuestionForm
+	from .forms import MoneyQuestion as QuestionForm
 
 	# QuestionForm = MoneyQuestion
 

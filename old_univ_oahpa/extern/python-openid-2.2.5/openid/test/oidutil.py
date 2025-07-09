@@ -21,7 +21,7 @@ def test_base64():
         '\x00',
         '\x01',
         '\x00' * 100,
-        ''.join(map(chr, range(256))),
+        ''.join(map(chr, list(range(256)))),
         ]
 
     for s in cases:
@@ -31,9 +31,9 @@ def test_base64():
         assert s_prime == s, (s, b64, s_prime)
 
     # Randomized test
-    for _ in xrange(50):
+    for _ in range(50):
         n = random.randrange(2048)
-        s = ''.join(map(chr, map(lambda _: random.randrange(256), range(n))))
+        s = ''.join(map(chr, [random.randrange(256) for _ in range(n)]))
         b64 = oidutil.toBase64(s)
         checkEncoded(b64)
         s_prime = oidutil.fromBase64(b64)
@@ -61,10 +61,10 @@ class TestSymbol(unittest.TestCase):
         s = oidutil.Symbol("Foo")
         d = {s: 1}
         d_prime = copy.deepcopy(d)
-        self.failUnless(s in d_prime, "%r isn't in %r" % (s, d_prime))
+        self.assertTrue(s in d_prime, "%r isn't in %r" % (s, d_prime))
 
         t = oidutil.Symbol("Bar")
-        self.failIfEqual(hash(s), hash(t))
+        self.assertNotEqual(hash(s), hash(t))
 
 
 def buildAppendTests():

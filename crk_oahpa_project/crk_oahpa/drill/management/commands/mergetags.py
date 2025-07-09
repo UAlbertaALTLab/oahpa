@@ -1,4 +1,4 @@
-from local_conf import LLL1
+from .local_conf import LLL1
 import importlib
 oahpa_module = importlib.import_module(LLL1+'_oahpa')
 
@@ -22,12 +22,12 @@ def merge(queryset):
         valnames.setdefault(r.model, []).append(r.field.name)
 
     for model_object in tail:
-        for model, field_names in valnames.iteritems():
+        for model, field_names in valnames.items():
             for field_name in field_names:
                 model.objects.filter(**{field_name: model_object}).update(**{field_name: main})
         model_object.delete()
 
-    print " %s is merged with other tags, now you can give it a canonical name." % main
+    print(" %s is merged with other tags, now you can give it a canonical name." % main)
 
 
 # # #
@@ -45,12 +45,12 @@ def mergetags(tfilter=False):
 	strings = qset.values_list('string', flat=True)
 	strings = list(set(strings))
 
-	print 'Merging:'
+	print('Merging:')
 	for string in strings:
 		tag = Tag.objects.filter(string=string)
 
 		if tag.count() > 1:
-			print 'Merging conflict in %s' % tag[0].string
+			print('Merging conflict in %s' % tag[0].string)
 			merge(tag)
 
 
@@ -86,9 +86,9 @@ class Command(BaseCommand):
 				new_str = TV.string.replace(tag_element, '')
 				filtered = Tag.objects.filter(string__contains=new_str)
 
-				print 'Merging:'
+				print('Merging:')
 				for t in filtered:
-					print ' %s' % t.string
+					print(' %s' % t.string)
 
 				filtered_up = filtered.update(string=new_str)
 				merge(filtered)

@@ -1,6 +1,6 @@
 """ Replacement authentication decorators that work around redirection loops,
 as well as the trackGrade decorator. """
-from local_conf import LLL1
+from .local_conf import LLL1
 import importlib
 oahpa_module = importlib.import_module(LLL1+'_oahpa')
 

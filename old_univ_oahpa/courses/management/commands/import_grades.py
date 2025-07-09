@@ -20,7 +20,7 @@ class BulkDeserializer(object):
             """ If key exists in maps, replace with new key and replace
             value with lookup from the map. """
             _d = {}
-            for k, v in d.iteritems():
+            for k, v in d.items():
                 if k in maps:
                     _nk, _map = maps.get(k)
                     _nv = _map.get(v)
@@ -33,13 +33,13 @@ class BulkDeserializer(object):
         for item in self.data:
             _fields = adjustForMaps(item.get('fields'), self.maps)
             if self.debug:
-                print item.get('fields')
+                print(item.get('fields'))
             if self.debug:
-                print _fields
+                print(_fields)
             _new = self.model(**_fields)
             objs.append(_new)
             if self.debug:
-                raw_input()
+                input()
         self.objs = []
         for obj in objs:
             obj.save()
@@ -97,27 +97,27 @@ def import_grades(filename):
                 return False
         return _fx
 
-    _users = filter(modelName("auth.user"), json_data)
-    _activities = filter(modelName("courses.activity"), json_data)
-    _userprofiles = filter(modelName("courses.userprofile"), json_data)
-    _usergrades = filter(modelName("courses.usergrade"), json_data)
-    _usergradesummaries = filter(modelName("courses.usergradesummary"), json_data)
+    _users = list(filter(modelName("auth.user"), json_data))
+    _activities = list(filter(modelName("courses.activity"), json_data))
+    _userprofiles = list(filter(modelName("courses.userprofile"), json_data))
+    _usergrades = list(filter(modelName("courses.usergrade"), json_data))
+    _usergradesummaries = list(filter(modelName("courses.usergradesummary"), json_data))
 
     users = Users(_users)
     users.insert()
     users.createMap('username')
-    print "%d users created" % len(users.objs)
+    print("%d users created" % len(users.objs))
 
     activities = Activities(_activities)
     activities.insert()
     activities.createMap('name')
-    print "%d activities created" % len(activities.objs)
+    print("%d activities created" % len(activities.objs))
 
     # TODO: user__username invalid, replace using map somehow.
     userprofiles = UserProfiles(_userprofiles, maps={'user__username': ('user', users)})
     userprofiles.insert()
     userprofiles.createMap()
-    print "%d userprofiles created" % len(userprofiles.objs)
+    print("%d userprofiles created" % len(userprofiles.objs))
 
     # TODO: UserGrade.user has null, silently skip failed inserts?
     usergrades = UserGrades(_usergrades, maps={
@@ -125,14 +125,14 @@ def import_grades(filename):
         'game__name': ('game', activities)
     })
     usergrades.insert()
-    print "%d usergrades created" % len(usergrades.objs)
+    print("%d usergrades created" % len(usergrades.objs))
 
     usergradesummaries = UserGradeSummaries(_usergradesummaries, maps={
         'user__username': ('user', userprofiles),
         'game__name': ('game', activities),
     })
     usergradesummaries.insert()
-    print "%d usergradesummaries created" % len(usergradesummaries.objs)
+    print("%d usergradesummaries created" % len(usergradesummaries.objs))
 
 class Command(BaseCommand):
     args = '--tagelement'

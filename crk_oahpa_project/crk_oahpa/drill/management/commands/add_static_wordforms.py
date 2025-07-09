@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from local_conf import LLL1
+from .local_conf import LLL1
 import importlib
 oahpa_module = importlib.import_module(LLL1+'_oahpa')
 
@@ -32,29 +32,29 @@ def install_file(filename, pos):
 
             words_to_install[lemma][tag].append(form)
 
-    from itertools import izip_longest
+    from itertools import zip_longest
 
-    for lemma, forms in words_to_install.iteritems():
-        print 'lemma: ', lemma
+    for lemma, forms in words_to_install.items():
+        print('lemma: ', lemma)
         ws = Word.objects.filter(lemma=lemma, pos=pos)
         try:
             w = ws[0]
-            for tag, wfs in forms.iteritems():
+            for tag, wfs in forms.items():
                 fs = Form.objects.filter(word__lemma=lemma, tag__string=tag)
                 fs.delete()
-                print '  ', tag
+                print('  ', tag)
                 last_db = False
                 t, _c = Tag.objects.get_or_create(string=tag)
                 if _c:
                     t.save()
                 for new_form in wfs:
-                    print '    ', new_form
+                    print('    ', new_form)
                     new = Form.objects.create(word=w,
                                         tag=t,
                                         fullform=new_form,)
                     new.save()
         except IndexError:
-            print 'error:', IndexError
+            print('error:', IndexError)
 
 
 
@@ -75,12 +75,12 @@ def mergetags(tfilter=False):
     strings = qset.values_list('string', flat=True)
     strings = list(set(strings))
 
-    print 'Merging:'
+    print('Merging:')
     for string in strings:
         tag = Tag.objects.filter(string=string)
 
         if tag.count() > 1:
-            print 'Merging conflict in %s' % tag[0].string
+            print('Merging conflict in %s' % tag[0].string)
             merge(tag)
 
 

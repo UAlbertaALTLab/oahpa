@@ -46,17 +46,17 @@ def run_local_session(utilities, cmd_args):
     """ Here we only listen on the local commandline.  """
 
     while True:
-        print "choose service?"
-        process = raw_input()
+        print("choose service?")
+        process = input()
         u = utilities.get(process, False)
         if not u:
-            print "Invalid service, choose one of:"
-            print utilities.keys()
+            print("Invalid service, choose one of:")
+            print(list(utilities.keys()))
             continue
-        print "listening for"
-        print u
+        print("listening for")
+        print(u)
         while True:
-            input_line = raw_input()
+            input_line = input()
 
             if len(input_line.strip()) == 0:
                 sys.exit()
@@ -65,7 +65,7 @@ def run_local_session(utilities, cmd_args):
             sock = q.socket
             sock.send(input_line)
             message = sock.recv()
-            print >> sys.stdout, message
+            print(message, file=sys.stdout)
 
 def accept_clients(service_defs, utilities, cmd_args):
     """ Here we do whatever we need to to listen for requests, and send
@@ -86,10 +86,10 @@ def accept_clients(service_defs, utilities, cmd_args):
 
 
 def erase_logs():
-    print >> sys.stderr, "Deleting logs:"
+    print("Deleting logs:", file=sys.stderr)
     for f in os.listdir('logs/'):
         f_path = os.path.join('logs/', f)
-        print >> sys.stderr, f_path
+        print(f_path, file=sys.stderr)
         os.remove(f_path)
 
 def check_paths():

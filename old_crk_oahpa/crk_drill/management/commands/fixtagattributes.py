@@ -17,13 +17,13 @@ def fixtags():
 	from crk_drill.models import Tag
 	tags = Tag.objects.all()
 
-	print 'Fixing attributes...'
+	print('Fixing attributes...')
 	for tag in tags:
-		print tag.string
+		print(tag.string)
 		tag.fix_attributes()
 		tag.save()
 	
-	print 'Done'
+	print('Done')
 
 class Command(BaseCommand):
 	help = """

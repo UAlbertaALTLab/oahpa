@@ -2,7 +2,7 @@
 import settings
 from os import environ
 import os, sys
-print " * Correcting paths"
+print(" * Correcting paths")
 cur_path = os.getcwd()
 parent_path = '/' + '/'.join([a for a in cur_path.split('/') if a][0:-1]) + '/'
 sys.path.insert(0, parent_path)
@@ -10,15 +10,15 @@ environ['DJANGO_SETTINGS_MODULE'] = 'liv_oahpa.settings'
 
 settings.DEBUG = False
 
-from liv_drill.models import *
+from .liv_drill.models import *
 from optparse import OptionParser, make_option
 import sys
-from ling import Paradigm
-from words_install import Words
-from extra_install import Extra
-from feedback_install import Feedback_install
-from questions_install import Questions
-from sahka_install import Sahka  # added by Heli
+from .ling import Paradigm
+from .words_install import Words
+from .extra_install import Extra
+from .feedback_install import Feedback_install
+from .questions_install import Questions
+from .sahka_install import Sahka  # added by Heli
 
 # TODO: option for oa="yes" only, for liv_
 # ota lemma jos on name="oahpa"

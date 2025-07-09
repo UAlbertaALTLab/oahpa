@@ -5,26 +5,26 @@ from os import environ
 # Some computers seem to miss the proper path. This adds the parent directory
 # to the pythonpath, but should not otherwise disturb functionality on 
 # those which already have it.
-print " * Correcting paths"	
+print(" * Correcting paths")	
 cur_path = os.getcwd()
 parent_path = '/' + '/'.join([a for a in cur_path.split('/') if a][0:-1]) + '/'
 sys.path.insert(0, parent_path)
 environ['DJANGO_SETTINGS_MODULE'] = 'oahpa.settings'
 
-from settings import *
-from drill.models import *
+from .settings import *
+from .drill.models import *
 from xml.dom import minidom as _dom
 from optparse import OptionParser
 from django.db.models import Q
 import sys
 import re
 import codecs
-from ling import Paradigm
-from feedback_install import Feedback_install
-from sahka_install import Sahka
-from extra_install import Extra
-from questions_install import Questions
-from words_install import Words
+from .ling import Paradigm
+from .feedback_install import Feedback_install
+from .sahka_install import Sahka
+from .extra_install import Extra
+from .questions_install import Questions
+from .words_install import Words
 
 parser = OptionParser()
 

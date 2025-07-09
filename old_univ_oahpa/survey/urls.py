@@ -2,8 +2,8 @@ from django.conf.urls.defaults import *
 
 from rest_framework import routers
 
-from views import SurveyView, AnswerView
-from views import answer, dismiss
+from .views import SurveyView, AnswerView
+from .views import answer, dismiss
 
 router = routers.DefaultRouter()
 router.register(r'surveys', SurveyView, base_name='surveys')

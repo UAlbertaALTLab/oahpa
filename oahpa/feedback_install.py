@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from settings import *
-from drill.models import Feedback,Feedbackmsg,Feedbacktext,Dialect,Comment
+from .settings import *
+from .drill.models import Feedback,Feedbackmsg,Feedbacktext,Dialect,Comment
 from xml.dom import minidom as _dom
 from django.db.models import Q
 import sys
@@ -29,7 +29,7 @@ class Feedback_install:
         for el in tree.getElementsByTagName("message"):
             mid=el.getAttribute("id")
             message = el.firstChild.data
-            print message            
+            print(message)            
             fm, created = Feedbackmsg.objects.get_or_create(msgid=mid)
             fm.save()
 
@@ -100,8 +100,8 @@ class Feedback_install:
     def read_feedback(self, infile, wordfile):
 
         from django.db import connection
-        print infile
-        print wordfile
+        print(infile)
+        print(wordfile)
 
         wordfile=file(wordfile)
         wordtree = _dom.parse(wordfile)
@@ -148,15 +148,15 @@ class Feedback_install:
         personnumbers = ["Sg1","Sg2","Sg3","Du1","Du2","Du3","Pl1","Pl2","Pl3"]
 
         messages=[]
-        print rimes.keys()
-        print soggis.keys()
-        print gradations.keys()
-        print compsuffixs.keys()
-        print attrsuffixs.keys()
-        print grades
-        print cases
-        print numbers 
-        print diphthongs
+        print(list(rimes.keys()))
+        print(list(soggis.keys()))
+        print(list(gradations.keys()))
+        print(list(compsuffixs.keys()))
+        print(list(attrsuffixs.keys()))
+        print(grades)
+        print(cases)
+        print(numbers) 
+        print(diphthongs)
 
 		
         xmlfile=file(infile)
@@ -165,7 +165,7 @@ class Feedback_install:
         fb = tree.getElementsByTagName("feedback")[0]
         pos = fb.getAttribute("pos")
         if pos:
-            print "Deleting old feedbacks for pos", pos
+            print("Deleting old feedbacks for pos", pos)
             oldfs = Feedback.objects.filter(pos=pos)			
             for f in oldfs:
                 f.delete()				
@@ -203,7 +203,7 @@ class Feedback_install:
             if el.getAttribute("gradation"):
                 gradation=el.getAttribute("gradation")
                 if gradation: ftempl.gradation = [ gradation ]
-            if not gradation: ftempl.gradation = gradations.keys()
+            if not gradation: ftempl.gradation = list(gradations.keys())
                 
             if el.getAttribute("diphthong"):
                 diphthong=el.getAttribute("diphthong")
@@ -213,19 +213,19 @@ class Feedback_install:
             if el.getAttribute("soggi"):
                 soggi=el.getAttribute("soggi")
                 if soggi: ftempl.soggi = [ soggi ]
-            if not soggi: ftempl.soggi = soggis.keys()
+            if not soggi: ftempl.soggi = list(soggis.keys())
 
             if el.getAttribute("attrsuffix"):
                 attrsuffix=el.getAttribute("attrsuffix")
                 if attrsuffix: ftempl.attrsuffix = [ attrsuffix ]
-            if not attrsuffix: ftempl.attrsuffix = attrsuffixs.keys()
+            if not attrsuffix: ftempl.attrsuffix = list(attrsuffixs.keys())
 
             if el.getAttribute("rime"):
                 rime=el.getAttribute("rime")
                 if rime:
                     if rime=="0": rime = "norime"
                     ftempl.rime = [ rime ]
-            if not rime: ftempl.rime = rimes.keys()
+            if not rime: ftempl.rime = list(rimes.keys())
 
             msgs = el.getElementsByTagName("msg")
             for mel in msgs:
@@ -300,7 +300,7 @@ class Feedback_install:
 
 
         for f in messages:
-            print f.msgid
+            print(f.msgid)
             msgs = Feedbackmsg.objects.filter(msgid=f.msgid)
             dialects = Dialect.objects.filter(dialect__in=f.dialects)
 
@@ -331,7 +331,7 @@ class Feedback_install:
                                                                                                    soggi=soggi)
                                                         if msgs:
                                                             f2.messages.add(msgs[0])
-                                                        else : print "No messages found:", f.msgid
+                                                        else : print("No messages found:", f.msgid)
                                                         for d in dialects:
                                                             f2.dialects.add(d)
                                                         f2.save()
@@ -354,7 +354,7 @@ class Feedback_install:
                                                                                                        soggi=soggi)
                                                             if msgs:
                                                                 f2.messages.add(msgs[0])
-                                                            else : print "No messages found:", f.msgid 
+                                                            else : print("No messages found:", f.msgid) 
                                                             for d in dialects:
                                                                 f2.dialects.add(d)
 
@@ -375,7 +375,7 @@ class Feedback_install:
                                                                                                            soggi=soggi)
                                                                 if msgs:
                                                                     f2.messages.add(msgs[0])
-                                                                else : print "No messages found:", f.msgid 
+                                                                else : print("No messages found:", f.msgid) 
                                                                 for d in dialects:
                                                                     f2.dialects.add(d)
 
@@ -397,7 +397,7 @@ class Feedback_install:
                                                                         soggi=soggi)
                                                 if msgs:
                                                     f2.messages.add(msgs[0])
-                                                else : print "No messages found:", f.msgid
+                                                else : print("No messages found:", f.msgid)
                                                 for d in dialects:
                                                     f2.dialects.add(d)
                                                 f2.save()
@@ -417,7 +417,7 @@ class Feedback_install:
                                                     
                                                     if msgs:
                                                         f2.messages.add(msgs[0])
-                                                    else : print "No messages found:", f.msgid
+                                                    else : print("No messages found:", f.msgid)
                                                     for d in dialects:
                                                         f2.dialects.add(d)
 
@@ -450,7 +450,7 @@ class Feedback_install:
 
                                                 if messages:
                                                     f2.messages.add(messages[0])
-                                                else : print "No messages found:", f.msgid
+                                                else : print("No messages found:", f.msgid)
                                                 for d in dialects:
                                                     f2.dialects.add(d)
 

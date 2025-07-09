@@ -9,8 +9,8 @@ source_encoding = 'utf-8'
 master_doc = 'index'
 
 project = 'Django OpenID Provider'
-_author = u"Roman Barczyński"
-copyright = u"2010, %s" % _author
+_author = "Roman Barczyński"
+copyright = "2010, %s" % _author
 release = 'v0.4'
 
 pygments_style = 'sphinx'

@@ -53,7 +53,7 @@ class XFST(object):
         except:
             pass
 
-        print cmd
+        print(cmd)
         lookup_proc = subprocess.Popen(cmd.split(' '),
                                        stdin=subprocess.PIPE,
                                        stdout=subprocess.PIPE,
@@ -153,7 +153,7 @@ class FeedbackFST(object):
             if message:
                 error_messages.append({
                     'tags': err_tag,
-                    'message': map(replace_string, message)
+                    'message': list(map(replace_string, message))
                 })
 
         return error_messages
@@ -175,7 +175,7 @@ class FeedbackFST(object):
                 for (wf, analyses) in o:
                     filtered = []
                     for lem, tag in analyses:
-                        if unicode(lem) == unicode(intended_lemma):
+                        if str(lem) == str(intended_lemma):
                             filtered.append((lem, tag))
                     result.append((wf, filtered))
                 return result

@@ -38,18 +38,18 @@ look = pexpect.spawn(lookup)
 disambiguate = pexpect.spawn(vislcg3)
 
 
-print "TCPServer Waiting for client on port 9000"
+print("TCPServer Waiting for client on port 9000")
 
 while 1:
     client_socket, address = server_socket.accept()
-    print "I got a connection from ", address
+    print("I got a connection from ", address)
     while 1:            
         data = client_socket.recv(512)
         if ( data == 'q' or data == 'Q'):
             client_socket.close()
             break
         else:
-            print "RECIEVED:" , data
+            print("RECIEVED:" , data)
             if not data:
                 client_socket.close()
                 break				

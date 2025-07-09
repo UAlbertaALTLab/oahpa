@@ -4,7 +4,7 @@
 # setup environment
 from os import environ
 import os, sys 
-print " * Correcting paths" 
+print(" * Correcting paths") 
 cur_path = os.getcwd()
 parent_path = '/' + '/'.join([a for a in cur_path.split('/') if a][0:-1]) + '/' 
 sys.path.insert(0, parent_path)
@@ -41,11 +41,11 @@ def main():
 	sources = excluded.filter(source__name__in=['dej']).order_by('?')[0:20]
 	remove_none = [a for a in sources if a.wordtranslation_set.count() > 0]
 	
-	print remove_none
+	print(remove_none)
 	return
 
 t = timeit.Timer("main()", 'gc.enable()')
-print t.timeit(number=10)
+print(t.timeit(number=10))
 main()
 
 

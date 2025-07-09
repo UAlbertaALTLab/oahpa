@@ -26,13 +26,13 @@ class Game:
         self.num_fields = 6
         self.global_targets = {}
 
-        if not self.settings.has_key('gametype'):
+        if 'gametype' not in self.settings:
             self.settings['gametype'] = "bare"
 
-        if not self.settings.has_key('dialect'):
+        if 'dialect' not in self.settings:
             self.settings['dialect'] = "GG"
 
-        if self.settings.has_key('semtype'):
+        if 'semtype' in self.settings:
             if self.settings['semtype'] == 'all':
                 self.settings['semtype']=self.settings['allsem']
             else:
@@ -76,7 +76,7 @@ class Game:
         matchObj=reObj.search(string) 
         if matchObj:
             syntax = matchObj.expand(r'\g<syntaxString>')
-            if not words.has_key(syntax):
+            if syntax not in words:
                 words[syntax] = {}
 
             words[syntax][type] = value
@@ -106,7 +106,7 @@ class Game:
             awords = {}
             tmpawords = {}
 
-            for d, value in data.items():
+            for d, value in list(data.items()):
                 if d.count(str(n) + '-')>0:
                     d = d.lstrip(str(n) + '-')
                     qwords = self.search_info(question_tagObj, d, value, qwords, 'tag')
@@ -122,18 +122,18 @@ class Game:
                     db_info[d] = value
 
             
-            for syntax in qwords.keys():
-                if qwords[syntax].has_key('fullform'):
+            for syntax in list(qwords.keys()):
+                if 'fullform' in qwords[syntax]:
                     qwords[syntax]['fullform'] = [ qwords[syntax]['fullform']]
 
-            for syntax in tmpawords.keys():
+            for syntax in list(tmpawords.keys()):
                 awords[syntax] = []
                 info = {}
-                if tmpawords[syntax].has_key('word'):
+                if 'word' in tmpawords[syntax]:
                     info['word'] = tmpawords[syntax]['word']
-                    if tmpawords[syntax].has_key('tag'):
+                    if 'tag' in tmpawords[syntax]:
                         info['tag'] = tmpawords[syntax]['tag']
-                    if tmpawords[syntax].has_key('fullform'):
+                    if 'fullform' in tmpawords[syntax]:
                         info['fullform'] = [ tmpawords[syntax]['fullform']]
                             
                     awords[syntax].append(info)
@@ -144,7 +144,7 @@ class Game:
             new_db_info = {}
 
             # Generate possible answers for contextual Morfa.
-            if self.settings.has_key('gametype') and self.settings['gametype'] == 'context':
+            if 'gametype' in self.settings and self.settings['gametype'] == 'context':
                 new_db_info = self.get_db_info(db_info)
             if not new_db_info:
                 new_db_info = db_info
@@ -173,12 +173,12 @@ class Game:
                     self.all_correct=1
 
         if self.show_correct or self.all_correct:
-            self.score = self.score.join([`i`, "/", `len(self.form_list)`])
+            self.score = self.score.join([repr(i), "/", repr(len(self.form_list))])
 
         if (self.show_correct or self.all_correct) and not self.settings['gametype']=='qa' :
             if i==2: i=3
             if i==1: i=2
-            if self.settings.has_key('language'):
+            if 'language' in self.settings:
                 language = self.settings['language']
                 if language == "no" : language = "nob"
                 if language == "fi" : language = "fin"
@@ -215,7 +215,7 @@ class BareGame(Game):
     def get_db_info(self, db_info):
 
         dialect = self.settings['dialect']
-        if self.settings.has_key('pos'):
+        if 'pos' in self.settings:
             pos = self.settings['pos']
 
         syll=""
@@ -227,19 +227,19 @@ class BareGame(Game):
         tense=""
         attributive =""
 
-        if self.settings.has_key('syll'):
+        if 'syll' in self.settings:
             syll = self.settings['syll']
-        if self.settings.has_key('case'):
+        if 'case' in self.settings:
             case=self.settings['case']
-        if self.settings.has_key('book'):
+        if 'book' in self.settings:
             books=self.settings['book']
-        if self.settings.has_key('adjcase'):
+        if 'adjcase' in self.settings:
             adjcase=self.settings['adjcase']
-        if self.settings.has_key('num_bare'):
+        if 'num_bare' in self.settings:
             num_bare=self.settings['num_bare']
-        if self.settings.has_key('num_level'):
+        if 'num_level' in self.settings:
             num_level=self.settings['num_level']
-        if self.settings.has_key('grade'):
+        if 'grade' in self.settings:
             grade=self.settings['grade']
 
         if pos == "N":
@@ -254,7 +254,7 @@ class BareGame(Game):
                     if pos=="V":
                         case = ""                    
         
-        if pos == "V" and self.settings.has_key('vtype'):
+        if pos == "V" and 'vtype' in self.settings:
             if self.settings['vtype'] == "PRS":
                 mood = "Ind"
                 tense = "Prs"
@@ -294,7 +294,7 @@ class BareGame(Game):
 
             tag_id = tag.id
             if self.settings['pos'] == "Num":
-                if self.settings.has_key('num_level') and str(self.settings['num_level'])=="1":
+                if 'num_level' in self.settings and str(self.settings['num_level'])=="1":
                     smallnum = ["1","2","3","4","5","6","7","8","9","10"]
                     w_count=Word.objects.filter(Q(pos=pos) & Q(presentationform__in=smallnum)).count()
                     word_id=Word.objects.filter(Q(pos=pos)& Q(presentationform__in=smallnum))[randint(0,w_count-1)].id
@@ -321,7 +321,7 @@ class BareGame(Game):
 
         dialect = self.settings['dialect']
         language = self.settings['language']
-        if not db_info.has_key('word_id'):
+        if 'word_id' not in db_info:
             return None, None            
         word_id = db_info['word_id']
         tag_id = db_info['tag_id']
@@ -366,7 +366,7 @@ class NumGame(Game):
 
         random_num = randint(1, int(self.settings['maxnum']))
 
-        print self.settings['gametype']
+        print(self.settings['gametype'])
         if self.settings['gametype'] == "ord":
             db_info['numeral_id'] = str(random_num) + "."
         else:
@@ -433,7 +433,7 @@ class QuizzGame(Game):
             elif self.settings['transtype'] == "swesme":                 WordObj = Wordswe
             elif self.settings['transtype'] == "engsme":                 WordObj = Wordeng
             elif self.settings['transtype'] == "deusme":                 WordObj = Worddeu
-            else:                                                        print "Empty else branch!"
+            else:                                                        print("Empty else branch!")
             
             if self.settings['book'].count('all') > 0:
                 if WordObj != Word:
@@ -588,7 +588,7 @@ class QuizzGame(Game):
                 for t in trs:
                     tr_lemmas.append(t)
         else:
-            print "crap"
+            print("crap")
 
 
         correct = ""

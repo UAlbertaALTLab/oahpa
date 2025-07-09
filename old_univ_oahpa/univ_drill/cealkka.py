@@ -4,9 +4,9 @@ from django.http import HttpResponse, Http404
 from django.db.models import Q, Count
 from random import randint
 
-from models import *
-from forms import *
-from game import Game
+from .models import *
+from .forms import *
+from .game import Game
 
 import univ_oahpa.settings as settings
 
@@ -80,7 +80,7 @@ class CealkkaGame(Game):
 
 		# Available values for Number
 		self.PronPN=['Sg1','Sg2','Sg3','Pl1','Pl2','Pl3','Du1','Du2','Du3']
-		self.PronPNBase={'Sg1':'mun','Sg2':'don','Sg3':u'son',\
+		self.PronPNBase={'Sg1':'mun','Sg2':'don','Sg3':'son',\
 						 'Pl1':'mii','Pl2':'dii','Pl3':'sii',\
 						 'Du1':'moai','Du2':'doai','Du3':'soai'}
 		self.NounPN=['Sg','Pl']
@@ -91,13 +91,13 @@ class CealkkaGame(Game):
 			Note: attempting to reduce amount of queries run here, there are still some that are repeated,
 				  but these should reduced once we come along to testing numbers.
 		"""
-		if self.settings.has_key('dialect'):
+		if 'dialect' in self.settings:
 			dialect = self.settings['dialect']
 		else:
 			dialect = DEFAULT_DIALECT
 
 		word=None
-		if tag_el.pos=="Num" and self.settings.has_key('num_level') and str(self.settings['num_level'])=="1":
+		if tag_el.pos=="Num" and 'num_level' in self.settings and str(self.settings['num_level'])=="1":
 			smallnum = ["1","2","3","4","5","6","7","8","9","10"]
 		word = Word.objects.filter(wordqelement__qelement=qelement,
 									 form__tag=tag_el.id)
@@ -144,7 +144,7 @@ class CealkkaGame(Game):
 		"""
 		words = []
 
-		if self.settings.has_key('dialect'):
+		if 'dialect' in self.settings:
 			dialect = self.settings['dialect']
 		else:
 			dialect = DEFAULT_DIALECT
@@ -366,7 +366,7 @@ class CealkkaGame(Game):
 					tag_el=mainv_el.tags.all()[0]
 				else:
 					# Subject-verb agreement
-					if qwords.has_key('SUBJ') and qwords['SUBJ'].has_key('number'):
+					if 'SUBJ' in qwords and 'number' in qwords['SUBJ']:
 						subjnumber=qwords['SUBJ']['number']
 						v_number = self.SVPN[subjnumber]
 
@@ -417,16 +417,16 @@ class CealkkaGame(Game):
 					copy = QElement.objects.filter(id=copy_id)[0]
 					copy_syntax = copy.syntax
 					
-					if qwords.has_key(copy_syntax):
+					if copy_syntax in qwords:
 						word = qwords[copy_syntax]
 
 				if element.agreement:
 					agr_id = element.agreement_id
 					agr_el = QElement.objects.get(id=agr_id)
 					agr_syntax = agr_el.identifier
-					if qwords.has_key(agr_syntax):
+					if agr_syntax in qwords:
 						qword = qwords[agr_syntax]
-						if qword.has_key('tag'):
+						if 'tag' in qword:
 							agr_tag_id = qword['tag']
 							agr_tag = Tag.objects.get(id=agr_tag_id)
 							if agr_tag.personnumber:
@@ -478,7 +478,7 @@ class CealkkaGame(Game):
 		if subj_el.copy:
 			subj_copy = subj_el.copy
 			copy_syntax = subj_copy.syntax
-			if qwords.has_key(copy_syntax):
+			if copy_syntax in qwords:
 				qword = qwords[copy_syntax]
 
 				subjtag_id = qword['tag']
@@ -496,7 +496,7 @@ class CealkkaGame(Game):
 				asubjtag_el = Tag.objects.get(string=asubjtag)
 				
 				# If pronoun, get the correct form
-				if self.PronPNBase.has_key(a_number):
+				if a_number in self.PronPNBase:
 					pronbase = self.PronPNBase[a_number]
 					words = self.get_words(None, asubjtag_el, pronbase)
 					for word in words:
@@ -560,7 +560,7 @@ class CealkkaGame(Game):
 				copy_syntax = copy_element.identifier
 		# It is assumed that all subjects cause the same inflection
 		# for verb, so it does not matter which subject is selected.
-		if awords.has_key('SUBJ') and len(awords['SUBJ'])>0:
+		if 'SUBJ' in awords and len(awords['SUBJ'])>0:
 			# mainverb number depends on the number of the subject.
 			asubj = awords['SUBJ'][0]
 			a_number=asubj['number']
@@ -570,7 +570,7 @@ class CealkkaGame(Game):
 		else:
             # No SUBJ defined, MAINV is a copy of the question MAINV
             # and needs to have Question-Answer subject change
-			if qwords.has_key(copy_syntax):
+			if copy_syntax in qwords:
 				qmainv = qwords[copy_syntax]
 				q_number = qmainv['number']
 				if q_number:
@@ -578,7 +578,7 @@ class CealkkaGame(Game):
 			else:
 				# No SUBJ defined, and MAINV is defined (and not a copy from Q)
                 # but MAINV still needs to have Question-Answer subject change
-				if qwords.has_key('MAINV'):
+				if 'MAINV' in qwords:
 					qmainv = qwords['MAINV']
 					q_number = qmainv['number']
 					if q_number:
@@ -589,7 +589,7 @@ class CealkkaGame(Game):
 		mainv_fullform = False
 		mainv_form = False
 		mainv_word_obj = None
-		if qwords.has_key(copy_syntax):
+		if copy_syntax in qwords:
 
 			qmainv = qwords[copy_syntax]
 			mainv_word = qwords[copy_syntax]['word']
@@ -664,7 +664,7 @@ class CealkkaGame(Game):
 					info = { 'tag' : mainv_tag.id, 'word' : mainv_word }
 					mainv_words.append(info)
 					
-		if not mainv_words and qwords.has_key("MAINV"):
+		if not mainv_words and "MAINV" in qwords:
 			mainv_words.append(qwords["MAINV"])
 		
 		awords["MAINV"] = mainv_words
@@ -676,7 +676,7 @@ class CealkkaGame(Game):
 		
 		if s in ["SUBJ", "MAINV", "HAB"]: return awords
 		
-		if not awords.has_key(s):
+		if s not in awords:
 			awords[s] = []
 
 		word_id=None
@@ -696,11 +696,11 @@ class CealkkaGame(Game):
 			copy_id = element.copy_id
 			copy_element = QElement.objects.get(id=copy_id)
 			copy_syntax = copy_element.identifier
-			if qwords.has_key(copy_syntax):
+			if copy_syntax in qwords:
 				qword = qwords[copy_syntax]
-				if qword.has_key('word'):
+				if 'word' in qword:
 					word_id=qword['word']
-				if qword.has_key('tag'):
+				if 'tag' in qword:
 					tag = Tag.objects.get(id=qword['tag'])
 					tag_elements.append(tag)
 
@@ -708,9 +708,9 @@ class CealkkaGame(Game):
 			agr_id = element.agreement_id
 			agr_el = QElement.objects.get(id=agr_id)
 			agr_syntax = agr_el.identifier
-			if qwords.has_key(agr_syntax):
+			if agr_syntax in qwords:
 				qword = qwords[agr_syntax]
-				if qword.has_key('tag'):
+				if 'tag' in qword:
 					agr_tag_id = qword['tag']
 					agr_tag = Tag.objects.get(id=agr_tag_id)
 					if agr_tag.personnumber:
@@ -752,7 +752,7 @@ class CealkkaGame(Game):
 	def get_question_cealkka(self,db_info,qtype):
 
 		qwords = {}
-                if self.settings.has_key('level') and self.settings['level'] not in ['All','all']: 
+                if 'level' in self.settings and self.settings['level'] not in ['All','all']: 
                     level=int(self.settings['level'])
                 else: # default level was set to 'all', but I could not find where
                     level=13  # level 1-3 as default
@@ -788,16 +788,16 @@ class CealkkaGame(Game):
 		
 		# Select answer that is related to the question.
 		awords = {}
-		if db_info.has_key('answer_id'):
+		if 'answer_id' in db_info:
 			answer=Question.objects.get(id=db_info['answer_id'])
 		else:
 			answer=question.answer_set.all().order_by('?')[0]
 
 		# Generate the set of possible answers if they are not coming from the interface
 		# Or if the gametype is qa.
-		if db_info.has_key('answer_id') and self.settings['gametype'] == 'cealkka':
+		if 'answer_id' in db_info and self.settings['gametype'] == 'cealkka':
 			awords=db_info['awords']
-			print awords
+			print(awords)
 		else:
 			# Generate the set of possible answers
 			# Here only the text of the first answer is considered!!
@@ -830,7 +830,7 @@ class CealkkaGame(Game):
 				if not awords:
 					if self.test: raise Http404("problem" + s)
 					return "error"
-				if not awords.has_key(s):
+				if s not in awords:
 					if self.test: raise Http404("problem2" + s)
 					return "error"
 
@@ -847,7 +847,7 @@ class CealkkaGame(Game):
 
 		# If the question id is received from the interface, use that question info
 		# Otherwise select random question
-		if db_info.has_key('question_id'):
+		if 'question_id' in db_info:
 			question = Question.objects.get(id=db_info['question_id'])
 			qwords=db_info['qwords']
 		else:
@@ -870,13 +870,13 @@ class CealkkaGame(Game):
 		question = Question.objects.get(Q(id=db_info['question_id']))
 		# print question.string
 		answer = None
-		if self.settings.has_key('dialect'):
+		if 'dialect' in self.settings:
 			dialect = self.settings['dialect']
 		else:
 			dialect = DEFAULT_DIALECT
 		# TODO: language setting
 		language = "nob"
-		if self.settings.has_key('language'):
+		if 'language' in self.settings:
 			language = self.settings['language']
 
 		answer = Question.objects.get(Q(id=db_info['answer_id']))
@@ -884,7 +884,7 @@ class CealkkaGame(Game):
 
 		form = (CealkkaQuestion(question, answer, db_info['qwords'], db_info['awords'], dialect, language, db_info['userans'], db_info['correct'], data, prefix=n))  # added the answer part
 			
-		print "awords:", db_info['awords']
+		print("awords:", db_info['awords'])
 		#print "awords ...................."
 		#print "qwords:", db_info['qwords']
 		#print "qwords ...................."

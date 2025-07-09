@@ -3,7 +3,7 @@
 import settings
 from os import environ
 import os, sys
-print " * Correcting paths"	
+print(" * Correcting paths")	
 cur_path = os.getcwd()
 parent_path = '/' + '/'.join([a for a in cur_path.split('/') if a][0:-1]) + '/'
 sys.path.insert(0, parent_path)
@@ -16,10 +16,10 @@ from optparse import OptionParser, make_option
 import sys
 from ling_new import Paradigm
 from words_install_new import Words
-from extra_install import Extra
-from feedback_install import Feedback_install
+from .extra_install import Extra
+from .feedback_install import Feedback_install
 from pronouns_install import Pronouns
-from questions_install import Questions
+from .questions_install import Questions
 
 # TODO: option for oa="yes" only, for sma
 # ota lemma jos on name="oahpa"

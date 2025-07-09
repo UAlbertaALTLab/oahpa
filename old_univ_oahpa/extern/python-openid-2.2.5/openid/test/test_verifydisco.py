@@ -17,8 +17,8 @@ class DiscoveryVerificationTest(OpenIDTestMixin, TestIdRes):
     def failUnlessProtocolError(self, prefix, callable, *args, **kwargs):
         try:
             result = callable(*args, **kwargs)
-        except consumer.ProtocolError, e:
-            self.failUnless(
+        except consumer.ProtocolError as e:
+            self.assertTrue(
                 e[0].startswith(prefix),
                 'Expected message prefix %r, got message %r' % (prefix, e[0]))
         else:
@@ -37,13 +37,13 @@ class DiscoveryVerificationTest(OpenIDTestMixin, TestIdRes):
 
     def test_openID1NoEndpoint(self):
         msg = message.Message.fromOpenIDArgs({'identity':'snakes on a plane'})
-        self.failUnlessRaises(RuntimeError,
+        self.assertRaises(RuntimeError,
                               self.consumer._verifyDiscoveryResults, msg)
         self.failUnlessLogEmpty()
 
     def test_openID2NoOPEndpointArg(self):
         msg = message.Message.fromOpenIDArgs({'ns':message.OPENID2_NS})
-        self.failUnlessRaises(KeyError,
+        self.assertRaises(KeyError,
                               self.consumer._verifyDiscoveryResults, msg)
         self.failUnlessLogEmpty()
 
@@ -70,9 +70,9 @@ class DiscoveryVerificationTest(OpenIDTestMixin, TestIdRes):
         msg = message.Message.fromOpenIDArgs({'ns':message.OPENID2_NS,
                                               'op_endpoint':op_endpoint})
         result_endpoint = self.consumer._verifyDiscoveryResults(msg)
-        self.failUnless(result_endpoint.isOPIdentifier())
-        self.failUnlessEqual(op_endpoint, result_endpoint.server_url)
-        self.failUnlessEqual(None, result_endpoint.claimed_id)
+        self.assertTrue(result_endpoint.isOPIdentifier())
+        self.assertEqual(op_endpoint, result_endpoint.server_url)
+        self.assertEqual(None, result_endpoint.claimed_id)
         self.failUnlessLogEmpty()
 
     def test_openID2NoEndpointDoesDisco(self):
@@ -86,7 +86,7 @@ class DiscoveryVerificationTest(OpenIDTestMixin, TestIdRes):
              'claimed_id':'monkeysoft',
              'op_endpoint':op_endpoint})
         result = self.consumer._verifyDiscoveryResults(msg)
-        self.failUnlessEqual(sentinel, result)
+        self.assertEqual(sentinel, result)
         self.failUnlessLogMatches('No pre-discovered')
 
     def test_openID2MismatchedDoesDisco(self):
@@ -104,7 +104,7 @@ class DiscoveryVerificationTest(OpenIDTestMixin, TestIdRes):
              'claimed_id':'monkeysoft',
              'op_endpoint':op_endpoint})
         result = self.consumer._verifyDiscoveryResults(msg, mismatched)
-        self.failUnlessEqual(sentinel, result)
+        self.assertEqual(sentinel, result)
         self.failUnlessLogMatches('Error attempting to use stored',
                                   'Attempting discovery')
 
@@ -121,7 +121,7 @@ class DiscoveryVerificationTest(OpenIDTestMixin, TestIdRes):
              'claimed_id':endpoint.claimed_id,
              'op_endpoint':endpoint.server_url})
         result = self.consumer._verifyDiscoveryResults(msg, endpoint)
-        self.failUnless(result is endpoint)
+        self.assertTrue(result is endpoint)
         self.failUnlessLogEmpty()
 
     def test_openid2UsePreDiscoveredWrongType(self):
@@ -134,9 +134,9 @@ class DiscoveryVerificationTest(OpenIDTestMixin, TestIdRes):
         endpoint.type_uris = [discover.OPENID_1_1_TYPE]
 
         def discoverAndVerify(claimed_id, to_match_endpoints):
-            self.failUnlessEqual(claimed_id, endpoint.claimed_id)
+            self.assertEqual(claimed_id, endpoint.claimed_id)
             for to_match in to_match_endpoints:
-                self.failUnlessEqual(claimed_id, to_match.claimed_id)
+                self.assertEqual(claimed_id, to_match.claimed_id)
             raise consumer.ProtocolError(text)
 
         self.consumer._discoverAndVerify = discoverAndVerify
@@ -149,9 +149,9 @@ class DiscoveryVerificationTest(OpenIDTestMixin, TestIdRes):
 
         try:
             r = self.consumer._verifyDiscoveryResults(msg, endpoint)
-        except consumer.ProtocolError, e:
+        except consumer.ProtocolError as e:
             # Should we make more ProtocolError subclasses?
-            self.failUnless(str(e), text)
+            self.assertTrue(str(e), text)
         else:
             self.fail("expected ProtocolError, %r returned." % (r,))
 
@@ -169,7 +169,7 @@ class DiscoveryVerificationTest(OpenIDTestMixin, TestIdRes):
             {'ns':message.OPENID1_NS,
              'identity':endpoint.local_id})
         result = self.consumer._verifyDiscoveryResults(msg, endpoint)
-        self.failUnless(result is endpoint)
+        self.assertTrue(result is endpoint)
         self.failUnlessLogEmpty()
 
     def test_openid1UsePreDiscoveredWrongType(self):
@@ -190,7 +190,7 @@ class DiscoveryVerificationTest(OpenIDTestMixin, TestIdRes):
             {'ns':message.OPENID1_NS,
              'identity':endpoint.local_id})
 
-        self.failUnlessRaises(
+        self.assertRaises(
             VerifiedError,
             self.consumer._verifyDiscoveryResults, msg, endpoint)
 
@@ -213,11 +213,11 @@ class DiscoveryVerificationTest(OpenIDTestMixin, TestIdRes):
              'op_endpoint': endpoint.server_url})
         result = self.consumer._verifyDiscoveryResults(msg, endpoint)
         
-        self.failUnlessEqual(result.local_id, endpoint.local_id)
-        self.failUnlessEqual(result.server_url, endpoint.server_url)
-        self.failUnlessEqual(result.type_uris, endpoint.type_uris)
+        self.assertEqual(result.local_id, endpoint.local_id)
+        self.assertEqual(result.server_url, endpoint.server_url)
+        self.assertEqual(result.type_uris, endpoint.type_uris)
 
-        self.failUnlessEqual(result.claimed_id, claimed_id_frag)
+        self.assertEqual(result.claimed_id, claimed_id_frag)
         
         self.failUnlessLogEmpty()
 
@@ -244,7 +244,7 @@ class DiscoveryVerificationTest(OpenIDTestMixin, TestIdRes):
 
         actual_endpoint = self.consumer._verifyDiscoveryResults(
             resp_mesg, endpoint)
-        self.failUnless(actual_endpoint is expected_endpoint)
+        self.assertTrue(actual_endpoint is expected_endpoint)
 
 # XXX: test the implementation of _discoverAndVerify
 
@@ -263,7 +263,7 @@ class TestVerifyDiscoverySingle(TestIdRes):
         to_match.local_id = "http://localhost:8000/id/id-jo"
         result = self.consumer._verifyDiscoverySingle(endpoint, to_match)
         # result should always be None, raises exception on failure.
-        self.failUnlessEqual(result, None)
+        self.assertEqual(result, None)
         self.failUnlessLogEmpty()
 
 if __name__ == '__main__':

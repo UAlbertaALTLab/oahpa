@@ -42,9 +42,9 @@ class BaseAssocTest(CatchLogs, unittest.TestCase):
     def failUnlessProtocolError(self, str_prefix, func, *args, **kwargs):
         try:
             result = func(*args, **kwargs)
-        except ProtocolError, e:
+        except ProtocolError as e:
             message = 'Expected prefix %r, got %r' % (str_prefix, e[0])
-            self.failUnless(e[0].startswith(str_prefix), message)
+            self.assertTrue(e[0].startswith(str_prefix), message)
         else:
             self.fail('Expected ProtocolError, got %r' % (result,))
 
@@ -72,7 +72,7 @@ def mkExtractAssocMissingTest(keys):
     def test(self):
         msg = mkAssocResponse(*keys)
 
-        self.failUnlessRaises(KeyError,
+        self.assertRaises(KeyError,
                               self.consumer._extractAssociation, msg, None)
 
     return test
@@ -119,7 +119,7 @@ class ExtractAssociationSessionTypeMismatch(BaseAssocTest):
     def mkTest(requested_session_type, response_session_type, openid1=False):
         def test(self):
             assoc_session = DummyAssocationSession(requested_session_type)
-            keys = association_response_values.keys()
+            keys = list(association_response_values.keys())
             if openid1:
                 keys.remove('ns')
             msg = mkAssocResponse(*keys)
@@ -176,7 +176,7 @@ class TestOpenID1AssociationResponseSessionType(BaseAssocTest):
         """
         def test(self):
             self._doTest(expected_session_type, session_type_value)
-            self.failUnlessEqual(0, len(self.messages))
+            self.assertEqual(0, len(self.messages))
 
         return test
 
@@ -188,14 +188,14 @@ class TestOpenID1AssociationResponseSessionType(BaseAssocTest):
         if session_type_value is not None:
             args['session_type'] = session_type_value
         message = Message.fromOpenIDArgs(args)
-        self.failUnless(message.isOpenID1())
+        self.assertTrue(message.isOpenID1())
 
         actual_session_type = self.consumer._getOpenID1SessionType(message)
         error_message = ('Returned sesion type parameter %r was expected '
                          'to yield session type %r, but yielded %r' %
                          (session_type_value, expected_session_type,
                           actual_session_type))
-        self.failUnlessEqual(
+        self.assertEqual(
             expected_session_type, actual_session_type, error_message)
 
     test_none = mkTest(
@@ -214,8 +214,8 @@ class TestOpenID1AssociationResponseSessionType(BaseAssocTest):
             session_type_value='no-encryption',
             expected_session_type='no-encryption',
             )
-        self.failUnlessEqual(1, len(self.messages))
-        self.failUnless(self.messages[0].startswith(
+        self.assertEqual(1, len(self.messages))
+        self.assertTrue(self.messages[0].startswith(
             'WARNING: OpenID server sent "no-encryption"'))
 
     test_dhSHA1 = mkTest(
@@ -274,11 +274,11 @@ class TestInvalidFields(BaseAssocTest):
         """Handle a full successful association response"""
         assoc = self.consumer._extractAssociation(
             self.assoc_response, self.assoc_session)
-        self.failUnless(self.assoc_session.extract_secret_called)
-        self.failUnlessEqual(self.assoc_session.secret, assoc.secret)
-        self.failUnlessEqual(1000, assoc.lifetime)
-        self.failUnlessEqual(self.assoc_handle, assoc.handle)
-        self.failUnlessEqual(self.assoc_type, assoc.assoc_type)
+        self.assertTrue(self.assoc_session.extract_secret_called)
+        self.assertEqual(self.assoc_session.secret, assoc.secret)
+        self.assertEqual(1000, assoc.lifetime)
+        self.assertEqual(self.assoc_handle, assoc.handle)
+        self.assertEqual(self.assoc_type, assoc.assoc_type)
 
     def test_badAssocType(self):
         # Make sure that the assoc type in the response is not valid
@@ -307,7 +307,7 @@ class TestExtractAssociationDiffieHellman(BaseAssocTest):
             self.endpoint, 'HMAC-SHA1', 'DH-SHA1')
 
         # XXX: this is testing _createAssociateRequest
-        self.failUnlessEqual(self.endpoint.compatibilityMode(),
+        self.assertEqual(self.endpoint.compatibilityMode(),
                              message.isOpenID1())
 
         server_sess = DiffieHellmanSHA1ServerSession.fromMessage(message)
@@ -321,11 +321,11 @@ class TestExtractAssociationDiffieHellman(BaseAssocTest):
     def test_success(self):
         sess, server_resp = self._setUpDH()
         ret = self.consumer._extractAssociation(server_resp, sess)
-        self.failIf(ret is None)
-        self.failUnlessEqual(ret.assoc_type, 'HMAC-SHA1')
-        self.failUnlessEqual(ret.secret, self.secret)
-        self.failUnlessEqual(ret.handle, 'handle')
-        self.failUnlessEqual(ret.lifetime, 1000)
+        self.assertFalse(ret is None)
+        self.assertEqual(ret.assoc_type, 'HMAC-SHA1')
+        self.assertEqual(ret.secret, self.secret)
+        self.assertEqual(ret.handle, 'handle')
+        self.assertEqual(ret.lifetime, 1000)
 
     def test_openid2success(self):
         # Use openid 2 type in endpoint so _setUpDH checks

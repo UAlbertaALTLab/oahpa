@@ -1,4 +1,4 @@
-from local_conf import LLL1
+from .local_conf import LLL1
 import importlib
 oahpa_module = importlib.import_module(LLL1+'_oahpa')
 
@@ -28,7 +28,7 @@ def findmissing(tfilter=False, count=0):
 
 	for m in missing.iterator():
 		s = "%(word__lemma)s\t%(fullform)s\t%(tag__string)s" % m
-		print >> sys.stdout, s.encode('utf-8')
+		print(s.encode('utf-8'), file=sys.stdout)
 
 class Command(BaseCommand):
 	args = '--tagelement'

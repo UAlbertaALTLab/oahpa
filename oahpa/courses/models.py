@@ -63,7 +63,7 @@ class UserGrade(models.Model):
 	total = models.IntegerField(default=5)
 	
 	def __str__(self):
-		return u'Summary for %s from %s' % (self.user.user.username, self.game.name)
+		return 'Summary for %s from %s' % (self.user.user.username, self.game.name)
 
 	class Meta:
 		ordering = ['-datetime']
@@ -92,7 +92,7 @@ class Course(models.Model):
 		Instructors user group.
 
 	"""
-	name = models.CharField(max_length=50, default=u"Fluent in Southern Sámi in 10 days")
+	name = models.CharField(max_length=50, default="Fluent in Southern Sámi in 10 days")
 	identifier = models.CharField(max_length=12, default="SAM-1234")
 	instructors = models.ManyToManyField(User, related_name='instructorships')
 	students = models.ManyToManyField(User, related_name='studentships')
@@ -104,7 +104,7 @@ ROLES = (
 )
 
 from django.db.models.signals import post_save, pre_save
-from signals import create_profile, aggregate_grades, grant_admin, user_presave
+from .signals import create_profile, aggregate_grades, grant_admin, user_presave
 
 post_save.connect(create_profile, sender=User, 
 	dispatch_uid="oahpa.courses.models.post_save")

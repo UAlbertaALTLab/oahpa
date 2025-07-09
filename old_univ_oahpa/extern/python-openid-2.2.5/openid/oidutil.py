@@ -9,9 +9,9 @@ __all__ = ['log', 'appendArgs', 'toBase64', 'fromBase64', 'autoSubmitHTML']
 
 import binascii
 import sys
-import urlparse
+import urllib.parse
 
-from urllib import urlencode
+from urllib.parse import urlencode
 
 elementtree_modules = [
     'lxml.etree',
@@ -129,7 +129,7 @@ def appendArgs(url, args):
     @rtype: str
     """
     if hasattr(args, 'items'):
-        args = args.items()
+        args = list(args.items())
         args.sort()
     else:
         args = list(args)
@@ -164,7 +164,7 @@ def toBase64(s):
 def fromBase64(s):
     try:
         return binascii.a2b_base64(s)
-    except binascii.Error, why:
+    except binascii.Error as why:
         # Convert to a common exception type
         raise ValueError(why[0])
 

@@ -1,1 +1,1 @@
-from telneahtta import *
+from .telneahtta import *

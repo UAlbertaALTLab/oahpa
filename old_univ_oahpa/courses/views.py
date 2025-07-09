@@ -21,7 +21,7 @@ def render_to_response(*args, **kwargs):
 
 from django.contrib.auth.decorators import login_required
 
-from models import UserProfile, Course, UserGrade, Activity
+from .models import UserProfile, Course, UserGrade, Activity
 
 def trackGrade(gamename, request, c):
     """ Takes a name of the game, request, and the context, and produces
@@ -276,7 +276,7 @@ def instructor_student_detail(request, uid, cid):
     instructor = request.user.get_profile()
 
     instructor_courses = list([a.id for a in instructor.instructorships])
-    course_for_inst = [a for a in instructor_courses if a == long(cid)]
+    course_for_inst = [a for a in instructor_courses if a == int(cid)]
 
     if len(course_for_inst) > 0:
         course = course_for_inst[0]
@@ -421,7 +421,7 @@ def course_invite(request, c_id=None):
     c = {}
     profile = request.user.get_profile()
     c['profile'] = profile
-    c['course_invites'] = filter(by_id, profile.instructorships)
+    c['course_invites'] = list(filter(by_id, profile.instructorships))
     template = 'invite_students.html'
     return render_to_response(template,
                               c,

@@ -1,14 +1,14 @@
 from django.template import Context, RequestContext, loader
-from forms import *
+from .forms import *
 from django.db.models import Q
 from django.http import HttpResponse, Http404
 from django.shortcuts import get_list_or_404, render_to_response
 from random import randint
 from django.utils.translation import ugettext as _
 #from django.contrib.admin.views.decorators import _encode_post_data, _decode_post_data
-from sahka import *
-from game import *
-from qagame import *
+from .sahka import *
+from .game import *
+from .qagame import *
 
 from oahpa.courses.views import trackGrade
 
@@ -75,7 +75,7 @@ class Gameview:
         correct=0
         settings_form = MorfaSettings(request.GET)
         
-        if request.method == 'GET' and len(settings_form.data.keys()) > 0:
+        if request.method == 'GET' and len(list(settings_form.data.keys())) > 0:
             post_like_data = request.GET.copy()
             if not 'book' in post_like_data:
                 post_like_data['book'] = 'all'
@@ -93,18 +93,18 @@ class Gameview:
                 data = request.POST.copy()
         
             settings_form = MorfaSettings(data)
-            for k in settings_form.data.keys():
+            for k in list(settings_form.data.keys()):
                 self.settings[k] = settings_form.data[k]
                 
-            if request.session.has_key('dialect'):
+            if 'dialect' in request.session:
                 self.settings['dialect'] = request.session['dialect']
-            if request.session.has_key('django_language'):
+            if 'django_language' in request.session:
                 self.settings['language'] = request.session['django_language']
             else:
                 self.settings['language'] = request.COOKIES.get("django_language", None)
                 
             self.syll_settings(settings_form)
-            if settings_form.data.has_key('book'):
+            if 'book' in settings_form.data:
                 self.settings['book'] = settings_form.books[settings_form.data['book']]
                 
             self.settings['allcase']=settings_form.allcase
@@ -135,15 +135,15 @@ class Gameview:
             settings_form = MorfaSettings()
 
             # Find out the default data for this form.
-            for k in settings_form.default_data.keys():
-                if not self.settings.has_key(k):
+            for k in list(settings_form.default_data.keys()):
+                if k not in self.settings:
                     self.settings[k] = settings_form.default_data[k]
             self.settings['book'] = settings_form.books[settings_form.default_data['book']]
                 
-            if request.session.has_key('dialect'):
+            if 'dialect' in request.session:
                 self.settings['dialect'] = request.session['dialect']
 
-            if request.session.has_key('django_language'):
+            if 'django_language' in request.session:
                 self.settings['language'] = request.session['django_language']
             else:
                 self.settings['language'] = request.COOKIES.get("django_language", None)
@@ -332,13 +332,13 @@ class Vastaview:
             # Settings form is checked and handled.
             settings_form = VastaSettings(request.POST)
 
-            for k in settings_form.data.keys():
+            for k in list(settings_form.data.keys()):
                 self.settings[k] = settings_form.data[k]
 
-            if request.session.has_key('dialect'):
+            if 'dialect' in request.session:
                 self.settings['dialect'] = request.session['dialect']
 
-            if request.session.has_key('django_language'):
+            if 'django_language' in request.session:
                 self.settings['language'] = request.session['django_language']
             else:
                 self.settings['language'] = request.COOKIES.get("django_language", None)
@@ -349,7 +349,7 @@ class Vastaview:
             self.settings['alladj_context']=settings_form.alladj_context
             self.settings['allsem']=settings_form.allsem
 
-            if settings_form.data.has_key('book'):
+            if 'book' in settings_form.data:
                 self.settings['book'] = settings_form.books[settings_form.data['book']]
 
             # Vasta
@@ -377,13 +377,13 @@ class Vastaview:
             self.settings['allnum_context']=settings_form.allnum_context
             self.settings['alladj_context']=settings_form.alladj_context
 
-            for k in settings_form.default_data.keys():
+            for k in list(settings_form.default_data.keys()):
                 self.settings[k] = settings_form.default_data[k]
 
-            if request.session.has_key('dialect'):
+            if 'dialect' in request.session:
                 self.settings['dialect'] = request.session['dialect']
 
-            if request.session.has_key('django_language'):
+            if 'django_language' in request.session:
                 self.settings['language'] = request.session['django_language']
             else:
                 self.settings['language'] = request.COOKIES.get("django_language", None)
@@ -447,7 +447,7 @@ class Quizzview(Gameview):
     def create_quizzgame(self,request):
         settings_form = QuizzSettings(request.GET)
         
-        if request.method == 'GET' and len(settings_form.data.keys()) > 0:
+        if request.method == 'GET' and len(list(settings_form.data.keys())) > 0:
             post_like_data = request.GET.copy()
             if not 'book' in post_like_data:
                 post_like_data['book'] = 'all'
@@ -471,14 +471,14 @@ class Quizzview(Gameview):
             # Settings form is checked and handled.
             settings_form = QuizzSettings(data)
 
-            for k in settings_form.data.keys():
-                if not self.settings.has_key(k):
+            for k in list(settings_form.data.keys()):
+                if k not in self.settings:
                     self.settings[k] = settings_form.data[k]
 
-            if request.session.has_key('dialect'):
+            if 'dialect' in request.session:
                 self.settings['dialect'] = request.session['dialect']
 
-            if request.session.has_key('django_language'):
+            if 'django_language' in request.session:
                 self.settings['language'] = request.session['django_language']
             else:
                 self.settings['language'] = request.COOKIES.get("django_language", None)
@@ -506,14 +506,14 @@ class Quizzview(Gameview):
             settings_form = QuizzSettings()
             self.placename_settings(settings_form)
             
-            for k in settings_form.default_data.keys():
-                if not self.settings.has_key(k):
+            for k in list(settings_form.default_data.keys()):
+                if k not in self.settings:
                     self.settings[k] = settings_form.default_data[k]
 
-            if request.session.has_key('dialect'):
+            if 'dialect' in request.session:
                 self.settings['dialect'] = request.session['dialect']
 
-            if request.session.has_key('django_language'):
+            if 'django_language' in request.session:
                 self.settings['language'] = request.session['django_language']
             else:
                 self.settings['language'] = request.COOKIES.get("django_language", None)
@@ -565,14 +565,14 @@ class Numview(Gameview):
             # Settings form is checked and handled.
             settings_form = NumSettings(request.POST)
             
-            for k in settings_form.data.keys():
-                if not self.settings.has_key(k):
+            for k in list(settings_form.data.keys()):
+                if k not in self.settings:
                     self.settings[k] = settings_form.data[k]
                 
-            if request.session.has_key('dialect'):
+            if 'dialect' in request.session:
                 self.settings['dialect'] = request.session['dialect']
 
-            if request.session.has_key('django_language'):
+            if 'django_language' in request.session:
                 self.settings['language'] = request.session['django_language']
             else:
                 self.settings['language'] = request.COOKIES.get("django_language", None)
@@ -595,8 +595,8 @@ class Numview(Gameview):
         else:
             settings_form = NumSettings()
         
-            for k in settings_form.default_data.keys():
-                if not self.settings.has_key(k):
+            for k in list(settings_form.default_data.keys()):
+                if k not in self.settings:
                     self.settings[k] = settings_form.default_data[k]
 
             game = NumGame(self.settings)
@@ -650,9 +650,9 @@ class Sahkaview:
         correct=0
 
         self.settings['gametype'] = "sahka"
-        if request.session.has_key('dialect'):
+        if 'dialect' in request.session:
             self.settings['dialect'] = request.session['dialect']
-        if request.session.has_key('django_language'):
+        if 'django_language' in request.session:
             self.settings['language'] = request.session['django_language']
         else:
             self.settings['language'] = request.COOKIES.get("django_language", None)
@@ -664,7 +664,7 @@ class Sahkaview:
             # Settings form is checked and handled.
             settings_form = SahkaSettings(request.POST)
 
-            for k in settings_form.data.keys():
+            for k in list(settings_form.data.keys()):
                 self.settings[k] = settings_form.data[k]
 
             # Vasta
@@ -680,7 +680,7 @@ class Sahkaview:
                 game.num_fields=1
                 game.update_game(1)
             else:
-                if settings_form.data.has_key('num_fields'):
+                if 'num_fields' in settings_form.data:
                     game.num_fields = int(settings_form.data['num_fields'])
                 else:
                     game.num_fields = 1                    
@@ -717,12 +717,12 @@ class Sahkaview:
         # If there is no POST data, present the dialogue selection page
         else:
             settings_form = SahkaSettings()
-            for k in settings_form.default_data.keys():
+            for k in list(settings_form.default_data.keys()):
                 self.settings[k] = settings_form.default_data[k]
 
-            if request.session.has_key('dialect'):
+            if 'dialect' in request.session:
                 self.settings['dialect'] = request.session['dialect']
-            if request.session.has_key('django_language'):
+            if 'django_language' in request.session:
                 self.settings['language'] = request.session['django_language']
             else:
                 self.settings['language'] = request.COOKIES.get("django_language", None)

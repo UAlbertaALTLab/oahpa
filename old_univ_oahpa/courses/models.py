@@ -132,7 +132,7 @@ class UserGrade(models.Model):
     total = models.IntegerField(default=5)
     
     def __str__(self):
-        return u'Summary for %s from %s' % (self.user.user.username, self.game.name)
+        return 'Summary for %s from %s' % (self.user.user.username, self.game.name)
 
     class Meta:
         ordering = ['-datetime']
@@ -163,7 +163,7 @@ class Course(models.Model):
         instructors to see anything, they must also be in the
         Instructors user group.
     """
-    name = models.CharField(max_length=50, default=u"Fluent in Southern Sámi in 10 days")
+    name = models.CharField(max_length=50, default="Fluent in Southern Sámi in 10 days")
     identifier = models.CharField(max_length=12, default="SAM-1234")
     # instructors = models.ManyToManyField(User, related_name='instructorships')
     # students = models.ManyToManyField(User, related_name='studentships')
@@ -194,7 +194,7 @@ class Course(models.Model):
 
         try:
             r = self.courserelationship_set.create(relationship_type=student_group, user=u)
-        except Exception, e:
+        except Exception as e:
             success = False
             error_msg = 'Already exists'
 
@@ -207,7 +207,7 @@ class Course(models.Model):
                         u,
                         actor=u,
                         recipient=recipient,
-                        verb=u'enrolled in the course',
+                        verb='enrolled in the course',
                         action_object=r,
                     )
 
@@ -231,9 +231,9 @@ class Course(models.Model):
 
     def __str__(self):
         if self.identifier:
-            return u"%s: %s" % (self.identifier, self.name)
+            return "%s: %s" % (self.identifier, self.name)
         else:
-            return u"%s" % self.name
+            return "%s" % self.name
 
     def user_completion_rate(self, user):
         coursegoals = self.coursegoal_set.all()
@@ -304,11 +304,11 @@ class CourseGoal(models.Model):
     percent_goals_completed = models.FloatField(default=80.0, help_text="This percentage of associated goals must be completed", blank=True, null=True)
 
     def __str__(self):
-        return u"%s - %s" % (self.course, self.short_name)
+        return "%s - %s" % (self.course, self.short_name)
 
     @property
     def combined_name(self):
-        return u"%s (%s)" % (self.short_name, self.course)
+        return "%s (%s)" % (self.short_name, self.course)
 
     def user_goal_instances(self, user):
         """ Get all user goal instances for the user.
@@ -320,9 +320,9 @@ class CourseGoal(models.Model):
         def list_instances(*args, **kwargs):
             return list(get_instances(*args, **kwargs))
 
-        ugis = sum( map( list_instances
+        ugis = sum( list(map( list_instances
                        , [ g.goal for g in self.goals.all() ]
-                       )
+                       ))
                   , []
                   )
 
@@ -346,9 +346,9 @@ class CourseGoal(models.Model):
         def list_newest_instances(*args, **kwargs):
             return list(get_newest(get_instances(*args, **kwargs)))
 
-        ugis = sum( map( list_newest_instances
+        ugis = sum( list(map( list_newest_instances
                        , [ g.goal for g in self.goals.all() ]
-                       )
+                       ))
                   , []
                   )
 
@@ -470,7 +470,7 @@ class Goal(models.Model):
                 return _or
 
 
-        from urlparse import urlparse, ParseResult
+        from urllib.parse import urlparse, ParseResult
 
         # sanitize the URL
         if self.remote_page:
@@ -527,7 +527,7 @@ class Goal(models.Model):
         parameters defined in the goal.
         """
         from django.conf import settings
-        from urllib import urlencode
+        from urllib.parse import urlencode
 
         URL_PREFIX = settings.URL_PREFIX
         params = dict([
@@ -537,9 +537,9 @@ class Goal(models.Model):
 
     def __str__(self):
         if self.course:
-            return "%s - %s" % (unicode(self.course), self.short_name)
+            return "%s - %s" % (str(self.course), self.short_name)
         else:
-            return "User-defined <%s> - %s" % (unicode(self.created_by.username), self.short_name)
+            return "User-defined <%s> - %s" % (str(self.created_by.username), self.short_name)
 
     def user_completed(self, user):
         ugi_set = self.usergoalinstance_set.filter(user=user).order_by('-last_attempt')
@@ -591,7 +591,7 @@ class Goal(models.Model):
 
         values = logs.values_list('question_set')
 
-        sets = filter(exists, map(itemgetter(0), values))
+        sets = list(filter(exists, list(map(itemgetter(0), values))))
 
         return sorted(list(set(sets)))
 
@@ -767,7 +767,7 @@ class LevelAssessment(models.Manager):
         counted = Counter(logs)
 
         levels = {}
-        for k, v in counted.iteritems():
+        for k, v in counted.items():
             levels[k] = 1 + int(v) / int(self.level_increment)
 
         return levels
@@ -853,7 +853,7 @@ def incorrects_by_frequency(user, goal=None):
         else:
             incorrects[o.correct_answer]['user_inputs'] = set([o.user_input])
 
-    return incorrects.values()
+    return list(incorrects.values())
 
 def create_activity_log_from_drill_logs(request, user, drill_logs, current_user_goal=False):
     # TODO: do it all in one commit.

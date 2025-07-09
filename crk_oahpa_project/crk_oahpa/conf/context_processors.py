@@ -1,4 +1,4 @@
-from local_conf import LLL1
+from .local_conf import LLL1
 import importlib
 oahpa_module = importlib.import_module(LLL1+'_oahpa')
 
@@ -17,7 +17,7 @@ def site_root(request):
 
 def grammarlinks(request):
 	Grammarlinks = oahpa_module.drill.models.Grammarlinks
-	from tools import switch_language_code
+	from .tools import switch_language_code
 
 	default_lang = 'eng' # was: nob
 

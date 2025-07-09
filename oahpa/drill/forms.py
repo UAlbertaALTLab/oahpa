@@ -9,7 +9,7 @@ from django.db.models import Q
 from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import force_text
 from random import randint
-from models import *
+from .models import *
 import time
 import datetime
 import socket
@@ -529,7 +529,7 @@ class QuizzQuestion(OahpaQuestion):
         self.generate_fields(30,30)
         self.fields['word_id'] = forms.CharField(widget=lemma_widget, required=False)
         self.lemma = force_text(word.lemma)
-        oo = u'å '
+        oo = 'å '
         # Sometimes these are in utf8 and sometimes they are not.
 
         if word.pos == 'V':
@@ -603,20 +603,20 @@ def select_words(self, qwords, awords):
     """
     selected_awords = {}
 
-    for syntax in awords.keys():
+    for syntax in list(awords.keys()):
         word = None        
         tag = None
         selected_awords[syntax] = {}
 
         # Select answer words and fullforms for interface
-        if awords.has_key(syntax) and len(awords[syntax]) > 0:
+        if syntax in awords and len(awords[syntax]) > 0:
             aword = awords[syntax][randint(0,len(awords[syntax])-1)]
-            if aword.has_key('tag'):
+            if 'tag' in aword:
                 selected_awords[syntax]['tag'] = aword['tag']
-            if aword.has_key('word') and aword['word']:
+            if 'word' in aword and aword['word']:
                 selected_awords[syntax]['word'] = aword['word']
             else:
-                if aword.has_key('qelement') and selected_awords[syntax].has_key('tag'):
+                if 'qelement' in aword and 'tag' in selected_awords[syntax]:
 
                     form_list = None
                     max=50
@@ -635,12 +635,12 @@ def select_words(self, qwords, awords):
                             fullf.append(f.fullform)
                         selected_awords[syntax]['fullform'] = fullf[:]
 
-                if not selected_awords[syntax].has_key('fullform'):
-                    if aword.has_key('fullform') and len(aword['fullform'])>0:
+                if 'fullform' not in selected_awords[syntax]:
+                    if 'fullform' in aword and len(aword['fullform'])>0:
                         selected_awords[syntax]['fullform'] = aword['fullform'][:]
                 
-        if not selected_awords[syntax].has_key('fullform'):
-            if selected_awords[syntax].has_key('word') and selected_awords[syntax].has_key('tag'):
+        if 'fullform' not in selected_awords[syntax]:
+            if 'word' in selected_awords[syntax] and 'tag' in selected_awords[syntax]:
                 form_list = Form.objects.filter(Q(word__id=selected_awords[syntax]['word']) &\
                                                     Q(tag__id=selected_awords[syntax]['tag']))
                 if form_list:
@@ -650,7 +650,7 @@ def select_words(self, qwords, awords):
                     selected_awords[syntax]['fullform'] = fullf[:]
                         
         # make sure that theres is something to print
-        if not selected_awords[syntax].has_key('fullform'):
+        if 'fullform' not in selected_awords[syntax]:
             selected_awords[syntax]['fullform'] = []
             selected_awords[syntax]['fullform'].append(syntax)
 
@@ -697,7 +697,7 @@ class ContextMorfaQuestion(OahpaQuestion):
         selected_awords = self.select_words(qwords, awords)
 
         form_list=[]
-        if not selected_awords.has_key(task):
+        if task not in selected_awords:
             raise Http404(task + " " + atext + " " + str(qanswer.id))            
         if len(selected_awords[task]['fullform'])>0:
             for f in selected_awords[task]['fullform']:                
@@ -707,21 +707,21 @@ class ContextMorfaQuestion(OahpaQuestion):
                 
         self.qattrs= {}
         self.aattrs= {}        
-        for syntax in qwords.keys():
+        for syntax in list(qwords.keys()):
             qword = qwords[syntax]
-            if qword.has_key('word'):
+            if 'word' in qword:
                 self.qattrs['question_word_' + syntax] = qword['word']
-            if qword.has_key('tag') and qword['tag']:
+            if 'tag' in qword and qword['tag']:
                 self.qattrs['question_tag_' + syntax] = qword['tag']
-            if qword.has_key('fullform') and qword['fullform']:
+            if 'fullform' in qword and qword['fullform']:
                 self.qattrs['question_fullform_' + syntax] = qword['fullform'][0]
 
-        for syntax in selected_awords.keys():
-            if selected_awords[syntax].has_key('word'):
+        for syntax in list(selected_awords.keys()):
+            if 'word' in selected_awords[syntax]:
                 self.aattrs['answer_word_' + syntax] = selected_awords[syntax]['word']
-            if selected_awords[syntax].has_key('tag'):
+            if 'tag' in selected_awords[syntax]:
                 self.aattrs['answer_tag_' + syntax] = selected_awords[syntax]['tag']
-            if selected_awords[syntax].has_key('fullform') and len(selected_awords[syntax]['fullform']) == 1:
+            if 'fullform' in selected_awords[syntax] and len(selected_awords[syntax]['fullform']) == 1:
                 self.aattrs['answer_fullform_' + syntax] = selected_awords[syntax]['fullform'][0]
 
         # Forms question string and answer string out of grammatical elements and other strings.
@@ -731,9 +731,9 @@ class ContextMorfaQuestion(OahpaQuestion):
         # Format question string
         qtext = question.string
         for w in qtext.split():
-            if not qwords.has_key(w): qstring = qstring + " " + force_text(w)
+            if w not in qwords: qstring = qstring + " " + force_text(w)
             else:
-                if qwords[w].has_key('fullform'):
+                if 'fullform' in qwords[w]:
                     qstring = qstring + " " + force_text(qwords[w]['fullform'][0])
                 else:
                     qstring = qstring + " " + force_text(w)
@@ -776,7 +776,7 @@ class ContextMorfaQuestion(OahpaQuestion):
         for w in atext.split():
             if w.count("(") > 0: continue
             
-            if not selected_awords.has_key(w) or not selected_awords[w].has_key('fullform'):
+            if w not in selected_awords or 'fullform' not in selected_awords[w]:
                 astring = astring + " " + force_text(w)
             else:
                 astring = astring + " " + force_text(selected_awords[w]['fullform'][0])
@@ -855,14 +855,14 @@ def vasta_is_correct(self,question,qwords,language,utterance_name=None):
         words = os.popen(data_lookup).readlines()
         for w in words:
             cohort=""
-            if qwords and qwords.has_key(w):
+            if qwords and w in qwords:
                 qword = qwords[w]
-                if qword.has_key('word'):
-                    if qword.has_key('fullform') and qword['fullform']:
+                if 'word' in qword:
+                    if 'fullform' in qword and qword['fullform']:
                         cohort = cohort + "\"<" + qword['fullform'][0].encode('utf-8') + ">\"\n"
                         lemma = Word.objects.filter(id=qword['word'])[0].lemma
                         cohort = cohort + "\t\"" + lemma + "\""
-                    if qword.has_key('tag') and qword['tag']:
+                    if 'tag' in qword and qword['tag']:
                         string = Tag.objects.filter(id=qword['tag'])[0].string
                         tag = string.replace("+"," ")
                         cohort = cohort + " " + tag + "\n"
@@ -972,9 +972,9 @@ def vasta_is_correct(self,question,qwords,language,utterance_name=None):
     if language == "fi" : language = "fin"
     if language == "en" : language = "eng"
     if not language=="nob" and not language=="sme" and not language=="fin" and not language=="eng": language="nob"
-    for w in msgstrings.keys():
+    for w in list(msgstrings.keys()):
         if found: break
-        for m in msgstrings[w].keys():
+        for m in list(msgstrings[w].keys()):
             if spelling and m.count("spelling") == 0: continue
             m = m.replace("&","") 
             if Feedbackmsg.objects.filter(msgid=m).count() > 0:
@@ -993,10 +993,10 @@ def vasta_is_correct(self,question,qwords,language,utterance_name=None):
                         break
             if m.count("dia-") > 0:
                 dia_msg.append(m)
-        if msgstrings[w].has_key('dia-target'):
+        if 'dia-target' in msgstrings[w]:
             constant = msgstrings[w]['dia-lemma']
             variable = msgstrings[w]['dia-target']
-        if msgstrings[w].has_key('dia-unknown'):
+        if 'dia-unknown' in msgstrings[w]:
             constant = msgstrings[w]['dia-lemma']
             variable = msgstrings[w]['dia-unknown']
 
@@ -1054,13 +1054,13 @@ class VastaQuestion(OahpaQuestion):
         self.fields['question_id'] = forms.CharField(widget=question_widget, required=False)
 
         self.qattrs= {}
-        for syntax in qwords.keys():
+        for syntax in list(qwords.keys()):
             qword = qwords[syntax]
-            if qword.has_key('word'):
+            if 'word' in qword:
                 self.qattrs['question_word_' + syntax] = qword['word']
-            if qword.has_key('tag') and qword['tag']:
+            if 'tag' in qword and qword['tag']:
                 self.qattrs['question_tag_' + syntax] = qword['tag']
-            if qword.has_key('fullform') and qword['fullform']:
+            if 'fullform' in qword and qword['fullform']:
                 self.qattrs['question_fullform_' + syntax] = qword['fullform'][0]
 
         # Forms question string and answer string out of grammatical elements and other strings.
@@ -1069,9 +1069,9 @@ class VastaQuestion(OahpaQuestion):
         # Format question string
         qtext = question.string
         for w in qtext.split():
-            if not qwords.has_key(w): qstring = qstring + " " + force_text(w)
+            if w not in qwords: qstring = qstring + " " + force_text(w)
             else:
-                if qwords[w].has_key('fullform'):
+                if 'fullform' in qwords[w]:
                     qstring = qstring + " " + force_text(qwords[w]['fullform'][0])
                 else:
                     qstring = qstring + " " + w
@@ -1102,7 +1102,7 @@ def sahka_is_correct(self,utterance,targets,language):
     if not self.is_valid():
         return False
 
-    if not self.cleaned_data.has_key('answer'):
+    if 'answer' not in self.cleaned_data:
         return
     qwords = {}
     # Split the question to words for analaysis.
@@ -1192,11 +1192,11 @@ class SahkaQuestion(OahpaQuestion):
             # Format question string
             qtext = utterance.utterance
             for w in qtext.split():
-                if not qwords.has_key(w):
+                if w not in qwords:
                     qstring = qstring + " " + force_text(w)
                     self.qattrs['question_fullform_' + w] = force_text(w)
                 else:
-                    if qwords[w].has_key('fullform'):
+                    if 'fullform' in qwords[w]:
                         qstring = qstring + " " + force_text(qwords[w]['fullform'][0])
                         self.qattrs['question_fullform_' + w] = qwords[w]['fullform'][0]
                     else:
@@ -1238,8 +1238,8 @@ class SahkaQuestion(OahpaQuestion):
                 if constant:
                     self.qattrs['target_' + constant] = self.variables[1]
                     self.global_targets[constant] = { 'target' : self.variables[1] }
-        for t in self.global_targets.keys():
-            if not self.qattrs.has_key(t):
+        for t in list(self.global_targets.keys()):
+            if t not in self.qattrs:
                 self.qattrs['target_' + t] = self.global_targets[t]['target']
 
         #self.error="correct"

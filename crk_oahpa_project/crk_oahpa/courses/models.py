@@ -4,7 +4,7 @@ from django.utils.translation import gettext_lazy as _
 
 from django.contrib.auth.models import User, Group
 
-from local_conf import LLL1
+from .local_conf import LLL1
 
 import importlib
 settings = importlib.import_module(LLL1+'_oahpa.settings')
@@ -128,7 +128,7 @@ class UserGrade(models.Model):
 	total = models.IntegerField(default=5)
 
 	def __str__(self):
-		return u'Summary for %s from %s' % (self.user.user.username, self.game.name)
+		return 'Summary for %s from %s' % (self.user.user.username, self.game.name)
 
 	class Meta:
 		ordering = ['-datetime']
@@ -162,7 +162,7 @@ class Course(models.Model):
 		Instructors user group.
 
 	"""
-	name = models.CharField(max_length=50, default=u"Fluent in Southern Sámi in 10 days")
+	name = models.CharField(max_length=50, default="Fluent in Southern Sámi in 10 days")
 	identifier = models.CharField(max_length=12, default="SAM-1234")
 	# instructors = models.ManyToManyField(User, related_name='instructorships')
 	# students = models.ManyToManyField(User, related_name='studentships')
@@ -201,7 +201,7 @@ class CourseRelationship(models.Model):
 
 
 from django.db.models.signals import post_save, pre_save
-from signals import create_profile, aggregate_grades, user_presave, course_relationship_postsave
+from .signals import create_profile, aggregate_grades, user_presave, course_relationship_postsave
 
 post_save.connect(create_profile, sender=User,
 	dispatch_uid=LLL1+"_oahpa.courses.models.post_save")

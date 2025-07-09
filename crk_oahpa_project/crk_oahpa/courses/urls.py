@@ -6,7 +6,7 @@ from django.conf.urls import *
 # @login_required decorator
 
 from django.contrib.auth.views import login, logout
-from views import cookie_login, cookie_logout
+from .views import cookie_login, cookie_logout
 from django.views.generic import TemplateView
 
 # Have to rename login/ to standard_login/ so that the cookie login falls back
@@ -22,7 +22,7 @@ urlpatterns = [
 	url(r'^cookie_logout/$', cookie_logout),
 ]
 
-from views import courses_main, instructor_student_detail
+from .views import courses_main, instructor_student_detail
 
 urlpatterns += [
     url(r'^(?P<cid>\d+)/(?P<uid>\d+)/$', instructor_student_detail),

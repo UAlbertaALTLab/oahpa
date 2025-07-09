@@ -40,7 +40,7 @@ parser.add_option("-a", "--all", dest="print_all",
 option={}
 entries={}
 all=[]
-for opt, value in options.__dict__.items():
+for opt, value in list(options.__dict__.items()):
     if value and opt != "infile" and opt != "print_all" and opt!="regex":
         option[opt] = value
         entries[opt] = []
@@ -50,17 +50,17 @@ for opt, value in options.__dict__.items():
 # This does not work with multiple options of the same type, is is still OR.
 def print_entries(entries, all):
     allset = set(all)
-    for key in entries.keys():
+    for key in list(entries.keys()):
         elist = entries[key]
         eset = set(elist)
         allset =  allset & eset
 
     for e in list(allset):
         if options.print_all:
-            print e.toxml(encoding="utf-8")
+            print(e.toxml(encoding="utf-8"))
         else:
             ltext=e.getElementsByTagName("lemma")[0].firstChild.data
-            print ltext.encode('utf8')
+            print(ltext.encode('utf8'))
 
 xmlfile=file(options.infile)
 tree = _dom.parse(options.infile)

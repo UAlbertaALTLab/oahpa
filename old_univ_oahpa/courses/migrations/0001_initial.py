@@ -59,7 +59,7 @@ class Migration(SchemaMigration):
         # Adding model 'Course'
         db.create_table('courses_course', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('name', self.gf('django.db.models.fields.CharField')(default=u'Fluent in Southern S\xe1mi in 10 days', max_length=50)),
+            ('name', self.gf('django.db.models.fields.CharField')(default='Fluent in Southern S\xe1mi in 10 days', max_length=50)),
             ('identifier', self.gf('django.db.models.fields.CharField')(default='SAM-1234', max_length=12)),
             ('site_link', self.gf('django.db.models.fields.URLField')(max_length=200, null=True, blank=True)),
             ('end_date', self.gf('django.db.models.fields.DateTimeField')(default=None, null=True, blank=True)),

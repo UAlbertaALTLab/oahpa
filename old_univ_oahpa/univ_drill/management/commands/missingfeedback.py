@@ -28,7 +28,7 @@ def findmissing(tfilter=False, count=0):
 			s = s.encode('utf-8')
 		except:
 			pass
-		print >> sys.stdout, s
+		print(s, file=sys.stdout)
 
 class Command(BaseCommand):
 	args = '--tagelement'

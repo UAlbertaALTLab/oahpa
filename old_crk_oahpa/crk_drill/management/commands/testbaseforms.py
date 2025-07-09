@@ -38,17 +38,17 @@ def testbaseforms(tfilter=False, tag_string=False):
 		s = "Form:     " + fmtform(m)
 		try:
 			bf = m.getBaseform()
-		except Exception, e:
+		except Exception as e:
 			bf = False
-			print e
+			print(e)
 
 		if bf:
 			b = "Baseform: " + fmtform(bf)
 		else:
 			b = "Baseform: MISSING."
 
-		print >> sys.stdout, s
-		print >> sys.stdout, b + '\n'
+		print(s, file=sys.stdout)
+		print(b + '\n', file=sys.stdout)
 
 class Command(BaseCommand):
 	args = '--tagelement'

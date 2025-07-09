@@ -12,8 +12,8 @@ try:
                             user = "saara",
                             passwd = "vesiLasi",
                             db = "oahpa")
-except MySQLdb.Error, e:
-    print "Error %d: %s" % (e.args[0], e.args[1])
+except MySQLdb.Error as e:
+    print("Error %d: %s" % (e.args[0], e.args[1]))
     sys.exit (1)
 
 cursor = conn.cursor ()
@@ -44,7 +44,7 @@ def add_word_db(e):
         INSERT INTO morph_word (lemma, type, pos, semtype, subtype)
         VALUES (%s, %s, %s, %s, %s)
     """, (e.lemma.encode('utf8'), 'common noun', e.pos, e.semtype, e.subtype))
-    print "Number of rows inserted: %d" % cursor.rowcount
+    print("Number of rows inserted: %d" % cursor.rowcount)
 
 ## Populate translations table
 def add_translations_db(e):
@@ -67,7 +67,7 @@ def add_translations_db(e):
                 INSERT INTO morph_translationnob (translation)
                 VALUES (%s)
             """, (t.encode('utf8')))
-            print "Number of rows inserted: %d" % cursor.rowcount
+            print("Number of rows inserted: %d" % cursor.rowcount)
 
             cursor.execute ("""
                 SELECT id FROM morph_translationnob WHERE translation=%s
@@ -86,7 +86,7 @@ def add_translations_db(e):
             INSERT INTO morph_translationnob_word (word_id, translationnob_id)
             VALUES (%s, %s)
         """, (wordrow[0], translrow[0]))
-        print "Number of rows inserted: %d" % cursor.rowcount
+        print("Number of rows inserted: %d" % cursor.rowcount)
 
 
 
@@ -118,7 +118,7 @@ def add_forms_db(g):
         INSERT INTO morph_form (word_id, tag_id, fullform)
         VALUES (%s, %s, %s)
     """, (wordrow[0], tagrow[0], g.form.encode('utf8')))
-    print "Number of rows inserted: %d" % cursor.rowcount
+    print("Number of rows inserted: %d" % cursor.rowcount)
 
 
 def read_generated():
@@ -134,12 +134,12 @@ def read_generated():
         if matchObj:
             g = Entry()
             g.lemma = matchObj.expand(r'\g<lemmaString>')
-            print g.lemma.encode('utf-8')
+            print(g.lemma.encode('utf-8'))
             g.form = matchObj.expand(r'\g<formString>')
             if re.compile("\?").match(g.form.encode('utf-8')): continue
-            print g.form.encode('utf-8')
+            print(g.form.encode('utf-8'))
             g.tags = matchObj.expand(r'\g<tagString>')
-            print g.tags.encode('utf-8')
+            print(g.tags.encode('utf-8'))
 
             if insert_to_db:
                 add_forms_db(g)
@@ -186,9 +186,9 @@ def read_translations():
         translations = matchObj.expand(r'\g<transString>')
         e.translations = re.split(r'\, ', translations, re.U)
         for trans in e.translations:
-           print trans.encode('utf8')
+           print(trans.encode('utf8'))
 
-        print e.lemma.encode('utf8')
+        print(e.lemma.encode('utf8'))
 
         # Insert into database.
         if insert_to_db:

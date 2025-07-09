@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from settings import *
-from drill.models import *
+from .settings import *
+from .drill.models import *
 from xml.dom import minidom as _dom
 from optparse import OptionParser
 from django.db.models import Q
@@ -61,7 +61,7 @@ class Paradigm:
             matchObj=posObj.search(line)
             if matchObj:
                 pos=matchObj.expand(r'\g<posString>')
-            if not self.paradigms.has_key(pos):
+            if pos not in self.paradigms:
                 self.paradigms[pos]=[]
             self.paradigms[pos].append(line)
 
@@ -76,7 +76,7 @@ class Paradigm:
         genObj=re.compile(r'^(?P<lemmaString>[\wáŋčžšđŧ]+)\+(?P<tagString>[\w\+]+)[\t\s]+(?P<formString>[\wáŋčžšđŧ]*)$', re.U)
         all=""
 
-        if self.paradigms.has_key(pos):
+        if pos in self.paradigms:
             for a in self.paradigms[pos]:
                 all = all + lemma + "+" + a
 
@@ -106,7 +106,7 @@ class Paradigm:
                     tagstring = f.getAttribute("tag")
                     wordform = f.firstChild.data			
                     extraforms[tagstring] = wordform
-                    print "adding extra wordform..", wordform
+                    print("adding extra wordform..", wordform)
 
         for line in lines_tmp:
 
@@ -126,12 +126,12 @@ class Paradigm:
                     g.dialects.append("KJ")
                 g.tags = matchObj.expand(r'\g<tagString>')
                 for t in g.tags.split('+'):
-                    if self.tagset.has_key(t):
+                    if t in self.tagset:
                         tagclass=self.tagset[t]
                         g.classes[tagclass]=t
                 self.paradigm.append(g)
                 #extraforms override generated ones
-                if extraforms.has_key(g.tags):
+                if g.tags in extraforms:
                     g.form=extraforms[g.tags]
 
     def generate_numerals(self):

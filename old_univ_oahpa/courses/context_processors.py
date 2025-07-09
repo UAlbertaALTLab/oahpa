@@ -15,12 +15,12 @@ def courses_user(request):
     if request.user.is_authenticated():
         interval = 8
         check_count = request.session.get('check_count', 0)
-        print check_count
+        print(check_count)
 
         if 'user_has_surveys' in request.session and (check_count != interval):
             user_has_surveys = request.session['user_has_surveys']
         else:
-            print 'checking'
+            print('checking')
             if check_count == 0 or check_count == interval:
                 u = request.user
                 responses = Survey.objects.filter(responses__user=u)
