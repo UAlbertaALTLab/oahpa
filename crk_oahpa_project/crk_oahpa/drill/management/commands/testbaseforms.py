@@ -2,12 +2,7 @@ from .local_conf import LLL1
 import importlib
 oahpa_module = importlib.import_module(LLL1+'_oahpa')
 
-from django.core.management.base import BaseCommand, CommandError
-
-# from_yaml(cls, loader, node)
-
-from optparse import make_option
-from django.utils.encoding import force_text
+from django.core.management.base import BaseCommand
 
 import sys
 
@@ -72,14 +67,12 @@ class Command(BaseCommand):
 	Also, search for MISSING, which will reveal places where .getBaseform can't
 	actually return anything.
 	"""
-	option_list = BaseCommand.option_list + (
-		make_option("-t", "--tagstring", dest="tag_string", default=False,
-						  help="Tag element to search for"),
-	)
+	def add_arguments(self, parser):
+		parser.add_argument("-t", "--tagstring", dest="tag_string", default=False,
+						  help="Tag element to search for")
+	
 
 	def handle(self, *args, **options):
-		import sys, os
-
 		tag_string = options['tag_string']
 
 		testbaseforms(tag_string=tag_string)

@@ -3,13 +3,7 @@ from .local_conf import LLL1
 import importlib
 oahpa_module = importlib.import_module(LLL1+'_oahpa')
 
-from django.core.management.base import BaseCommand, CommandError
-
-# from_yaml(cls, loader, node)
-
-from optparse import make_option
-
-import sys
+from django.core.management.base import BaseCommand
 
 Form = oahpa_module.drill.models.Form
 Word = oahpa_module.drill.models.Word
@@ -90,16 +84,16 @@ class Command(BaseCommand):
     Strips tags of an element and then merges them all.
     """
     def add_arguments(self, parser):
-	parser.add_argument(
-		"-f", "--filename",
-            	dest="filename",
-            	default=False,
-            	help="Static file to read from")
-	parser.add_argument(
-            	"-p", "--pos",
-                dest="pos",
-                default=False,
-         	help="Part of speech")
+        parser.add_argument(
+            "-f", "--filename",
+                    dest="filename",
+                    default=False,
+                    help="Static file to read from")
+        parser.add_argument(
+                    "-p", "--pos",
+                    dest="pos",
+                    default=False,
+                help="Part of speech")
 
 
     def handle(self, *args, **options):

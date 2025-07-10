@@ -157,7 +157,7 @@ class Game(object):
 			form = None
 
 			try:
-				form, word_id = self.create_form(db_info, i, 0)
+				form, word_id = self.create_form(db_info, i) # TODO: Felipe: The extra 0 is not well documented and it broke the form. trying removing it and seeing what happens.
 			except Http404 as e:
 				raise e
 			except ObjectDoesNotExist:
@@ -1042,6 +1042,7 @@ class BareGame(Game):
 				presentation_ng = [correct.fullform]
 
 		morph = (MorfaQuestion(
+					data=data,
 					word=word,
 					tag=tag,
 					baseform=baseform,
@@ -1054,8 +1055,7 @@ class BareGame(Game):
 					language=language,
 					userans_val=db_info['userans'],  # TODO: userans not in use?
 					correct_val=db_info['correct'],
-					data=data,
-					prefix=n,
+					prefix=str(n),
 					conneg=db_info['conneg'])
 				)
 		return morph, word.id
@@ -1254,7 +1254,7 @@ class NumGame(Game):
 					userans_val=db_info['userans'],
 					correct_val=db_info['correct'],
 					data=data,
-					prefix=n,
+					prefix=str(n),
 					game=self)
 				)
 
@@ -1381,7 +1381,7 @@ class Klokka(NumGame):
 					userans_val=db_info['userans'],
 					correct_val=db_info['correct'],
 					data=data,
-					prefix=n,
+					prefix=str(n),
 					game=self)
 				)
 
@@ -1653,7 +1653,7 @@ class QuizzGame(Game):
 					userans_val,
 					db_info['correct'],
 					data,
-					prefix=n,))
+					prefix=str(n),))
 		return form, word.id
 
 # vim: set ts=4 sw=4 tw=72 syntax=python :

@@ -2,7 +2,7 @@ MAIN_LANGUAGE = ('crk', 'Plains Cree')
 LLL1 = MAIN_LANGUAGE[0]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '+&dhg83#u^mg$vnp^7u2xd8wo15&=_c#yf0*no-mzrej!@zdw_'

@@ -256,7 +256,7 @@ class Gameview(object):
             print("get_settings_form language: "+self.settings['language'])
 
 
-        if request.user.is_authenticated():
+        if request.user.is_authenticated:
             request_user = request.user
         else:
             request_user = False

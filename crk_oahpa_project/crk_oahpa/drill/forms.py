@@ -729,51 +729,6 @@ def relax(strict):
 
     return relaxed_perms
 
-def is_correct(self, game, example=None):
-    """
-    Determines if the given answer is correct (for a bound form).
-    """
-    self.game = game
-    self.example = example
-
-    if not self.is_valid():
-        return False
-
-    self.userans = self.cleaned_data['answer']
-
-    self.answer = self.userans.strip()
-
-    if not game == "numra":
-        self.answer = self.answer.rstrip('.!?,')
-
-    self.error = "error"
-    self.iscorrect = False
-
-    if self.answer in set(self.correct_anslist) or \
-            self.answer.lower() in set(self.correct_anslist) or \
-            self.answer.upper() in set(self.correct_anslist):
-        self.error = "correct"
-        self.iscorrect = True
-
-    # Log information about user answers.
-
-    if self.cleaned_data['fake_answer'].strip():
-        self.iscorrect = False
-
-    correctlist = ",".join([a for a in self.correct_anslist])
-    self.correctlist = correctlist
-    self.log_response()
-
-def set_correct(self):
-    """
-    Adds correct wordforms to the question form.
-    """
-    if self.correct_ans:
-        self.correct_answers = self.correct_ans[:]
-        if type(self.correct_answers) == list:
-            self.correct_answers = ', '.join(self.correct_answers)
-
-
 
 def set_settings(self):
     # self.levels = {
@@ -827,48 +782,6 @@ def set_settings(self):
 # comment
 # DEBUG = open('/dev/ttys001', 'w')
 # DEBUG = open('/dev/null', 'w')
-
-
-def get_feedback(self, wordform, language):
-    FEEDBACK_TYPE
-
-    language = switch_language_code(language)
-
-    feedbacks = wordform.feedback.filter(feedbacktext__language=language).order_by('feedbacktext__order')
-
-    feedback_messages = []
-    for feedback in feedbacks:
-        texts = feedback.feedbacktext_set.filter(language=language).order_by('order')
-        feedback_messages.extend([a.message for a in texts])
-
-    message_list = []
-    if feedback_messages:
-        for text in feedback_messages:
-            text = text.replace('WORDFORM', '"%s"' % wordform.word.lemma)
-            message_list.append(text)
-
-    self.feedback = ' \n '.join(list(message_list))
-
-    ### print wordform.fullform
-    ### print wordform.tag.string
-
-    ### print 'stem:' + wordform.word.stem
-    ### print 'gradation:' + wordform.word.gradation
-    ### print 'diphthong:' + wordform.word.diphthong
-    ### print 'rime:' + wordform.word.rime
-    ### print 'soggi:' + wordform.word.soggi
-    ### print 'attrsuffix:' + wordform.word.attrsuffix
-    ### print 'compsuffix:' + wordform.word.compsuffix
-
-
-    ### print self.feedback
-    ### print '--'
-    ### # NOTE: debug
-    ### # print wordform.id
-    ### # print wordform.feedback.all()
-    ### # print feedbacks
-    ### # print self.feedback
-    ### # print '\n'
 
 def select_words(self, qwords, awords):
     """
@@ -1040,9 +953,91 @@ class OahpaQuestion(forms.Form):
     """
         Meta form for question/answer section.
     """
-    is_correct = is_correct
-    set_correct = set_correct
-    get_feedback = get_feedback
+    def is_correct(self, game, example=None):
+        """
+        Determines if the given answer is correct (for a bound form).
+        """
+        self.game = game
+        self.example = example
+
+        if not self.is_valid():
+            return False
+
+        self.userans = self.cleaned_data['answer']
+
+        self.answer = self.userans.strip()
+
+        if not game == "numra":
+            self.answer = self.answer.rstrip('.!?,')
+
+        self.error = "error"
+        self.iscorrect = False
+
+        if self.answer in set(self.correct_anslist) or \
+                self.answer.lower() in set(self.correct_anslist) or \
+                self.answer.upper() in set(self.correct_anslist):
+            self.error = "correct"
+            self.iscorrect = True
+
+        # Log information about user answers.
+
+        if self.cleaned_data['fake_answer'].strip():
+            self.iscorrect = False
+
+        correctlist = ",".join([a for a in self.correct_anslist])
+        self.correctlist = correctlist
+        self.log_response()
+
+    def set_correct(self):
+        """
+        Adds correct wordforms to the question form.
+        """
+        if self.correct_ans:
+            self.correct_answers = self.correct_ans[:]
+            if type(self.correct_answers) == list:
+                self.correct_answers = ', '.join(self.correct_answers)
+
+    def get_feedback(self, wordform, language):
+        FEEDBACK_TYPE
+
+        language = switch_language_code(language)
+
+        feedbacks = wordform.feedback.filter(feedbacktext__language=language).order_by('feedbacktext__order')
+
+        feedback_messages = []
+        for feedback in feedbacks:
+            texts = feedback.feedbacktext_set.filter(language=language).order_by('order')
+            feedback_messages.extend([a.message for a in texts])
+
+        message_list = []
+        if feedback_messages:
+            for text in feedback_messages:
+                text = text.replace('WORDFORM', '"%s"' % wordform.word.lemma)
+                message_list.append(text)
+
+        self.feedback = ' \n '.join(list(message_list))
+
+        ### print wordform.fullform
+        ### print wordform.tag.string
+
+        ### print 'stem:' + wordform.word.stem
+        ### print 'gradation:' + wordform.word.gradation
+        ### print 'diphthong:' + wordform.word.diphthong
+        ### print 'rime:' + wordform.word.rime
+        ### print 'soggi:' + wordform.word.soggi
+        ### print 'attrsuffix:' + wordform.word.attrsuffix
+        ### print 'compsuffix:' + wordform.word.compsuffix
+
+
+        ### print self.feedback
+        ### print '--'
+        ### # NOTE: debug
+        ### # print wordform.id
+        ### # print wordform.feedback.all()
+        ### # print feedbacks
+        ### # print self.feedback
+        ### # print '\n'
+
 
     # Set answer widget. Can this JS actually be moved to templates?
     KEYDOWN = 'javascript:return process(this, event, document.gameform);'
@@ -1122,11 +1117,6 @@ class OahpaQuestion(forms.Form):
         self.correct_anslist = [force_text(item) for item in accepted_answers] + [force_text(f) for f in forms]
         print("correct_anslist:",self.correct_anslist)
         self.relaxings = relaxings
-
-        #def generate_fields(self,answer_size, maxlength):
-        #	self.fields['answer'] = forms.CharField(max_length = maxlength, \
-         #                                       widget=forms.TextInput(\
-          #  attrs={'size': answer_size, 'onkeydown':'javascript:return process(this, event,document.gameform);',}))  # copied from old-oahpa
 
 # #
 #
@@ -1698,7 +1688,6 @@ class KlokkaQuestion(NumQuestion):
         correct_val = kwargs.get('correct_val')
         userans_val = kwargs.get('userans_val')
         self.gametype = gametype = kwargs.get('gametype')
-        prefix = kwargs.get('prefix')
         data = kwargs.get('data')
 
 

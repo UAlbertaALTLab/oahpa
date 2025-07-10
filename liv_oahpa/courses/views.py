@@ -27,7 +27,7 @@ def cookie_login(request, next_page=None, required=False, **kwargs):
 
 	if not next_page:
 		next_page = '/liv_oahpa/courses/' # TODO: change next url for deep links
-	if request.user.is_authenticated():
+	if request.user.is_authenticated:
 		message = "You are logged in as %s." % request.user.username
 		request.user.message_set.create(message=message)
 		return HttpResponseRedirect(next_page)
@@ -93,7 +93,7 @@ def trackGrade(gamename, request, c):
 	SETTINGS = c['settingsform'].data
 	
 	if c['show_correct'] == 1 or c['all_correct'] == 1:
-		if request.user.is_authenticated() and not request.user.is_anonymous():
+		if request.user.is_authenticated and not request.user.is_anonymous:
 			game_type = ''
 			if 'gamename_key' in c['settings']:
 				game_type = c['settings']['gamename_key']

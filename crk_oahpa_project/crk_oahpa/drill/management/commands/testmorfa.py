@@ -2,13 +2,10 @@ from .local_conf import LLL1
 import importlib
 oahpa_module = importlib.import_module(LLL1+'_oahpa')
 
-from django.core.management.base import BaseCommand, CommandError
-# -*- encoding: utf-8 -*-
-# from_yaml(cls, loader, node)
+from django.core.management.base import BaseCommand
 
 from django.db.models import Q
 
-from optparse import make_option
 from django.utils.encoding import force_text
 
 import sys
@@ -20,7 +17,6 @@ import sys
 # # #
 
 from xml.dom import minidom as _dom
-from optparse import OptionParser
 # from django import db
 import sys
 import re
@@ -275,7 +271,7 @@ class Agreement(object):
                     # TODO: Clean this up
                     # basically, can y match x with corresponding value replaced with AGR
                     x_head, x_agr, x_tail = x.partition('AGR')
-                    agr_inner_re = re.escape(x).replace('AGR', '(?P<agr>\w+)')
+                    agr_inner_re = re.escape(x).replace('AGR', r'(?P<agr>\w+)')
                     agr_inner = re.match(agr_inner_re, y)
                     try:
                         agr_inner = agr_inner.group('agr')
@@ -306,7 +302,7 @@ class Agreement(object):
                             break
 
                 try:
-                    agr_inner_re = re.escape(tag_pattern).replace('AGR', '(?P<agr>\w+)')
+                    agr_inner_re = re.escape(tag_pattern).replace('AGR', r'(?P<agr>\w+)')
                     agr_inner = re.match(agr_inner_re, head)
                     agr_inner = agr_inner.group('agr')
                 except:
@@ -1143,26 +1139,6 @@ class Command(BaseCommand):
     args = '--grammarfile FILE --questionfile FILE'
     help = """
     """
-    option_list = BaseCommand.option_list + (
-        # make_option("-g", "--grammarfile", dest="grammarfile", default=False,
-        #                   help="XML-file for grammar defaults for questions"),
-        # make_option("-q", "--questionfile", dest="questionfile", default=False,
-        #               help="XML-file that contains questions"),
-        # make_option("--qid", dest="qid", default=False,
-        #               help=("Specify a list of IDs to test with commas and no"
-        #               "spaces, or specify a partial part of an id to filter"
-        #               "questions by, e.g. ill1,ill2  OR  ill#; note the wildcard"
-        #               "symbol.")),
-        #
-        # make_option("--iterations", dest="itercount", default=5,
-        #                 help="The count of iterations for each question"),
-        # make_option("--logfile", dest="logfile", default=False,
-        #                 help="Store all output to a file in addition to stdout."),
-
-        # make_option("--dialect", dest="dialect", default="GG",
-        #               help=("Specify a dialect for presenting the generated output.")),
-
-    )
 
     def print_strings(self, word, tag):
         NEGATIVE_VERB_PRES = oahpa_module.drill.forms.NEGATIVE_VERB_PRES

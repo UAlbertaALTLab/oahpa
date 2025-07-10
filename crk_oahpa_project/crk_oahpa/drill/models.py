@@ -495,7 +495,7 @@ class Word(models.Model):
     N_objects = NPosManager() # The Noun-specific manager
     tcomm = models.BooleanField(default=False)
     # nob = Nob()
-    morphophon = models.ForeignKey(MorphPhonTag, null=True)
+    morphophon = models.ForeignKey(MorphPhonTag, null=True, on_delete=models.CASCADE)
     dialects = models.ManyToManyField(Dialect)
     aspect = models.CharField(max_length=20) # aspect partner (verbs only)
     motion = models.CharField(max_length=20) # motion partner (verbs only)
@@ -616,7 +616,7 @@ class WordTranslation(models.Model):
 
         TODO: null=True necessary?
     """
-    word = models.ForeignKey(Word, db_index=True)
+    word = models.ForeignKey(Word, db_index=True, on_delete=models.CASCADE)
     language = models.CharField(max_length=5, db_index=True)
     wordid = models.CharField(max_length=200, db_index=True)
     lemma = models.CharField(max_length=200, blank=True)
@@ -694,7 +694,7 @@ class Tagset(models.Model):
 
 class Tagname(models.Model):
     tagname = models.CharField(max_length=25)
-    tagset = models.ForeignKey(Tagset)
+    tagset = models.ForeignKey(Tagset, on_delete=models.CASCADE)
 
     def __str__(self):
         return smart_text(self.tagname)
@@ -785,8 +785,8 @@ class Tag(models.Model):
     # 	super(Tag, self).save(*args, **kwargs)
 
 class Form(models.Model):
-    word = models.ForeignKey(Word)
-    tag = models.ForeignKey(Tag)
+    word = models.ForeignKey(Word, on_delete=models.CASCADE)
+    tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
     fullform = models.CharField(max_length=200)
     dialects = models.ManyToManyField(Dialect)
     feedback = models.ManyToManyField('Feedbackmsg')
@@ -979,7 +979,7 @@ class Feedbacktext(models.Model):
     """
     message = models.TextField()
     language = models.CharField(max_length=6)
-    feedbackmsg = models.ForeignKey(Feedbackmsg)
+    feedbackmsg = models.ForeignKey(Feedbackmsg, on_delete=models.CASCADE)
     order = models.CharField(max_length=3, blank=True)
 
     def __str__(self):
@@ -1006,7 +1006,8 @@ class Question(models.Model):
     question = models.ForeignKey('self',
                                  blank=True,
                                  null=True,
-                                 related_name='answer_set')
+                                 related_name='answer_set',
+                                 on_delete=models.CASCADE)
     gametype = models.CharField(max_length=7)
     lemmacount = models.IntegerField()
     source = models.ManyToManyField(Source)
@@ -1024,7 +1025,7 @@ class QElement(models.Model):
 
 
     """
-    question = models.ForeignKey(Question, null=True)
+    question = models.ForeignKey(Question, null=True, on_delete=models.CASCADE)
     syntax = models.CharField(max_length=50)
     identifier = models.CharField(max_length=20)
     task = models.CharField(max_length=20)  # added for VastaS
@@ -1032,7 +1033,8 @@ class QElement(models.Model):
     agreement = models.ForeignKey('self',
                                   blank=True,
                                   null=True,
-                                  related_name='agreement_set')
+                                  related_name='agreement_set',
+                                  on_delete=models.CASCADE)
 
     semtype = models.ManyToManyField(Semtype)
     tags = models.ManyToManyField(Tag)
@@ -1040,7 +1042,8 @@ class QElement(models.Model):
     copy = models.ForeignKey('self',
                              blank=True,
                              null=True,
-                             related_name='copy_set')
+                             related_name='copy_set',
+                             on_delete=models.CASCADE)
     def __str__(self):
         return smart_text(self.question.string + ': ' + self.identifier)
 
@@ -1048,9 +1051,9 @@ class WordQElement(models.Model):
     """
 
     """
-    word = models.ForeignKey(Word, null=True)
-    qelement = models.ForeignKey(QElement, null=True)
-    # semtype = models.ForeignKey(Semtype, null=True)
+    word = models.ForeignKey(Word, null=True, on_delete=models.CASCADE)
+    qelement = models.ForeignKey(QElement, null=True, on_delete=models.CASCADE)
+    # semtype = models.ForeignKey(Semtype, null=True, on_delete=models.CASCADE)
 
 
 ############ SAHKA
@@ -1063,23 +1066,23 @@ class Utterance(models.Model):
     utttype = models.CharField(max_length=20,blank=True,null=True)
     links = models.ManyToManyField('LinkUtterance')
     name = models.CharField(max_length=200,blank=True,null=True)
-    topic = models.ForeignKey('Topic')
+    topic = models.ForeignKey('Topic', on_delete=models.CASCADE)
     formlist = models.ManyToManyField(Form)
 
 class UElement(models.Model):
-    utterance=models.ForeignKey(Utterance, null=True)
+    utterance=models.ForeignKey(Utterance, null=True, on_delete=models.CASCADE)
     syntax = models.CharField(max_length=50)
-    tag = models.ForeignKey(Tag,null=True,blank=True)
+    tag = models.ForeignKey(Tag,null=True,blank=True, on_delete=models.CASCADE)
 
 class LinkUtterance(models.Model):
-    link = models.ForeignKey(Utterance,null=True,blank=True)
+    link = models.ForeignKey(Utterance,null=True,blank=True, on_delete=models.CASCADE)
     target = models.CharField(max_length=20,null=True,blank=True)
     variable = models.CharField(max_length=20,null=True,blank=True)
     constant = models.CharField(max_length=20,null=True,blank=True)
 
 class Topic(models.Model):
     topicname = models.CharField(max_length=50,blank=True,null=True)
-    dialogue = models.ForeignKey(Dialogue)
+    dialogue = models.ForeignKey(Dialogue, on_delete=models.CASCADE)
     number = models.IntegerField(null=True)
     image = models.CharField(max_length=50,null=True,blank=True)
     formlist = models.ManyToManyField(Form)

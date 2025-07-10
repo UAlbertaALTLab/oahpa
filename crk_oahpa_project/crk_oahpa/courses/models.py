@@ -29,7 +29,7 @@ class UserProfile(models.Model):
 		development easier, but it's not a huge priority to research
 		what the problem is.
 	"""
-	user = models.ForeignKey(User)
+	user = models.ForeignKey(User, on_delete=models.CASCADE)
 	login_count = models.IntegerField(default=0)
 	last_login = models.DateTimeField(null=True)
 	site_cookie = models.IntegerField(null=True)
@@ -89,15 +89,15 @@ class UserLogin(models.Model):
 
 	"""
 
-	user = models.ForeignKey(UserProfile)
+	user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
 	timestamp = models.DateTimeField()
 
 class UserGradeSummary(models.Model):
 	""" Stores the summary for each game for grading purposes.
 		Data here is aggregated by a post_save signal.
 	"""
-	user = models.ForeignKey(UserProfile)
-	game = models.ForeignKey('Activity')
+	user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+	game = models.ForeignKey('Activity', on_delete=models.CASCADE)
 	average = models.FloatField(null=True)
 	minimum = models.FloatField(null=True)
 	maximum = models.FloatField(null=True)
@@ -121,8 +121,8 @@ class UserGrade(models.Model):
 		TODO: admin isn't displaying date.
 	"""
 
-	user = models.ForeignKey(UserProfile)
-	game = models.ForeignKey('Activity')
+	user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+	game = models.ForeignKey('Activity', on_delete=models.CASCADE)
 	datetime = models.DateTimeField(auto_now_add=True)
 	score = models.IntegerField()
 	total = models.IntegerField(default=5)
@@ -189,9 +189,9 @@ class CourseRelationship(models.Model):
 				 "If you wish to specify no end date, you will need to come back, "
 				 "and remove it after adding the instructor.")
 
-	relationship_type = models.ForeignKey(Group)
-	user = models.ForeignKey(User)
-	course = models.ForeignKey(Course)
+	relationship_type = models.ForeignKey(Group, on_delete=models.CASCADE)
+	user = models.ForeignKey(User, on_delete=models.CASCADE)
+	course = models.ForeignKey(Course, on_delete=models.CASCADE)
 	end_date = models.DateTimeField(null=True, blank=True, help_text=DATE_HELP)
 
 	class Meta:

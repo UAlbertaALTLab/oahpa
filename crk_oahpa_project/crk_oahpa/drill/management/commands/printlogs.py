@@ -2,11 +2,7 @@ from .local_conf import LLL1
 import importlib
 oahpa_module = importlib.import_module(LLL1+'_oahpa')
 
-from django.core.management.base import BaseCommand, CommandError
-
-# from_yaml(cls, loader, node)
-
-from optparse import make_option
+from django.core.management.base import BaseCommand
 
 import sys
 
@@ -101,21 +97,20 @@ class Command(BaseCommand):
 
 	GAMEATTRS =  ', '.join(_ATTRS)
 
-	option_list = BaseCommand.option_list + (
-		make_option("-c", "--csv", dest="csv", default=False,
+	def add_arguments(self, parser):
+		parser.add_argument("-c", "--csv", dest="csv", default=False,
 						  action='store_true',
-						  help="CSV output."),
+						  help="CSV output.")
 
-		make_option("-d", "--delimiter", dest="delimiter", default="|",
-						  help="Specify a delimiter"),
+		parser.add_argument("-d", "--delimiter", dest="delimiter", default="|",
+						  help="Specify a delimiter")
 
-		make_option("-x", "--display-values", dest="values", default=False,
-			  help="Specify which values to display. Options: %s. Default: all." % GAMEATTRS),
+		parser.add_argument("-x", "--display-values", dest="values", default=False,
+			  help="Specify which values to display. Options: %s. Default: all." % GAMEATTRS)
 
-		make_option("-g", "--game", dest="filter_game", default=False,
-			  help="Display output only from a specific game. Options: %s." % GAMENAMES),
+		parser.add_argument("-g", "--game", dest="filter_game", default=False,
+			  help="Display output only from a specific game. Options: %s." % GAMENAMES)
 
-	)
 
 	def handle(self, *args, **options):
 		import sys, os

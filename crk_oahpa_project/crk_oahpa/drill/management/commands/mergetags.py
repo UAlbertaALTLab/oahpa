@@ -2,13 +2,7 @@ from .local_conf import LLL1
 import importlib
 oahpa_module = importlib.import_module(LLL1+'_oahpa')
 
-from django.core.management.base import BaseCommand, CommandError
-
-# from_yaml(cls, loader, node)
-
-from optparse import make_option
-
-import sys
+from django.core.management.base import BaseCommand
 
 Tag = oahpa_module.drill.models.Tag
 

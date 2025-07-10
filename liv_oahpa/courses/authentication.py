@@ -41,7 +41,7 @@ class CookieAuthMiddleware(object):
 		elif not view_func.__module__.startswith('django.contrib.admin.'):
 			return None
 
-		if request.user.is_authenticated():
+		if request.user.is_authenticated:
 			if request.user.is_staff:
 				return None
 			else:

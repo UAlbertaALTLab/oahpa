@@ -5,7 +5,6 @@ settings = importlib.import_module(LLL1+'_oahpa.settings')
 sdm = importlib.import_module(LLL1+'_oahpa.drill.models')
 
 from xml.dom import minidom as _dom
-from optparse import OptionParser
 from django import db
 import sys
 import re
