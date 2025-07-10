@@ -84,10 +84,10 @@ margin-right:11px;
 {% endifequal %}
 {% endblock %}
 {% block extrajs %}
-<script src="{{ MEDIA_URL }}/js/prototype.js" type="text/javascript"></script>
-<script src="{{ MEDIA_URL }}/js/sjd_oahpa.js" type="text/javascript"></script>
+<script src="{{ STATIC_URL }}/js/prototype.js" type="text/javascript"></script>
+<script src="{{ STATIC_URL }}/js/sjd_oahpa.js" type="text/javascript"></script>
 <!--[if lt IE 7]>
-<script defer type="text/javascript" src="{{ MEDIA_URL }}/js/pngfix.js"></script>
+<script defer type="text/javascript" src="{{ STATIC_URL }}/js/pngfix.js"></script>
 <![endif]-->
 <script type="text/javascript">
 function submitSahka(dia) {
@@ -113,7 +113,7 @@ function submitSahka(dia) {
 {% if image %}
 <p>&nbsp;<p>
 <center>
-<img border="1" width="140" border="0" src="{{ MEDIA_URL }}/images/{{ image }}"/><br/>
+<img border="1" width="140" border="0" src="{{ STATIC_URL }}/images/{{ image }}"/><br/>
 </center>
 {% endif %}
 
@@ -175,37 +175,37 @@ http://giellatekno.uit.no/oahpa/sme/useoahpa/sahka.nno.html
 <input type="hidden" name="dialogue" id="id_dialogue" />
 <input type="hidden" name="settings" id="settings" />
 <a href="javascript:submitSahka('firstmeeting');">
-<img border="0px" height="250" src="{{ MEDIA_URL }}/images/woman001_small.jpg"/></br>
+<img border="0px" height="250" src="{{ STATIC_URL }}/images/woman001_small.jpg"/></br>
 {% trans "Meeting with Kare" %}</a>
 </td>
 <!-- <td>
 <a href="javascript:submitSahka('firstmeeting_man');">
-<img border="0px" width="108"  src="{{ MEDIA_URL }}/images/man_small.jpg"/></br>
+<img border="0px" width="108"  src="{{ STATIC_URL }}/images/man_small.jpg"/></br>
 {% trans "Meeting with Hansa" %}</a>
 </td><td>
 <a href="javascript:submitSahka('firstmeeting_girl');">
-<img border="0px" width="100"  src="{{ MEDIA_URL }}/images/girl_small.jpg"/></br>
+<img border="0px" width="100"  src="{{ STATIC_URL }}/images/girl_small.jpg"/></br>
 {% trans "Meeting with Lisa" %}</a>
 </td><td>
 <a href="javascript:submitSahka('firstmeeting_boy');">
-<img border="0px" width="100"  src="{{ MEDIA_URL }}/images/boy_small.jpg"/>
+<img border="0px" width="100"  src="{{ STATIC_URL }}/images/boy_small.jpg"/>
 </br>{% trans "Meeting with Lemet" %}</a>
 </td>
 </tr>
 <tr> --->
 <td align="center">
 <a href="javascript:submitSahka('visit');">
-<img border="0px" width="180" height="250" src="{{ MEDIA_URL }}/images/visit001.jpg"/></br>
+<img border="0px" width="180" height="250" src="{{ STATIC_URL }}/images/visit001.jpg"/></br>
 {% trans "Visit" %}</a>
 </td>
 <td align="center">
 <a href="javascript:submitSahka('grocery');">
-<img border="0px" width="200" height="200" src="{{ MEDIA_URL }}/images/grocery.jpg"/></br>
+<img border="0px" width="200" height="200" src="{{ STATIC_URL }}/images/grocery.jpg"/></br>
 {% trans "Grocery" %}</a>
 </td>
 <td align="center">
 <a href="javascript:submitSahka('shopadj');">
-<img border="0px" height="200" src="{{ MEDIA_URL }}/images/2scarves_small.jpg"/><br/>
+<img border="0px" height="200" src="{{ STATIC_URL }}/images/2scarves_small.jpg"/><br/>
 {% trans "Shop" %}</a>
 </td>
 </tr>

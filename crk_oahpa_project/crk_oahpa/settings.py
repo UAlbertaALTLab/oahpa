@@ -43,7 +43,7 @@ INTERNAL_IPS = ('127.0.0.1',)
 ALLOWED_HOSTS = ['.gtoahpa-01.uit.no','127.0.0.1','localhost','vm-dev']
 
 # Development mode
-#DEBUG = True
+DEBUG = True
 #ALLOWED_HOSTS = []
 
 # Application definition
@@ -201,6 +201,11 @@ URL_PREFIX = 'nehiyawetan'
 
 MEDIA_URL = '/%s/media/' % URL_PREFIX
 
+STATIC_URL = "/static/"
+STATIC_ROOT = "static/"
+STATICFILES_DIRS = [
+    '../containerized_deploy/media/',
+]
 # #
 #
 # USER PROFILES

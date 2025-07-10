@@ -82,11 +82,6 @@ GAME_FSTS = {
 # Absolute path to the directory that holds media.
 MEDIA_ROOT = '/home/oahpa/media/'
 
-# URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
-# trailing slash.
-# Examples: "http://foo.com/media/", "/media/".
-STATIC_URL = '/home/oahpa/admin_media/'
-
 CACHES = {
         'default': {
                 'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',

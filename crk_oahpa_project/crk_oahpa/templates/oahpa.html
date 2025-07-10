@@ -20,7 +20,7 @@
 
 	<li class="game">
 		<a href="{% url 'numra' %}">
-			<img src="{{ MEDIA_URL }}/images/numra_small_crk.png" alt="akihtâsona"/><br/>
+			<img src="{{ STATIC_URL }}/images/numra_small_crk.png" alt="akihtâsona"/><br/>
 			<span class="gamename">akihtâsona</span>
 		</a>
 	</li>
@@ -29,7 +29,7 @@
     {% comment %}
         <li class="game">
 		<a href="{% url 'vasta_f' %}">
-			<img src="{{ MEDIA_URL }}/images/vasta_small.png" alt="VASTA"/><br/>
+			<img src="{{ STATIC_URL }}/images/vasta_small.png" alt="VASTA"/><br/>
 			<span class="gamename">VASTA</span>
 		</a>
 	</li>
@@ -37,21 +37,21 @@
 
 	<li class="game">
 		<a href="{% url "leksa" %}">
-			<img src="{{ MEDIA_URL }}/images/leksa_small.png" alt="itwêwina êkwa itwêstamâkêwina"/><br/>
+			<img src="{{ STATIC_URL }}/images/leksa_small.png" alt="itwêwina êkwa itwêstamâkêwina"/><br/>
 			<span class="gamename">itwêwina</span>
 		</a>
 	</li>
 
 	<li class="game">
 		<a href="{% url 'morfa_s.noun' %}">
-			<img src="{{ MEDIA_URL }}/images/morfa_small.png" alt="itwêwinihkewin"/><br/>
+			<img src="{{ STATIC_URL }}/images/morfa_small.png" alt="itwêwinihkewin"/><br/>
 			<span class="gamename">itwêwinihkêwin</span>
 		</a>
 	</li>
 
 	<li class="game">
 		<a href="{% url 'morfa_c.noun' %}">
-			<img src="{{ MEDIA_URL }}/images/morfac_small.png" alt="kakwêcihkêmowina"/><br/>
+			<img src="{{ STATIC_URL }}/images/morfac_small.png" alt="kakwêcihkêmowina"/><br/>
 			<span class="gamename">kakwêcihkêmowina</span>
 		</a>
 	</li>
@@ -62,7 +62,7 @@
 </ul>
 <div id="leftcontent">
 	<div id="navbar">
-			<img width="120" height="120" border="0" src="{{ MEDIA_URL }}/images/{% block imgprefix %}{% endblock %}_big.png" alt="Game logo" />
+			<img width="120" height="120" border="0" src="{{ STATIC_URL }}/images/{% block imgprefix %}{% endblock %}_big.png" alt="Game logo" />
 		<div class="bigheader">{% block gametitlename %}{% endblock %}</div>
 		{% block navbar %}{% endblock %}
 	</div>
