@@ -1,4 +1,5 @@
-from settings import LLL1
+MAIN_LANGUAGE = ('crk', 'Plains Cree')
+LLL1 = MAIN_LANGUAGE[0]
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -11,8 +12,8 @@ SECRET_KEY = '+&dhg83#u^mg$vnp^7u2xd8wo15&=_c#yf0*no-mzrej!@zdw_'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': LLL1+'_oahpa',                      # Or path to database file if using sqlite3.
+        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': LLL1+'_oahpa.sqlite3',                      # Or path to database file if using sqlite3.
         'USER': LLL1+'_oahpa',                      # Not used with sqlite3.
         'PASSWORD': LLL1+'GOGO'+LLL1,                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
@@ -27,11 +28,11 @@ import os
 import os.path
 import sys
 # Confirm this is in path.
-path = '/home/oahpa/'+LLL1+'_oahpa_project'
+path = './'+LLL1+'_oahpa_project'
 if path not in sys.path:
     sys.path.append(path)
 
-LOCALE_PATHS = ('/home/oahpa/'+LLL1+'_oahpa_project/locale',)
+LOCALE_PATHS = ('./'+LLL1+'_oahpa_project/locale',)
 
 LOOKUP_OPTS = ''
 

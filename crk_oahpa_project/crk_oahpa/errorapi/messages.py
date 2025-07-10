@@ -82,12 +82,11 @@
             >>> messagestore.get_message("sme", "CGErr", task="Sg+Gen")
             "You forgot consonant gradation (genitive sg.)!"
         """
-        from sets import ImmutableSet
 
         def copy_item(m):
             return m.copy()
 
-        error_tag = ImmutableSet(error_tag)
+        error_tag = frozenset(error_tag)
 
         messages = self.messages.get(iso, {}).get(error_tag, False)
 
@@ -102,9 +101,6 @@
 
     def parse(self, file_path):
         """ Reads the XML file and stores all messages """
-
-        # TODO @tag2 attribute on message, how should this work?
-        from sets import ImmutableSet
 
         from xml.dom import minidom as _dom
         from collections import defaultdict
@@ -123,7 +119,7 @@
             if tag2 is not None:
                 if tag2.strip():
                     tag.append(tag2)
-            tags = ImmutableSet(tag)
+            tags = frozenset(tag)
             task = m.getAttribute('task')
             _article = m.getAttribute('article')
             if _article.strip():

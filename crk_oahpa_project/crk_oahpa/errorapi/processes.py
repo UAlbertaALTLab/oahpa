@@ -112,8 +112,6 @@ class FeedbackFST(object):
         the tags available in the message store.
         """
 
-        from sets import ImmutableSet
-
         error_tags = []
         for wf, analyses in fst_response:
             for lem, tag in analyses:
@@ -121,7 +119,7 @@ class FeedbackFST(object):
                 existing_errors = \
                     set(tag) & set(self.message_store.error_tags)
                 if len(existing_errors) > 0:
-                    error_tags.append(ImmutableSet(existing_errors))
+                    error_tags.append(frozenset(existing_errors))
 
         error_tags = list(set(error_tags))
 

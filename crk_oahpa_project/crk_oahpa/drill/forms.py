@@ -23,38 +23,38 @@ from random import choice
 # TODO: These should be accessible in the admin interface, not hardcoded.
 
 PRONOUNS_LIST = {'1Sg': 'nîya', '2Sg': 'kîya', '3Sg': 'wîya',
-		  '1Pl': 'nîyanân', '2Pl': 'kîyawâw', '12Pl': 'kîyânaw', '3Pl': 'wîyawâw'}
+          '1Pl': 'nîyanân', '2Pl': 'kîyawâw', '12Pl': 'kîyânaw', '3Pl': 'wîyawâw'}
 
 # DEMONSTRATIVE_PRESENTATION plus Sg3/Pl3
 PASSIVE_PRONOUNS_LIST = {'1Sg': 'nîya', '2Sg': 'kîya', '3Sg': 'wîya',
-		  '1Pl': 'nîyanân', '2Pl': 'kîyawâw', '12Pl': 'kîyânaw', '3Pl': 'wîyawâw'}
+          '1Pl': 'nîyanân', '2Pl': 'kîyawâw', '12Pl': 'kîyânaw', '3Pl': 'wîyawâw'}
 
 
 NEGATIVE_VERB_PRES = {'Sg1':'in', 'Sg2':'it', 'Sg3':'ii',
-		  'Pl1':'eat', 'Pl2':'ehpet', 'Pl3':'eai'}
+          'Pl1':'eat', 'Pl2':'ehpet', 'Pl3':'eai'}
 
 TENSE_PRESENTATION = {
-	# 'Prt': u'otâkosîhk',
-	# 'Prs': u'anohc',
-	'Prt': '',
-	'Prs': '',
+    # 'Prt': u'otâkosîhk',
+    # 'Prs': u'anohc',
+    'Prt': '',
+    'Prs': '',
 }
 
 RECIPROCATIVE_PRESENTATION = {
-	'Du': 'guhtet',
-	'Pl': 'goabbat',
+    'Du': 'guhtet',
+    'Pl': 'goabbat',
 }
 
 DEMONSTRATIVE_PRESENTATION = {
-	'Sg': 'okta',
-	'Sg3': 'okta',
-	'Pl': 'máŋga',
-	'Pl3': 'máŋga',
+    'Sg': 'okta',
+    'Sg3': 'okta',
+    'Pl': 'máŋga',
+    'Pl3': 'máŋga',
 }
 
 POS_CHOICES = (
-	('N', _('noun')),
-	('V', _('verb')),
+    ('N', _('noun')),
+    ('V', _('verb')),
 )
 
 CASE_CHOICES = (
@@ -68,16 +68,16 @@ CASE_CHOICES = (
 # I wanted a very general way to specify question/answers.
 
 NOUN_QUESTION_ANSWER = {
-	# gametype			question		answer
-	'N-PL': [('N+Animacy+Sg', 'N+Animacy+Pl')],
-	'N-LOC': [('N+Animacy+Sg', 'N+Animacy+Loc')],
-	'N-REVDIM': [('N+Animacy+Der/Dim+N+Animacy+Sg', 'N+Animacy+Sg')],
+    # gametype			question		answer
+    'N-PL': [('N+Animacy+Sg', 'N+Animacy+Pl')],
+    'N-LOC': [('N+Animacy+Sg', 'N+Animacy+Loc')],
+    'N-REVDIM': [('N+Animacy+Der/Dim+N+Animacy+Sg', 'N+Animacy+Sg')],
 }
 
 FEEDBACK_TYPE = {
-	'N-PL': 'answer',
-	'N-LOC': 'answer',
-	'N-DIM': 'question',
+    'N-PL': 'answer',
+    'N-LOC': 'answer',
+    'N-DIM': 'question',
 }
 
 NOUN_FILTER_DEFINITION = ['animacy', 'declension', 'gender', 'source']
@@ -85,8 +85,8 @@ NOUN_FILTER_DEFINITION = ['animacy', 'declension', 'gender', 'source']
 # Pers - akk, gen, ill, lok, kom
 # Dem - akk, gen, ill, lok, kom
 CASE_CHOICES_PRONOUN = (
-	('N-PL', _('plural')),
-	#('N-GEN', _('Genitive')),
+    ('N-PL', _('plural')),
+    #('N-GEN', _('Genitive')),
     #('N-PAR', _('Partitive')),
     #('N-ILL', _('Illative')),
     #('N-INE', _('Inessive')),
@@ -97,12 +97,12 @@ CASE_CHOICES_PRONOUN = (
 )
 
 PRONOUN_QUESTION_ANSWER = {
-	# gametype			question		answer
-	'N-PAR': [('Pron+Subclass+NumberN+Nom', 'Pron+Subclass+NumberN+Par')],
-	'N-ILL': [('Pron+Subclass+NumberN+Nom', 'Pron+Subclass+NumberN+Ill')],
+    # gametype			question		answer
+    'N-PAR': [('Pron+Subclass+NumberN+Nom', 'Pron+Subclass+NumberN+Par')],
+    'N-ILL': [('Pron+Subclass+NumberN+Nom', 'Pron+Subclass+NumberN+Ill')],
 #	'N-LOC': [('Pron+Subclass+NumberN+Nom', 'Pron+Subclass+NumberN+Loc')],
 #	'N-COM': [('Pron+Subclass+NumberN+Nom', 'Pron+Subclass+NumberN+Com')],
-	'N-GEN': [('Pron+Subclass+NumberN+Nom', 'Pron+Subclass+NumberN+Gen')],
+    'N-GEN': [('Pron+Subclass+NumberN+Nom', 'Pron+Subclass+NumberN+Gen')],
 }
 
 PRONOUN_FILTER_DEFINITION = ['pron_type',]
@@ -110,17 +110,17 @@ PRONOUN_FILTER_DEFINITION = ['pron_type',]
 # Refl - ill, lok, kom
 # Recipr - ill, lok, kom
 RECIP_REFL_CHOICES = (
-	('N-ILL', _('illative')),
-	('N-LOC', _('locative')),
-	('N-COM', _('comitative')),
+    ('N-ILL', _('illative')),
+    ('N-LOC', _('locative')),
+    ('N-COM', _('comitative')),
 )
 
 PRONOUN_SUBCLASSES = (
-	('Pers', _('personal')),
-	('Dem', _('demonstrative')),
-	('Recipr', _('reciprocative')),
-	('Refl', _('reflexive')),
-	('Rel', _('relative')),
+    ('Pers', _('personal')),
+    ('Dem', _('demonstrative')),
+    ('Recipr', _('reciprocative')),
+    ('Refl', _('reflexive')),
+    ('Rel', _('relative')),
 )
 
 CASE_CONTEXT_CHOICES = (
@@ -137,16 +137,16 @@ CASE_CONTEXT_CHOICES = (
 )
 
 NOUN_TYPE_CHOICES =(
-	('N-IN', _('inanimate')),
-	('N-AN', _('animate')),
-	('all', _('All')),
+    ('N-IN', _('inanimate')),
+    ('N-AN', _('animate')),
+    ('all', _('All')),
 )
 
 #
 # No inessive or essive, and no choice between nom sg. and pl, but nom sg and pl come together.
 #
 PRON_CONTEXT_CHOICES = (
-	#('P-NOM', _('nominative')), Morfa C pronomen nominativ skal fjernes fra menyen dersom oppgavene har ingen hensikt.
+    #('P-NOM', _('nominative')), Morfa C pronomen nominativ skal fjernes fra menyen dersom oppgavene har ingen hensikt.
 #    ('P-PERS', _('personal')),
     ('P-DEM', _('demonstrative')),
 #    ('P-DEM-CRK', _('demonstrative (translate)')),
@@ -156,12 +156,12 @@ PRON_CONTEXT_CHOICES = (
 )
 
 WORDFORM_TYPE_CHOICES = (
-	('goabbat', _('goabbat/guhtet')),
-	('nubbi', _('nubbi/nuppit')),
+    ('goabbat', _('goabbat/guhtet')),
+    ('nubbi', _('nubbi/nuppit')),
 )
 
 ADJCASE_CHOICES = (
-	('N-PL', _('plural')),
+    ('N-PL', _('plural')),
 #	('ATTR', _('attributive')),
 #	('A-GEN', _('Genitive')),
  #   ('A-PAR', _('Partitive')),
@@ -174,62 +174,62 @@ ADJCASE_CHOICES = (
 )
 
 ADJECTIVE_QUESTION_ANSWER = {
-	# gametype			question		answer
-	'N-PL': [('A+Sg+Nom', 'A+Pl+Nom')],
-	'ATTR': [('A+Sg+Nom', 'A+Attr')],
-	'N-ACC': [('A+NumberA+Nom', 'A+NumberN+Acc')],
+    # gametype			question		answer
+    'N-PL': [('A+Sg+Nom', 'A+Pl+Nom')],
+    'ATTR': [('A+Sg+Nom', 'A+Attr')],
+    'N-ACC': [('A+NumberA+Nom', 'A+NumberN+Acc')],
 #	'N-ILL': [('A+NumberA+Nom', 'A+NumberN+Ill')],
-	'N-LOC': [('A+NumberA+Nom', 'A+NumberN+Loc')],
+    'N-LOC': [('A+NumberA+Nom', 'A+NumberN+Loc')],
 #	'N-COM': [('A+NumberA+Nom', 'A+NumberN+Com')],
-	'N-GEN': [('A+NumberA+Nom', 'A+NumberN+Gen')],
+    'N-GEN': [('A+NumberA+Nom', 'A+NumberN+Gen')],
 #	'N-ESS': [('A+NumberA+Nom', 'A+Ess')],
 }
 
 ADJECTIVE_FILTER_DEFINITION = ['grade', 'stem', 'source']
 
 ADJEX_CHOICES = (
-	('A-ATTR', _('attributive')), 	# A+Nom+Sg -> A+Attr
- 	('A-COMP', _('comparative')),		# A+Nom+Sg -> Comp
- 	('A-SUPERL', _('superlative')),	# A+Nom+Sg -> Superl
+    ('A-ATTR', _('attributive')), 	# A+Nom+Sg -> A+Attr
+     ('A-COMP', _('comparative')),		# A+Nom+Sg -> Comp
+     ('A-SUPERL', _('superlative')),	# A+Nom+Sg -> Superl
 
 )
 
 ADJ_CONTEXT_CHOICES = (
-	('ATTRPOS', _('attributive positive')),
-	('ATTRCOMP', _('attributive comparative')),
-	('ATTRSUP', _('attributive superlative')),
-	('PREDPOS', _('predicative positive')),
-	('PREDCOMP', _('predicative comparative')),
-	('PREDSUP', _('predicative superlative')),
+    ('ATTRPOS', _('attributive positive')),
+    ('ATTRCOMP', _('attributive comparative')),
+    ('ATTRSUP', _('attributive superlative')),
+    ('PREDPOS', _('predicative positive')),
+    ('PREDCOMP', _('predicative comparative')),
+    ('PREDSUP', _('predicative superlative')),
 )
 
 GRADE_CHOICES = (
-	('POS', _('positive')),
-	('COMP', _('comparative')),
-	('SUPERL', _('superlative')),
+    ('POS', _('positive')),
+    ('COMP', _('comparative')),
+    ('SUPERL', _('superlative')),
 )
 
 NUM_CONTEXT_CHOICES = (
-	('NUM-ATTR', _('attributive')),
-	('NUM-NOM-PL', _('plural')),
-	('NUM-ACC', _('accusative')),
+    ('NUM-ATTR', _('attributive')),
+    ('NUM-NOM-PL', _('plural')),
+    ('NUM-ACC', _('accusative')),
 #	('NUM-ILL', _('illative')),
-	('NUM-LOC', _('locative')),
+    ('NUM-LOC', _('locative')),
 #	('NUM-COM', _('comitative')),
-	('COLL-NUM', _('collective')),
-	('ORD-NUM', _('ordinals')),
+    ('COLL-NUM', _('collective')),
+    ('ORD-NUM', _('ordinals')),
 )
 
 NUM_BARE_CHOICES = (
-	('N-PL', _('plural')),
-	('N-ACC', _('accusative')),
+    ('N-PL', _('plural')),
+    ('N-ACC', _('accusative')),
 #	('N-ILL', _('illative')),
-	('N-LOC', _('locative')),
+    ('N-LOC', _('locative')),
 #	('N-COM', _('comitative')),
 )
 
 NUMERAL_QUESTION_ANSWER = {
-	# gametype			question		answer
+    # gametype			question		answer
 #	'N-ESS': [('Num+NumberN+Nom', 'Num+Ess')],
 #	'N-LOC': [('Num+NumberN+Nom', 'Num+NumberN+Loc')],
 #	'N-ILL': [('Num+NumberN+Nom', 'Num+NumberN+Ill')],
@@ -238,8 +238,8 @@ NUMERAL_QUESTION_ANSWER = {
 NUMERAL_FILTER_DEFINITION = ['stem', 'source']
 
 NUM_LEVEL_CHOICES = (
-	('1', _('First level')),
-	('2', _('Second level')),
+    ('1', _('First level')),
+    ('2', _('Second level')),
 )
 
 NUM_TYPE_CHOICES = (
@@ -249,21 +249,21 @@ NUM_TYPE_CHOICES = (
 )
 
 VTYPE_CHOICES = (
-	('PRS', _('present')),
-	('PRT', _('past')),
+    ('PRS', _('present')),
+    ('PRT', _('past')),
 #	('FUT', _('future')),
 )
 
 TRANS_ANIM_CHOICES = (
-	('AI', _('AI')),
-	('TI', _('TI')),
-	('AI-TI', _('AI, TI')),
+    ('AI', _('AI')),
+    ('TI', _('TI')),
+    ('AI-TI', _('AI, TI')),
 #	('II', _('II')), #present V+II+Ind+Prs+3Sg, studentinput: V+II+Ind+Prt+3Sg
 )
 
 VERB_QUESTION_ANSWER = {
-	'V-AI-PRS': [('V+IA', 'V+AI+Ind+Prs+Person-Number')],
-	'V-AI-PRT': [('V+IA', 'V+AI+Ind+Prt+Person-Number')],
+    'V-AI-PRS': [('V+IA', 'V+AI+Ind+Prs+Person-Number')],
+    'V-AI-PRT': [('V+IA', 'V+AI+Ind+Prt+Person-Number')],
 #	'V-AI-FUT': [('V+IA', 'V+AI+Ind+Fut+Person-Number')],
 #	'PRS': [('V+Inf', 'V+Ind+Prs+Person-Number')],
 #	'PRT': [('V+Inf', 'V+Ind+Prt+Person-Number')],
@@ -311,99 +311,99 @@ V_TYPE_FILTER_OPTIONS = {
 }
 
 TRANS_ANIM_CONTEXT_CHOICES = (
-	('AI', _('AI')),
-	('TI', _('TI')),
-	('TA', _('TA')),
-	('II', _('II')),
+    ('AI', _('AI')),
+    ('TI', _('TI')),
+    ('TA', _('TA')),
+    ('II', _('II')),
 )
 
 V_DEFINITENESS = (
-	('', _('')),
-	('Def', _('definite')),
-	('Int', _('intentional')),
+    ('', _('')),
+    ('Def', _('definite')),
+    ('Int', _('intentional')),
 )
 
 V_MODE_CONTEXT_CHOICES = (
-	('Ind', _('Independent')),
-	('Cnj', _('Conjunct')),
+    ('Ind', _('Independent')),
+    ('Cnj', _('Conjunct')),
 )
 
 V_TENSE_CONTEXT_CHOICES = (
-	('Prs', _('present')),
-	('Prt', _('past')),
-	('Fut+Def', _('future definite')),
-	('Fut+Int', _('future intentional')),
+    ('Prs', _('present')),
+    ('Prt', _('past')),
+    ('Fut+Def', _('future definite')),
+    ('Fut+Int', _('future intentional')),
 )
 
 VTYPE_CONTEXT_CHOICES = (
-	('V-AI-PRS', _('present (AI)')),
+    ('V-AI-PRS', _('present (AI)')),
     ('V-II-PRS', _('present (II)')),
-	('V-TA-PRS', _('present (TA)')),
-	('V-TA-PRT', _('past (TA)')),
-	('V-TA-FUT-DEF', _('future definite (TA)')),
-	('V-TA-FUT-INT', _('future intentional (TA)')),
+    ('V-TA-PRS', _('present (TA)')),
+    ('V-TA-PRT', _('past (TA)')),
+    ('V-TA-FUT-DEF', _('future definite (TA)')),
+    ('V-TA-FUT-INT', _('future intentional (TA)')),
 
-	('V-TI-PRS', _('present (TI)')),
-	('V-TI-PRT', _('past (TI)')),
-	('V-TI-FUT-DEF', _('future definite (TI)')),
-	('V-TI-FUT-INT', _('future intentional (TI)')),
+    ('V-TI-PRS', _('present (TI)')),
+    ('V-TI-PRT', _('past (TI)')),
+    ('V-TI-FUT-DEF', _('future definite (TI)')),
+    ('V-TI-FUT-INT', _('future intentional (TI)')),
 
-	('V-AI-PRT', _('past (AI)')),
-	('V-AI-FUT-DEF', _('future definite (AI)')),
-	('V-AI-FUT-INT', _('future intentional (AI)')),
+    ('V-AI-PRT', _('past (AI)')),
+    ('V-AI-FUT-DEF', _('future definite (AI)')),
+    ('V-AI-FUT-INT', _('future intentional (AI)')),
 
-	('V-AI-CNJ-PRS', _('conjunct present (AI)')),
-	('V-AI-CNJ-PRT', _('conjunct past (AI)')),
-	('V-TI-CNJ-PRT', _('conjunct past (TI)')),
-	('V-TA-CNJ-PRS', _('conjunct present (TA)')),
-	('V-TA-CNJ-PRT', _('conjunct preterite (TA)')),
-	('V-TI-CNJ-FUT-INT', _('conjunct future intentional (TI)')),
-	('V-TA-CNJ-FUT-INT', _('conjunct future intentional (TA)')),
-	('V-AI-CNJ-FUT-INT', _('conjunct future intentional (AI)')),
+    ('V-AI-CNJ-PRS', _('conjunct present (AI)')),
+    ('V-AI-CNJ-PRT', _('conjunct past (AI)')),
+    ('V-TI-CNJ-PRT', _('conjunct past (TI)')),
+    ('V-TA-CNJ-PRS', _('conjunct present (TA)')),
+    ('V-TA-CNJ-PRT', _('conjunct preterite (TA)')),
+    ('V-TI-CNJ-FUT-INT', _('conjunct future intentional (TI)')),
+    ('V-TA-CNJ-FUT-INT', _('conjunct future intentional (TA)')),
+    ('V-AI-CNJ-FUT-INT', _('conjunct future intentional (AI)')),
 
 )
 
 LEVEL_CHOICES = (
-	('l1', _('Level 1')),
-	('l2', _('Level 1-2')),
-	('l3', _('Level 1-3')),
-	('all', _('All')),
+    ('l1', _('Level 1')),
+    ('l2', _('Level 1-2')),
+    ('l3', _('Level 1-3')),
+    ('all', _('All')),
 )
 
 
 POSSESSIVE_CHOICES = (
-	('N-PX-GROUP1', _('Kin')),
-	('N-PX-GROUP2', _('Body')),
-	('N-PX-GROUP3', _('All')),
+    ('N-PX-GROUP1', _('Kin')),
+    ('N-PX-GROUP2', _('Body')),
+    ('N-PX-GROUP3', _('All')),
 )
 
 POSSESSIVE_NUMBER_CHOICES = (
-	('N-SG', _('Singular')),
+    ('N-SG', _('Singular')),
 #	('N-PL', _('Plural')),
 )
 
 POSSESSIVE_CHOICE_SEMTYPES = dict((
-	('N-PX-GROUP1', ['KIN']), # and MORFAPOSS
-	('N-PX-GROUP2', ['BODY']), # and MORFAPOSS
-	('N-PX-GROUP3', ['MORFAPOSS']),
+    ('N-PX-GROUP1', ['KIN']), # and MORFAPOSS
+    ('N-PX-GROUP2', ['BODY']), # and MORFAPOSS
+    ('N-PX-GROUP3', ['MORFAPOSS']),
 ))
 
 POSSESSIVE_GROUP1_CASE = (
-	('N-2SG', _('your (Sg)')),
-	('N-3SG', _('his/her')),
-	#('N-4SG', _('obviative')),
+    ('N-2SG', _('your (Sg)')),
+    ('N-3SG', _('his/her')),
+    #('N-4SG', _('obviative')),
 )
 
 POSSESSIVE_GROUP2_CASE = (
-	('N-2SG', _('your (Sg)')),
-	('N-3SG', _('his/her')),
-	#('N-4SG', _('obviative')),
+    ('N-2SG', _('your (Sg)')),
+    ('N-3SG', _('his/her')),
+    #('N-4SG', _('obviative')),
 )
 
 POSSESSIVE_GROUP3_CASE = (
-	('N-2SG', _('your (Sg)')),
-	('N-3SG', _('his/her')),
-	#('N-4SG', _('obviative')),
+    ('N-2SG', _('your (Sg)')),
+    ('N-3SG', _('his/her')),
+    #('N-4SG', _('obviative')),
 )
 
 #POSSESSIVE_CONTEXT_CHOICES = (
@@ -417,29 +417,29 @@ POSSESSIVE_GROUP3_CASE = (
 
 
 POSSESSIVE_QUESTION_ANSWER = {
-	'N-PX-GROUP1': [('N+Animacy+Sg+Px1Sg', 'N+Animacy+Sg+Possessive')],
-	'N-PX-GROUP2': [('N+Animacy+Sg+Px1Sg', 'N+Animacy+Sg+Possessive')],
-	'N-PX-GROUP3': [('N+Animacy+Sg+Px1Sg', 'N+Animacy+Sg+Possessive')],
+    'N-PX-GROUP1': [('N+Animacy+Sg+Px1Sg', 'N+Animacy+Sg+Possessive')],
+    'N-PX-GROUP2': [('N+Animacy+Sg+Px1Sg', 'N+Animacy+Sg+Possessive')],
+    'N-PX-GROUP3': [('N+Animacy+Sg+Px1Sg', 'N+Animacy+Sg+Possessive')],
 }
 
 POSSESSIVE_FILTER_DEFINITION = ['semtype']  # Heli
 
 
 DERIVATION_CHOICES = (
- 	('V-DER-PASS', _('passive derivation')),
- 	('A-DER-V', _('adjective->verb derivation')),
+     ('V-DER-PASS', _('passive derivation')),
+     ('A-DER-V', _('adjective->verb derivation')),
 )
 
 DERIVATION_QUESTION_ANSWER = {
-	'A-DER-V': [('A+Sg+Nom', 'A+Der/AV+V+Ind+Prs+Person-Number')],
+    'A-DER-V': [('A+Sg+Nom', 'A+Der/AV+V+Ind+Prs+Person-Number')],
 
 }
 
 DERIVATION_FILTER_DEFINITION = False
 
 DERIVATION_CHOICES_CONTEXT = (
- 	('A-DER-V', _('adjective->verb derivation')),
-	('DER-PASSV', _('passive derivation')),
+     ('A-DER-V', _('adjective->verb derivation')),
+    ('DER-PASSV', _('passive derivation')),
 )
 
 BOOK_CHOICES = (
@@ -467,79 +467,79 @@ CHAPTER_CHOICES = {
 }
 
 FREQUENCY_CHOICES = (
-	('rare', _('rare')),
-	('common', _('common')),
+    ('rare', _('rare')),
+    ('common', _('common')),
 )
 
 GEOGRAPHY_CHOICES = (
-	('world', _('world')),
+    ('world', _('world')),
 #	('sapmi', _('sapmi')), # was: sápmi, maybe characters with diacritics not allowed in drop-down menus
 #	('suopma', _('suopma')),
 )
 
 VASTA_LEVELS = (
-	('1', _('First level')),
-	('2', _('Second level')),
-	('3', _('Third level')),
+    ('1', _('First level')),
+    ('2', _('Second level')),
+    ('3', _('Third level')),
 )
 
 VASTAS_NR_OF_TASKWORDS = (
-	('2', _('2')),
-	('3', _('3')),
-	('4', _('4')),
+    ('2', _('2')),
+    ('3', _('3')),
+    ('4', _('4')),
 )
 
 
 TRANS_CHOICES = (
-	('crkeng', _('Cree to English')),
-	('engcrk', _('English to Cree')),
-	('crkfra', _('Cree to French')),
-	('fracrk', _('French to Cree')),
+    ('crkeng', _('Cree to English')),
+    ('engcrk', _('English to Cree')),
+    ('crkfra', _('Cree to French')),
+    ('fracrk', _('French to Cree')),
 )
 
 NUMLANGUAGE_CHOICES = (
-	('crk', _('Cree')),
+    ('crk', _('Cree')),
 )
 
 SEMTYPE_CHOICES = (
-	('KINSHIP-AND-PEOPLE', _('People & Kinship')),
-	('BODYPARTS-AND-CONDITIONS', _('The Human Body')),
-	('FOOD,-DRINKS,-DINNERWARE,-AND-COOKING', _('In the Kitchen')),
-	('ANIMALS', _('Animals')),
-	('MISCELLANEOUS', _('Miscellaneous')),
-	('HOME,-CLOTHING-AND-WORK', _('Home, Clothing & Work')),
-	('NATURE-AND-WEATHER', _('Nature & Weather')),
-	('TIME,-COUNTING,-MONEY,-AND-DATES', _('Time, Counting, Money & Dates')),
-	('DESCRIPTIONS', _('Descriptions')),
-	('EXPRESSIONS-AND-QUESTIONS', _('Expressions & Questions')),
-	('BASIC-CONVERSATION',_('Basic Conversation')),
-	('TRANSPORTATION-AND-PLACES',_('Transportation & Places')),
-	('ACTIVITIES',_('Activities')),
-	('all', _('All')),
+    ('KINSHIP-AND-PEOPLE', _('People & Kinship')),
+    ('BODYPARTS-AND-CONDITIONS', _('The Human Body')),
+    ('FOOD,-DRINKS,-DINNERWARE,-AND-COOKING', _('In the Kitchen')),
+    ('ANIMALS', _('Animals')),
+    ('MISCELLANEOUS', _('Miscellaneous')),
+    ('HOME,-CLOTHING-AND-WORK', _('Home, Clothing & Work')),
+    ('NATURE-AND-WEATHER', _('Nature & Weather')),
+    ('TIME,-COUNTING,-MONEY,-AND-DATES', _('Time, Counting, Money & Dates')),
+    ('DESCRIPTIONS', _('Descriptions')),
+    ('EXPRESSIONS-AND-QUESTIONS', _('Expressions & Questions')),
+    ('BASIC-CONVERSATION',_('Basic Conversation')),
+    ('TRANSPORTATION-AND-PLACES',_('Transportation & Places')),
+    ('ACTIVITIES',_('Activities')),
+    ('all', _('All')),
 )
 
 
 NUM_CHOICES = (
-	('10', _('0-10')),
-	('20', _('0-20')),
-	('100', _('0-100')),
-	('1000', _('0-1000')),
+    ('10', _('0-10')),
+    ('20', _('0-20')),
+    ('100', _('0-100')),
+    ('1000', _('0-1000')),
 #	('ALL', _('all')),
 )
 
 NUMGAME_CHOICES = (
-	('string', _('Word to numeral')),
-	('numeral', _('Numeral to word')),
+    ('string', _('Word to numeral')),
+    ('numeral', _('Numeral to word')),
 )
 
 NUMGAME_CHOICES_ALT = (
-	('string', _('Cree to English')),
-	('numeral', _('English to Cree')),
+    ('string', _('Cree to English')),
+    ('numeral', _('English to Cree')),
 )
 
 NUMGAME_CHOICES_PL = (
-	('string', _('Words to numerals')),
-	('numeral', _('Numerals to words')),
+    ('string', _('Words to numerals')),
+    ('numeral', _('Numerals to words')),
 )
 
 # These are not actually used in Forms, but used as a way to sneak these
@@ -547,29 +547,29 @@ NUMGAME_CHOICES_PL = (
 # form.wordclass without altering code here
 
 VERB_CLASSES = (
-	('I', _('I')),
-	('II', _('II')),
-	('III', _('III')),
-	('IV', _('IV')),
-	('V', _('V')),
-	('VI', _('VI')),
-	('Odd', _('Odd')),
+    ('I', _('I')),
+    ('II', _('II')),
+    ('III', _('III')),
+    ('IV', _('IV')),
+    ('V', _('V')),
+    ('VI', _('VI')),
+    ('Odd', _('Odd')),
 )
 
 KLOKKA_CHOICES = (
-	('kl1', _('easy')),
-	('kl2', _('medium')),
-	('kl3', _('hard')),
+    ('kl1', _('easy')),
+    ('kl2', _('medium')),
+    ('kl3', _('hard')),
 )
 
 DIALOGUE_CHOICES = (
-	('firstmeeting', _('Firstmeeting')),
-	('firstmeeting_boy', _('Firstmeeting boy')),
-	('firstmeeting_girl', _('Firstmeeting girl')),
-	('firstmeeting_man', _('Firstmeeting man')),
-	('visit', _('Visit')),
-	('grocery', _('Grocery')),
-	('shopadj', _('Shopadj')),
+    ('firstmeeting', _('Firstmeeting')),
+    ('firstmeeting_boy', _('Firstmeeting boy')),
+    ('firstmeeting_girl', _('Firstmeeting girl')),
+    ('firstmeeting_man', _('Firstmeeting man')),
+    ('visit', _('Visit')),
+    ('grocery', _('Grocery')),
+    ('shopadj', _('Shopadj')),
 )
 
 #BOOK_CHOICES = tuple(
@@ -588,57 +588,57 @@ DIALOGUE_CHOICES = (
 # )
 
 ALL_CHOICES = [
-	ADJCASE_CHOICES,
-	ADJEX_CHOICES,
-	ADJ_CONTEXT_CHOICES,
-	BOOK_CHOICES,
-	CASE_CHOICES,
-	CASE_CHOICES_PRONOUN,
-	CASE_CONTEXT_CHOICES,
-	DIALOGUE_CHOICES,
-	FREQUENCY_CHOICES,
-	GEOGRAPHY_CHOICES,
-	GRADE_CHOICES,
-	KLOKKA_CHOICES,
-	LEVEL_CHOICES,
-	NUMGAME_CHOICES,
-	NUMGAME_CHOICES_PL,
-	NUMLANGUAGE_CHOICES,
-	NUM_BARE_CHOICES,
-	NUM_CHOICES,
-	NUM_CONTEXT_CHOICES,
-	NUM_LEVEL_CHOICES,
-	NUM_TYPE_CHOICES,
-	POS_CHOICES,
-	PRONOUN_SUBCLASSES,
-	PRON_CONTEXT_CHOICES,
-	RECIP_REFL_CHOICES,
-	SEMTYPE_CHOICES,
-	# SYLLABLE_VALUES,
-	TRANS_CHOICES,
-	VASTA_LEVELS,
-	VASTAS_NR_OF_TASKWORDS,
-	VERB_CLASSES,
-	VTYPE_CHOICES,
-	VTYPE_CONTEXT_CHOICES]
+    ADJCASE_CHOICES,
+    ADJEX_CHOICES,
+    ADJ_CONTEXT_CHOICES,
+    BOOK_CHOICES,
+    CASE_CHOICES,
+    CASE_CHOICES_PRONOUN,
+    CASE_CONTEXT_CHOICES,
+    DIALOGUE_CHOICES,
+    FREQUENCY_CHOICES,
+    GEOGRAPHY_CHOICES,
+    GRADE_CHOICES,
+    KLOKKA_CHOICES,
+    LEVEL_CHOICES,
+    NUMGAME_CHOICES,
+    NUMGAME_CHOICES_PL,
+    NUMLANGUAGE_CHOICES,
+    NUM_BARE_CHOICES,
+    NUM_CHOICES,
+    NUM_CONTEXT_CHOICES,
+    NUM_LEVEL_CHOICES,
+    NUM_TYPE_CHOICES,
+    POS_CHOICES,
+    PRONOUN_SUBCLASSES,
+    PRON_CONTEXT_CHOICES,
+    RECIP_REFL_CHOICES,
+    SEMTYPE_CHOICES,
+    # SYLLABLE_VALUES,
+    TRANS_CHOICES,
+    VASTA_LEVELS,
+    VASTAS_NR_OF_TASKWORDS,
+    VERB_CLASSES,
+    VTYPE_CHOICES,
+    VTYPE_CONTEXT_CHOICES]
 
 
 GAME_TYPE_DEFINITIONS = {
-	'A': ADJECTIVE_QUESTION_ANSWER,
-	'Der': DERIVATION_QUESTION_ANSWER,
-	'N': NOUN_QUESTION_ANSWER,
-	'Num': NUMERAL_QUESTION_ANSWER,
-	'Pron': PRONOUN_QUESTION_ANSWER,
-	'V': VERB_QUESTION_ANSWER,
+    'A': ADJECTIVE_QUESTION_ANSWER,
+    'Der': DERIVATION_QUESTION_ANSWER,
+    'N': NOUN_QUESTION_ANSWER,
+    'Num': NUMERAL_QUESTION_ANSWER,
+    'Pron': PRONOUN_QUESTION_ANSWER,
+    'V': VERB_QUESTION_ANSWER,
 }
 
 GAME_FILTER_DEFINITIONS = {
-	'A': ADJECTIVE_FILTER_DEFINITION,
-	'Der': DERIVATION_FILTER_DEFINITION,
-	'N': NOUN_FILTER_DEFINITION,
-	'Num': NUMERAL_FILTER_DEFINITION,
-	'Pron': PRONOUN_FILTER_DEFINITION,
-	'V': VERB_FILTER_DEFINITION,
+    'A': ADJECTIVE_FILTER_DEFINITION,
+    'Der': DERIVATION_FILTER_DEFINITION,
+    'N': NOUN_FILTER_DEFINITION,
+    'Num': NUMERAL_FILTER_DEFINITION,
+    'Pron': PRONOUN_FILTER_DEFINITION,
+    'V': VERB_FILTER_DEFINITION,
 }
 
 # #
@@ -654,174 +654,174 @@ infinitives_sub = settings.INFINITIVE_SUBTRACT
 infinitives_add = settings.INFINITIVE_ADD
 
 def relax(strict):
-	"""Returns a list of relaxed possibilities, making changes by relax_pairs.
+    """Returns a list of relaxed possibilities, making changes by relax_pairs.
 
-		Many possibilities are generated in the event that users are
-		inconsistent in terms of substituting one letter but not substituting
-		another, however, *all* possibilities are not generated.
+        Many possibilities are generated in the event that users are
+        inconsistent in terms of substituting one letter but not substituting
+        another, however, *all* possibilities are not generated.
 
-		E.g., *ryøjnesjäjja is accepted for ryöjnesjæjja
-				(user types ø instead of ö consistently)
+        E.g., *ryøjnesjäjja is accepted for ryöjnesjæjja
+                (user types ø instead of ö consistently)
 
-				... but ...
+                ... but ...
 
-			  *töølledh is not accepted for töölledh
-				(user mixes the two in one word)
+              *töølledh is not accepted for töölledh
+                (user mixes the two in one word)
 
-		Similarly, directionality is included. <i> is accepted for <ï>, but
-		not vice versa.
+        Similarly, directionality is included. <i> is accepted for <ï>, but
+        not vice versa.
 
-		E.g.:  *ååjmedïdh is not accepted for ååjmedidh,
-				... but ...
-				*miele is accepted for mïele.
-	"""
-	from django.utils.encoding import force_text
+        E.g.:  *ååjmedïdh is not accepted for ååjmedidh,
+                ... but ...
+                *miele is accepted for mïele.
+    """
+    from django.utils.encoding import force_text
 
-	relaxed = strict
-	sub_str = lambda _string, _target, _sub: _string.replace(_target, _sub)
+    relaxed = strict
+    sub_str = lambda _string, _target, _sub: _string.replace(_target, _sub)
 
-	relax_pairs = {
-		# key: value
-		# key is accepted for value - have changed the order in the pairs because the key must be unique!
-		# TODO: evaluate these key:value pairs for Plain Cree, especially the last four.
-		# For sma we had two levels: 1. always accept øö äæ, 2. accept i for ï, but with a comment
-		# We should consider the same for the four last ones.
-	   'ā' : 'â', # a + combining macron U+0304
-	   'ē' : 'ê', # e + combining macron U+0304
-	   'ī' : 'î', # i + combining macron U+0304
-	   'ō' : 'ô', # o + combining macron U+0304
-	   'ā' : 'â', # precombined a macron
-	   'ē' : 'ê', # precombined e macron
-	   'ī' : 'î', # precombined i macron
-	   'ō' : 'ô', # precombined o macron
-	   'â' : 'â', # a + combining circumflex accent U+0302
-	   'ê' : 'ê', # e + combining circumflex accent U+0302
-	   'î' : 'î', # i + combining circumflex accent U+0302
-	   'ô' : 'ô', # o + combining circumflex accent U+0302
-	   'a' : 'â', # Accepting short for long ???
-	   'e' : 'ê', # Accepting short for long ???
-	   'i' : 'î', # Accepting short for long ???
-	   'o' : 'ô' # Accepting short for long ???
-	}
+    relax_pairs = {
+        # key: value
+        # key is accepted for value - have changed the order in the pairs because the key must be unique!
+        # TODO: evaluate these key:value pairs for Plain Cree, especially the last four.
+        # For sma we had two levels: 1. always accept øö äæ, 2. accept i for ï, but with a comment
+        # We should consider the same for the four last ones.
+       'ā' : 'â', # a + combining macron U+0304
+       'ē' : 'ê', # e + combining macron U+0304
+       'ī' : 'î', # i + combining macron U+0304
+       'ō' : 'ô', # o + combining macron U+0304
+       'ā' : 'â', # precombined a macron
+       'ē' : 'ê', # precombined e macron
+       'ī' : 'î', # precombined i macron
+       'ō' : 'ô', # precombined o macron
+       'â' : 'â', # a + combining circumflex accent U+0302
+       'ê' : 'ê', # e + combining circumflex accent U+0302
+       'î' : 'î', # i + combining circumflex accent U+0302
+       'ô' : 'ô', # o + combining circumflex accent U+0302
+       'a' : 'â', # Accepting short for long ???
+       'e' : 'ê', # Accepting short for long ???
+       'i' : 'î', # Accepting short for long ???
+       'o' : 'ô' # Accepting short for long ???
+    }
 
-	# Create an iterator. We want to generate as many possibilities as
-	# possible (very fast), so more relaxed options are available.
-	searches = list(relax_pairs.items())
-	# HU: Commented out the following complex code because it was causing an infinite loop or similar. And the generation of relaxed forms works fine without it. :)
-	#print "searches composed", searches
-	#permutations = itertools.chain(itertools.permutations(searches))
-	#print "permutations composed"
-	#perms_flat = sum([list(a) for a in permutations], [])
-	#print "list of permutations ",perms_flat
+    # Create an iterator. We want to generate as many possibilities as
+    # possible (very fast), so more relaxed options are available.
+    searches = list(relax_pairs.items())
+    # HU: Commented out the following complex code because it was causing an infinite loop or similar. And the generation of relaxed forms works fine without it. :)
+    #print "searches composed", searches
+    #permutations = itertools.chain(itertools.permutations(searches))
+    #print "permutations composed"
+    #perms_flat = sum([list(a) for a in permutations], [])
+    #print "list of permutations ",perms_flat
 
-	# Individual possibilities
-	relaxed_perms = [sub_str(relaxed, R, S) for S, R in searches]
-	#print relaxed_perms
+    # Individual possibilities
+    relaxed_perms = [sub_str(relaxed, R, S) for S, R in searches]
+    #print relaxed_perms
 
-	# Possibilities applied one by one
-	#for S, R in perms_flat:
-	#	relaxed = sub_str(relaxed, R, S)
-	#	relaxed_perms.append(relaxed)
+    # Possibilities applied one by one
+    #for S, R in perms_flat:
+    #	relaxed = sub_str(relaxed, R, S)
+    #	relaxed_perms.append(relaxed)
 
-	# Return list of unique possibilities
-	relaxed_perms = list(set(relaxed_perms))
-	relaxed_perms = [force_text(item) for item in relaxed_perms]
+    # Return list of unique possibilities
+    relaxed_perms = list(set(relaxed_perms))
+    relaxed_perms = [force_text(item) for item in relaxed_perms]
 
-	return relaxed_perms
+    return relaxed_perms
 
 def is_correct(self, game, example=None):
-	"""
-	Determines if the given answer is correct (for a bound form).
-	"""
-	self.game = game
-	self.example = example
+    """
+    Determines if the given answer is correct (for a bound form).
+    """
+    self.game = game
+    self.example = example
 
-	if not self.is_valid():
-		return False
+    if not self.is_valid():
+        return False
 
-	self.userans = self.cleaned_data['answer']
+    self.userans = self.cleaned_data['answer']
 
-	self.answer = self.userans.strip()
+    self.answer = self.userans.strip()
 
-	if not game == "numra":
-		self.answer = self.answer.rstrip('.!?,')
+    if not game == "numra":
+        self.answer = self.answer.rstrip('.!?,')
 
-	self.error = "error"
-	self.iscorrect = False
+    self.error = "error"
+    self.iscorrect = False
 
-	if self.answer in set(self.correct_anslist) or \
-			self.answer.lower() in set(self.correct_anslist) or \
-			self.answer.upper() in set(self.correct_anslist):
-		self.error = "correct"
-		self.iscorrect = True
+    if self.answer in set(self.correct_anslist) or \
+            self.answer.lower() in set(self.correct_anslist) or \
+            self.answer.upper() in set(self.correct_anslist):
+        self.error = "correct"
+        self.iscorrect = True
 
-	# Log information about user answers.
+    # Log information about user answers.
 
-	if self.cleaned_data['fake_answer'].strip():
-		self.iscorrect = False
+    if self.cleaned_data['fake_answer'].strip():
+        self.iscorrect = False
 
-	correctlist = ",".join([a for a in self.correct_anslist])
-	self.correctlist = correctlist
-	self.log_response()
+    correctlist = ",".join([a for a in self.correct_anslist])
+    self.correctlist = correctlist
+    self.log_response()
 
 def set_correct(self):
-	"""
-	Adds correct wordforms to the question form.
-	"""
-	if self.correct_ans:
-		self.correct_answers = self.correct_ans[:]
-		if type(self.correct_answers) == list:
-			self.correct_answers = ', '.join(self.correct_answers)
+    """
+    Adds correct wordforms to the question form.
+    """
+    if self.correct_ans:
+        self.correct_answers = self.correct_ans[:]
+        if type(self.correct_answers) == list:
+            self.correct_answers = ', '.join(self.correct_answers)
 
 
 
 def set_settings(self):
-	# self.levels = {
-	# 		'l1':  ['l1'],
-	# 		'l2':  ['l2', 'l1'],
-	# 		'l3':  ['l3', 'l2', 'l1'],
-	# 		'all': ['l3', 'l2', 'l1', 'all'],
-	# 	}
+    # self.levels = {
+    # 		'l1':  ['l1'],
+    # 		'l2':  ['l2', 'l1'],
+    # 		'l3':  ['l3', 'l2', 'l1'],
+    # 		'all': ['l3', 'l2', 'l1', 'all'],
+    # 	}
 
-	# Construct arrays for level choices.
+    # Construct arrays for level choices.
 
-	# Commenting this out because I don't see yet why this needs to be constructed this way.
-	# If it's done automatically so that more levels can be added, the code here will still need
-	# to be altered... So it seems easiest to just hard-code this for now.
+    # Commenting this out because I don't see yet why this needs to be constructed this way.
+    # If it's done automatically so that more levels can be added, the code here will still need
+    # to be altered... So it seems easiest to just hard-code this for now.
 
-	# self.levels = {}
-	# self.levels['all'] = []
-	# for b in LEVEL_CHOICES:
-	# 	if b[0] != 'all':
-	# 		self.levels[b[0]] = []
-	# 		self.levels['all'].append(b[0])
-	#
-	# 	self.levels[b[0]].append(b[0])
-	#
-	# self.levels['l2'].append('l1')
-	# for b in ['l1', 'l2']:
-	# 	self.levels['l3'].append(b)
+    # self.levels = {}
+    # self.levels['all'] = []
+    # for b in LEVEL_CHOICES:
+    # 	if b[0] != 'all':
+    # 		self.levels[b[0]] = []
+    # 		self.levels['all'].append(b[0])
+    #
+    # 	self.levels[b[0]].append(b[0])
+    #
+    # self.levels['l2'].append('l1')
+    # for b in ['l1', 'l2']:
+    # 	self.levels['l3'].append(b)
 
 
-	# Turning these into dictionary type means there's no need to iterate to
-	# get the first tuple item. Also makes it easier to read. And, there are
-	# no many-to-many relationships in these tuples of tuples
+    # Turning these into dictionary type means there's no need to iterate to
+    # get the first tuple item. Also makes it easier to read. And, there are
+    # no many-to-many relationships in these tuples of tuples
 
-	self.allsem = list(dict(SEMTYPE_CHOICES).keys())
-	self.allcase = list(dict(CASE_CHOICES).keys())
-	self.allcase_context = list(dict(CASE_CONTEXT_CHOICES).keys())
-	self.proncase_context = list(dict(PRON_CONTEXT_CHOICES).keys())
-	self.allvtype_context = list(dict(VTYPE_CONTEXT_CHOICES).keys())
-	self.alladjcase = list(dict(ADJCASE_CHOICES).keys())  # added by Heli
-	self.allgrade = list(dict(GRADE_CHOICES).keys()) # added by Heli
-	self.alladj_context = list(dict(ADJ_CONTEXT_CHOICES).keys())
-	self.allnum_context = list(dict(NUM_CONTEXT_CHOICES).keys())
-	self.allnum_bare = list(dict(NUM_BARE_CHOICES).keys())
-	self.allnum_type = list(dict(NUM_TYPE_CHOICES).keys()) # added by Heli
-	self.sources = list(dict(BOOK_CHOICES).keys())
-	self.geography = list(dict(GEOGRAPHY_CHOICES).keys())
-	self.frequency = list(dict(FREQUENCY_CHOICES).keys()) # added by Heli
-	self.allnoun_type = list(dict(NOUN_TYPE_CHOICES).keys()) # added by Pavel
+    self.allsem = list(dict(SEMTYPE_CHOICES).keys())
+    self.allcase = list(dict(CASE_CHOICES).keys())
+    self.allcase_context = list(dict(CASE_CONTEXT_CHOICES).keys())
+    self.proncase_context = list(dict(PRON_CONTEXT_CHOICES).keys())
+    self.allvtype_context = list(dict(VTYPE_CONTEXT_CHOICES).keys())
+    self.alladjcase = list(dict(ADJCASE_CHOICES).keys())  # added by Heli
+    self.allgrade = list(dict(GRADE_CHOICES).keys()) # added by Heli
+    self.alladj_context = list(dict(ADJ_CONTEXT_CHOICES).keys())
+    self.allnum_context = list(dict(NUM_CONTEXT_CHOICES).keys())
+    self.allnum_bare = list(dict(NUM_BARE_CHOICES).keys())
+    self.allnum_type = list(dict(NUM_TYPE_CHOICES).keys()) # added by Heli
+    self.sources = list(dict(BOOK_CHOICES).keys())
+    self.geography = list(dict(GEOGRAPHY_CHOICES).keys())
+    self.frequency = list(dict(FREQUENCY_CHOICES).keys()) # added by Heli
+    self.allnoun_type = list(dict(NOUN_TYPE_CHOICES).keys()) # added by Pavel
 
 
 # comment
@@ -830,144 +830,144 @@ def set_settings(self):
 
 
 def get_feedback(self, wordform, language):
-	FEEDBACK_TYPE
+    FEEDBACK_TYPE
 
-	language = switch_language_code(language)
+    language = switch_language_code(language)
 
-	feedbacks = wordform.feedback.filter(feedbacktext__language=language).order_by('feedbacktext__order')
+    feedbacks = wordform.feedback.filter(feedbacktext__language=language).order_by('feedbacktext__order')
 
-	feedback_messages = []
-	for feedback in feedbacks:
-		texts = feedback.feedbacktext_set.filter(language=language).order_by('order')
-		feedback_messages.extend([a.message for a in texts])
+    feedback_messages = []
+    for feedback in feedbacks:
+        texts = feedback.feedbacktext_set.filter(language=language).order_by('order')
+        feedback_messages.extend([a.message for a in texts])
 
-	message_list = []
-	if feedback_messages:
-		for text in feedback_messages:
-			text = text.replace('WORDFORM', '"%s"' % wordform.word.lemma)
-			message_list.append(text)
+    message_list = []
+    if feedback_messages:
+        for text in feedback_messages:
+            text = text.replace('WORDFORM', '"%s"' % wordform.word.lemma)
+            message_list.append(text)
 
-	self.feedback = ' \n '.join(list(message_list))
+    self.feedback = ' \n '.join(list(message_list))
 
-	### print wordform.fullform
-	### print wordform.tag.string
+    ### print wordform.fullform
+    ### print wordform.tag.string
 
-	### print 'stem:' + wordform.word.stem
-	### print 'gradation:' + wordform.word.gradation
-	### print 'diphthong:' + wordform.word.diphthong
-	### print 'rime:' + wordform.word.rime
-	### print 'soggi:' + wordform.word.soggi
-	### print 'attrsuffix:' + wordform.word.attrsuffix
-	### print 'compsuffix:' + wordform.word.compsuffix
+    ### print 'stem:' + wordform.word.stem
+    ### print 'gradation:' + wordform.word.gradation
+    ### print 'diphthong:' + wordform.word.diphthong
+    ### print 'rime:' + wordform.word.rime
+    ### print 'soggi:' + wordform.word.soggi
+    ### print 'attrsuffix:' + wordform.word.attrsuffix
+    ### print 'compsuffix:' + wordform.word.compsuffix
 
 
-	### print self.feedback
-	### print '--'
-	### # NOTE: debug
-	### # print wordform.id
-	### # print wordform.feedback.all()
-	### # print feedbacks
-	### # print self.feedback
-	### # print '\n'
+    ### print self.feedback
+    ### print '--'
+    ### # NOTE: debug
+    ### # print wordform.id
+    ### # print wordform.feedback.all()
+    ### # print feedbacks
+    ### # print self.feedback
+    ### # print '\n'
 
 def select_words(self, qwords, awords):
-	"""
-		Fetch words and tags from the database.
-	"""
-	from random import choice
-	selected_awords = {}
+    """
+        Fetch words and tags from the database.
+    """
+    from random import choice
+    selected_awords = {}
 
-	# print "zomgbbq"
-	# print awords.keys()
-	for syntax in list(awords.keys()):
-		word = None
-		tag = None
-		selected_awords[syntax] = {}
+    # print "zomgbbq"
+    # print awords.keys()
+    for syntax in list(awords.keys()):
+        word = None
+        tag = None
+        selected_awords[syntax] = {}
 
-		# Select answer words and fullforms for interface
-		if syntax in awords and len(awords[syntax]) > 0:
-			aword = choice(awords[syntax])
-			if 'tag' in aword:
-				selected_awords[syntax]['tag'] = aword['tag']
-			if 'task' in aword:
-				selected_awords[syntax]['task'] = aword['task']
-			if 'taskword' in aword:
-				selected_awords[syntax]['taskword'] = aword['taskword']
-			if 'qelement' in aword:
-				qelem = aword['qelement']
-				if type(qelem) is not int:  # to exclude MorfaC
-				    if qelem.task:  # words in VastaS answer frame where task="yes".
-				        selected_awords[syntax]['taskword'] = qelem.task
-			if 'word' in aword and aword['word']:
-				selected_awords[syntax]['word'] = aword['word']
-			else:
-				if 'qelement' in aword and 'tag' in selected_awords[syntax]:
-					# get form_list for a given qelement
+        # Select answer words and fullforms for interface
+        if syntax in awords and len(awords[syntax]) > 0:
+            aword = choice(awords[syntax])
+            if 'tag' in aword:
+                selected_awords[syntax]['tag'] = aword['tag']
+            if 'task' in aword:
+                selected_awords[syntax]['task'] = aword['task']
+            if 'taskword' in aword:
+                selected_awords[syntax]['taskword'] = aword['taskword']
+            if 'qelement' in aword:
+                qelem = aword['qelement']
+                if type(qelem) is not int:  # to exclude MorfaC
+                    if qelem.task:  # words in VastaS answer frame where task="yes".
+                        selected_awords[syntax]['taskword'] = qelem.task
+            if 'word' in aword and aword['word']:
+                selected_awords[syntax]['word'] = aword['word']
+            else:
+                if 'qelement' in aword and 'tag' in selected_awords[syntax]:
+                    # get form_list for a given qelement
 
-					wqelems = WordQElement.objects.filter(qelement__id=aword['qelement'])
+                    wqelems = WordQElement.objects.filter(qelement__id=aword['qelement'])
 
-					# Some WordQElements are associated with words that have no
-					# Forms, as such we have to randomly select one until we
-					# find an element with forms. This is faster than filtering
-					# by annotating and Count()
+                    # Some WordQElements are associated with words that have no
+                    # Forms, as such we have to randomly select one until we
+                    # find an element with forms. This is faster than filtering
+                    # by annotating and Count()
 
-					if wqelems.count() > 0:
+                    if wqelems.count() > 0:
 
-						form_list = None
-						i, max = 0, 50
+                        form_list = None
+                        i, max = 0, 50
 
-						while not form_list and i < max:
-							i += 1
+                        while not form_list and i < max:
+                            i += 1
 
-							wqel = wqelems.order_by('?')[0]
+                            wqel = wqelems.order_by('?')[0]
 
-							selected_awords[syntax]['word'] = wqel.word.id
+                            selected_awords[syntax]['word'] = wqel.word.id
 
-							form_list = wqel.word.form_set.filter(
-								tag__id = selected_awords[syntax]['tag']
-							)
+                            form_list = wqel.word.form_set.filter(
+                                tag__id = selected_awords[syntax]['tag']
+                            )
 
-					if form_list:
-						fullf = [f.fullform for f in form_list]
-						selected_awords[syntax]['fullform'] = fullf[:]
+                    if form_list:
+                        fullf = [f.fullform for f in form_list]
+                        selected_awords[syntax]['fullform'] = fullf[:]
 
-				if 'fullform' not in selected_awords[syntax]:
-					if 'fullform' in aword and len(aword['fullform']) > 0:
-						selected_awords[syntax]['fullform'] = aword['fullform'][:]
+                if 'fullform' not in selected_awords[syntax]:
+                    if 'fullform' in aword and len(aword['fullform']) > 0:
+                        selected_awords[syntax]['fullform'] = aword['fullform'][:]
 
-		if 'fullform' not in selected_awords[syntax]:
+        if 'fullform' not in selected_awords[syntax]:
 
-			if 'word' in selected_awords[syntax]\
-				and 'tag' in selected_awords[syntax]:
+            if 'word' in selected_awords[syntax]\
+                and 'tag' in selected_awords[syntax]:
 
-				form_list = Form.objects.filter(
-								word__id=selected_awords[syntax]['word'],
-								tag__id=selected_awords[syntax]['tag'],
-							)
+                form_list = Form.objects.filter(
+                                word__id=selected_awords[syntax]['word'],
+                                tag__id=selected_awords[syntax]['tag'],
+                            )
 
-				excl = form_list.exclude(dialects__dialect='NG')
+                excl = form_list.exclude(dialects__dialect='NG')
 
-				if excl.count() > 0:
-					form_list = excl
+                if excl.count() > 0:
+                    form_list = excl
 
-				form_list_dialects = form_list.filter(dialects__dialect=self.dialect)
+                form_list_dialects = form_list.filter(dialects__dialect=self.dialect)
 
-				if form_list_dialects.count() > 0:
-					form_list = form_list_dialects
+                if form_list_dialects.count() > 0:
+                    form_list = form_list_dialects
 
-				if form_list.count() > 0:
-					fullf = []
-					for f in form_list:
-						fullf.append(f.fullform)
-					selected_awords[syntax]['fullform'] = fullf[:]
+                if form_list.count() > 0:
+                    fullf = []
+                    for f in form_list:
+                        fullf.append(f.fullform)
+                    selected_awords[syntax]['fullform'] = fullf[:]
 
-		# make sure that there is something to print
-		if 'fullform' not in selected_awords[syntax]:
-			selected_awords[syntax]['fullform'] = []
-			selected_awords[syntax]['fullform'].append(syntax)
+        # make sure that there is something to print
+        if 'fullform' not in selected_awords[syntax]:
+            selected_awords[syntax]['fullform'] = []
+            selected_awords[syntax]['fullform'].append(syntax)
         print("selected awords: ")
         print(selected_awords)
-	return selected_awords
+    return selected_awords
 
 
 
@@ -980,151 +980,151 @@ def select_words(self, qwords, awords):
 
 
 class OahpaSettings(forms.Form):
-	"""
-		The metaform for game settings. Various games subclass from this form.
-	"""
-	set_settings = set_settings
+    """
+        The metaform for game settings. Various games subclass from this form.
+    """
+    set_settings = set_settings
 
-	def clean(self):
-		x = self.cleaned_data['bisyllabic']
-		print('clean: ', x)
-		return self.cleaned_data
+    def clean(self):
+        x = self.cleaned_data['bisyllabic']
+        print('clean: ', x)
+        return self.cleaned_data
 
-	def set_default_data(self):
-		self.default_data = {
-					'language' : 'crk',  # sme in univ_oahpa
-					# 'syll' : ['2syll'], # syllabicity not relevant, change this
-					# 'bisyllabic': 'on',
-					# 'trisyllabic': False,
-					# 'contracted': False,
-					'level' : 'all',
-					'lemmacount' : '2',
-					'case': 'N-PL',
-					'pos' : 'N',
-					'vtype' : 'PRS',
-					'adjcase' : 'NOM',
-					'number' : '',
-					'pron_type': 'Pers',
-					'proncase' : 'N-NOM', # Need a new default case here
-					'grade' : '',  # was: '' 'Pos' is not a good idea beacuse it is implicit in the database.
-					'case_context' : 'N-PL',
-					'trans_anim': 'AI',
-					'vtype_context' : 'V-AI-PRS',
+    def set_default_data(self):
+        self.default_data = {
+                    'language' : 'crk',  # sme in univ_oahpa
+                    # 'syll' : ['2syll'], # syllabicity not relevant, change this
+                    # 'bisyllabic': 'on',
+                    # 'trisyllabic': False,
+                    # 'contracted': False,
+                    'level' : 'all',
+                    'lemmacount' : '2',
+                    'case': 'N-PL',
+                    'pos' : 'N',
+                    'vtype' : 'PRS',
+                    'adjcase' : 'NOM',
+                    'number' : '',
+                    'pron_type': 'Pers',
+                    'proncase' : 'N-NOM', # Need a new default case here
+                    'grade' : '',  # was: '' 'Pos' is not a good idea beacuse it is implicit in the database.
+                    'case_context' : 'N-PL',
+                    'trans_anim': 'AI',
+                    'vtype_context' : 'V-AI-PRS',
 
-					'v_trans_anim_context': 'AI',
-					'v_mode_context': 'Ind',
-					'v_tense_context': 'Prs',
+                    'v_trans_anim_context': 'AI',
+                    'v_mode_context': 'Ind',
+                    'v_tense_context': 'Prs',
 
-					'pron_context' : 'P-DEM',
-					'num_context' : 'NUM-ATTR',
-					'num_level' : '1',
-					'num_type' : 'CARD',  # added by Heli
-					'derivation_type' : 'V-DER-PASS',
-					'derivation_type_context' : 'DER-PASSV', # was V-DER
-					'possessive_type': 'N-PX-GROUP1',
-					'possessive_number': 'N-SG',
-					'possessive_case': "N-2SG",
+                    'pron_context' : 'P-DEM',
+                    'num_context' : 'NUM-ATTR',
+                    'num_level' : '1',
+                    'num_type' : 'CARD',  # added by Heli
+                    'derivation_type' : 'V-DER-PASS',
+                    'derivation_type_context' : 'DER-PASSV', # was V-DER
+                    'possessive_type': 'N-PX-GROUP1',
+                    'possessive_number': 'N-SG',
+                    'possessive_case': "N-2SG",
 
-					'geography': 'world',
-					'frequency' : [],
-					'num_bare' : 'N-NOM', # Need a new default case here
-					'adj_context' : 'ATTRPOS',
-					'book' : 'all',
-					'noun_type': 'N-IN',
-					'singular_only' : True}
+                    'geography': 'world',
+                    'frequency' : [],
+                    'num_bare' : 'N-NOM', # Need a new default case here
+                    'adj_context' : 'ATTRPOS',
+                    'book' : 'all',
+                    'noun_type': 'N-IN',
+                    'singular_only' : True}
 
 
 
 
 class OahpaQuestion(forms.Form):
-	"""
-		Meta form for question/answer section.
-	"""
-	is_correct = is_correct
-	set_correct = set_correct
-	get_feedback = get_feedback
+    """
+        Meta form for question/answer section.
+    """
+    is_correct = is_correct
+    set_correct = set_correct
+    get_feedback = get_feedback
 
-	# Set answer widget. Can this JS actually be moved to templates?
-	KEYDOWN = 'javascript:return process(this, event, document.gameform);'
-	answer_attrs = {'size': 45} # , 'onkeydown': KEYDOWN}
-	answer = forms.CharField(max_length=45, widget=forms.TextInput(attrs=answer_attrs))
-	fake_answer = forms.CharField(max_length=45, widget=forms.TextInput(attrs=answer_attrs), required=False, initial="")
+    # Set answer widget. Can this JS actually be moved to templates?
+    KEYDOWN = 'javascript:return process(this, event, document.gameform);'
+    answer_attrs = {'size': 45} # , 'onkeydown': KEYDOWN}
+    answer = forms.CharField(max_length=45, widget=forms.TextInput(attrs=answer_attrs))
+    fake_answer = forms.CharField(max_length=45, widget=forms.TextInput(attrs=answer_attrs), required=False, initial="")
 
-	def log_response(self):
-		import datetime
+    def log_response(self):
+        import datetime
 
-		today = datetime.date.today()
-		# print ','.join(self.correct_anslist)
+        today = datetime.date.today()
+        # print ','.join(self.correct_anslist)
 
-		log, c = Log.objects.get_or_create(userinput=self.answer,
-											correct=','.join(self.correct_anslist),
-											iscorrect=self.iscorrect,
-											example=self.example,
-											game=self.game,
-											date=today)
+        log, c = Log.objects.get_or_create(userinput=self.answer,
+                                            correct=','.join(self.correct_anslist),
+                                            iscorrect=self.iscorrect,
+                                            example=self.example,
+                                            game=self.game,
+                                            date=today)
 
-	def __init__(self, *args, **kwargs):
-		correct_val = False
-		if 'correct_val' in kwargs:
-			correct_val = kwargs.get('correct_val')
-			kwargs.pop('correct_val')
+    def __init__(self, *args, **kwargs):
+        correct_val = False
+        if 'correct_val' in kwargs:
+            correct_val = kwargs.get('correct_val')
+            kwargs.pop('correct_val')
 
-		super(OahpaQuestion, self).__init__(*args, **kwargs)
+        super(OahpaQuestion, self).__init__(*args, **kwargs)
 
-		# set correct and error values
-		if correct_val == "correct":
-			self.error = "correct"
+        # set correct and error values
+        if correct_val == "correct":
+            self.error = "correct"
 
-	def init_variables(self, possible, userans_val, accepted_answers, preferred=False):
-		# Get lemma and feedback
-		self.feedback = ""
-		self.messages = []
-		if preferred:
-			self.correct_ans = preferred
-		else:
-			self.correct_ans = accepted_answers
-		self.correct_answers = ""
-		self.case = ""
-		self.userans = userans_val
-		self.correct_anslist = []
-		self.error = "empty"
-		self.problems = "error"
-		self.pron = ""
-		self.pron_imp = ""
-		self.object = False
-		self.PronPNBase = PRONOUNS_LIST
-		self.is_relaxed = ""
-		self.is_tcomm = ""
-		forms = []
-		relaxings = []
-		if hasattr(self, 'translang'): # commented out these two lines, because otherwise relax was not working in Morfa
-			if self.translang == 'crk': # caused a problem in Numra, as NumQuestion does not have the attribute translang
-				# Relax spellings.
+    def init_variables(self, possible, userans_val, accepted_answers, preferred=False):
+        # Get lemma and feedback
+        self.feedback = ""
+        self.messages = []
+        if preferred:
+            self.correct_ans = preferred
+        else:
+            self.correct_ans = accepted_answers
+        self.correct_answers = ""
+        self.case = ""
+        self.userans = userans_val
+        self.correct_anslist = []
+        self.error = "empty"
+        self.problems = "error"
+        self.pron = ""
+        self.pron_imp = ""
+        self.object = False
+        self.PronPNBase = PRONOUNS_LIST
+        self.is_relaxed = ""
+        self.is_tcomm = ""
+        forms = []
+        relaxings = []
+        if hasattr(self, 'translang'): # commented out these two lines, because otherwise relax was not working in Morfa
+            if self.translang == 'crk': # caused a problem in Numra, as NumQuestion does not have the attribute translang
+                # Relax spellings.
 
-				accepted_answers = [force_text(item) for item in accepted_answers]
-				forms = sum([relax(force_text(item)) for item in accepted_answers], [])
+                accepted_answers = [force_text(item) for item in accepted_answers]
+                forms = sum([relax(force_text(item)) for item in accepted_answers], [])
                                 #print "relaxed forms: ", forms
-				# need to subtract legal answers and make an only relaxed list.
-				relaxings = [item for item in forms if force_text(item) not in accepted_answers]
-		if (hasattr(self, 'gametype') and self.gametype == 'leksa'): # this applies only to Leksa, was: elif
-			# PI: commented out at this stage
-			# # add infinitives as possible answers
-			if self.word.pos == 'V':
-				if self.translang in infinitives_sub and infinitives_add:
-					infin_s = infinitives_sub[self.translang]
-				        infin_a = infinitives_add[self.translang]
-				        lemma = re.compile(infin_s)
-				        infins = [lemma.sub(infin_a, force_text(ax)) for ax in accepted_answers]
-				        accepted_answers = infins + accepted_answers
+                # need to subtract legal answers and make an only relaxed list.
+                relaxings = [item for item in forms if force_text(item) not in accepted_answers]
+        if (hasattr(self, 'gametype') and self.gametype == 'leksa'): # this applies only to Leksa, was: elif
+            # PI: commented out at this stage
+            # # add infinitives as possible answers
+            if self.word.pos == 'V':
+                if self.translang in infinitives_sub and infinitives_add:
+                    infin_s = infinitives_sub[self.translang]
+                    infin_a = infinitives_add[self.translang]
+                    lemma = re.compile(infin_s)
+                    infins = [lemma.sub(infin_a, force_text(ax)) for ax in accepted_answers]
+                    accepted_answers = infins + accepted_answers
 
-				#forms = accepted_answers  # This is wrong: the relaxed pairs are overwritten!
+                #forms = accepted_answers  # This is wrong: the relaxed pairs are overwritten!
 
-		self.correct_anslist = [force_text(item) for item in accepted_answers] + [force_text(f) for f in forms]
-		print("correct_anslist:",self.correct_anslist)
-		self.relaxings = relaxings
+        self.correct_anslist = [force_text(item) for item in accepted_answers] + [force_text(f) for f in forms]
+        print("correct_anslist:",self.correct_anslist)
+        self.relaxings = relaxings
 
-		#def generate_fields(self,answer_size, maxlength):
-		#	self.fields['answer'] = forms.CharField(max_length = maxlength, \
+        #def generate_fields(self,answer_size, maxlength):
+        #	self.fields['answer'] = forms.CharField(max_length = maxlength, \
          #                                       widget=forms.TextInput(\
           #  attrs={'size': answer_size, 'onkeydown':'javascript:return process(this, event,document.gameform);',}))  # copied from old-oahpa
 
@@ -1135,124 +1135,124 @@ class OahpaQuestion(forms.Form):
 # #
 
 class LeksaSettings(OahpaSettings):
-	semtype = forms.ChoiceField(initial='all', choices=SEMTYPE_CHOICES) # was: KINSHIP-AND-PEOPLE
-	transtype = forms.ChoiceField(choices=TRANS_CHOICES, widget=forms.Select)
-	# For placename quizz
-	#geography = forms.ChoiceField(initial='world', choices=GEOGRAPHY_CHOICES)
-	#frequency = forms.MultipleChoiceField(required=False, widget=CheckboxSelectMultiple, choices=FREQUENCY_CHOICES)  # added
-	#common = forms.BooleanField(required=False, initial='1')
-	#rare = forms.BooleanField(required=False,initial=0)
-	# sapmi = forms.BooleanField(required=False, initial='1')
-	# world = forms.BooleanField(required=False,initial=0)
-	# suopma = forms.BooleanField(required=False,initial=0)
-	source = forms.ChoiceField(initial='all', choices=BOOK_CHOICES)
-	# level = forms.ChoiceField(initial='all', choices=LEVEL_CHOICES, widget=forms.Select(attrs={'onchange':'javascript:return SetIndex(document.gameform.semtype,this.value);',}))
+    semtype = forms.ChoiceField(initial='all', choices=SEMTYPE_CHOICES) # was: KINSHIP-AND-PEOPLE
+    transtype = forms.ChoiceField(choices=TRANS_CHOICES, widget=forms.Select)
+    # For placename quizz
+    #geography = forms.ChoiceField(initial='world', choices=GEOGRAPHY_CHOICES)
+    #frequency = forms.MultipleChoiceField(required=False, widget=CheckboxSelectMultiple, choices=FREQUENCY_CHOICES)  # added
+    #common = forms.BooleanField(required=False, initial='1')
+    #rare = forms.BooleanField(required=False,initial=0)
+    # sapmi = forms.BooleanField(required=False, initial='1')
+    # world = forms.BooleanField(required=False,initial=0)
+    # suopma = forms.BooleanField(required=False,initial=0)
+    source = forms.ChoiceField(initial='all', choices=BOOK_CHOICES)
+    # level = forms.ChoiceField(initial='all', choices=LEVEL_CHOICES, widget=forms.Select(attrs={'onchange':'javascript:return SetIndex(document.gameform.semtype,this.value);',}))
 
-	default_data = {'gametype' : 'leksa', 'language' : 'crk', 'dialogue' : 'GG',
-			#'syll' : [],
-			#'bisyllabic': False,
-			#'trisyllabic': False,
-			#'bisyllabic': False,
-			#'contracted': False,
-			'source': 'all',
-			'semtype' : 'all', # was: 'KINSHIP-AND-PEOPLE',
-			#'geography' : 'world',
-			#'frequency' : ['common'] # added
-			}
+    default_data = {'gametype' : 'leksa', 'language' : 'crk', 'dialogue' : 'GG',
+            #'syll' : [],
+            #'bisyllabic': False,
+            #'trisyllabic': False,
+            #'bisyllabic': False,
+            #'contracted': False,
+            'source': 'all',
+            'semtype' : 'all', # was: 'KINSHIP-AND-PEOPLE',
+            #'geography' : 'world',
+            #'frequency' : ['common'] # added
+            }
 
 
-	# set default language pair from session language setting.
-	def __init__(self, *args, **kwargs):
-		if 'initial_transtype' in kwargs:
-			initial_transtype = kwargs.pop('initial_transtype')
-		else:
-			initial_transtype = False
+    # set default language pair from session language setting.
+    def __init__(self, *args, **kwargs):
+        if 'initial_transtype' in kwargs:
+            initial_transtype = kwargs.pop('initial_transtype')
+        else:
+            initial_transtype = False
 
-		self.set_settings()
-		super(LeksaSettings, self).__init__(*args, **kwargs)
+        self.set_settings()
+        super(LeksaSettings, self).__init__(*args, **kwargs)
 
-		if initial_transtype:
-			self.fields['transtype'].initial = initial_transtype
-			self.default_data['transtype'] = initial_transtype
+        if initial_transtype:
+            self.fields['transtype'].initial = initial_transtype
+            self.default_data['transtype'] = initial_transtype
 
 
 class LeksaQuestion(OahpaQuestion):
-	"""
-	Questions for word quizz
-	"""
+    """
+    Questions for word quizz
+    """
 
-	def __init__(self, tcomms, stat_pref, preferred, possible, transtype, word, correct, translations, question, userans_val, correct_val, *args, **kwargs):
-		lemma_widget = forms.HiddenInput(attrs={'value' : word.id})
-		self.translang = transtype[-3::]
-		self.sourcelang = transtype[0:3]
-		self.word = word
-		self.gametype = 'leksa'
-		self.animacy = word.animacy # Added for Cree, in order to color the animate nouns. Thanks to this assigment operation the template has access to the animacy information.
-		self.trans_anim = word.trans_anim
-		self.audio = word.audio # pronounciation
-		kwargs['correct_val'] = correct_val
-		super(LeksaQuestion, self).__init__(*args, **kwargs)
+    def __init__(self, tcomms, stat_pref, preferred, possible, transtype, word, correct, translations, question, userans_val, correct_val, *args, **kwargs):
+        lemma_widget = forms.HiddenInput(attrs={'value' : word.id})
+        self.translang = transtype[-3::]
+        self.sourcelang = transtype[0:3]
+        self.word = word
+        self.gametype = 'leksa'
+        self.animacy = word.animacy # Added for Cree, in order to color the animate nouns. Thanks to this assigment operation the template has access to the animacy information.
+        self.trans_anim = word.trans_anim
+        self.audio = word.audio # pronounciation
+        kwargs['correct_val'] = correct_val
+        super(LeksaQuestion, self).__init__(*args, **kwargs)
 
-		self.tcomm = None
-		if tcomms:
-			if userans_val in tcomms:
-				self.tcomm = True
-			else:
-				self.tcomm = None
+        self.tcomm = None
+        if tcomms:
+            if userans_val in tcomms:
+                self.tcomm = True
+            else:
+                self.tcomm = None
 
 
-		self.fields['word_id'] = forms.CharField(widget=lemma_widget, required=False)
+        self.fields['word_id'] = forms.CharField(widget=lemma_widget, required=False)
 
         # If we want stress marks in Leksa then we have to use lemma_stressed instead of lemma.
 
-		if type(word) == Word:
+        if type(word) == Word:
                     if self.sourcelang == 'rus':
                         self.lemma = word.lemma_stressed  # for Russian the words will be presented with stress marks
                     else:
                         self.lemma = word.lemma # for other languages 'lemma_stressed' does not exist
-		else:
-			self.lemma = word.definition
+        else:
+            self.lemma = word.definition
 
-		#if word.pos.upper() == 'V':  # There is no infinitive in Cree!
-		#	if word.language in infinitives_sub and infinitives_add:
-		#		infin_s = infinitives_sub[word.language]
-		#		infin_a = infinitives_add[word.language]
+        #if word.pos.upper() == 'V':  # There is no infinitive in Cree!
+        #	if word.language in infinitives_sub and infinitives_add:
+        #		infin_s = infinitives_sub[word.language]
+        #		infin_a = infinitives_add[word.language]
 #
 #				lemma = re.compile(infin_s)
 #				lemmax = lemma.sub(infin_a, force_text(self.lemma))
 #				self.lemma = force_text(lemmax)
 
-		self.init_variables(possible=translations,
-							userans_val=userans_val,
-							accepted_answers=possible,
-							preferred=preferred)
+        self.init_variables(possible=translations,
+                            userans_val=userans_val,
+                            accepted_answers=possible,
+                            preferred=preferred)
 
-		self.is_correct("leksa", self.lemma)
-		# set correct and error values
-		if correct_val:
-			if correct_val == "correct":
-				self.error = "correct"
-			# always accept relaxed spelling
-			#if userans_val in self.relaxings:
-				self.is_relaxed = "relaxed"
-				self.strict = 'Strict form'
-			#else:
-			#	self.is_relaxed = ""
+        self.is_correct("leksa", self.lemma)
+        # set correct and error values
+        if correct_val:
+            if correct_val == "correct":
+                self.error = "correct"
+            # always accept relaxed spelling
+            #if userans_val in self.relaxings:
+                self.is_relaxed = "relaxed"
+                self.strict = 'Strict form'
+            #else:
+            #	self.is_relaxed = ""
 
-		if stat_pref:
-			self.correct_ans = stat_pref
+        if stat_pref:
+            self.correct_ans = stat_pref
 
-		# Displayed answer also needs infinitive marking - but NO infinitive in Cree!
-		# Needs to happen last because of stat_pref
-		#if word.pos.upper() == 'V':
-		#	if self.translang in infinitives_sub and infinitives_add:
-		#		infin_s = infinitives_sub[self.translang]
-		#		infin_a = infinitives_add[self.translang]
+        # Displayed answer also needs infinitive marking - but NO infinitive in Cree!
+        # Needs to happen last because of stat_pref
+        #if word.pos.upper() == 'V':
+        #	if self.translang in infinitives_sub and infinitives_add:
+        #		infin_s = infinitives_sub[self.translang]
+        #		infin_a = infinitives_add[self.translang]
 
-		#		lemma = re.compile(infin_s)
+        #		lemma = re.compile(infin_s)
 
-		#		self.correct_ans = [lemma.sub(infin_a, force_text(ax)) for ax in self.correct_ans]
-		#		self.correct_ans = [force_text(ax) for ax in self.correct_ans]
+        #		self.correct_ans = [lemma.sub(infin_a, force_text(ax)) for ax in self.correct_ans]
+        #		self.correct_ans = [force_text(ax) for ax in self.correct_ans]
 
 
 
@@ -1264,256 +1264,256 @@ class LeksaQuestion(OahpaQuestion):
 # #
 
 class MorfaSettings(OahpaSettings):
-	"""
-		A form for the settings part of the game form, e.g., the form used to
-		set case, stem and source books for quiz questions.
+    """
+        A form for the settings part of the game form, e.g., the form used to
+        set case, stem and source books for quiz questions.
 
-		This is a separate form from the one which validates questions and
-		answers.
+        This is a separate form from the one which validates questions and
+        answers.
 
-		PI: this is quite hardcoded (and it wasn't exactly
-		easy finding where the N-ILL default value in
-		$home/morfa/ came from, because instead of an
-		exception there was a relatively unhelpful 404 error.
-	"""
-	case = forms.ChoiceField(initial='N-PL', choices=CASE_CHOICES, widget=forms.Select)
-	pron_type = forms.ChoiceField(initial='PERS', choices=PRONOUN_SUBCLASSES, widget=forms.Select)
-	proncase = forms.ChoiceField(initial='N-NOM-PL', choices=CASE_CHOICES_PRONOUN, widget=forms.Select)
-	adjcase = forms.ChoiceField(initial='ATTR', choices=ADJCASE_CHOICES, widget=forms.Select)  # was ADJEX_CHOICES
-	vtype = forms.ChoiceField(initial='PRS', choices=VTYPE_CHOICES, widget=forms.Select)
-	trans_anim = forms.ChoiceField(initial='AI', choices=TRANS_ANIM_CHOICES, widget=forms.Select)
-	num_bare = forms.ChoiceField(initial='N-GEN', choices=NUM_BARE_CHOICES, widget=forms.Select)
-	num_level = forms.ChoiceField(initial='1', choices=NUM_LEVEL_CHOICES, widget=forms.Select)
-	num_type = forms.ChoiceField(initial='CARD',choices=NUM_TYPE_CHOICES, widget=forms.Select)
-	derivation_type = forms.ChoiceField(initial='V-DER-PASS', choices=DERIVATION_CHOICES, widget=forms.Select)
-	derivation_type_context = forms.ChoiceField(initial='DER-PASSV', choices=DERIVATION_CHOICES_CONTEXT, widget=forms.Select)
-	possessive_case = forms.ChoiceField(initial='N-2SG', choices=POSSESSIVE_GROUP1_CASE, widget=forms.Select, required=False)
-	possessive_type = forms.ChoiceField(initial='N-PX-GROUP1', choices=POSSESSIVE_CHOICES, widget=forms.Select)
-	possessive_number = forms.ChoiceField(initial='N-SG', choices=POSSESSIVE_NUMBER_CHOICES, widget=forms.Select)
-	num_context = forms.ChoiceField(initial='NUM-ATTR', choices=NUM_CONTEXT_CHOICES, widget=forms.Select)
-	case_context = forms.ChoiceField(initial='N-NOM-PL', choices=CASE_CONTEXT_CHOICES, widget=forms.Select)
-	adj_context = forms.ChoiceField(initial='ATTR', choices=ADJ_CONTEXT_CHOICES, widget=forms.Select)
-	vtype_context = forms.ChoiceField(initial='V-AI-PRS', choices=VTYPE_CONTEXT_CHOICES, widget=forms.Select)
+        PI: this is quite hardcoded (and it wasn't exactly
+        easy finding where the N-ILL default value in
+        $home/morfa/ came from, because instead of an
+        exception there was a relatively unhelpful 404 error.
+    """
+    case = forms.ChoiceField(initial='N-PL', choices=CASE_CHOICES, widget=forms.Select)
+    pron_type = forms.ChoiceField(initial='PERS', choices=PRONOUN_SUBCLASSES, widget=forms.Select)
+    proncase = forms.ChoiceField(initial='N-NOM-PL', choices=CASE_CHOICES_PRONOUN, widget=forms.Select)
+    adjcase = forms.ChoiceField(initial='ATTR', choices=ADJCASE_CHOICES, widget=forms.Select)  # was ADJEX_CHOICES
+    vtype = forms.ChoiceField(initial='PRS', choices=VTYPE_CHOICES, widget=forms.Select)
+    trans_anim = forms.ChoiceField(initial='AI', choices=TRANS_ANIM_CHOICES, widget=forms.Select)
+    num_bare = forms.ChoiceField(initial='N-GEN', choices=NUM_BARE_CHOICES, widget=forms.Select)
+    num_level = forms.ChoiceField(initial='1', choices=NUM_LEVEL_CHOICES, widget=forms.Select)
+    num_type = forms.ChoiceField(initial='CARD',choices=NUM_TYPE_CHOICES, widget=forms.Select)
+    derivation_type = forms.ChoiceField(initial='V-DER-PASS', choices=DERIVATION_CHOICES, widget=forms.Select)
+    derivation_type_context = forms.ChoiceField(initial='DER-PASSV', choices=DERIVATION_CHOICES_CONTEXT, widget=forms.Select)
+    possessive_case = forms.ChoiceField(initial='N-2SG', choices=POSSESSIVE_GROUP1_CASE, widget=forms.Select, required=False)
+    possessive_type = forms.ChoiceField(initial='N-PX-GROUP1', choices=POSSESSIVE_CHOICES, widget=forms.Select)
+    possessive_number = forms.ChoiceField(initial='N-SG', choices=POSSESSIVE_NUMBER_CHOICES, widget=forms.Select)
+    num_context = forms.ChoiceField(initial='NUM-ATTR', choices=NUM_CONTEXT_CHOICES, widget=forms.Select)
+    case_context = forms.ChoiceField(initial='N-NOM-PL', choices=CASE_CONTEXT_CHOICES, widget=forms.Select)
+    adj_context = forms.ChoiceField(initial='ATTR', choices=ADJ_CONTEXT_CHOICES, widget=forms.Select)
+    vtype_context = forms.ChoiceField(initial='V-AI-PRS', choices=VTYPE_CONTEXT_CHOICES, widget=forms.Select)
 
-	v_trans_anim_context = forms.ChoiceField(initial='AI', choices=TRANS_ANIM_CONTEXT_CHOICES, widget=forms.Select)
-	v_mode_context = forms.ChoiceField(initial='Ind', choices=V_MODE_CONTEXT_CHOICES, widget=forms.Select)
-	v_tense_context = forms.ChoiceField(initial='Prs', choices=V_TENSE_CONTEXT_CHOICES, widget=forms.Select)
+    v_trans_anim_context = forms.ChoiceField(initial='AI', choices=TRANS_ANIM_CONTEXT_CHOICES, widget=forms.Select)
+    v_mode_context = forms.ChoiceField(initial='Ind', choices=V_MODE_CONTEXT_CHOICES, widget=forms.Select)
+    v_tense_context = forms.ChoiceField(initial='Prs', choices=V_TENSE_CONTEXT_CHOICES, widget=forms.Select)
 
-	pron_context = forms.ChoiceField(initial='P-DEM', choices=PRON_CONTEXT_CHOICES, widget=forms.Select)
-	wordform_type = forms.ChoiceField(initial='', choices=WORDFORM_TYPE_CHOICES, widget=forms.Select)
-	book = forms.ChoiceField(initial='all', choices=BOOK_CHOICES, widget=forms.Select)
-	bisyllabic = forms.BooleanField(required=False, initial=True)
-	trisyllabic = forms.BooleanField(required=False, initial=False)
-	contracted = forms.BooleanField(required=False, initial=False)
-	grade = forms.ChoiceField(initial='POS', choices=GRADE_CHOICES, widget=forms.Select)
+    pron_context = forms.ChoiceField(initial='P-DEM', choices=PRON_CONTEXT_CHOICES, widget=forms.Select)
+    wordform_type = forms.ChoiceField(initial='', choices=WORDFORM_TYPE_CHOICES, widget=forms.Select)
+    book = forms.ChoiceField(initial='all', choices=BOOK_CHOICES, widget=forms.Select)
+    bisyllabic = forms.BooleanField(required=False, initial=True)
+    trisyllabic = forms.BooleanField(required=False, initial=False)
+    contracted = forms.BooleanField(required=False, initial=False)
+    grade = forms.ChoiceField(initial='POS', choices=GRADE_CHOICES, widget=forms.Select)
 
-	# PI added
-	noun_type = forms.ChoiceField(initial='N-MASC-INANIM', choices=NOUN_TYPE_CHOICES, widget=forms.Select)
-	# HU added
-	singular_only = forms.BooleanField(required=False, initial=True)
+    # PI added
+    noun_type = forms.ChoiceField(initial='N-MASC-INANIM', choices=NOUN_TYPE_CHOICES, widget=forms.Select)
+    # HU added
+    singular_only = forms.BooleanField(required=False, initial=True)
 
-	def __init__(self, *args, **kwargs):
-		self.set_settings()
-		self.set_default_data()
-		super(MorfaSettings, self).__init__(*args, **kwargs)
+    def __init__(self, *args, **kwargs):
+        self.set_settings()
+        self.set_default_data()
+        super(MorfaSettings, self).__init__(*args, **kwargs)
 
-		# If this is set, then the form has been posted by the user otherwise
-		# it hasn't
-		try:
-			post_data = args[0]
-		except:
-			post_data = False
+        # If this is set, then the form has been posted by the user otherwise
+        # it hasn't
+        try:
+            post_data = args[0]
+        except:
+            post_data = False
 
-		if post_data:
-			# Gen2 and Loc2 mostly exist for masculine nouns:
-			#if 'case' in post_data:
-			#	if post_data['case'] in ['Par', 'Loc']:
-			#	    self.settings['noun_type'] = "N-MASC-INANIM"
-			#	    self.fields['noun_type'] = 'N-MASC-INANIM'
-			# Use a restricted choice set for pronoun case for Refl and Recipr
-			if 'pron_type' in post_data:
-				if post_data['pron_type'].lower() in ['refl', 'recipr']:
-					self.fields['proncase'].choices = RECIP_REFL_CHOICES
-			if 'v_mode_context' in post_data:
-				if post_data['v_trans_anim_context'] == 'II':
-					self.fields['v_mode_context'].choices = [(a, b) for a, b in V_MODE_CONTEXT_CHOICES
-																	if a != 'Cnj']
-					self.fields['v_tense_context'].choices = [(a, b) for a, b in V_TENSE_CONTEXT_CHOICES
-																	if a == 'Prs']
-				if post_data['v_mode_context'] == 'Cnj':
-					self.fields['v_tense_context'].choices = [(a, b) for a, b in V_TENSE_CONTEXT_CHOICES
-																if a != 'Fut+Def']
+        if post_data:
+            # Gen2 and Loc2 mostly exist for masculine nouns:
+            #if 'case' in post_data:
+            #	if post_data['case'] in ['Par', 'Loc']:
+            #	    self.settings['noun_type'] = "N-MASC-INANIM"
+            #	    self.fields['noun_type'] = 'N-MASC-INANIM'
+            # Use a restricted choice set for pronoun case for Refl and Recipr
+            if 'pron_type' in post_data:
+                if post_data['pron_type'].lower() in ['refl', 'recipr']:
+                    self.fields['proncase'].choices = RECIP_REFL_CHOICES
+            if 'v_mode_context' in post_data:
+                if post_data['v_trans_anim_context'] == 'II':
+                    self.fields['v_mode_context'].choices = [(a, b) for a, b in V_MODE_CONTEXT_CHOICES
+                                                                    if a != 'Cnj']
+                    self.fields['v_tense_context'].choices = [(a, b) for a, b in V_TENSE_CONTEXT_CHOICES
+                                                                    if a == 'Prs']
+                if post_data['v_mode_context'] == 'Cnj':
+                    self.fields['v_tense_context'].choices = [(a, b) for a, b in V_TENSE_CONTEXT_CHOICES
+                                                                if a != 'Fut+Def']
 
 
 
 
 class MorfaQuestion(OahpaQuestion):
-	"""
-	Questions for morphology game.
-	"""
+    """
+    Questions for morphology game.
+    """
 
-	def __init__(self, word, tag, baseform, correct, accepted_answers,
-					answer_presentation, translations, question, dialect, language,
-					userans_val, correct_val, conneg, *args, **kwargs):
+    def __init__(self, word, tag, baseform, correct, accepted_answers,
+                    answer_presentation, translations, question, dialect, language,
+                    userans_val, correct_val, conneg, *args, **kwargs):
 
-		lemma_widget = forms.HiddenInput(attrs={'value': word.id})
-		tag_widget = forms.HiddenInput(attrs={'value': tag.id})
-		self.translang = 'crk'
-		self.gametype = 'morfa'
-		kwargs['correct_val'] = correct_val
-		super(MorfaQuestion, self).__init__(*args, **kwargs)
+        lemma_widget = forms.HiddenInput(attrs={'value': word.id})
+        tag_widget = forms.HiddenInput(attrs={'value': tag.id})
+        self.translang = 'crk'
+        self.gametype = 'morfa'
+        kwargs['correct_val'] = correct_val
+        super(MorfaQuestion, self).__init__(*args, **kwargs)
 
-		# initialize variables
-		self.init_variables(possible=[],
-							userans_val=userans_val,
-							accepted_answers=accepted_answers)
+        # initialize variables
+        self.init_variables(possible=[],
+                            userans_val=userans_val,
+                            accepted_answers=accepted_answers)
 
-		if tag.string.lower().find('conneg') > -1:
-			if conneg:
-				conneg_agr = conneg
-			else:
-				conneg_agr = choice(list(self.PronPNBase.keys()))
-		else:
-			conneg_agr = False
+        if tag.string.lower().find('conneg') > -1:
+            if conneg:
+                conneg_agr = conneg
+            else:
+                conneg_agr = choice(list(self.PronPNBase.keys()))
+        else:
+            conneg_agr = False
 
-		conneg_widget = forms.HiddenInput(attrs={'value': conneg_agr})
-		self.trans_anim = word.trans_anim
+        conneg_widget = forms.HiddenInput(attrs={'value': conneg_agr})
+        self.trans_anim = word.trans_anim
 
-		self.fields['word_id'] = forms.CharField(widget=lemma_widget, required=False)
-		self.fields['tag_id'] = forms.CharField(widget=tag_widget, required=False)
-		self.fields['conneg'] = forms.CharField(widget=conneg_widget, required=False)
+        self.fields['word_id'] = forms.CharField(widget=lemma_widget, required=False)
+        self.fields['tag_id'] = forms.CharField(widget=tag_widget, required=False)
+        self.fields['conneg'] = forms.CharField(widget=conneg_widget, required=False)
 
-		try:
-			self.lemma = baseform.fullform
-		except AttributeError:
-			self.lemma = baseform
+        try:
+            self.lemma = baseform.fullform
+        except AttributeError:
+            self.lemma = baseform
 
-		# self.wordclass = word.wordclass
-		# PI: seems to be only used for verbs at this point, so just commenting out
-		if not self.pron:
-			self.pron = False
+        # self.wordclass = word.wordclass
+        # PI: seems to be only used for verbs at this point, so just commenting out
+        if not self.pron:
+            self.pron = False
 
-		#print self.lemma, correct
-		#print baseform.tag, correct.tag
+        #print self.lemma, correct
+        #print baseform.tag, correct.tag
 
-		# hack for Diminutive which has questions presented in the form,
-		# and answers in nom
-		if correct.tag.string in ['N+AN+Sg', 'N+IN+Sg']:
-			q_form = word.form_set.filter(tag=tag)
-			if len(q_form) > 0:
-				self.get_feedback(q_form[0], language)
-		else:
-			# Retrieve feedback information
-			self.get_feedback(correct, language)
+        # hack for Diminutive which has questions presented in the form,
+        # and answers in nom
+        if correct.tag.string in ['N+AN+Sg', 'N+IN+Sg']:
+            q_form = word.form_set.filter(tag=tag)
+            if len(q_form) > 0:
+                self.get_feedback(q_form[0], language)
+        else:
+            # Retrieve feedback information
+            self.get_feedback(correct, language)
 
-		# Take only the first translation for the tooltip
-		if len(translations) > 0:
-			self.translations = translations[0]
+        # Take only the first translation for the tooltip
+        if len(translations) > 0:
+            self.translations = translations[0]
 
-		if tag.pos == "N":
-			self.case = tag.case
+        if tag.pos == "N":
+            self.case = tag.case
 
-		if tag.pos == 'Pron':
-			self.case = tag.case
+        if tag.pos == 'Pron':
+            self.case = tag.case
 
-		self.tag = tag.string
-		self.animacy = tag.animacy # added for crk, in order to display animate / inanimate nouns in different colors
+        self.tag = tag.string
+        self.animacy = tag.animacy # added for crk, in order to display animate / inanimate nouns in different colors
 
-		if tag.pos == "V":
-			# TODO: figure out word object here.
-			if not self.pron:
-				if tag.string.find("ConNeg") > -1:
-					# TODO: New choice for every refresh, fix!
-					pers = conneg_agr
-					pronoun = self.PronPNBase[pers]
-					neg_verb = NEGATIVE_VERB_PRES[pers]
+        if tag.pos == "V":
+            # TODO: figure out word object here.
+            if not self.pron:
+                if tag.string.find("ConNeg") > -1:
+                    # TODO: New choice for every refresh, fix!
+                    pers = conneg_agr
+                    pronoun = self.PronPNBase[pers]
+                    neg_verb = NEGATIVE_VERB_PRES[pers]
 
-					self.pron = '%s %s' % (pronoun, neg_verb)
-				elif tag.personnumber:
-					pronbase = self.PronPNBase[tag.personnumber]
-					pronoun = pronbase
-					self.pron = pronoun
+                    self.pron = '%s %s' % (pronoun, neg_verb)
+                elif tag.personnumber:
+                    pronbase = self.PronPNBase[tag.personnumber]
+                    pronoun = pronbase
+                    self.pron = pronoun
 
-					if self.pron and tag.mood == "Imprt":
-						self.pron_imp = "(" + self.pron + ")"
-						self.pron = ""
-					# TODO: conneg only in Prs
+                    if self.pron and tag.mood == "Imprt":
+                        self.pron_imp = "(" + self.pron + ")"
+                        self.pron = ""
+                    # TODO: conneg only in Prs
 
-			# Odne 'today', ikte 'yesterday'
-			if (tag.tense in ['Prs','Prt']) and (tag.mood == 'Ind'):
-				time = TENSE_PRESENTATION.get(tag.tense, False)
-				self.pron = '(%s) %s' % (pronoun, time) #' '.join([time, pronoun])
+            # Odne 'today', ikte 'yesterday'
+            if (tag.tense in ['Prs','Prt']) and (tag.mood == 'Ind'):
+                time = TENSE_PRESENTATION.get(tag.tense, False)
+                self.pron = '(%s) %s' % (pronoun, time) #' '.join([time, pronoun])
 
-			if ("+Der/Pass" in tag.string) and ("+V" in tag.string):
-				# Odne mun ___
-				# Ikte mun ___
-				# Ikte dat (okta) ___
+            if ("+Der/Pass" in tag.string) and ("+V" in tag.string):
+                # Odne mun ___
+                # Ikte mun ___
+                # Ikte dat (okta) ___
 
-				# Choose one if not set, if set then game is in progress, and
-				# do not choose another
-				pers = tag.personnumber
-				if not pers:
-					pers = conneg_agr
-				time = TENSE_PRESENTATION.get(tag.tense, False)
-				pronoun = PASSIVE_PRONOUNS_LIST[pers]
+                # Choose one if not set, if set then game is in progress, and
+                # do not choose another
+                pers = tag.personnumber
+                if not pers:
+                    pers = conneg_agr
+                time = TENSE_PRESENTATION.get(tag.tense, False)
+                pronoun = PASSIVE_PRONOUNS_LIST[pers]
 
-				number = ''
-				if pers in ['Sg3', 'Pl3']:
-					number = '(%s)' % DEMONSTRATIVE_PRESENTATION.get(tag.personnumber, False)
+                number = ''
+                if pers in ['Sg3', 'Pl3']:
+                    number = '(%s)' % DEMONSTRATIVE_PRESENTATION.get(tag.personnumber, False)
 
-				self.pron = ' '.join([time, pronoun, number])
+                self.pron = ' '.join([time, pronoun, number])
 
-			# All pres?
-			if tag.string.find("Der/AV") > -1:
-				self.pron = TENSE_PRESENTATION.get(tag.tense, False) + " " + self.pron
+            # All pres?
+            if tag.string.find("Der/AV") > -1:
+                self.pron = TENSE_PRESENTATION.get(tag.tense, False) + " " + self.pron
 
-			if word.object:
-				self.object = word.object
+            if word.object:
+                self.object = word.object
 
-		if tag.pos == "Pron":
-			# Various display alternations for pronouns.
+        if tag.pos == "Pron":
+            # Various display alternations for pronouns.
 
-			# Reciprocative:
-			# 	guhtet guoibmámet
-			# 	goabbat guoibmámet
+            # Reciprocative:
+            # 	guhtet guoibmámet
+            # 	goabbat guoibmámet
 
-			if tag.subclass == 'Recipr':
-				if tag.possessive.find('PxDu'):
-					px_no = 'Du'
-				elif tag.possessive.find('PxPl'):
-					px_no = 'Pl'
-				pronoun = RECIPROCATIVE_PRESENTATION.get(px_no, False)
-				if pronoun:
-					self.pron = pronoun
+            if tag.subclass == 'Recipr':
+                if tag.possessive.find('PxDu'):
+                    px_no = 'Du'
+                elif tag.possessive.find('PxPl'):
+                    px_no = 'Pl'
+                pronoun = RECIPROCATIVE_PRESENTATION.get(px_no, False)
+                if pronoun:
+                    self.pron = pronoun
 
-			# Demonstrative:
-			# 	dát okta
-			# 	dát máŋga
+            # Demonstrative:
+            # 	dát okta
+            # 	dát máŋga
 
-			if tag.subclass == 'Dem':
-				noun_pres = DEMONSTRATIVE_PRESENTATION.get(tag.number, False)
+            if tag.subclass == 'Dem':
+                noun_pres = DEMONSTRATIVE_PRESENTATION.get(tag.number, False)
 
-				if noun_pres:
-					self.lemma += ' (%s)' % force_text(noun_pres).encode('utf-8')
+                if noun_pres:
+                    self.lemma += ' (%s)' % force_text(noun_pres).encode('utf-8')
 
-		log_name = "morfa_%s" % tag.pos
-		try:
-			self.is_correct(log_name, self.lemma + "+" + self.tag)
-		except TypeError:
-			self.is_correct(log_name, self.lemma.lemma + "+" + self.tag)
+        log_name = "morfa_%s" % tag.pos
+        try:
+            self.is_correct(log_name, self.lemma + "+" + self.tag)
+        except TypeError:
+            self.is_correct(log_name, self.lemma.lemma + "+" + self.tag)
 
-		# set correct and error values
-		if correct_val:
-			if correct_val == "correct":
-				self.error="correct"
-			# relax
-			#if userans_val in self.relaxings: let's make the spelling always relaxed
-                self.is_relaxed = "relaxed"
-                self.strict = 'Strict form'
-			#else:
-			#	self.is_relaxed = ""
+        # set correct and error values
+        if correct_val:
+            if correct_val == "correct":
+                self.error="correct"
+            # relax
+            #if userans_val in self.relaxings: let's make the spelling always relaxed
+            self.is_relaxed = "relaxed"
+            self.strict = 'Strict form'
+            #else:
+            #	self.is_relaxed = ""
 
-		self.correct_ans = answer_presentation
+        self.correct_ans = answer_presentation
 # #
 #
 # Numra Forms
@@ -1522,117 +1522,117 @@ class MorfaQuestion(OahpaQuestion):
 
 
 class NumSettings(OahpaSettings):
-	maxnum = forms.ChoiceField(initial='10', choices=NUM_CHOICES, widget=forms.RadioSelect)
-	numgame = forms.ChoiceField(initial='numeral', choices=NUMGAME_CHOICES, widget=forms.RadioSelect)
-	#numlanguage = forms.ChoiceField(initial='sjd', choices=NUMLANGUAGE_CHOICES, widget=forms.RadioSelect)
-	# TODO: remove mandatory need to set default data, should be done through 'initial' field setting.
-	default_data = {'language' : 'crk', 'numlanguage' : 'crk', 'dialogue' : 'GG', 'maxnum' : '10', 'numgame': 'numeral'}
+    maxnum = forms.ChoiceField(initial='10', choices=NUM_CHOICES, widget=forms.RadioSelect)
+    numgame = forms.ChoiceField(initial='numeral', choices=NUMGAME_CHOICES, widget=forms.RadioSelect)
+    #numlanguage = forms.ChoiceField(initial='sjd', choices=NUMLANGUAGE_CHOICES, widget=forms.RadioSelect)
+    # TODO: remove mandatory need to set default data, should be done through 'initial' field setting.
+    default_data = {'language' : 'crk', 'numlanguage' : 'crk', 'dialogue' : 'GG', 'maxnum' : '10', 'numgame': 'numeral'}
 
-	def __init__(self, *args, **kwargs):
-		self.set_settings()
-		super(NumSettings, self).__init__(*args, **kwargs)
+    def __init__(self, *args, **kwargs):
+        self.set_settings()
+        super(NumSettings, self).__init__(*args, **kwargs)
 
 
 class NumQuestion(OahpaQuestion):
-	"""
-	Questions for numeral quizz
-	"""
-	game_log_name = 'numra'
+    """
+    Questions for numeral quizz
+    """
+    game_log_name = 'numra'
 
-	def answer_relax(self, answer):
-		""" Method for relaxing answers. Override if needed.
-		"""
+    def answer_relax(self, answer):
+        """ Method for relaxing answers. Override if needed.
+        """
 
-		return answer
+        return answer
 
-	def is_correct(self, game, example=None):
-		self.game = game
-		self.example = example
+    def is_correct(self, game, example=None):
+        self.game = game
+        self.example = example
 
-		if not self.is_valid():
-			return False
+        if not self.is_valid():
+            return False
 
-		self.userans = self.cleaned_data['answer']
-		self.answer = self.userans.strip()
+        self.userans = self.cleaned_data['answer']
+        self.answer = self.userans.strip()
 
-		self.error = "error"
-		self.iscorrect = False
+        self.error = "error"
+        self.iscorrect = False
 
-		correct_test, errs = self.game_obj.check_answer(self.question_str,
-													self.userans,
-													self.correct_anslist)
-		# print "bbq errors"
-		# print errs
-		if errs:
-			if 'messages' in errs:
-				ms = sum([m.get('message') for m in errs.get('messages')], [])
-				self.relaxing_note = ' '.join([m.get('title') + ' ' + m.get('description') for m in ms])
-				self.relaxings = self.relaxing_note
-				self.is_relaxed = True
-				self.error = "error"
-				# print self.feedback
-		if correct_test:
-			self.error = "correct"
-			self.iscorrect = True
-			# self.relaxings = errs
+        correct_test, errs = self.game_obj.check_answer(self.question_str,
+                                                    self.userans,
+                                                    self.correct_anslist)
+        # print "bbq errors"
+        # print errs
+        if errs:
+            if 'messages' in errs:
+                ms = sum([m.get('message') for m in errs.get('messages')], [])
+                self.relaxing_note = ' '.join([m.get('title') + ' ' + m.get('description') for m in ms])
+                self.relaxings = self.relaxing_note
+                self.is_relaxed = True
+                self.error = "error"
+                # print self.feedback
+        if correct_test:
+            self.error = "correct"
+            self.iscorrect = True
+            # self.relaxings = errs
 
-		self.correctlist = ",".join(list(set(self.correct_anslist)))
+        self.correctlist = ",".join(list(set(self.correct_anslist)))
 
-		self.log_response()
+        self.log_response()
 
 
-	def __init__(self, numeral, num_string, num_list, gametype, userans_val, correct_val, game, *args, **kwargs):
-		numeral_widget = forms.HiddenInput(attrs={'value' : numeral})
-		kwargs['correct_val'] = correct_val
-		self.userans_val = self.userans = userans_val
-		self.game_obj = game
+    def __init__(self, numeral, num_string, num_list, gametype, userans_val, correct_val, game, *args, **kwargs):
+        numeral_widget = forms.HiddenInput(attrs={'value' : numeral})
+        kwargs['correct_val'] = correct_val
+        self.userans_val = self.userans = userans_val
+        self.game_obj = game
 
-		if 'no_eval_correct' in kwargs:
-			no_eval_correct = kwargs.pop('no_eval_correct')
-		else:
-			no_eval_correct = False
+        if 'no_eval_correct' in kwargs:
+            no_eval_correct = kwargs.pop('no_eval_correct')
+        else:
+            no_eval_correct = False
 
-		super(NumQuestion, self).__init__(*args, **kwargs)
-		wforms = []
-		self.relaxings = []
-		self.gametype = gametype
-		self.translang = 'crk'
+        super(NumQuestion, self).__init__(*args, **kwargs)
+        wforms = []
+        self.relaxings = []
+        self.gametype = gametype
+        self.translang = 'crk'
 
-		# Initialize variables
-		if gametype == "string":
-			self.init_variables(force_text(numeral), userans_val, [ numeral ])
-			example = num_string
-			self.question_str = num_string
-		else:
-			self.init_variables(force_text(num_list[0]), userans_val, num_list)
-			wforms = sum([relax(force_text(item)) for item in num_list], [])
-			# need to subtract legal answers and make an only relaxed list.
-			self.relaxings = [item for item in wforms if item not in num_list]
-			example = numeral
-			self.question_str = numeral
+        # Initialize variables
+        if gametype == "string":
+            self.init_variables(force_text(numeral), userans_val, [ numeral ])
+            example = num_string
+            self.question_str = num_string
+        else:
+            self.init_variables(force_text(num_list[0]), userans_val, num_list)
+            wforms = sum([relax(force_text(item)) for item in num_list], [])
+            # need to subtract legal answers and make an only relaxed list.
+            self.relaxings = [item for item in wforms if item not in num_list]
+            example = numeral
+            self.question_str = numeral
 
-		self.correct_anslist = self.correct_anslist + [force_text(f) for f in wforms]
+        self.correct_anslist = self.correct_anslist + [force_text(f) for f in wforms]
 
-		self.fields['numeral_id'] = forms.CharField(widget=numeral_widget, required=False)
+        self.fields['numeral_id'] = forms.CharField(widget=numeral_widget, required=False)
 
-		if gametype == "string":
-			self.numstring = num_string
-		self.numeral = numeral
+        if gametype == "string":
+            self.numstring = num_string
+        self.numeral = numeral
 
-		# Correctness not evaluated here but in child class. Short fix
+        # Correctness not evaluated here but in child class. Short fix
 
-		if not no_eval_correct:
-			self.is_correct(self.game_log_name, example)
+        if not no_eval_correct:
+            self.is_correct(self.game_log_name, example)
 
-		if correct_val:
-			if correct_val == "correct":
-				self.error = "correct"
-			# relax
-			if userans_val in self.relaxings:
-				self.is_relaxed = "relaxed"
-				self.strict = 'Strict form'
-			else:
-				self.is_relaxed = ""
+        if correct_val:
+            if correct_val == "correct":
+                self.error = "correct"
+            # relax
+            if userans_val in self.relaxings:
+                self.is_relaxed = "relaxed"
+                self.strict = 'Strict form'
+            else:
+                self.is_relaxed = ""
 
 
 # #
@@ -1643,146 +1643,146 @@ class NumQuestion(OahpaQuestion):
 
 
 class KlokkaSettings(NumSettings):
-	numgame = forms.ChoiceField(initial='string', choices=NUMGAME_CHOICES_PL, widget=forms.RadioSelect)
-	gametype = forms.ChoiceField(initial='kl1', choices=KLOKKA_CHOICES, widget=forms.RadioSelect)
-	default_data = {'language' : 'crk', 'numlanguage' : 'crk', 'dialogue' : 'GG', 'gametype' : 'kl1', 'numgame': 'string'}
+    numgame = forms.ChoiceField(initial='string', choices=NUMGAME_CHOICES_PL, widget=forms.RadioSelect)
+    gametype = forms.ChoiceField(initial='kl1', choices=KLOKKA_CHOICES, widget=forms.RadioSelect)
+    default_data = {'language' : 'crk', 'numlanguage' : 'crk', 'dialogue' : 'GG', 'gametype' : 'kl1', 'numgame': 'string'}
 
-	def __init__(self, *args, **kwargs):
-		self.set_settings()
-		super(KlokkaSettings, self).__init__(*args, **kwargs)
+    def __init__(self, *args, **kwargs):
+        self.set_settings()
+        super(KlokkaSettings, self).__init__(*args, **kwargs)
 
 
 class KlokkaQuestion(NumQuestion):
-	"""
-	Questions for numeral quizz
-	"""
-	game_log_name = "klokka"
+    """
+    Questions for numeral quizz
+    """
+    game_log_name = "klokka"
 
-	def relax_military(self, number):
-		""" Change the presentation of numerals above 13 to their lower equivalents.
+    def relax_military(self, number):
+        """ Change the presentation of numerals above 13 to their lower equivalents.
 
-		"""
-		military = [
-			('13', '01'),
-			('14', '02'),
-			('15', '03'),
-			('16', '04'),
-			('17', '05'),
-			('18', '06'),
-			('19', '07'),
-			('20', '08'),
-			('21', '09'),
-			('22', '10'),
-			('23', '11'),
-			('00', '12'),
-		]
-		military_dict = dict(military)
+        """
+        military = [
+            ('13', '01'),
+            ('14', '02'),
+            ('15', '03'),
+            ('16', '04'),
+            ('17', '05'),
+            ('18', '06'),
+            ('19', '07'),
+            ('20', '08'),
+            ('21', '09'),
+            ('22', '10'),
+            ('23', '11'),
+            ('00', '12'),
+        ]
+        military_dict = dict(military)
 
-		options = [number]
-		hh, _, mm = number.partition(':')
+        options = [number]
+        hh, _, mm = number.partition(':')
 
-		try:
-			switched = '%s:%s' % (military_dict[hh], mm)
-			return switched
-		except KeyError:
-			return number
+        try:
+            switched = '%s:%s' % (military_dict[hh], mm)
+            return switched
+        except KeyError:
+            return number
 
-	def __init__(self, *args, **kwargs):
-		present_list = kwargs.get('present_list')
-		accept_list = kwargs.get('accept_list')
-		kwargs.pop('present_list')
-		kwargs.pop('accept_list')
+    def __init__(self, *args, **kwargs):
+        present_list = kwargs.get('present_list')
+        accept_list = kwargs.get('accept_list')
+        kwargs.pop('present_list')
+        kwargs.pop('accept_list')
 
-		numeral = kwargs.get('numeral')
-		num_string = kwargs.get('num_string')
-		correct_val = kwargs.get('correct_val')
-		userans_val = kwargs.get('userans_val')
-		self.gametype = gametype = kwargs.get('gametype')
-		prefix = kwargs.get('prefix')
-		data = kwargs.get('data')
-
-
-		numeral_widget = forms.HiddenInput(attrs={'value' : numeral})
-		kwargs['correct_val'] = correct_val
-		self.userans_val = self.userans = userans_val
-
-		kwargs['num_list'] = present_list
-		# Prevent double evaluation of correctness
-
-		kwargs['no_eval_correct'] = True
-		super(KlokkaQuestion, self).__init__(*args, **kwargs)
-
-		wforms = []
-		self.relaxings = []
-		# Initialize variables
-		if gametype == "string":
-			self.init_variables(force_text(numeral), userans_val, [ numeral ])
-			example = num_string
-
-		else:
-			self.init_variables(force_text(accept_list), userans_val, present_list)
-			wforms = sum([relax(force_text(item)) for item in accept_list], [])
-			# need to subtract legal answers and make an only relaxed list.
-			self.relaxings = [item for item in wforms if item not in accept_list]
-			example = numeral
-
-		self.correct_anslist = self.correct_anslist + [force_text(f) for f in wforms]
+        numeral = kwargs.get('numeral')
+        num_string = kwargs.get('num_string')
+        correct_val = kwargs.get('correct_val')
+        userans_val = kwargs.get('userans_val')
+        self.gametype = gametype = kwargs.get('gametype')
+        prefix = kwargs.get('prefix')
+        data = kwargs.get('data')
 
 
-		self.fields['numeral_id'] = forms.CharField(widget=numeral_widget, required=False)
+        numeral_widget = forms.HiddenInput(attrs={'value' : numeral})
+        kwargs['correct_val'] = correct_val
+        self.userans_val = self.userans = userans_val
 
-		self.numstring = num_string
+        kwargs['num_list'] = present_list
+        # Prevent double evaluation of correctness
 
-		# Need to change presentation of certain numerals to avoid
-		if gametype == "string":
-			relaxed_presentation = [self.relax_military(a) for a in self.correct_anslist[:]]
-			self.correct_ans = relaxed_presentation + self.correct_anslist
-			self.correct_ans = self.correct_ans[0]
-		else:
-			# Clear numstring to switch presentation
-			self.numstring = None
+        kwargs['no_eval_correct'] = True
+        super(KlokkaQuestion, self).__init__(*args, **kwargs)
+
+        wforms = []
+        self.relaxings = []
+        # Initialize variables
+        if gametype == "string":
+            self.init_variables(force_text(numeral), userans_val, [ numeral ])
+            example = num_string
+
+        else:
+            self.init_variables(force_text(accept_list), userans_val, present_list)
+            wforms = sum([relax(force_text(item)) for item in accept_list], [])
+            # need to subtract legal answers and make an only relaxed list.
+            self.relaxings = [item for item in wforms if item not in accept_list]
+            example = numeral
+
+        self.correct_anslist = self.correct_anslist + [force_text(f) for f in wforms]
 
 
-		self.numeral = numeral
+        self.fields['numeral_id'] = forms.CharField(widget=numeral_widget, required=False)
 
-		self.is_correct(self.game_log_name, example)
+        self.numstring = num_string
 
-		if correct_val:
-			if correct_val == "correct":
-				self.error = "correct"
-			# relax
-			if userans_val in self.relaxings:
-				self.is_relaxed = "relaxed"
-				self.strict = 'Strict form'
-			elif userans_val in accept_list and userans_val not in present_list:
-				self.is_relaxed = "relaxed"
-				self.strict = 'Strict form'
-			else:
-				self.is_relaxed = ""
+        # Need to change presentation of certain numerals to avoid
+        if gametype == "string":
+            relaxed_presentation = [self.relax_military(a) for a in self.correct_anslist[:]]
+            self.correct_ans = relaxed_presentation + self.correct_anslist
+            self.correct_ans = self.correct_ans[0]
+        else:
+            # Clear numstring to switch presentation
+            self.numstring = None
 
-	def is_correct(self, game, example=None):
-		self.game = game
-		self.example = example
 
-		if not self.is_valid():
-			return False
+        self.numeral = numeral
 
-		self.userans = self.cleaned_data['answer']
-		self.answer = self.userans.strip()
+        self.is_correct(self.game_log_name, example)
 
-		self.error = "error"
-		self.iscorrect = False
+        if correct_val:
+            if correct_val == "correct":
+                self.error = "correct"
+            # relax
+            if userans_val in self.relaxings:
+                self.is_relaxed = "relaxed"
+                self.strict = 'Strict form'
+            elif userans_val in accept_list and userans_val not in present_list:
+                self.is_relaxed = "relaxed"
+                self.strict = 'Strict form'
+            else:
+                self.is_relaxed = ""
 
-		correct_test = self.game_obj.check_answer(self.question_str,
-													self.userans,
-													self.correct_anslist)
-		if correct_test:
-			self.error = "correct"
-			self.iscorrect = True
+    def is_correct(self, game, example=None):
+        self.game = game
+        self.example = example
 
-		self.correctlist = ",".join(list(set(self.correct_anslist)))
+        if not self.is_valid():
+            return False
 
-		self.log_response()
+        self.userans = self.cleaned_data['answer']
+        self.answer = self.userans.strip()
+
+        self.error = "error"
+        self.iscorrect = False
+
+        correct_test = self.game_obj.check_answer(self.question_str,
+                                                    self.userans,
+                                                    self.correct_anslist)
+        if correct_test:
+            self.error = "correct"
+            self.iscorrect = True
+
+        self.correctlist = ",".join(list(set(self.correct_anslist)))
+
+        self.log_response()
 
 
 # #
@@ -1792,21 +1792,21 @@ class KlokkaQuestion(NumQuestion):
 # #
 
 class DatoSettings(KlokkaSettings):
-	gametype = None # Disable gametype (easy, medium, hard)
+    gametype = None # Disable gametype (easy, medium, hard)
 
-	default_data = {'language' : 'crk', 'numlanguage' : 'crk', 'numgame': 'string'}
-	numgame = forms.ChoiceField(initial='string', choices=NUMGAME_CHOICES_ALT, widget=forms.RadioSelect)
+    default_data = {'language' : 'crk', 'numlanguage' : 'crk', 'numgame': 'string'}
+    numgame = forms.ChoiceField(initial='string', choices=NUMGAME_CHOICES_ALT, widget=forms.RadioSelect)
 
 
 class DatoQuestion(KlokkaQuestion):
 
-	game_log_name = "dato"
+    game_log_name = "dato"
 
-	def answer_relax(self, answer):
-		""" No need to relax.
-		"""
+    def answer_relax(self, answer):
+        """ No need to relax.
+        """
 
-		return answer
+        return answer
 
 # #
 #
@@ -1815,20 +1815,20 @@ class DatoQuestion(KlokkaQuestion):
 # #
 
 class MoneySettings(KlokkaSettings):
-	gametype = None # Disable gametype (easy, medium, hard)
+    gametype = None # Disable gametype (easy, medium, hard)
 
-	default_data = {'language' : 'crk', 'numlanguage' : 'crk', 'numgame': 'string'}
+    default_data = {'language' : 'crk', 'numlanguage' : 'crk', 'numgame': 'string'}
 
 
 class MoneyQuestion(KlokkaQuestion):
 
-	game_log_name = "money"
+    game_log_name = "money"
 
-	def answer_relax(self, answer):
-		""" No need to relax.
-		"""
+    def answer_relax(self, answer):
+        """ No need to relax.
+        """
 
-		return answer
+        return answer
 
 
 
@@ -1841,237 +1841,237 @@ class MoneyQuestion(KlokkaQuestion):
 
 
 class ContextMorfaQuestion(OahpaQuestion):
-	"""
-	Questions for contextual morfa
-	"""
+    """
+    Questions for contextual morfa
+    """
 
-	select_words = select_words
-	qtype_verbs = set(['MAINV', 'V-PRS', 'V-PRT', 'V-COND','V-IMPRT', 'TEST']) # added MAINV for crk
+    select_words = select_words
+    qtype_verbs = set(['MAINV', 'V-PRS', 'V-PRT', 'V-COND','V-IMPRT', 'TEST']) # added MAINV for crk
 
-	def generate_fields(self,answer_size, maxlength):
-		self.fields['answer'] = forms.CharField(max_length = maxlength, \
-												widget=forms.TextInput(\
-			attrs={'size': answer_size,}))
+    def generate_fields(self,answer_size, maxlength):
+        self.fields['answer'] = forms.CharField(max_length = maxlength, \
+                                                widget=forms.TextInput(\
+            attrs={'size': answer_size,}))
 
-			# 'onkeydown':'javascript:return process(this, event,document.gameform);'
+            # 'onkeydown':'javascript:return process(this, event,document.gameform);'
 
-	def __init__(self, question, qanswer, \
-				 qwords, awords, dialect, language, userans_val, correct_val, *args, **kwargs):
-		self.init_variables("", userans_val, [])
-		self.lemma = ""
-		self.dialect = dialect
-		self.translang = 'crk'
-		self.gametype = 'morfac' # not sure if this is ok
+    def __init__(self, question, qanswer, \
+                 qwords, awords, dialect, language, userans_val, correct_val, *args, **kwargs):
+        self.init_variables("", userans_val, [])
+        self.lemma = ""
+        self.dialect = dialect
+        self.translang = 'crk'
+        self.gametype = 'morfac' # not sure if this is ok
 
-		# ???
-		qtype = question.qtype
-		if qtype in self.qtype_verbs:
-			qtype = 'PRS'
+        # ???
+        qtype = question.qtype
+        if qtype in self.qtype_verbs:
+            qtype = 'PRS'
 
-		question_widget = forms.HiddenInput(attrs={'value' : question.id})
-		answer_widget = forms.HiddenInput(attrs={'value' : qanswer.id})
-		atext = qanswer.string
-		task = qanswer.task
-		if not task:
-			error_msg = "not task: %s %s (%s)" % (atext, question.qid, question.qatype)
+        question_widget = forms.HiddenInput(attrs={'value' : question.id})
+        answer_widget = forms.HiddenInput(attrs={'value' : qanswer.id})
+        atext = qanswer.string
+        task = qanswer.task
+        if not task:
+            error_msg = "not task: %s %s (%s)" % (atext, question.qid, question.qatype)
 
-			raise Http404(error_msg)
-		super(ContextMorfaQuestion, self).__init__(*args, **kwargs)
+            raise Http404(error_msg)
+        super(ContextMorfaQuestion, self).__init__(*args, **kwargs)
 
-		answer_size = 20
-		maxlength = 30
+        answer_size = 20
+        maxlength = 30
 
-		self.generate_fields(20,30)
+        self.generate_fields(20,30)
 
-		self.fields['question_id'] = forms.CharField(widget=question_widget, required=False)
-		self.fields['answer_id'] = forms.CharField(widget=answer_widget, required=False)
+        self.fields['question_id'] = forms.CharField(widget=question_widget, required=False)
+        self.fields['answer_id'] = forms.CharField(widget=answer_widget, required=False)
 
-		# Select words for the the answer
-		selected_awords = self.select_words(qwords, awords)
+        # Select words for the the answer
+        selected_awords = self.select_words(qwords, awords)
 
-		relaxed = []
-		form_list=[]
+        relaxed = []
+        form_list=[]
 
-		if task not in selected_awords:
-			raise Http404(task + " " + atext + " " + str(qanswer.id))
-		if len(selected_awords[task]['fullform'])>0:
-			for f in selected_awords[task]['fullform']:
-				self.correct_anslist.append(force_text(f))
+        if task not in selected_awords:
+            raise Http404(task + " " + atext + " " + str(qanswer.id))
+        if len(selected_awords[task]['fullform'])>0:
+            for f in selected_awords[task]['fullform']:
+                self.correct_anslist.append(force_text(f))
 
-			accepted = sum([relax(force_text(item)) for item in self.correct_anslist], [])
-			self.relaxings = [item for item in accepted if item not in self.correct_anslist]
-			self.correct_anslist.extend(self.relaxings)
-			log_w = Word.objects.get(id=selected_awords[task]['word'])
-			w_str = log_w.lemma
-			w_pos = log_w.pos
-			t_str = Tag.objects.get(id=selected_awords[task]['tag']).string
-			log_name = "contextual_morfa_" + w_pos
-			log_value = '%s+%s' % (w_str, t_str)
-			self.is_correct(log_name, log_value)
-			self.correct_ans = self.correct_anslist[0]
+            accepted = sum([relax(force_text(item)) for item in self.correct_anslist], [])
+            self.relaxings = [item for item in accepted if item not in self.correct_anslist]
+            self.correct_anslist.extend(self.relaxings)
+            log_w = Word.objects.get(id=selected_awords[task]['word'])
+            w_str = log_w.lemma
+            w_pos = log_w.pos
+            t_str = Tag.objects.get(id=selected_awords[task]['tag']).string
+            log_name = "contextual_morfa_" + w_pos
+            log_value = '%s+%s' % (w_str, t_str)
+            self.is_correct(log_name, log_value)
+            self.correct_ans = self.correct_anslist[0]
 
-		self.correct_anslist = [force_text(item) for item in accepted]
+        self.correct_anslist = [force_text(item) for item in accepted]
 
-		self.qattrs = {}
-		self.aattrs = {}
-		for syntax in list(qwords.keys()):
-			qword = qwords[syntax]
-			if 'word' in qword:
-				self.qattrs['question_word_' + syntax] = qword['word']
-			if 'tag' in qword and qword['tag']:
-				self.qattrs['question_tag_' + syntax] = qword['tag']
-			if 'fullform' in qword and qword['fullform']:
-				self.qattrs['question_fullform_' + syntax] = qword['fullform'][0]
+        self.qattrs = {}
+        self.aattrs = {}
+        for syntax in list(qwords.keys()):
+            qword = qwords[syntax]
+            if 'word' in qword:
+                self.qattrs['question_word_' + syntax] = qword['word']
+            if 'tag' in qword and qword['tag']:
+                self.qattrs['question_tag_' + syntax] = qword['tag']
+            if 'fullform' in qword and qword['fullform']:
+                self.qattrs['question_fullform_' + syntax] = qword['fullform'][0]
 
-		for syntax in list(selected_awords.keys()):
-			if 'word' in selected_awords[syntax]:
-				self.aattrs['answer_word_' + syntax] = selected_awords[syntax]['word']
-			if 'tag' in selected_awords[syntax]:
-				self.aattrs['answer_tag_' + syntax] = selected_awords[syntax]['tag']
-			if 'fullform' in selected_awords[syntax] and len(selected_awords[syntax]['fullform']) == 1:
-				self.aattrs['answer_fullform_' + syntax] = selected_awords[syntax]['fullform'][0]
+        for syntax in list(selected_awords.keys()):
+            if 'word' in selected_awords[syntax]:
+                self.aattrs['answer_word_' + syntax] = selected_awords[syntax]['word']
+            if 'tag' in selected_awords[syntax]:
+                self.aattrs['answer_tag_' + syntax] = selected_awords[syntax]['tag']
+            if 'fullform' in selected_awords[syntax] and len(selected_awords[syntax]['fullform']) == 1:
+                self.aattrs['answer_fullform_' + syntax] = selected_awords[syntax]['fullform'][0]
 
-		# Forms question string and answer string out of grammatical elements and other strings.
-		qstring = ""
-		astring= ""
+        # Forms question string and answer string out of grammatical elements and other strings.
+        qstring = ""
+        astring= ""
 
-		# Format question string
-		qtext = question.string
-		for w in qtext.split():
-			if w not in qwords:
-				qstring = qstring + " " + force_text(w)
-			else:
-				if 'fullform' in qwords[w]:
-					qstring = qstring + " " + force_text(qwords[w]['fullform'][0])
-				else:
-					qstring = qstring + " " + force_text(w)
-		qstring=qstring.replace(" -","-")
-		qstring=qstring.replace(" .",".")
+        # Format question string
+        qtext = question.string
+        for w in qtext.split():
+            if w not in qwords:
+                qstring = qstring + " " + force_text(w)
+            else:
+                if 'fullform' in qwords[w]:
+                    qstring = qstring + " " + force_text(qwords[w]['fullform'][0])
+                else:
+                    qstring = qstring + " " + force_text(w)
+        qstring=qstring.replace(" -","-")
+        qstring=qstring.replace(" .",".")
 
 
-		try:
-			answer_word = selected_awords[task]['word']
-		except KeyError:
-			answer_word = False
-			# print 'fail: ', question.qid
-			# print ' task: ', task
-			self.error = 'error'
-			self.lemma = 'error in answer words: ' + question.qid
-			return
-			# self.lemma = question.qid
-		answer_tag = selected_awords[task]['tag']
-		selected_awords[task]['fullform'][0] = 'Q'
+        try:
+            answer_word = selected_awords[task]['word']
+        except KeyError:
+            answer_word = False
+            # print 'fail: ', question.qid
+            # print ' task: ', task
+            self.error = 'error'
+            self.lemma = 'error in answer words: ' + question.qid
+            return
+            # self.lemma = question.qid
+        answer_tag = selected_awords[task]['tag']
+        selected_awords[task]['fullform'][0] = 'Q'
 
-		# Get lemma for contextual morfa
-		# lemma is displayed as the 'task' word in parentheses after the question
-		answer_word_el = Word.objects.get(id=answer_word)
-		answer_tag_el = Tag.objects.get(id=answer_tag)
-		self.lemma = answer_word_el.lemma
-		self.tooltip_question_id = question.qid
+        # Get lemma for contextual morfa
+        # lemma is displayed as the 'task' word in parentheses after the question
+        answer_word_el = Word.objects.get(id=answer_word)
+        answer_tag_el = Tag.objects.get(id=answer_tag)
+        self.lemma = answer_word_el.lemma
+        self.tooltip_question_id = question.qid
 
-		# Set tooltip translations
-		transl = answer_word_el.translations2(language)
-		# if len(transl) == 0:
-			# transl = answer_word_el.translations2('eng') # Norwegian as default
-		if len(transl) > 0:
-			xl = transl[0]
-			self.translations = xl.definition
+        # Set tooltip translations
+        transl = answer_word_el.translations2(language)
+        # if len(transl) == 0:
+            # transl = answer_word_el.translations2('eng') # Norwegian as default
+        if len(transl) > 0:
+            xl = transl[0]
+            self.translations = xl.definition
 
-		# if answer_word_el.pos == 'V':
-		# 	self.wordclass = answer_word_el.wordclass
+        # if answer_word_el.pos == 'V':
+        # 	self.wordclass = answer_word_el.wordclass
 
-		# If the asked word is in Pl, generate nominal form
+        # If the asked word is in Pl, generate nominal form
 
-		if answer_tag_el.pos == "N" or qtype == "ORD-NUM":
-		      if qtype == 'N-PX':
-		          self.lemma = False
-		      else:
-			     self.lemma = answer_word_el.lemma
+        if answer_tag_el.pos == "N" or qtype == "ORD-NUM":
+            if qtype == 'N-PX':
+                self.lemma = False
+            else:
+                self.lemma = answer_word_el.lemma
 
-		if answer_tag_el.pos == "V":
-		      self.lemma = False
-		if answer_tag_el.pos == "Pron":
-			# Hide task word for Recipr and Refl
-			if qtype in ["P-REFL", "P-RECIPR", "P-REL"]:
-				self.lemma = False
+        if answer_tag_el.pos == "V":
+            self.lemma = False
+        if answer_tag_el.pos == "Pron":
+            # Hide task word for Recipr and Refl
+            if qtype in ["P-REFL", "P-RECIPR", "P-REL"]:
+                self.lemma = False
 
-		# Retrieve feedback information. Filter by dialect if more
-		# dialects are defined
-		if set(settings.DIALECTS.keys()) != set(['main', 'NG']):
-			dialect_filter = True
-		else:
-			dialect_filter = False
+        # Retrieve feedback information. Filter by dialect if more
+        # dialects are defined
+        if set(settings.DIALECTS.keys()) != set(['main', 'NG']):
+            dialect_filter = True
+        else:
+            dialect_filter = False
 
-		if dialect_filter:
-			try:
-				answer_word_form = Form.objects.exclude(dialects__dialect='NG')\
-					.filter(word__pk=answer_word, tag=answer_tag_el,
-							dialects__dialect=self.dialect)
-				answer_word_form = answer_word_form[0]
-			except Exception as e:
-				answer_word_form = False
-		else:
-			try:
-				answer_word_form = Form.objects.filter(word__pk=answer_word, tag=answer_tag_el,)
-				# .exclude(dialects__dialect='NG')\
-				# dialects__dialect=self.dialect)
-				answer_word_form = answer_word_form[0]
-			except Exception as e:
-				answer_word_form = False
+        if dialect_filter:
+            try:
+                answer_word_form = Form.objects.exclude(dialects__dialect='NG')\
+                    .filter(word__pk=answer_word, tag=answer_tag_el,
+                            dialects__dialect=self.dialect)
+                answer_word_form = answer_word_form[0]
+            except Exception as e:
+                answer_word_form = False
+        else:
+            try:
+                answer_word_form = Form.objects.filter(word__pk=answer_word, tag=answer_tag_el,)
+                # .exclude(dialects__dialect='NG')\
+                # dialects__dialect=self.dialect)
+                answer_word_form = answer_word_form[0]
+            except Exception as e:
+                answer_word_form = False
 
-		if answer_word_form:
-			self.get_feedback(answer_word_form, language)
+        if answer_word_form:
+            self.get_feedback(answer_word_form, language)
 
-		# Format answer string
-		for w in atext.split():
-			if w.count("(") > 0:
-			  continue
+        # Format answer string
+        for w in atext.split():
+            if w.count("(") > 0:
+              continue
 
-			if w not in selected_awords or 'fullform' not in selected_awords[w]:
-				astring = astring + " " + force_text(w)
-			else:
-				astring = astring + " " + force_text(selected_awords[w]['fullform'][0])
+            if w not in selected_awords or 'fullform' not in selected_awords[w]:
+                astring = astring + " " + force_text(w)
+            else:
+                astring = astring + " " + force_text(selected_awords[w]['fullform'][0])
 
-		# Remove leading whitespace and capitalize.
-		astring = astring.lstrip()
-		qstring = qstring.lstrip()
-		# astring = astring[0].capitalize() + astring[1:]  # No capital letters in the beginning of a sentence in Cree
-		# qstring = qstring[0].capitalize() + qstring[1:]
+        # Remove leading whitespace and capitalize.
+        astring = astring.lstrip()
+        qstring = qstring.lstrip()
+        # astring = astring[0].capitalize() + astring[1:]  # No capital letters in the beginning of a sentence in Cree
+        # qstring = qstring[0].capitalize() + qstring[1:]
 
-		# qstring = qstring + "?" # no question mark in Cree
-		# Add dot if the last word is not the open question.
-		if astring.count("!")==0 and not astring[-1]=="Q":
-			astring = astring + "."
-		self.question=qstring
+        # qstring = qstring + "?" # no question mark in Cree
+        # Add dot if the last word is not the open question.
+        if astring.count("!")==0 and not astring[-1]=="Q":
+            astring = astring + "."
+        self.question=qstring
 
-		# Format answer strings for context
-		q_count = astring.count('Q')
-		if q_count > 0:
-			astrings = astring.split('Q')
-			if astrings[0]:
-				self.answertext1 = astrings[0]
-				if 'NULL' in astrings[0]:
-					self.answertext1_fake = True
-					self.answertext1 = astrings[0].replace('NULL', '')
-			if astrings[1]:
-				self.answertext2 = astrings[1]
-				if 'NULL' in astrings[1]:
-					self.answertext2_fake = True
-					self.answertext2 = astrings[1].replace('NULL', '')
+        # Format answer strings for context
+        q_count = astring.count('Q')
+        if q_count > 0:
+            astrings = astring.split('Q')
+            if astrings[0]:
+                self.answertext1 = astrings[0]
+                if 'NULL' in astrings[0]:
+                    self.answertext1_fake = True
+                    self.answertext1 = astrings[0].replace('NULL', '')
+            if astrings[1]:
+                self.answertext2 = astrings[1]
+                if 'NULL' in astrings[1]:
+                    self.answertext2_fake = True
+                    self.answertext2 = astrings[1].replace('NULL', '')
 
-		# set correct and error values
-		if correct_val:
-			if correct_val == "correct":
-				self.error="correct"
-			# relax
-			if userans_val in self.relaxings:
-				self.is_relaxed = "relaxed"
-				self.strict = 'Strict form'
-			else:
-				self.is_relaxed = ""
+        # set correct and error values
+        if correct_val:
+            if correct_val == "correct":
+                self.error="correct"
+            # relax
+            if userans_val in self.relaxings:
+                self.is_relaxed = "relaxed"
+                self.strict = 'Strict form'
+            else:
+                self.is_relaxed = ""
 
-		if answer_word == False:
-			self.lemma = '%s - error: %s' % (answer_word_el.lemma, question.qid)
+        if answer_word == False:
+            self.lemma = '%s - error: %s' % (answer_word_el.lemma, question.qid)
 
 
 
@@ -2141,7 +2141,7 @@ def vasta_is_correct(self,question,qwords,language,utterance_name=None):
         else:
             analysis = analysis + "\"<^qst>\"\n\t\"^qst\" QDL\n"
 
-	   #logfile.write(analysis+"\n")
+       #logfile.write(analysis+"\n")
         data_lookup = "echo \"" + answer.encode('utf-8') + "\"" + preprocess
         words = os.popen(data_lookup).readlines()
         analyzed=""
@@ -2176,9 +2176,9 @@ def vasta_is_correct(self,question,qwords,language,utterance_name=None):
         else:
             analysis = analysis + "\"<^qst>\"\n\t\"^qst\" QDL\n"
 
-	    #logfile.write(analysis+"\n")
+        #logfile.write(analysis+"\n")
 
-		# analyse words in the answer
+        # analyse words in the answer
 
         data_lookup = "echo \"" + answer.encode('utf-8') + "\"" + preprocess
         words = os.popen(data_lookup).readlines()
@@ -2218,7 +2218,7 @@ def vasta_is_correct(self,question,qwords,language,utterance_name=None):
     lemma=""
     for line in checked:
         line = line.strip()
-	   #logfile.write(line+"\n")
+       #logfile.write(line+"\n")
 
         #Find the lemma first
         matchObj=constantObj.search(line)
@@ -2616,32 +2616,32 @@ def cealkka_is_correct(self,question,qwords,awords,language,question_id=None):  
         tasklemmas = ""
         for aword in awords:
             print(aword)
-	        #logfile.write(aword)
+            #logfile.write(aword)
             if 'taskword' in aword and aword['taskword']:
                 tlemma = aword['fullform']
                 tlemma = force_text(tlemma).encode('utf-8')
                 tlemma = tlemma.strip()
                 print(tlemma)
-		        #logfile.write(tlemma+" ")
+                #logfile.write(tlemma+" ")
                 tasktag = Tag.objects.filter(id=aword['tag'])
                 tasktagstring = tasktag[0].string
                 taskpos = tasktag[0].pos
                 ttag = tasktagstring.replace("+"," ")
                 print(ttag)
-		        #logfile.write(ttag+"\n")
+                #logfile.write(ttag+"\n")
                 s.send(tlemma)  # on vic
                 word_lookup = s.recv(size)  # on vic
-		        #logfile.write(word_lookup)
+                #logfile.write(word_lookup)
                 ans_cohort=""
                 #print rows
                 rows = word_lookup.split("\n")  # on vic
                 morfanal = ""
                 for row in rows:
                     ans_cohort = ans_cohort + row
-		              #logfile.write(row + "\n")
+                      #logfile.write(row + "\n")
                     malemmas = row.split("\"")
                     if row:
-			             malemma = malemmas[1]
+                         malemma = malemmas[1]
                     malemma_without_hash = malemma.replace('#','')
                     taglist = ttag.split()
                     tag_match = 1
@@ -2650,7 +2650,7 @@ def cealkka_is_correct(self,question,qwords,awords,language,question_id=None):  
                             tag_match = 0
                     if tag_match and tlemma == malemma_without_hash:  # 'Sg Nom' or 'V Inf' is not enough - exact tag sequence needed, and also need to compare the primary form to the analysed word, to resolve ambiguities
                         print(malemmas)
-			             #logfile.write(malemma+"\n")
+                         #logfile.write(malemma+"\n")
                         print(malemma)
                         print(malemma_without_hash)
                         tasklemmas = tasklemmas + "\n\t\"" + malemma + "\" "+taskpos
@@ -2659,7 +2659,7 @@ def cealkka_is_correct(self,question,qwords,awords,language,question_id=None):  
         analysis = analysis + "\"<^vastas>\"\n\t\"^vastas\" QDL " + question_id + " " + tasklemmas + "\n"
         #####
         print(analysis)
-	   #logfile.write(analysis)
+       #logfile.write(analysis)
         data_lookup = "echo \"" + force_text(answer).encode('utf-8') + "\"" + preprocess
         word = os.popen(data_lookup).readlines()
         #print word
@@ -2692,34 +2692,34 @@ def cealkka_is_correct(self,question,qwords,awords,language,question_id=None):  
             morfanal = os.popen(word_lookup).readlines()
             for row in morfanal:
                 cohort = cohort + row
-	       #print cohort
+           #print cohort
             analysis = analysis + cohort
         tasklemmas = ""
         for aword in awords:
             print(aword)
-	       #logfile.write(aword)
+           #logfile.write(aword)
             if 'taskword' in aword and aword['taskword']:
                 tlemma = aword['fullform']
                 tlemma = force_text(tlemma).encode('utf-8')
                 tlemma = tlemma.strip()
                 print(tlemma)
-		        #logfile.write(tlemma+" ")
+                #logfile.write(tlemma+" ")
                 tasktag = Tag.objects.filter(id=aword['tag'])
                 tasktagstring = tasktag[0].string
                 taskpos = tasktag[0].pos
                 ttag = tasktagstring.replace("+"," ")
                 print(ttag)
-		        #logfile.write(ttag+"\n")
+                #logfile.write(ttag+"\n")
                 ans_cohort = ""
                 word_lookup = "echo \"" + tlemma + "\"" + lookup + lookup2cg  # on Heli's machine
                 rows = os.popen(word_lookup).readlines()
                 morfanal = ""
                 for row in rows:
                     ans_cohort = ans_cohort + row
-		            #logfile.write(row + "\n")
+                    #logfile.write(row + "\n")
                     malemmas = row.split("\"")
                     if row:
-			             malemma = malemmas[1]
+                         malemma = malemmas[1]
                     malemma_without_hash = malemma.replace('#','')
                     taglist = ttag.split()
                     tag_match = 1
@@ -2728,7 +2728,7 @@ def cealkka_is_correct(self,question,qwords,awords,language,question_id=None):  
                             tag_match = 0
                     if tag_match and tlemma == malemma_without_hash:  # 'Sg Nom' or 'V Inf' is not enough - exact tag sequence needed, and also need to compare the primary form to the analysed word, to resolve ambiguities
                         print(malemmas)
-			             #logfile.write(malemma+"\n")
+                         #logfile.write(malemma+"\n")
                         print(malemma)
                         print(malemma_without_hash)
                         tasklemmas = tasklemmas + "\n\t\"" + malemma + "\" "+taskpos
@@ -2962,7 +2962,7 @@ class CealkkaQuestion(OahpaQuestion):
                 self.aattrs['answer_fullform_' + syntax] = selected_awords[syntax]['fullform'][0]
             if 'taskword' in selected_awords[syntax]:
                 self.aattrs['answer_taskword_' + syntax] = selected_awords[syntax]['taskword']  # to track the taskword attribute
-		print(question.qid)
+        print(question.qid)
         print(self.awords)
         # Forms question string and answer string out of grammatical elements and other strings.
         qstring = ""
