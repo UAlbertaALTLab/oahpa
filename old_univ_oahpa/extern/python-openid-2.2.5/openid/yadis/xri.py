@@ -98,11 +98,6 @@ def toURINormal(xri):
     return iriToURI(toIRINormal(xri))
 
 
-def _percentEscapeUnicode(char_match):
-    c = char_match.group()
-    return ''.join(['%%%X' % (ord(octet),) for octet in c.encode('utf-8')])
-
-
 def iriToURI(iri):
     """Transform an IRI to a URI by escaping unicode."""
     # According to RFC 3987, section 3.1, "Mapping of IRIs to URIs"

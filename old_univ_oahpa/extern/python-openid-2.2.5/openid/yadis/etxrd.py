@@ -85,7 +85,7 @@ def nsTag(ns, t):
     return '{%s}%s' % (ns, t)
 
 def mkXRDTag(t):
-    """basestring -> basestring
+    """str -> str
 
     Create a tag name in the XRD 2.0 XML namespace suitable for using
     with ElementTree
@@ -93,7 +93,7 @@ def mkXRDTag(t):
     return nsTag(XRD_NS_2_0, t)
 
 def mkXRDSTag(t):
-    """basestring -> basestring
+    """str -> str
 
     Create a tag name in the XRDS XML namespace suitable for using
     with ElementTree

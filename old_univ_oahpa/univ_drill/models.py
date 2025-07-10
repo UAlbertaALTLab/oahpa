@@ -204,7 +204,7 @@ class BulkManager(models.Manager):
 ###                 self.soggi
 ###             ]
 ###         attrs = [a for a in attrs if a]
-###         S = unicode('/'.join([a for a in attrs if a.strip()])).encode('utf-8')
+###         S = '/'.join([a for a in attrs if a.strip()])
 ###         return S
     
     # def save(self, *args, **kwargs):

@@ -1076,7 +1076,7 @@ class NumGame(Game):
 
 		random_num = randint(1, int(self.settings['maxnum']))
 
-		db_info['numeral_id'] = smart_str(random_num)
+		db_info['numeral_id'] = smart_bytes(random_num)
 
 		if self.settings['gametype'] == 'ord':
 			db_info['numeral_id'] += "."

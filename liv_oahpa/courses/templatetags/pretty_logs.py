@@ -19,7 +19,7 @@ for s in ALL_CHOICES:
 		elif k.lower() in key_to_string:
 			continue
 			# print 'possible duplicate? ', k.lower(), ' ', v
-			# key_to_string[unicode(k.lower())] = v
+			# key_to_string[k.lower()] = v
 
 # TODO: Leksa - Place - maailma - tavalliset - harvat
 #								  ^-----------------^

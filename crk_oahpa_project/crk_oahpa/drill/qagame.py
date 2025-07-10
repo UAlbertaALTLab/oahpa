@@ -670,7 +670,7 @@ class QAGame(Game):
 		# 	try:
 		# 		_new_tag = Tag.objects.get(string=_o_agr_str)
 		# 	except Tag.DoesNotExist:
-		# 		raise Http404(u"Could not create agreement <%s>, because agreed tag does not exist, Noun <%s> does not match <%s>. question: %s" % (_o_agr_str, orig_tag.string, fixed_number, question.qid))
+		# 		raise Http404("Could not create agreement <%s>, because agreed tag does not exist, Noun <%s> does not match <%s>. question: %s" % (_o_agr_str, orig_tag.string, fixed_number, question.qid))
 		# 	_w_id = _el_info['word']
 		# 	_el_info['tag'] = _new_tag.id
 		# 	_el_info['fullform'] = Form.objects.filter(word__id=_w_id,

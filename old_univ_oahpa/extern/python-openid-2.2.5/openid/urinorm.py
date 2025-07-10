@@ -76,11 +76,6 @@ _escapeme_re = re.compile('[%s]' % (''.join(
     ['%s-%s' % (chr(m_n[0]), chr(m_n[1])) for m_n in UCSCHAR + IPRIVATE]),))
 
 
-def _pct_escape_unicode(char_match):
-    c = char_match.group()
-    return ''.join(['%%%X' % (ord(octet),) for octet in c.encode('utf-8')])
-
-
 def _pct_encoded_replace_unreserved(mo):
     try:
         i = int(mo.group(1), 16)
