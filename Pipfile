@@ -12,7 +12,9 @@ schematics = "*"
 kitchen = "*"
 
 [dev-packages]
-setuptools = "*"
+black = "*"
+mypy = "*"
+django-stubs = "~=5.2"
 
 [requires]
 python_version = "3.12"
