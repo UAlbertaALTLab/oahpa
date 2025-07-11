@@ -17,7 +17,6 @@ from urllib.parse import urlencode
 from django.http import HttpResponseRedirect, HttpResponseForbidden
 from django.conf import settings
 from django.contrib.auth import REDIRECT_FIELD_NAME
-from django.contrib.auth.views import login, logout
 from django.core.urlresolvers import reverse
 
 cookie_login = oahpa_module.courses.views.cookie_login

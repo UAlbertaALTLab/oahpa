@@ -1,12 +1,5 @@
 from django.conf.urls.defaults import *
 
-# import os, sys
-# here = lambda x: os.path.join(os.path.abspath(os.path.dirname(sys.argv[0])), x)
-# here_cross = lambda x: os.path.join(os.path.abspath(os.path.dirname(sys.argv[0])), *x)
-# @login_required decorator
-
-from django.contrib.auth.views import login, logout
-
 from .views import ( builder_main
                   )
 

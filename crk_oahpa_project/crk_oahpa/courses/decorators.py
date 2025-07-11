@@ -64,7 +64,7 @@ class trackGrade(object):
 
     In order to use this import the following things
 
-        from courses.views import render_to_response
+        from courses.views import course_render
         from courses.decorators import trackGrade
 
     And then decorate a view function, passing a log entry heading to the

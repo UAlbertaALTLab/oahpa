@@ -8,16 +8,14 @@ from .forms import *
 
 switch_language_code = oahpa_module.conf.tools.switch_language_code
 
-from django.db.models import Q, Count
-from django.http import HttpResponse, Http404
-from django.shortcuts import get_list_or_404, render_to_response
+from django.db.models import Q
+from django.http import Http404
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils.encoding import smart_bytes, smart_text
 from random import randint
 
 import os
 import re
-import itertools
 
 settings = oahpa_module.settings
 

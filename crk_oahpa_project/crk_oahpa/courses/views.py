@@ -5,12 +5,10 @@ settings = oahpa_module.settings
 URL_PREFIX = settings.URL_PREFIX
 hst = settings.hostname
 
-from django.template import RequestContext
-# from django.utils.translation import ugettext as _
-from django.http import HttpResponseRedirect, HttpResponseForbidden, Http404
+from django.http import HttpResponseRedirect, HttpResponseForbidden
 
 
-def render_to_response(*args, **kwargs):
+def course_render(*args, **kwargs):
     """ Append an attribute onto the response so that we can grab the context
     from it in the track decorator. It has to be an attribute so that it
     doesn't depend on the function returning the response to be decorated by
@@ -45,7 +43,7 @@ def cookie_login(request, next_page=None, required=False, **kwargs):
     if cookie_uid:
         cookie_uid = int(cookie_uid)
         from django.contrib import auth
-        user = auth.authenticate(cookie_uid=cookie_uid)
+        user = auth.authenticate(request, cookie_uid=cookie_uid)
         if user is not None:
             auth.login(request, user)
             name = user.first_name or user.username
@@ -86,10 +84,10 @@ def trackGrade(gamename, request, c):
 
             ex.)	from courses.views import trackGrade
 
-        Then, insert the following into each view before the return render_to_response
+        Then, insert the following into each view before the return course_render
 
             ex.)	trackGrade('Morfa', request, c)
-                    return render_to_response( etc ... )
+                    return course_render( etc ... )
 
         The first value is the name of the game, but this function handles
         the rest of choosing specifics, so course grade entries will display:
@@ -161,7 +159,7 @@ def courses_main(request):
                                  .distinct(),
     }
 
-    return render_to_response(request, template, c)
+    return course_render(request, template, c)
 
 from django.contrib.auth.decorators import user_passes_test
 
@@ -188,4 +186,4 @@ def instructor_student_detail(request, uid):
     template = 'courses/instructor_student_detail.html'
     c = {}
     c['student'] = UserProfile.objects.get(user__id=uid)
-    return render_to_response(request, template, c)
+    return course_render(request, template, c)

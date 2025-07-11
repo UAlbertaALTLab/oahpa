@@ -5,11 +5,6 @@ tls = importlib.import_module(LLL1+'_oahpa.conf.tools')
 cvs = importlib.import_module(LLL1+'_oahpa.courses.views')
 cds = importlib.import_module(LLL1+'_oahpa.courses.decorators')
 
-
-from django.template import Context, RequestContext, loader
-from django.db.models import Q
-from django.http import HttpResponse, Http404
-from django.shortcuts import get_list_or_404
 from django.utils.translation import ugettext_lazy as _
 
 switch_language_code = tls.switch_language_code
@@ -29,24 +24,24 @@ from .cealkka import *
 
 # This is some crazy voodoo for course tracking
 
-# render_to_response needs to be imported from here because it
+# course_render needs to be imported from here because it
 # applies a context attribute to the returned response so that
 # the trackGrade decorator can work.
 
-render_to_response = cvs.render_to_response
+course_render = cvs.course_render
 trackGrade = cds.trackGrade
 
 def index(request):
     c = {
         'jee': "joku arvo",
         }
-    return render_to_response(request, 'oahpa_main.html', c)
+    return course_render(request, 'oahpa_main.html', c)
 
 def updating(request):
     c = {
         'jee': "joku arvo",
         }
-    return render_to_response(request, 'updating.html', c)
+    return course_render(request, 'updating.html', c)
 
 class Gameview(object):
     """ Gameview is instantiated with a Settings object and a Game object,
@@ -455,7 +450,7 @@ def leksa_game(request, place=False):
 
     c = leksagame.create_game(request, initial_transtype=default_langpair)
 
-    return render_to_response(request, template, c)
+    return course_render(request, template, c)
 
 
 class Numview(Gameview):
@@ -501,7 +496,7 @@ def num_clock(request):
     c = numgame.create_game(request)
     c['numra_gametype'] = "clock"
 
-    return render_to_response(request, 'clock.html', c)
+    return course_render(request, 'clock.html', c)
 
 @trackGrade("Numra ordinal")
 def num_ord(request):
@@ -511,7 +506,7 @@ def num_ord(request):
 
     c = numgame.create_game(request)
 
-    return render_to_response(request, 'num_ord.html', c)
+    return course_render(request, 'num_ord.html', c)
 
 @trackGrade("Numra cardinal")
 def num(request):
@@ -521,7 +516,7 @@ def num(request):
     c = numgame.create_game(request)
     c['numra_gametype'] = "numra_cardinal"
 
-    return render_to_response(request, 'num.html', c)
+    return course_render(request, 'num.html', c)
 
 @trackGrade("Numra dato")
 def dato(request):
@@ -531,7 +526,7 @@ def dato(request):
     c = datogame.create_game(request)
     c['numra_gametype'] = "dato"
 
-    return render_to_response(request, 'dato.html', c)
+    return course_render(request, 'dato.html', c)
 
 @trackGrade("Numra money")
 def money(request):
@@ -541,7 +536,7 @@ def money(request):
     c = moneygame.create_game(request)
     c['numra_gametype'] = "money"
 
-    return render_to_response(request, 'money.html', c)
+    return course_render(request, 'money.html', c)
 
 # Translation of gamenames takes place in the templates mgame_n.html etc.
 # because they have to be available in two different languages - in Saami on the
@@ -848,7 +843,7 @@ def morfa_game(request, pos):
 
     c = mgame.create_game(request)
 
-    return render_to_response(request, template, c)
+    return course_render(request, template, c)
 
 
 ### Contextual Morfas
@@ -874,7 +869,7 @@ def cmgame(request, pos):
     template = "mgame_%s.html" % p
     c = mgame.create_game(request)
 
-    return render_to_response(request, template, c)
+    return course_render(request, template, c)
 
 
 class Vastaview(Gameview):
@@ -919,7 +914,7 @@ def vasta(request):
     vastagame = Vastaview(VastaSettings, QAGame)
 
     c = vastagame.create_game(request)
-    return render_to_response(request, 'vasta.html', c)
+    return course_render(request, 'vasta.html', c)
 
 
 class Cealkkaview(Gameview):
@@ -972,7 +967,7 @@ def cealkka(request):
     cealkkagame.init_settings()
 
     c = cealkkagame.create_game(request)
-    return render_to_response(request, 'vasta.html', c)
+    return course_render(request, 'vasta.html', c)
 
 
 class Sahkaview(Cealkkaview):
@@ -1110,4 +1105,4 @@ def sahka(request):
     sahkagame.init_settings()
 
     c = sahkagame.create_game(request)
-    return render_to_response(request, 'sahka.html', c)
+    return course_render(request, 'sahka.html', c)

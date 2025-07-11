@@ -77,7 +77,7 @@ Returns:
 import os, sys
 
 from django.conf import settings
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
@@ -154,4 +154,4 @@ def error_feedback_view(request):
     return Response(response_data)
 
 def test_page(request):
-    return render_to_response('test_page.html')
+    return render(request,'test_page.html')
