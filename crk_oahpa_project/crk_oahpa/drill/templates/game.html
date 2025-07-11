@@ -9,8 +9,8 @@
 {% endblock %}
 
 {% block content %}
-{% ifnotequal gametype "sahka" %}
-{% ifnotequal gametype "sahka_main" %}
+{% if gametype != "sahka" %}
+{% if gametype != "sahka_main" %}
 <hr/>
 <div id="instructions">
     <p><b>{% block gamename %}{% endblock %}</b> {% block instructions %}{% endblock %}</p>
@@ -40,8 +40,8 @@
 	</div>
     {% endblock %}
 </div>
-{% endifnotequal %}
-{% endifnotequal %}
+{% endif %}
+{% endif %}
 
 <div id="game_left">
 	<dl id="question_set" class="{% block questionsetclass %}{% endblock %}">
@@ -99,7 +99,7 @@
 		{% if form.answertext1_fake %}{% if form.error == "correct" %}{% else %}<span class="{% if form.fake_answer.value %}incorrect{% endif %}">{{ form.fake_answer }}</span>{% endif %}{% endif %} <span class="answertext">{{ form.answertext1|safe }}</span>
 		{% endif %}
 
-		{% ifnotequal form.userans "" %}
+		{% if form.userans != "" %}
 
 			{% if form.pron %}<span class="pronoun {% if form.object %}has_object{% endif %}">{{ form.pron }}</span>{% endif %}
 
@@ -138,7 +138,7 @@
 		    {% endif %}
 
 
-		{% endifnotequal %}
+		{% endif %}
 
 		{# TODO: conditionally hide fake input if answer is correct #}
 		{% if form.answertext2 %}<span class="answertext">{{ form.answertext2 }}</span>{% if form.answertext2_fake %}{% if form.error == "correct" %}{% else %}<span class="{% if form.fake_answer.value %}incorrect{% endif %}">{{ form.fake_answer }}</span>{% endif %}{% endif %} {% endif %}
@@ -172,7 +172,7 @@
 	{% endif %}
 	<span class="rightpart">
 	{% if show_correct %}
-		{% ifnotequal form.error "correct" %}
+		{% if form.error != "correct" %}
 			<span class="correctanswertext">{{ form.correct_answers }}</span>
 		{% else %}
 			{# Parens around correct, non-relaxed form. #}
@@ -180,7 +180,7 @@
 				<span class="correctanswertext">({{ form.correct_answers }})</span>
 				<span class="relaxed">{{ form.relaxed }}</span>
 			{% endif %}
-		{% endifnotequal %}
+		{% endif %}
 
 	    <span class="tooltip_question_id">{{ form.tooltip_question_id }}</span>
 	{% endif %}
@@ -239,17 +239,17 @@
 		{{ comment }}
 	{% endif %}
 
-	{% ifnotequal gametype "sahka" %}
-	{% ifnotequal gametype "sahka_main" %}
+	{% if gametype != "sahka" %}
+	{% if gametype != "sahka_main" %}
 
-	{% endifnotequal %}
-	{% endifnotequal %}
+	{% endif %}
+	{% endif %}
 
 
-	{% ifnotequal gametype "sahka" %}
-	{% ifnotequal gametype "sahka_main" %}
-	{% endifnotequal %}
-	{% endifnotequal %}
+	{% if gametype != "sahka" %}
+	{% if gametype != "sahka_main" %}
+	{% endif %}
+	{% endif %}
 
 </div>
 

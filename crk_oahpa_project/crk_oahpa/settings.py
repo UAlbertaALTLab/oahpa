@@ -41,10 +41,10 @@ INTERNAL_IPS = ('127.0.0.1',)
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 ALLOWED_HOSTS = ['.gtoahpa-01.uit.no','127.0.0.1','localhost','vm-dev']
+CSRF_TRUSTED_ORIGINS = ['https://*.gtoahpa-01.uit.no','http://127.0.0.1','http://localhost','http://vm-dev']
 
 # Development mode
 DEBUG = True
-#ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -134,8 +134,6 @@ TIME_ZONE = 'America/Edmonton'
 
 USE_I18N = True
 
-USE_L10N = True
-
 USE_TZ = True
 
 LANGUAGES = (
@@ -203,7 +201,7 @@ URL_PREFIX = 'nehiyawetan'
 
 MEDIA_URL = '/%s/media/' % URL_PREFIX
 
-STATIC_URL = "/static/"
+STATIC_URL = "static/"
 STATIC_ROOT = "static/"
 STATICFILES_DIRS = [
     '../containerized_deploy/media/',
