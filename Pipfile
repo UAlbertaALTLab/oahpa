@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-django = "~=1.11"
+django = "~=3.2"
 setuptools = "*"
 South = "~=1.0"
 Werkzeug = "~=0.9"
@@ -29,4 +29,4 @@ kitchen = "~=1.1"
 [dev-packages]
 
 [requires]
-python_version = "3.6"
+python_version = "3.10"
