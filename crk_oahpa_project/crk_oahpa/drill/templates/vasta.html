@@ -2,49 +2,49 @@
 {% load i18n %}
 
 {% block helpaddress %}
-{% ifequal LANGUAGE_CODE "no" %}
+{% if LANGUAGE_CODE == "no" %}
 <a href="http://giellatekno.uit.no/oahpa/vasta.nno.html"
 {% else %}
 <a href="http://giellatekno.uit.no/oahpa/vasta.html"
-{% endifequal %}
+{% endif %}
 {% endblock %}
 {% block imgprefix %}vasta{% endblock %}
 {% block gametitlename %}<a href="{% url 'vasta_s' %}">VASTA</a>{% endblock %}
 
 {% block navbar %}
 <ul class="sidelist">
-{% ifequal gametype "cealkka" %}<li class="selected">{% else %}<li>{% endifequal %}<a href="{% url 'vasta_s' %}">{% trans 'Vasta-S' %}</a></li>
-{% ifequal gametype "qa" %}<li class="selected">{% else %}<li>{% endifequal %}<a href="{% url 'vasta_f' %}">{% trans 'Vasta-F' %}</a></li>
+{% if gametype == "cealkka" %}<li class="selected">{% else %}<li>{% endif %}<a href="{% url 'vasta_s' %}">{% trans 'Vasta-S' %}</a></li>
+{% if gametype == "qa" %}<li class="selected">{% else %}<li>{% endif %}<a href="{% url 'vasta_f' %}">{% trans 'Vasta-F' %}</a></li>
 </ul>
 {% endblock %}
 
 {% block veiledning %}
-{% ifequal LANGUAGE_CODE "sme" %}
+{% if LANGUAGE_CODE == "sme" %}
 http://giellatekno.uit.no/oahpa/sme/useoahpa/vasta.html
-{% endifequal %}
-{% ifequal LANGUAGE_CODE "fi" %}
+{% endif %}
+{% if LANGUAGE_CODE == "fi" %}
 http://giellatekno.uit.no/oahpa/sme/useoahpa/vasta.fin.html
-{% endifequal %}
-{% ifequal LANGUAGE_CODE "en" %}
+{% endif %}
+{% if LANGUAGE_CODE == "en" %}
 http://giellatekno.uit.no/oahpa/sme/useoahpa/vasta.eng.html
-{% endifequal %}
-{% ifequal LANGUAGE_CODE "no" %}
+{% endif %}
+{% if LANGUAGE_CODE == "no" %}
 http://giellatekno.uit.no/oahpa/sme/useoahpa/vasta.nno.html
-{% endifequal %}
-{% ifequal LANGUAGE_CODE "sv" %}
+{% endif %}
+{% if LANGUAGE_CODE == "sv" %}
 http://giellatekno.uit.no/oahpa/sme/useoahpa/vasta.nno.html
-{% endifequal %}
+{% endif %}
 {% endblock %}
 
 {% block name %}{% trans "Vasta" %}{% endblock %}
 {% block pagename %}/rus_oahpa/vasta/{% endblock %}
 {% block instructions %}
-{% ifequal gametype "cealkka" %}
+{% if gametype == "cealkka" %}
 {% trans "Answer the questions with full sentences." %} </br>
 {% trans "The blue words are given in the primary form. Your task is to write them in the correct grammatical form." %}
 {% else %}
 {% trans "Answer to the questions with full sentences. Be aware of that if there is moai/mii in the question, you have to answer with doai/dii. " %}
-{% endifequal %}
+{% endif %}
 {% endblock %}
 
 {% block settings %}
@@ -60,11 +60,11 @@ http://giellatekno.uit.no/oahpa/sme/useoahpa/vasta.nno.html
 <!-- emergency tag ends -->
 <tr>
 <td>{% trans "Level" %}</td>
-<!-- {% ifequal gametype "cealkka" %}<td>{% trans "Number of task words" %}</td>{% endifequal %} -->
+<!-- {% if gametype == "cealkka" %}<td>{% trans "Number of task words" %}</td>{% endif %} -->
 </tr>
 <tr>
 <td>{{ settingsform.level }}</td>
-<!--  {% ifequal gametype "cealkka" %}<td>{{ settingsform.lemmacount }}</td>{% endifequal %}  -->
+<!--  {% if gametype == "cealkka" %}<td>{{ settingsform.lemmacount }}</td>{% endif %}  -->
 </tr>
 </table>
 <input type="submit" name="settings" value="{% trans "New set" %}" />

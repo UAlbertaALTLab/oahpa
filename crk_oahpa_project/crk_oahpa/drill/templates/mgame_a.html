@@ -10,7 +10,7 @@
 
 {% block subsetting %}
 
-{% ifequal settings.gametype "bare" %}
+{% if settings.gametype == "bare" %}
     <li><label for="id_{{ settingsform.adjcase.name }}">{% trans "Case" %}</label>
 		{{ settingsform.adjcase }}</li>
 	<li><label for="id_{{ settingsform.grade.name }}">{% trans "Grade" %}</label>
@@ -26,7 +26,7 @@
 {% else %}
 	<li><label for="id_{{ settingsform.adj_context.name }}">{% trans "Type" %}</label>
 		{{ settingsform.adj_context }}</li>
-{% endifequal %}
+{% endif %}
 
 {% endblock %}
 

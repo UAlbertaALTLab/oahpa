@@ -12,7 +12,7 @@ except ImportError:
 from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden, HttpResponseRedirect
-from django.utils.http import urlquote
+from urllib.parse import quote
 
 __all__ = ['login_required', 'permission_required', 'user_passes_test', 'trackGrade']
 
@@ -39,7 +39,7 @@ def user_passes_test(test_func, login_url=None,
                 return HttpResponseForbidden('<h1>Permission denied</h1>')
             else:
                 path = '%s?%s=%s' % (login_url, redirect_field_name,
-                                     urlquote(request.get_full_path()))
+                                     quote(request.get_full_path()))
                 return HttpResponseRedirect(path)
         return wrapper
     return decorator

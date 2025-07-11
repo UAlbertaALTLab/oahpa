@@ -75,11 +75,11 @@
 		{% if form.error == "correct" %}
 			<span class="correct">{{ form.userans }}</span>
 		{% else %}
-			{% ifequal form.error "error" %}
+			{% if form.error == "error" %}
 				<span class="incorrect relaxing">{{ form.userans }}</span>
 			{% else %}
 				<span class="blankentry">________________</span>{# Blank answer, this gets hidden via CSS in leksa and morfa, but not morfac #}
-			{% endifequal %}
+			{% endif %}
 		{% endif %}
 
 		{% if form.pron_imp %}
@@ -96,7 +96,7 @@
         {# If just test answers, mark correct answers as green #}
 
 		{% if form.answertext1 %}
-		{% if form.answertext1_fake %}{% ifequal form.error "correct" %}{% else %}<span class="{% if form.fake_answer.value %}incorrect{% endif %}">{{ form.fake_answer }}</span>{% endifequal %}{% endif %} <span class="answertext">{{ form.answertext1|safe }}</span>
+		{% if form.answertext1_fake %}{% if form.error == "correct" %}{% else %}<span class="{% if form.fake_answer.value %}incorrect{% endif %}">{{ form.fake_answer }}</span>{% endif %}{% endif %} <span class="answertext">{{ form.answertext1|safe }}</span>
 		{% endif %}
 
 		{% ifnotequal form.userans "" %}
@@ -141,13 +141,13 @@
 		{% endifnotequal %}
 
 		{# TODO: conditionally hide fake input if answer is correct #}
-		{% if form.answertext2 %}<span class="answertext">{{ form.answertext2 }}</span>{% if form.answertext2_fake %}{% ifequal form.error "correct" %}{% else %}<span class="{% if form.fake_answer.value %}incorrect{% endif %}">{{ form.fake_answer }}</span>{% endifequal %}{% endif %} {% endif %}
+		{% if form.answertext2 %}<span class="answertext">{{ form.answertext2 }}</span>{% if form.answertext2_fake %}{% if form.error == "correct" %}{% else %}<span class="{% if form.fake_answer.value %}incorrect{% endif %}">{{ form.fake_answer }}</span>{% endif %}{% endif %} {% endif %}
 
     {% endif %}
 
 
 
-		{% ifequal form.error "error" %}
+		{% if form.error == "error" %}
 		    <img width="15" height="15" border="0" src="{{ STATIC_URL }}/images/error.png"/>
 		    {% if not show_correct %}
 
@@ -161,7 +161,7 @@
 			{% else %}
 				{% if form.tcomm %}{% trans "This is almost correct!" %}{% endif %}
 			{% endif %}
-		{% endifequal %}
+		{% endif %}
 		{% if form.relaxing_note %}
 			<a href="#" class="feedback_link" id="link_feedback-{{ forloop.counter }}">
 				{% trans "help" %}
@@ -176,10 +176,10 @@
 			<span class="correctanswertext">{{ form.correct_answers }}</span>
 		{% else %}
 			{# Parens around correct, non-relaxed form. #}
-			{% ifequal form.is_relaxed "relaxed" %}
+			{% if form.is_relaxed == "relaxed" %}
 				<span class="correctanswertext">({{ form.correct_answers }})</span>
 				<span class="relaxed">{{ form.relaxed }}</span>
-			{% endifequal %}
+			{% endif %}
 		{% endifnotequal %}
 
 	    <span class="tooltip_question_id">{{ form.tooltip_question_id }}</span>
@@ -217,9 +217,9 @@
 	   {% if not show_correct %}
 	   <input type="submit" name="test" value="{% trans "Test answers" %}"/>
 	   {% endif %}
-	   {% ifequal count 1 %}
+	   {% if count == 1 %}
 	   <input type="submit" name="show_correct" value="{% trans "Show the correct answers" %}" />
-	   {% endifequal %}
+	   {% endif %}
 	{# {% endif %} #}
 	{% endblock %}
 

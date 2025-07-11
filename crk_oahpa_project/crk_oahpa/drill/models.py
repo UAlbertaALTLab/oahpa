@@ -6,7 +6,7 @@ from django.db.models import Q
 from django.db import connection
 from django.db import transaction
 
-from django.utils.encoding import smart_text
+from django.utils.encoding import smart_str
 
 CHAPTER_CHOICES = {
     'Intr1' : ['I1','I2','I3'],
@@ -322,7 +322,7 @@ class Semtype(models.Model):
     semtype = models.CharField(max_length=50)
 
     def __str__(self):
-        return smart_text(self.semtype)
+        return smart_str(self.semtype)
 
 class Source(models.Model):
     type = models.CharField(max_length=20)
@@ -335,7 +335,7 @@ class Source(models.Model):
             S = "%s: %s" % (self.type, self.name)
         elif self.name:
             S = "%s" % self.name
-        return smart_text(S)
+        return smart_str(S)
 
 # First, define the Manager subclass.
 class NPosManager(models.Manager):
@@ -353,7 +353,7 @@ class Dialect(models.Model):
             S = "%s" % self.name
         elif self.dialect:
             S = "%s" % self.dialect
-        return smart_text(S)
+        return smart_str(S)
 
 def Translations2(target_lang):
     if target_lang in ["nob", "crk", "eng", "dan", "no"]:
@@ -378,7 +378,7 @@ class MorphPhonTag(models.Model): # redone for Russian
     inflection_class = models.CharField(max_length=20) # Zaliznyak's number class
     # stress_class     = models.CharField(max_length=20) # Zaliznyak's stress class
     declension       = models.CharField(max_length=20) # Doing it this way until an fst is up
-    reflexive        = models.NullBooleanField(blank=True)
+    reflexive        = models.BooleanField(null=True, blank=True)
 
 # PI: Zaliznyak's codes aren't sufficient to get the correct conjugation
 # for reflexive verbs
@@ -394,7 +394,7 @@ class MorphPhonTag(models.Model): # redone for Russian
 #			 self.stress_class,
              self.reflexive]
 
-        S = smart_text('/'.join([a for a in attrs if a.strip()])).encode('utf-8')
+        S = smart_str('/'.join([a for a in attrs if a.strip()])).encode('utf-8')
         return S
 
     class Meta:
@@ -473,7 +473,7 @@ class Word(models.Model):
     declension = models.CharField(max_length=20)
     loc2 = models.BooleanField(default=False) # indicates if the word has Locative2 or not
     gen2 = models.BooleanField(default=False) # indicates if the word has Genitive2 or not
-    reflexive = models.NullBooleanField(blank=True)
+    reflexive = models.BooleanField(null=True, blank=True)
     inflection_class = models.CharField(max_length=20) # Zaliznyak's number class
     zaliznjak = models.CharField(max_length=20)
     audio = models.CharField(max_length=20) # audio file name
@@ -557,7 +557,7 @@ class Word(models.Model):
         super(Word, self).save(*args, **kwargs)
 
     def __str__(self):
-        return smart_text(self.lemma)
+        return smart_str(self.lemma)
 
     def sem_types_admin(self):
         return ', '.join([item.semtype for item in self.semtype.order_by('semtype').all()])
@@ -657,7 +657,7 @@ class WordTranslation(models.Model):
         return word_answers
 
     def __str__(self):
-        return smart_text(self._getTrans())
+        return smart_str(self._getTrans())
 
     def save(self, *args, **kwargs):
         self.definition = self._getTrans()
@@ -690,14 +690,14 @@ class Tagset(models.Model):
     tagset = models.CharField(max_length=25)
 
     def __str__(self):
-        return smart_text(self.tagset)
+        return smart_str(self.tagset)
 
 class Tagname(models.Model):
     tagname = models.CharField(max_length=25)
     tagset = models.ForeignKey(Tagset, on_delete=models.CASCADE)
 
     def __str__(self):
-        return smart_text(self.tagname)
+        return smart_str(self.tagname)
 
 class Tag(models.Model):
     string = models.CharField(max_length=40, unique=True) # tag sequence
@@ -730,7 +730,7 @@ class Tag(models.Model):
         pass
 
     def __str__(self):
-        return smart_text(self.string)
+        return smart_str(self.string)
 
     def fix_attributes(self):
 
@@ -797,7 +797,7 @@ class Form(models.Model):
         return [d.dialect for d in self.dialects.all() if len(d.dialect) == 2]
 
     def __str__(self):
-        return smart_text(self.fullform)
+        return smart_str(self.fullform)
         # Testing-- related lookups seem to be quite slow in MySQL...?
         # return '%s; %s+%s' % (self.fullform, self.word.lemma, self.tag)
 
@@ -989,7 +989,7 @@ class Feedbacktext(models.Model):
                 self.message,
             ]
         S = str('/'.join([a for a in attrs if a.strip()])).encode('utf-8')
-        return smart_text(self.language + ':' + self.message)
+        return smart_str(self.language + ':' + self.message)
 
 
 
@@ -1045,7 +1045,7 @@ class QElement(models.Model):
                              related_name='copy_set',
                              on_delete=models.CASCADE)
     def __str__(self):
-        return smart_text(self.question.string + ': ' + self.identifier)
+        return smart_str(self.question.string + ': ' + self.identifier)
 
 class WordQElement(models.Model):
     """

@@ -2,11 +2,11 @@
 {% load i18n %}
 
 {% block helpaddress %}
-{% ifequal LANGUAGE_CODE "no" %}
+{% if LANGUAGE_CODE == "no" %}
 <a href="http://giellatekno.uit.no/smaoahpa/numra.nno.html"
 {% else %}
 <a href="http://giellatekno.uit.no/smaoahpa/numra.html"
-{% endifequal %}
+{% endif %}
 {% endblock %}
 
 {% block gametitlename %}akihtâsona{% endblock %}
@@ -14,24 +14,24 @@
 
 
 {% block veiledning %}
-{% ifequal LANGUAGE_CODE "sme" %}
+{% if LANGUAGE_CODE == "sme" %}
 http://giellatekno.uit.no/oahpa/sme/useoahpa/numra.html
-{% endifequal %}
-{% ifequal LANGUAGE_CODE "fi" %}
+{% endif %}
+{% if LANGUAGE_CODE == "fi" %}
 http://giellatekno.uit.no/oahpa/sme/useoahpa/numra.fin.html
-{% endifequal %}
-{% ifequal LANGUAGE_CODE "en" %}
+{% endif %}
+{% if LANGUAGE_CODE == "en" %}
 http://giellatekno.uit.no/oahpa/sme/useoahpa/numra.eng.html
-{% endifequal %}
-{% ifequal LANGUAGE_CODE "no" %}
+{% endif %}
+{% if LANGUAGE_CODE == "no" %}
 http://giellatekno.uit.no/oahpa/sme/useoahpa/numra.nno.html
-{% endifequal %}
-{% ifequal LANGUAGE_CODE "ru" %}
+{% endif %}
+{% if LANGUAGE_CODE == "ru" %}
 http://giellatekno.uit.no/oahpa/sme/useoahpa/numra.rus.html
-{% endifequal %}
-{% ifequal LANGUAGE_CODE "sv" %}
+{% endif %}
+{% if LANGUAGE_CODE == "sv" %}
 http://giellatekno.uit.no/oahpa/sme/useoahpa/numra.nno.html
-{% endifequal %}
+{% endif %}
 {% endblock %}
 
 {% block navbar %}
@@ -43,11 +43,11 @@ http://giellatekno.uit.no/oahpa/sme/useoahpa/numra.nno.html
 {% block instructions %}
   {# TODO: strings for instructions. #}
   {% block gamename %}{% endblock %}
-  {% ifequal gametype "string" %}
+  {% if gametype == "string" %}
 	Enter the <a class="helptext" href="#">{% trans "numeral" %}<span class=shortinfo>Ex. "23"</span></a> equivalent to the given Cree number.
   {% else %}
 	Enter the Plains Cree <a class="helptext" href="#">{% trans "translation" %}<span class=shortinfo">Ex. "nîsitanaw nistosâp"</span></a> of the given number.
-  {% endifequal %}
+  {% endif %}
 {% endblock %}
 
 

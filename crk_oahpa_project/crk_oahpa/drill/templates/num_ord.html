@@ -6,9 +6,9 @@
 
 {% block instructions %}
   {# TODO: strings for instructions. #}
-  {% ifequal gametype "string" %}
+  {% if gametype == "string" %}
     {% trans "Write a numeral followed by fullstop (for example, 32.). Please keep to this format." %}
   {% else %}
     {% trans "Write the ordinal numbers in Plains Cree." %}
-  {% endifequal %}
+  {% endif %}
 {% endblock %}

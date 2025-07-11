@@ -48,24 +48,24 @@
 						<select id="language_select" name="language" onChange="javascript:this.form.submit();">
 
 						{% comment %}
-						    {% ifequal LANGUAGE_CODE "crk" %}
+						    {% if LANGUAGE_CODE == "crk" %}
 							    <option value="crk" selected="selected">Plains Cree</option>
 						    {% else %}
 							    <option value="crk">Plains Cree</option>
-						    {% endifequal %}
+						    {% endif %}
 						{% endcomment %}
-					<!--	{% ifequal LANGUAGE_CODE "fi" %}
+					<!--	{% if LANGUAGE_CODE == "fi" %}
 							<option value="fi" selected="selected">Suomi</option>
 						{% else %}
 							<option value="fi">Suomi</option>
-						{% endifequal %} -->
+						{% endif %} -->
 
 
-						{% ifequal LANGUAGE_CODE "en" %}
+						{% if LANGUAGE_CODE == "en" %}
 							<option value="en" selected="selected">English</option>
 						{% else %}
 							<option value="en">English</option>
-						{% endifequal %}
+						{% endif %}
 
 					</select>
 					</dd>
@@ -80,13 +80,13 @@
 						<input name="next" type="hidden" value="/{{ URL_PREFIX }}/" />
 						<select name="dialect" onChange="javascript:this.form.submit();">
 						{% if dialect %}
-							{% ifequal dialect "GG" %}
+							{% if dialect == "GG" %}
 								<option value="GG" selected="selected">{% trans 'GG' %}</option>
 								<option value="KJ">{% trans 'KJ' %}</option>
 							{% else %}
 								<option value="GG">{% trans 'GG' %}</option>
 								<option value="KJ" selected="selected">{% trans 'KJ' %}</option>
-							{% endifequal %}
+							{% endif %}
 						{% else %}
 							<option value="GG">{% trans 'GG' %}</option>
 							<option value="KJ">{% trans 'KJ' %}</option>

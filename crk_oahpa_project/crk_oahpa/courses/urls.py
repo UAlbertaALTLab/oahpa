@@ -1,4 +1,4 @@
-from django.conf.urls import *
+from django.urls import re_path
 
 from .views import cookie_login, cookie_logout
 from django.views.generic import TemplateView
@@ -10,15 +10,15 @@ from django.views.generic import TemplateView
 
 
 urlpatterns = [
-	url(r'^standard_login/$', TemplateView.as_view(template_name="auth/login.html")),
-	url(r'^logout/$', TemplateView.as_view(template_name="auth/logout.html")),
-    url(r'^login/$', cookie_login),
-	url(r'^cookie_logout/$', cookie_logout),
+	re_path(r'^standard_login/$', TemplateView.as_view(template_name="auth/login.html")),
+	re_path(r'^logout/$', TemplateView.as_view(template_name="auth/logout.html")),
+    re_path(r'^login/$', cookie_login),
+	re_path(r'^cookie_logout/$', cookie_logout),
 ]
 
 from .views import courses_main, instructor_student_detail
 
 urlpatterns += [
-    url(r'^(?P<cid>\d+)/(?P<uid>\d+)/$', instructor_student_detail),
-    url(r'^$', courses_main, name="courses_index"),
+    re_path(r'^(?P<cid>\d+)/(?P<uid>\d+)/$', instructor_student_detail),
+    re_path(r'^$', courses_main, name="courses_index"),
 ]

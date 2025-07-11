@@ -2,11 +2,11 @@
 {% load i18n %}
 
 {% block helpaddress %}
-{% ifequal LANGUAGE_CODE "no" %}
+{% if LANGUAGE_CODE == "no" %}
 <a href="http://giellatekno.uit.no/oahpa/leksa.nno.html"
 {% else %}
 <a href="http://giellatekno.uit.no/oahpa/leksa.html"
-{% endifequal %}
+{% endif %}
 {% endblock %}
 
 {% block gametitlename %}itwêwina{% endblock %}
@@ -20,21 +20,21 @@
 {% endblock %}
 
 {% block veiledning %}
-{% ifequal LANGUAGE_CODE "sme" %}
+{% if LANGUAGE_CODE == "sme" %}
 http://giellatekno.uit.no/oahpa/sme/useoahpa/leksa.html
-{% endifequal %}
-{% ifequal LANGUAGE_CODE "fi" %}
+{% endif %}
+{% if LANGUAGE_CODE == "fi" %}
 http://giellatekno.uit.no/oahpa/sme/useoahpa/leksa.fin.html
-{% endifequal %}
-{% ifequal LANGUAGE_CODE "en" %}
+{% endif %}
+{% if LANGUAGE_CODE == "en" %}
 http://giellatekno.uit.no/oahpa/sme/useoahpa/leksa.eng.html
-{% endifequal %}
-{% ifequal LANGUAGE_CODE "no" %}
+{% endif %}
+{% if LANGUAGE_CODE == "no" %}
 http://giellatekno.uit.no/oahpa/sme/useoahpa/leksa.nno.html
-{% endifequal %}
-{% ifequal LANGUAGE_CODE "sv" %}
+{% endif %}
+{% if LANGUAGE_CODE == "sv" %}
 http://giellatekno.uit.no/oahpa/sme/useoahpa/leksa.nno.html
-{% endifequal %}
+{% endif %}
 {% endblock %}
 
 {% block instructions %}
@@ -90,9 +90,9 @@ function playSound(soundfile) {
    {% if not show_correct %}
    <input type="submit" name="test" value="{% trans "Test answers" %}"/>
    {% endif %}
-   {% ifequal count 1 %}
+   {% if count == 1 %}
    <input type="submit" name="show_correct" value="{% trans "Show the correct answers" %}" />
-   {% endifequal %}
+   {% endif %}
 {% endif %}
 {% endblock %}
 

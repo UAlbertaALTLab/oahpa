@@ -62,7 +62,7 @@
 {% block book %}{% endblock %}
 
 {% block subsetting %}
-	{% ifequal settings.gametype "bare" %}
+	{% if settings.gametype == "bare" %}
 		<li><label for="id_{{ settingsform.vtype.name }}">{% trans "Tense" %}</label>
 			{{ settingsform.vtype }}</li>
 		<li><label for="id_{{ settingsform.trans_anim.name }}">{% trans "Animacy" %}</label>
@@ -74,6 +74,6 @@
 			{{ settingsform.v_mode_context }}</li>
 		<li><label for="id_{{ settingsform.v_tense_context.name }}">{% trans "Tense" %}</label>
 			{{ settingsform.v_tense_context }}</li>
-	{% endifequal %}
+	{% endif %}
 {% endblock %}
 

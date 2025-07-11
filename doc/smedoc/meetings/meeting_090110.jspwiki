@@ -182,7 +182,7 @@ Edit instructions like
 In your own home directory, create the translations:
 
 * cd ped/oahpa
-* django-admin.py makemessages -a
+* django-admin makemessages -a
 * svn ci -m "new generated files" locale/fi/LC_MESSAGES/django.po
 
 ... for the other files
@@ -192,7 +192,7 @@ Update the translations to the official page.
 * cd /home/oahpa/
 * svn up ped
 * cd ped/oahpa/
-* django-admin.py compilemessages
+* django-admin compilemessages
 
 Insructions block is included:
 ped/oahpa/drill/templates/game.html

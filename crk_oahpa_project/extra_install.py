@@ -6,11 +6,7 @@ sdm = importlib.import_module(LLL1+'_oahpa.drill.models')
 
 from django.db.models import Q
 from xml.dom import minidom as _dom
-from django.utils.encoding import force_text
 import sys
-import re
-import string
-import codecs
 
 from kitchen.text.converters import getwriter
 UTF8Writer = getwriter('utf8')

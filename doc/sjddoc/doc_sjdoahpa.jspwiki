@@ -85,8 +85,8 @@ The url where sjd_oahpa is found on the local machine is:
 
 This is as usual:
 {{{
-$ django-admin.py makemessages -a
-$ django-admin.py compilemessages
+$ django-admin makemessages -a
+$ django-admin compilemessages
 }}}
 
 ----

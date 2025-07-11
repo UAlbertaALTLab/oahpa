@@ -140,17 +140,10 @@ Tag = sdm.Tag
 Form = sdm.Form
 
 from xml.dom import minidom as _dom
-from django.db.models import Q
 import sys
-import re
-import string
-import codecs
 import operator
 
-from django.db import transaction
-from itertools import product
-
-from django.utils.encoding import force_text
+from django.utils.encoding import force_str
 
 def fix_encoding(s):
     try:
@@ -158,7 +151,7 @@ def fix_encoding(s):
     except:
         pass
 
-    return force_text(s)
+    return force_str(s)
 
 try:
     from collections import OrderedDict

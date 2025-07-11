@@ -10,7 +10,7 @@ Installing nu_oahpa on victorio:
 
 >cd /home/nu_oahpa
 
->django-admin.py startproject nu_oahpa
+>django-admin startproject nu_oahpa
 
 3.  create all applications for the project
 

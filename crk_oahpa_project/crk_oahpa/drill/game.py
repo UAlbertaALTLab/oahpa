@@ -11,7 +11,7 @@ switch_language_code = oahpa_module.conf.tools.switch_language_code
 from django.db.models import Q
 from django.http import Http404
 from django.core.exceptions import ObjectDoesNotExist
-from django.utils.encoding import smart_bytes, smart_text
+from django.utils.encoding import smart_bytes, smart_str
 from random import randint
 
 import os
@@ -1155,7 +1155,7 @@ class NumGame(Game):
 			elif gametype == 'numeral':
 				fstfile = self.answers_fst
 
-			output, err = self.generate_forms(smart_text(forms), fstfile)
+			output, err = self.generate_forms(smart_str(forms), fstfile)
 
 			num_list = self.clean_fst_output(output)
 			num_list = self.strip_unknown(num_list)
@@ -1305,7 +1305,7 @@ class Klokka(NumGame):
 			elif gametype == 'numeral':
 				fstfile = self.answers_fst
 
-			output, err = self.generate_forms(smart_text(forms), fstfile)
+			output, err = self.generate_forms(smart_str(forms), fstfile)
 
 			num_list = self.clean_fst_output(output)
 			num_list = self.strip_unknown(num_list)

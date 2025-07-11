@@ -5,13 +5,11 @@ tls = importlib.import_module(LLL1+'_oahpa.conf.tools')
 cvs = importlib.import_module(LLL1+'_oahpa.courses.views')
 cds = importlib.import_module(LLL1+'_oahpa.courses.decorators')
 
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 switch_language_code = tls.switch_language_code
 
 hostname = oahpa_module.settings.hostname
-
-from random import randint
 
 from .game import *
 from .forms import *

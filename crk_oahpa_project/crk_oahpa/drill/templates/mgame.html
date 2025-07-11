@@ -2,26 +2,26 @@
 {% load i18n %}
 {% get_current_language as LANGUAGE_CODE %}
 
-{% block questionsetclass %}{% ifequal settings.gametype "bare" %}morfa{% else %}morfac{% endifequal %}{% endblock %}
-{% block gametitlename %}{% ifequal settings.gametype "bare" %}itwêwinihkewin{% else %}kakwêcihkêmowina{% endifequal %}{% endblock %}
-{% block imgprefix %}{% ifequal settings.gametype "bare" %}morfa{% else %}morfac{% endifequal %}{% endblock %}
+{% block questionsetclass %}{% if settings.gametype == "bare" %}morfa{% else %}morfac{% endif %}{% endblock %}
+{% block gametitlename %}{% if settings.gametype == "bare" %}itwêwinihkewin{% else %}kakwêcihkêmowina{% endif %}{% endblock %}
+{% block imgprefix %}{% if settings.gametype == "bare" %}morfa{% else %}morfac{% endif %}{% endblock %}
 
 {% block veiledning %}
-{% ifequal LANGUAGE_CODE "sme" %}
+{% if LANGUAGE_CODE == "sme" %}
 http://giellatekno.uit.no/oahpa/sme/useoahpa/morfa.html
-{% endifequal %}
-{% ifequal LANGUAGE_CODE "fi" %}
+{% endif %}
+{% if LANGUAGE_CODE == "fi" %}
 http://giellatekno.uit.no/oahpa/sme/useoahpa/morfa.fin.html
-{% endifequal %}
-{% ifequal LANGUAGE_CODE "en" %}
+{% endif %}
+{% if LANGUAGE_CODE == "en" %}
 http://giellatekno.uit.no/oahpa/sme/useoahpa/morfa.eng.html
-{% endifequal %}
-{% ifequal LANGUAGE_CODE "no" %}
+{% endif %}
+{% if LANGUAGE_CODE == "no" %}
 http://giellatekno.uit.no/oahpa/sme/useoahpa/morfa.nno.html
-{% endifequal %}
-{% ifequal LANGUAGE_CODE "sv" %}
+{% endif %}
+{% if LANGUAGE_CODE == "sv" %}
 http://giellatekno.uit.no/oahpa/sme/useoahpa/morfa.nno.html
-{% endifequal %}
+{% endif %}
 {% endblock %}
 
 {% block navbar %}
@@ -40,20 +40,20 @@ http://giellatekno.uit.no/oahpa/sme/useoahpa/morfa.nno.html
 	    <li id="pos_menu">
 	        <label>Part of Speech</label>
 	        <select class="exclude_form_update">
-                {% ifequal settings.gametype "bare" %}
-		            <option {% ifequal settings.pos "N" %} selected{% else %}{% endifequal %} value="{% url 'morfa_s.noun' %}">{% trans 'Nouns' %}</option>
-		            <option {% ifequal settings.pos "V" %} selected{% else %}{% endifequal %}  value="{% url 'morfa_s.verb' %}">{% trans 'Verbs' %}</option>
+                {% if settings.gametype == "bare" %}
+		            <option {% if settings.pos == "N" %} selected{% else %}{% endif %} value="{% url 'morfa_s.noun' %}">{% trans 'Nouns' %}</option>
+		            <option {% if settings.pos == "V" %} selected{% else %}{% endif %}  value="{% url 'morfa_s.verb' %}">{% trans 'Verbs' %}</option>
                 {% else %}
-		            <option {% ifequal settings.pos "N" %} selected{% else %}{% endifequal %} value="{% url 'morfa_c.noun' %}">{% trans 'Nouns' %}</option>
-		            <option {% ifequal settings.pos "V" %} selected{% else %}{% endifequal %} value="{% url 'morfa_c.verb' %}">{% trans 'Verbs' %}</option>
-		            <option {% ifequal settings.pos "Pron" %} selected{% else %}{% endifequal %} value="{% url 'morfa_c.pron' %}">{% trans 'Pronouns' %}</option>
+		            <option {% if settings.pos == "N" %} selected{% else %}{% endif %} value="{% url 'morfa_c.noun' %}">{% trans 'Nouns' %}</option>
+		            <option {% if settings.pos == "V" %} selected{% else %}{% endif %} value="{% url 'morfa_c.verb' %}">{% trans 'Verbs' %}</option>
+		            <option {% if settings.pos == "Pron" %} selected{% else %}{% endif %} value="{% url 'morfa_c.pron' %}">{% trans 'Pronouns' %}</option>
 
-                {% endifequal %}
+                {% endif %}
 
             {% comment %}
-            <option 	{% ifequal settings.pos "A" %} selected{% else %}{% endifequal %} value="{% url 'morfa_c.adj' %}">{% trans 'Adjectives' %}</option>
-                    <option {% ifequal settings.pos "Num" %} selected{% else %}{% endifequal %} value="{% url 'morfa_c.num' %}">{% trans 'Numerals' %}</option>
-                    <option {% ifequal settings.pos "Der" %} selected{% else %}{% endifequal %} value="{% url 'morfa_c.der' %}">{% trans 'Derivations' %}</option>
+            <option 	{% if settings.pos == "A" %} selected{% else %}{% endif %} value="{% url 'morfa_c.adj' %}">{% trans 'Adjectives' %}</option>
+                    <option {% if settings.pos == "Num" %} selected{% else %}{% endif %} value="{% url 'morfa_c.num' %}">{% trans 'Numerals' %}</option>
+                    <option {% if settings.pos == "Der" %} selected{% else %}{% endif %} value="{% url 'morfa_c.der' %}">{% trans 'Derivations' %}</option>
             {% endcomment %}
 
 	        </select>
@@ -61,10 +61,10 @@ http://giellatekno.uit.no/oahpa/sme/useoahpa/morfa.nno.html
 		{% block subsetting %}{% endblock %}
         {% if settings.pos != "Num" %}
             {% block book %}
-            {% ifequal settings.gametype "bare" %}
+            {% if settings.gametype == "bare" %}
             <li><label for="id_{{ settingsform.book.name }}">{% trans "Book" %}</label>
                 {{ settingsform.book }}</li>
-            {% endifequal %}
+            {% endif %}
             {% endblock %}
         {% endif %}
 	</ul>
@@ -76,7 +76,7 @@ http://giellatekno.uit.no/oahpa/sme/useoahpa/morfa.nno.html
 {% endblock %}
 
 {% block question %}
-	{% ifequal settings.gametype "bare" %}
+	{% if settings.gametype == "bare" %}
 		          {{ form.lemma }}
 		    {% comment %}
 		    using NDS for this now
@@ -93,7 +93,7 @@ http://giellatekno.uit.no/oahpa/sme/useoahpa/morfa.nno.html
 		    {% if form.lemma %} (<a href="#" class="link_tooltip" id="link_tooltip-{{ forloop.counter }}">{{ form.lemma }}</a>) {% endif %}
 	      {% else %}
 	      {% endif %}
-	{% endifequal %}
+	{% endif %}
 {% endblock %}
 
 {% block tooltip %}

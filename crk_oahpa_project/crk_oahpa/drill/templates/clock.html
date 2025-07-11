@@ -5,11 +5,11 @@
 {% endblock %}
 
 {% block instructions %}
-  {% ifequal gametype "string" %}
+  {% if gametype == "string" %}
     {% trans "Enter the time in the digital clock format. (Ex. 10:21)" %}
   {% else %}
     {% trans "Enter the time in words (ex. nîstanaw nîyânanosâp cipahikanis pâmayes nisto tipahikan)" %}
-  {% endifequal %}
+  {% endif %}
 {% endblock %}
 
 

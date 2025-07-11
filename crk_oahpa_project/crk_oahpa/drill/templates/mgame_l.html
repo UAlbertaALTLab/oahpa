@@ -3,32 +3,32 @@
 
 {% block gamename %}{{ settings.gamename }}{% endblock %}
 {% block instructions %}
-  {% ifequal settings.gametype "bare" %}
+  {% if settings.gametype == "bare" %}
     {% trans "Add numerals in correct forms." %}
   {% else %}
     {% trans "Add numerals in correct forms." %}
-  {% endifequal %}
+  {% endif %}
 {% endblock %}
 
 
 {% block subsetting %}
 
-{% ifequal settings.gametype "bare" %}
+{% if settings.gametype == "bare" %}
 	<li><label for="id_{{ settingsform.num_bare.name }}">{% trans "Case" %}</label>
 		{{ settingsform.num_bare }}</li>
 {% else %}
 	<li><label for="id_{{ settingsform.num_context.name }}">{% trans "Case" %}</label>
 		{{ settingsform.num_context }}</li>
-{% endifequal %}
+{% endif %}
 
-{% ifequal settings.gametype "bare" %}
+{% if settings.gametype == "bare" %}
 	<li><label for="id_{{ settingsform.num_level.name }}">{% trans "Level" %}</label>
 		{{ settingsform.num_level }}</li>
-{% endifequal %}
+{% endif %}
 
-{% ifequal settings.gametype "bare" %}
+{% if settings.gametype == "bare" %}
 	<li><label for="id_{{ settingsform.num_type.name }}">{% trans "Type" %}</label>
 		{{ settingsform.num_type }}</li>
-{% endifequal %}
+{% endif %}
 
 {% endblock %}

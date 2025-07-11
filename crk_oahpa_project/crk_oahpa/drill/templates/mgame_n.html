@@ -48,7 +48,7 @@
 {% endblock %}
 
 {% block subsetting %}
-    {% ifequal settings.gametype "bare" %}
+    {% if settings.gametype == "bare" %}
             <li><label for="id_{{ settingsform.case.name }}">{% trans "Type" %}</label>
                 {{ settingsform.case }}</li>
         {% if settings.case == 'N-PX' %}
@@ -59,6 +59,6 @@
     <li><label for="id_{{ settingsform.case_context.name }}">{% trans "Set" %}</label>
         {{ settingsform.case_context }}</li>
 
-    {% endifequal %}
+    {% endif %}
 {% endblock %}
 
