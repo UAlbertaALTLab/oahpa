@@ -36,11 +36,11 @@ INTERNAL_IPS = ('127.0.0.1',)
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
-ALLOWED_HOSTS = ['.gtoahpa-01.uit.no','127.0.0.1','localhost','vm-dev']
-CSRF_TRUSTED_ORIGINS = ['https://*.gtoahpa-01.uit.no','http://127.0.0.1','http://localhost', 'http://vm-dev:5000', 'http://vm-dev:5002']
+ALLOWED_HOSTS = ['https://oahpa.altlab.dev','127.0.0.1','localhost']
+CSRF_TRUSTED_ORIGINS = ['https://oahpa.altlab.dev','http://127.0.0.1','http://localhost']
 
 # Development mode
-DEBUG = True
+DEBUG = False
 
 # Application definition
 
