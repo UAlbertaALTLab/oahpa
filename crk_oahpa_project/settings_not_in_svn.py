@@ -57,7 +57,7 @@ ENG_DIALECTS = {
 ENG_HLOOKUP_TOOL = '/usr/local/bin/lookup'
 ENG_LOOKUP_TOOL = '/usr/local/bin/lookup -flags mbTT'
 
-FST_DIRECTORY = '/opt/smi/'+LLL1+'/bin'
+FST_DIRECTORY = 'crk_oahpa/resources/fst/'
 LOG_FILE = path + '/drill/vastaF_log.txt'
 
 GAME_FSTS = {

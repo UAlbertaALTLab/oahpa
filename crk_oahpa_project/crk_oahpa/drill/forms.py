@@ -896,8 +896,8 @@ class OahpaSettings(forms.Form):
     set_settings = set_settings
 
     def clean(self):
-        x = self.cleaned_data['bisyllabic']
-        print('clean: ', x)
+        #x = self.cleaned_data['bisyllabic']
+        #print('clean: ', x)
         return self.cleaned_data
 
     def set_default_data(self):

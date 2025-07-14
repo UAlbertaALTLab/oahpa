@@ -24,7 +24,7 @@ settings = oahpa_module.settings
 from random import choice
 from .forms import PRONOUNS_LIST
 
-LOOKUP_TOOL = settings.LOOKUP_TOOL
+LOOKUP_TOOL = settings.HFST_LOOKUP
 FST_DIRECTORY = settings.FST_DIRECTORY
 DEFAULT_DIALECT = settings.DEFAULT_DIALECT
 LOOKUP_OPTS = settings.LOOKUP_OPTS
@@ -1078,7 +1078,7 @@ class NumGame(Game):
 
 		random_num = randint(1, int(self.settings['maxnum']))
 
-		db_info['numeral_id'] = smart_bytes(random_num)
+		db_info['numeral_id'] = smart_str(random_num)
 
 		if self.settings['gametype'] == 'ord':
 			db_info['numeral_id'] += "."
@@ -1235,7 +1235,7 @@ class NumGame(Game):
 			# line = line.replace(' ','')
 
 			if line:
-				nums = line.split('\t')
+				nums = line.split(b'\t')
 				num_list.append(nums[a].decode('utf-8'))
 		try:
 			numstring = num_list[0]

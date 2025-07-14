@@ -200,7 +200,7 @@ MEDIA_URL = '/%s/media/' % URL_PREFIX
 STATIC_URL = "static/"
 STATIC_ROOT = "static/"
 STATICFILES_DIRS = [
-    #'../containerized_deploy/media/',
+    '../containerized_deploy/media/',
 ]
 # #
 #
@@ -211,5 +211,7 @@ STATICFILES_DIRS = [
 AUTH_PROFILE_MODULE = LLL1+'_oahpa.courses.UserProfile'
 LOGIN_REDIRECT_URL = '/%s/courses/' % URL_PREFIX
 LOGIN_URL = '/%s/courses/login/' % URL_PREFIX
+
+FST_DIRECTORY = "crk_oahpa/resources/"
 
 from settings_not_in_svn import *
