@@ -16,7 +16,7 @@ run:
 	podman run --rm --name oahpa_all -p 5000:80 oahpa_all
 
 runlocal:
-	podman run --rm --name oahpa_all -v ./smi:/opt/smi -p 5002:80 oahpa_all
+	podman run --rm --name oahpa_all -p 5002:80 oahpa_all
 
 run-bash:
 	podman run --rm -it oahpa_all bash

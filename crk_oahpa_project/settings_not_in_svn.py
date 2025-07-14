@@ -80,7 +80,7 @@ GAME_FSTS = {
 }
 
 # Absolute path to the directory that holds media.
-MEDIA_ROOT = '/home/oahpa/media/'
+MEDIA_ROOT = '/app/media/'
 
 CACHES = {
         'default': {

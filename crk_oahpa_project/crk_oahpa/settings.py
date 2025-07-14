@@ -21,10 +21,6 @@ LLL1 = MAIN_LANGUAGE[0]
 os.environ['PYTHON_EGG_CACHE'] = '/tmp'
 os.environ['DJANGO_SETTINGS_MODULE'] = LLL1+'_oahpa.settings'
 
-# This flag triggers now the URL patterns in url.py file.
-# The production_setting.py is triggered now by os name.
-DEV = True
-
 # Can just list the media or template dirs as here('templates') instead of '/home/me/.../sjdoahpa/templates/
 # Chiara note: this is probably never used, so for now comment out and after testing will be removed
 #here = lambda x: os.path.join(os.path.abspath(os.path.dirname(sys.argv[0])), x)
@@ -41,7 +37,7 @@ INTERNAL_IPS = ('127.0.0.1',)
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 ALLOWED_HOSTS = ['.gtoahpa-01.uit.no','127.0.0.1','localhost','vm-dev']
-CSRF_TRUSTED_ORIGINS = ['https://*.gtoahpa-01.uit.no','http://127.0.0.1','http://localhost','http://vm-dev']
+CSRF_TRUSTED_ORIGINS = ['https://*.gtoahpa-01.uit.no','http://127.0.0.1','http://localhost', 'http://vm-dev:5000', 'http://vm-dev:5002']
 
 # Development mode
 DEBUG = True
@@ -204,7 +200,7 @@ MEDIA_URL = '/%s/media/' % URL_PREFIX
 STATIC_URL = "static/"
 STATIC_ROOT = "static/"
 STATICFILES_DIRS = [
-    '../containerized_deploy/media/',
+    #'../containerized_deploy/media/',
 ]
 # #
 #

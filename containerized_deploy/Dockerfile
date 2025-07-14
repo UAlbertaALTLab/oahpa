@@ -1,32 +1,27 @@
-FROM python:3.12-slim-bookworm
+FROM ubuntu:24.04
 
 LABEL maintainer="Felipe Bañados Schwerter <banadoss@ualberta.ca>"
 
 ARG OAHPA_UID_GID=60006
 
-RUN apt-get update && apt-get install -y curl sqlite3 gettext
+RUN apt-get update && apt-get install -y python3.12 uwsgi-plugin-python3 pipenv curl sqlite3 gettext supervisor nginx
 
 RUN curl https://apertium.projectjj.com/apt/install-nightly.sh | bash
 
-RUN apt-get update && apt-get install -y --no-install-recommends hfst supervisor nginx
+RUN apt-get update && apt-get install -y --no-install-recommends hfst 
 
-RUN python -m ensurepip
-
-# Install pipenv
-RUN pip install pipenv
-
-# Create the non-root user/group that will own the application code
-RUN groupadd --gid ${OAHPA_UID_GID} oahpa \
- && useradd --no-log-init --gid oahpa \
-    --uid ${OAHPA_UID_GID} oahpa --create-home
+# types.Create the non-root user/group that will own the application code
+#RUN groupadd --gid ${OAHPA_UID_GID} oahpa \
+# && useradd --no-log-init --gid oahpa \
+#    --uid ${OAHPA_UID_GID} oahpa --create-home
 
 # Install and build dependencies,
 # then remove build-time dependencies to keep the image slim!
-RUN  mkdir /app/ \
- && chown oahpa /app
+RUN  mkdir /app/ # \
+# && chown oahpa /app
 
 # As the non-root user...
-USER oahpa
+#USER oahpa
 
 # Set working directory
 WORKDIR /app
@@ -35,9 +30,7 @@ WORKDIR /app
 COPY Pipfile Pipfile.lock ./
 
 # Install dependencies
-RUN PIPENV_VENV_IN_PROJECT=1 pipenv install --deploy
-ENV VIRTUAL_ENV="/app/.venv"
-ENV PATH="${VIRTUAL_ENV}/bin:${PATH}"
+RUN pipenv install --deploy
 
 # Import database
 COPY containerized_deploy/crk_oahpa_sqlite.sql.gz /tmp/crk_oahpa_sqlite.sql.gz
@@ -58,18 +51,16 @@ COPY containerized_deploy/lookup /usr/local/bin/lookup
 # TODO I believe this is the same folder for every instance, but unsure
 #      (It should be!)
 # TODO Call instead to collectstatic
-COPY media /var/www/html
+RUN mkdir /var/www/html/static
+COPY media /var/www/html/static
 
 COPY containerized_deploy/uwsgi_vassals /etc/uwsgi/vassals
 
 # Copy in files we need to run the project vessels
-COPY --chown=oahpa crk_oahpa_project /app/crk_oahpa_project
+COPY crk_oahpa_project /app/crk_oahpa_project
 
 # Copy settings_not_in_svn.py to where it needs to be.
 RUN cp /app/crk_oahpa_project/settings_not_in_svn.py /app/crk_oahpa_project/crk_oahpa/settings_not_in_svn.py
-
-# Update the paths in these settings_not_in_svn.py files
-RUN find . -name settings_not_in_svn.py -exec sed --in-place -e 's,/home/oahpa/,/app/,g' {} \;
 
 # This replaces the SECRET_KEY = '...' with a new secret key for each lang
 COPY containerized_deploy/roll_keys.sh /tmp/roll_keys.sh
@@ -78,6 +69,11 @@ RUN /tmp/roll_keys.sh
 # Compile translations for all instances
 RUN cd /app && pipenv run django-admin compilemessages
 RUN cd /app/crk_oahpa_project && pipenv run python manage.py migrate
+
+# Create logfile
+RUN mkdir -p /var/log/uwsgi/ && touch /var/log/uwsgi/crk_oahpa.log
+
+RUN echo "virtualenv = $(pipenv --venv)" >> /etc/uwsgi/vassals/crk_oahpa.ini
 
 CMD [ "/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf" ]
 
