@@ -200,7 +200,6 @@ MEDIA_URL = '/%s/media/' % URL_PREFIX
 STATIC_URL = "static/"
 STATIC_ROOT = "static/"
 STATICFILES_DIRS = [
-    '../containerized_deploy/media/',
 ]
 # #
 #
