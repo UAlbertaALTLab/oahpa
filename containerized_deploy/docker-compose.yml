@@ -1,0 +1,12 @@
+services:
+  crk-oahpa:
+    # In prod, we *always* want the apps running, including on boot; that’s
+    # not necessarily the case on our dev machines.
+    restart: always
+    build:
+      context: ..
+      dockerfile: containerized_deploy/Dockerfile
+    # The tag that will automatically be applied on build:
+    image: crk-oahpa:dev
+    ports:
+    - "5000:80"
