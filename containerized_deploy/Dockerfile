@@ -52,7 +52,7 @@ COPY containerized_deploy/lookup /usr/local/bin/lookup
 #      (It should be!)
 # TODO Call instead to collectstatic
 RUN mkdir /var/www/html/static
-COPY media /var/www/html/static
+COPY containerized_deploy/media /var/www/html/static
 
 COPY containerized_deploy/uwsgi_vassals /etc/uwsgi/vassals
 
