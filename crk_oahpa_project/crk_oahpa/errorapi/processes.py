@@ -3,24 +3,25 @@ from django.conf import settings
 
 ERROR_FST_SETTINGS = settings.ERROR_FST_SETTINGS
 
+
 class XFST(object):
 
     def clean(self, _output):
         """
-            Clean XFST lookup text into
+        Clean XFST lookup text into
 
-            [('keenaa', ['keen+V+1Sg+Ind+Pres', 'keen+V+3SgM+Ind+Pres']),
-             ('keentaa', ['keen+V+2Sg+Ind+Pres', 'keen+V+3SgF+Ind+Pres'])]
+        [('keenaa', ['keen+V+1Sg+Ind+Pres', 'keen+V+3SgM+Ind+Pres']),
+         ('keentaa', ['keen+V+2Sg+Ind+Pres', 'keen+V+3SgF+Ind+Pres'])]
 
         """
 
-        analysis_chunks = [a for a in _output.split('\n\n') if a.strip()]
+        analysis_chunks = [a for a in _output.split("\n\n") if a.strip()]
 
         def split_tag(t):
-            return t.split('+')
+            return t.split("+")
 
         def split_analysis(a):
-            lem, _, tag = a.partition('+')
+            lem, _, tag = a.partition("+")
             return (lem, split_tag(tag))
 
         cleaned = []
@@ -28,8 +29,8 @@ class XFST(object):
             lemmas = []
             analyses = []
 
-            for part in chunk.split('\n'):
-                wordform, _, analysis = part.partition('\t')
+            for part in chunk.split("\n"):
+                wordform, _, analysis = part.partition("\t")
                 lemmas.append(wordform)
                 analyses.append(split_analysis(analysis))
             lemma = list(set(lemmas))[0]
@@ -41,7 +42,7 @@ class XFST(object):
         return cleaned
 
     def _exec(self, _input, cmd, timeout=5):
-        """ Execute a process, but kill it after 5 seconds. Generally
+        """Execute a process, but kill it after 5 seconds. Generally
         we expect small things here, not big things.
         """
         import subprocess
@@ -49,15 +50,17 @@ class XFST(object):
         from threading import Timer
 
         try:
-            _input = _input.encode('utf-8')
+            _input = _input.encode("utf-8")
         except:
             pass
 
         print(cmd)
-        lookup_proc = subprocess.Popen(cmd.split(' '),
-                                       stdin=subprocess.PIPE,
-                                       stdout=subprocess.PIPE,
-                                       stderr=subprocess.PIPE)
+        lookup_proc = subprocess.Popen(
+            cmd.split(" "),
+            stdin=subprocess.PIPE,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+        )
 
         def kill_proc(proc=lookup_proc):
             try:
@@ -75,13 +78,13 @@ class XFST(object):
 
         if output:
             try:
-                output = output.decode('utf-8')
+                output = output.decode("utf-8")
             except:
                 pass
 
         if err:
             try:
-                err = err.decode('utf-8')
+                err = err.decode("utf-8")
             except:
                 pass
 
@@ -91,13 +94,13 @@ class XFST(object):
         self.cmd = "%s %s" % (lookup_tool, fst_file)
         self.options = options
 
-        if 'logger' in options:
-            self.logger = options.get('logger')
+        if "logger" in options:
+            self.logger = options.get("logger")
         else:
             self.logger = ERROR_FST_LOG
 
     def lookup(self, lookups_list):
-        lookup_string = '\n'.join(lookups_list)
+        lookup_string = "\n".join(lookups_list)
         output, err = self._exec(lookup_string, cmd=self.cmd)
         if len(output) == 0 and len(err) > 0:
             name = self.__class__.__name__
@@ -105,10 +108,11 @@ class XFST(object):
             self.logger.error(msg.strip())
         return self.clean(output)
 
+
 class FeedbackFST(object):
 
     def _error_tags_from_fst(self, fst_response):
-        """ Grab the error tags returned in the FST response, based on
+        """Grab the error tags returned in the FST response, based on
         the tags available in the message store.
         """
 
@@ -116,8 +120,7 @@ class FeedbackFST(object):
         for wf, analyses in fst_response:
             for lem, tag in analyses:
                 # TODO: tagsets instead?
-                existing_errors = \
-                    set(tag) & set(self.message_store.error_tags)
+                existing_errors = set(tag) & set(self.message_store.error_tags)
                 if len(existing_errors) > 0:
                     error_tags.append(frozenset(existing_errors))
 
@@ -125,19 +128,23 @@ class FeedbackFST(object):
 
         return error_tags
 
-    def _messages_for_error_tags(self, error_tags, display_lang, task=False, wordform='WORDFORM'):
+    def _messages_for_error_tags(
+        self, error_tags, display_lang, task=False, wordform="WORDFORM"
+    ):
         error_messages = []
 
         def replace_string(msg):
-            if 'title' in msg:
-                msg["title"] = msg["title"].replace('WORDFORM', '"%s"' % wordform)
-            if msg.get('description', False):
-                msg["description"] = msg["description"].replace('WORDFORM', '"%s"' % wordform)
+            if "title" in msg:
+                msg["title"] = msg["title"].replace("WORDFORM", '"%s"' % wordform)
+            if msg.get("description", False):
+                msg["description"] = msg["description"].replace(
+                    "WORDFORM", '"%s"' % wordform
+                )
             else:
                 msg["description"] = ""
             return msg
 
-        # TODO: is this an issue? 
+        # TODO: is this an issue?
         #  For this part need to get a message with the maximal match,
         # so:
         #   ['Acc', 'CGErr', 'Gen']
@@ -145,24 +152,26 @@ class FeedbackFST(object):
 
         for err_tag in error_tags:
             if task:
-                message = self.message_store.get_message(display_lang, err_tag, task=task)
+                message = self.message_store.get_message(
+                    display_lang, err_tag, task=task
+                )
             else:
                 message = self.message_store.get_message(display_lang, err_tag)
             if message:
-                error_messages.append({
-                    'tags': err_tag,
-                    'message': list(map(replace_string, message))
-                })
+                error_messages.append(
+                    {"tags": err_tag, "message": list(map(replace_string, message))}
+                )
 
         return error_messages
 
-    def get_all_feedback_for_form(self, input_wordform, task=False,
-                                  intended_lemma=False, display_lang='nob'):
-        """ Accepts a wordform, returns feedback error tags and
+    def get_all_feedback_for_form(
+        self, input_wordform, task=False, intended_lemma=False, display_lang="nob"
+    ):
+        """Accepts a wordform, returns feedback error tags and
         messages.
         """
         # TODO: cache input-output for some period of time, or until
-        # last update + created date of FST file is changed? 
+        # last update + created date of FST file is changed?
 
         fst_response = self.lookup_proc.lookup([input_wordform])
 
@@ -170,7 +179,7 @@ class FeedbackFST(object):
 
             def lemma_filter(o):
                 result = []
-                for (wf, analyses) in o:
+                for wf, analyses in o:
                     filtered = []
                     for lem, tag in analyses:
                         if str(lem) == str(intended_lemma):
@@ -182,18 +191,20 @@ class FeedbackFST(object):
 
         error_tags = self._error_tags_from_fst(fst_response)
 
-        error_messages = self._messages_for_error_tags(error_tags, display_lang, task=task, wordform=input_wordform)
+        error_messages = self._messages_for_error_tags(
+            error_tags, display_lang, task=task, wordform=input_wordform
+        )
 
         return {
-            'fst': fst_response,
-            'error_tags': error_tags,
-            'messages': error_messages
+            "fst": fst_response,
+            "error_tags": error_tags,
+            "messages": error_messages,
         }
 
     def __init__(self, message_store):
 
         self.lookup_proc = XFST(
-            ERROR_FST_SETTINGS.get('lookup_tool'),
-            ERROR_FST_SETTINGS.get('fst_path'),
+            ERROR_FST_SETTINGS.get("lookup_tool"),
+            ERROR_FST_SETTINGS.get("fst_path"),
         )
         self.message_store = message_store

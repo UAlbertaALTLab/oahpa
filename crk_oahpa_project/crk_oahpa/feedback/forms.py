@@ -2,12 +2,12 @@
 from django.utils.translation import gettext as _
 
 GAME_CHOICES = (
-	('morfa', 'Morfa'),
-	('vasta', 'Vasta'),
-	('numra', 'Numra'),
-	('sahka', 'Sahka'),
-	('leksa', 'Leksa'),
-	('all', 'All'),
+    ("morfa", "Morfa"),
+    ("vasta", "Vasta"),
+    ("numra", "Numra"),
+    ("sahka", "Sahka"),
+    ("leksa", "Leksa"),
+    ("all", "All"),
 )
 
 
@@ -27,15 +27,20 @@ GAME_CHOICES = (
 
 
 class FeedbackForm(forms.ModelForm):
-	"""
-		ModelForm version of the above form.
-	"""
-	message = forms.CharField(widget=forms.Textarea(attrs={'rows':'15', 'cols': '50'}))
-	name = forms.CharField(widget=forms.TextInput(attrs={'size':'40'}), required=False)
-	email = forms.EmailField(widget=forms.TextInput(attrs={'size':'40'}), required=False)
-	place = forms.CharField(widget=forms.TextInput(attrs={'size':'40'}), required=False)
-	confirmation = forms.BooleanField(required=False,initial=True)
+    """
+    ModelForm version of the above form.
+    """
 
-	class Meta:
-		model = Article
-		fields = ('message', 'name', 'email', 'place', 'confirmation')
+    message = forms.CharField(widget=forms.Textarea(attrs={"rows": "15", "cols": "50"}))
+    name = forms.CharField(widget=forms.TextInput(attrs={"size": "40"}), required=False)
+    email = forms.EmailField(
+        widget=forms.TextInput(attrs={"size": "40"}), required=False
+    )
+    place = forms.CharField(
+        widget=forms.TextInput(attrs={"size": "40"}), required=False
+    )
+    confirmation = forms.BooleanField(required=False, initial=True)
+
+    class Meta:
+        model = Article
+        fields = ("message", "name", "email", "place", "confirmation")

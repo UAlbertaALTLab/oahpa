@@ -1,6 +1,7 @@
 from .local_conf import LLL1
 import importlib
-oahpa_module = importlib.import_module(LLL1+'_oahpa')
+
+oahpa_module = importlib.import_module(LLL1 + "_oahpa")
 
 from django.core.management.base import BaseCommand
 
@@ -17,6 +18,7 @@ import sys
 # # #
 
 from xml.dom import minidom as _dom
+
 # from django import db
 import sys
 import re
@@ -28,11 +30,14 @@ from random import choice
 # Some XML shortcuts
 _elements = lambda e, x: e.getElementsByTagName(x)
 _attribute = lambda e, x: e.getAttribute(x)
+
+
 def _data(e):
     try:
         return e.firstChild.data
     except AttributeError:
         return False
+
 
 def _firstelement(e, x):
     e = _elements(e, x)
@@ -42,7 +47,6 @@ def _firstelement(e, x):
         return None
 
 
-
 Tagname = oahpa_module.drill.models.Tagname
 Form = oahpa_module.drill.models.Form
 Word = oahpa_module.drill.models.Word
@@ -50,8 +54,8 @@ Tagset = oahpa_module.drill.models.Tagset
 
 
 def parse_tag(tag):
-    """ Iterate through a tag string by chunks, and check for tag sets
-    and tag names. Return the reassembled tag on success. """
+    """Iterate through a tag string by chunks, and check for tag sets
+    and tag names. Return the reassembled tag on success."""
 
     def fill_out(tags):
         from itertools import product
@@ -65,7 +69,7 @@ def parse_tag(tag):
         return list(product(*list(map(make_list, tags))))
 
     tag_string = []
-    for item in tag.split('+'):
+    for item in tag.split("+"):
         if Tagname.objects.filter(tagname=item).count() > 0:
             tag_string.append(item)
         elif Tagset.objects.filter(tagset=item).count() > 0:
@@ -75,22 +79,27 @@ def parse_tag(tag):
             tag_string.append(item)
 
     if len(tag_string) > 0:
-        return ['+'.join(item) for item in fill_out(tag_string)]
+        return ["+".join(item) for item in fill_out(tag_string)]
     else:
         return False
 
-_boolify = lambda v: True and v.lower() in ['yes', 'true', 'y'] or False
+
+_boolify = lambda v: True and v.lower() in ["yes", "true", "y"] or False
 
 # TODO: for now i assume these don't change throughout the course of the
 # operation, but they might.
 
 # TODO: tags install-- need to cat all paradigms together
 
-TAGS = Tagname.objects.all().values_list('tagname', flat=True)
-TAGSETS = Tagset.objects.all().values_list('tagset', flat=True)
+TAGS = Tagname.objects.all().values_list("tagname", flat=True)
+TAGSETS = Tagset.objects.all().values_list("tagset", flat=True)
 
-_T = dict([(t.tagset, t.tagname_set.all().values_list('tagname', flat=True))
-            for t in Tagset.objects.all()])
+_T = dict(
+    [
+        (t.tagset, t.tagname_set.all().values_list("tagname", flat=True))
+        for t in Tagset.objects.all()
+    ]
+)
 
 # List of tags that agree in. Key-value pairs. Key in head, means agree
 # tag must contain one of the items in the list.
@@ -100,28 +109,25 @@ _T = dict([(t.tagset, t.tagname_set.all().values_list('tagname', flat=True))
 # pairs. or perhaps a slightly different arrangement here...
 
 AGREEMENT = {
-    'Sg': ['Sg3'],
-    'Du': ['Du3'],
-    'Pl': ['Pl3'],
-
-    'Sg1': ['PxSg1', 'Sg1'],
-    'Sg2': ['PxSg2', 'Sg2'],
-    'Sg3': ['PxSg3', 'Sg3'],
-
-    'Du1': ['PxDu1', 'Du1'],
-    'Du2': ['PxDu2', 'Du2'],
-    'Du3': ['PxDu3', 'Du3'],
-
-    'Pl1': ['PxPl1', 'Pl1'],
-    'Pl2': ['PxPl2', 'Pl2'],
-    'Pl3': ['PxPl3', 'Pl3'],
-
-    '': '',
+    "Sg": ["Sg3"],
+    "Du": ["Du3"],
+    "Pl": ["Pl3"],
+    "Sg1": ["PxSg1", "Sg1"],
+    "Sg2": ["PxSg2", "Sg2"],
+    "Sg3": ["PxSg3", "Sg3"],
+    "Du1": ["PxDu1", "Du1"],
+    "Du2": ["PxDu2", "Du2"],
+    "Du3": ["PxDu3", "Du3"],
+    "Pl1": ["PxPl1", "Pl1"],
+    "Pl2": ["PxPl2", "Pl2"],
+    "Pl3": ["PxPl3", "Pl3"],
+    "": "",
 }
 
 # TODO: Cleaning code thoughts
 #        SUBJ = elements_d.get('SUBJ') or False
 #        MAINV = elements_d.get('MAINV') or False
+
 
 class FakeForm(object):
     pass
@@ -141,40 +147,40 @@ class GrammarDefaults(object):
 
     def __init__(self, defaults_node):
         self.node = defaults_node
-        definitions = _firstelement(self.node, 'definitions')
+        definitions = _firstelement(self.node, "definitions")
 
-        tags = _firstelement(definitions, 'tags')
-        partitions = _elements(self.node, 'partitions')
-        tag_elements = _elements(tags, 'element')
+        tags = _firstelement(definitions, "tags")
+        partitions = _elements(self.node, "partitions")
+        tag_elements = _elements(tags, "element")
 
         grammar_definitions = {}
 
         for element in tag_elements:
-            elem_id = _attribute(element, 'id')
+            elem_id = _attribute(element, "id")
             grammar_definitions[elem_id] = {}
 
-            grammars = _elements(element, 'grammar')
+            grammars = _elements(element, "grammar")
 
-            word_id = _data(_firstelement(element, 'id'))
+            word_id = _data(_firstelement(element, "id"))
 
             tag_list = []
 
             for grammar in grammars:
-                pos = _attribute(grammar, 'pos')
-                tag = _attribute(grammar, 'tag')
+                pos = _attribute(grammar, "pos")
+                tag = _attribute(grammar, "tag")
 
                 expanded = sum(self.expandTags([tag]), [])
                 tag_list.extend(expanded)
 
-
             if len(tag_list) > 0:
-                grammar_definitions[elem_id]['tags'] = tag_list
+                grammar_definitions[elem_id]["tags"] = tag_list
 
             if word_id:
                 if word_id.strip():
-                    grammar_definitions[elem_id]['lemmas'] = [word_id]
+                    grammar_definitions[elem_id]["lemmas"] = [word_id]
 
         self.grammar_definitions = grammar_definitions
+
 
 class Agreement(object):
 
@@ -185,62 +191,60 @@ class Agreement(object):
 
         # Any processing that needs to be done here?
 
-        self._agreement = self.agreement_data['Agreements']
+        self._agreement = self.agreement_data["Agreements"]
         return self._agreement
 
     @property
     def agreement_by_element_name_all(self):
-        """ A dictionary of all agreement names by targeted elements
-        """
+        """A dictionary of all agreement names by targeted elements"""
         if self._agreement_by_element_name_all:
             return self._agreement_by_element_name_all
 
         elements_to_agreements_all = {}
         for agreement_pattern in self.agreement:
-            elems = [e['element'] for e in agreement_pattern['elements']]
+            elems = [e["element"] for e in agreement_pattern["elements"]]
             for elem in elems:
                 if elem in elements_to_agreements_all:
-                    elements_to_agreements_all[elem].append(agreement_pattern['name'])
+                    elements_to_agreements_all[elem].append(agreement_pattern["name"])
                 else:
-                    elements_to_agreements_all[elem] = [agreement_pattern['name']]
+                    elements_to_agreements_all[elem] = [agreement_pattern["name"]]
 
         self._agreement_by_element_name_all = elements_to_agreements_all
         return self._agreement_by_element_name_all
 
-
     @property
     def agreement_by_element_name_question(self):
-        """ A dictionary of only agreement elements valid for the question.
-        """
+        """A dictionary of only agreement elements valid for the question."""
         if self._agreement_by_element_name_question:
             return self._agreement_by_element_name_question
 
         def question_only(item):
-            if item.starts_with('Question/'):
-                return item.replace('Question/', '')
+            if item.starts_with("Question/"):
+                return item.replace("Question/", "")
             else:
                 return None
 
-        self._agreement_by_element_name_question = list(filter(question_only,
-                    self.agreement_by_element_name_all))
+        self._agreement_by_element_name_question = list(
+            filter(question_only, self.agreement_by_element_name_all)
+        )
 
         return self._agreement_by_element_name_question
 
     @property
     def agreement_by_element_name_answer(self):
-        """ A dictionary of only agreement elements valid for the answer.
-        """
+        """A dictionary of only agreement elements valid for the answer."""
         if self._agreement_by_element_name_answer:
             return self._agreement_by_element_name_answer
 
         def answer_only(item):
-            if item.starts_with('Answer/'):
-                return item.replace('Answer/', '')
+            if item.starts_with("Answer/"):
+                return item.replace("Answer/", "")
             else:
                 return None
 
-        self._agreement_by_element_name_answer = list(filter(answer_only,
-                    self.agreement_by_element_name_all))
+        self._agreement_by_element_name_answer = list(
+            filter(answer_only, self.agreement_by_element_name_all)
+        )
 
         return self._agreement_by_element_name_answer
 
@@ -251,7 +255,7 @@ class Agreement(object):
 
         by_name = {}
         for agr in self.agreement:
-            by_name[agr['name']] = agr
+            by_name[agr["name"]] = agr
 
         self._agreement_by_name = by_name
         return self.agreement_by_name
@@ -270,12 +274,12 @@ class Agreement(object):
                 def pattern_match(x, y):
                     # TODO: Clean this up
                     # basically, can y match x with corresponding value replaced with AGR
-                    x_head, x_agr, x_tail = x.partition('AGR')
-                    agr_inner_re = re.escape(x).replace('AGR', r'(?P<agr>\w+)')
+                    x_head, x_agr, x_tail = x.partition("AGR")
+                    agr_inner_re = re.escape(x).replace("AGR", r"(?P<agr>\w+)")
                     agr_inner = re.match(agr_inner_re, y)
                     try:
-                        agr_inner = agr_inner.group('agr')
-                        z = y.replace(agr_inner, 'AGR')
+                        agr_inner = agr_inner.group("agr")
+                        z = y.replace(agr_inner, "AGR")
                         if x == z:
                             return True
                     except:
@@ -286,12 +290,12 @@ class Agreement(object):
                     else:
                         return False
 
-                tag_patterns = agr_cls.head['tag']
-                head_element = agr_cls.head['element']
+                tag_patterns = agr_cls.head["tag"]
+                head_element = agr_cls.head["element"]
 
                 # TODO: when there are multiple targets
-                targ_patterns = agr_cls.targets[0]['tag']
-                targ_element = agr_cls.targets[0]['element']
+                targ_patterns = agr_cls.targets[0]["tag"]
+                targ_element = agr_cls.targets[0]["element"]
 
                 tag_pattern = False
                 for tag_p in tag_patterns:
@@ -302,28 +306,36 @@ class Agreement(object):
                             break
 
                 try:
-                    agr_inner_re = re.escape(tag_pattern).replace('AGR', r'(?P<agr>\w+)')
+                    agr_inner_re = re.escape(tag_pattern).replace(
+                        "AGR", r"(?P<agr>\w+)"
+                    )
                     agr_inner = re.match(agr_inner_re, head)
-                    agr_inner = agr_inner.group('agr')
+                    agr_inner = agr_inner.group("agr")
                 except:
                     agr_inner = False
 
                 # Take the chunk of the tag from the head tag pattern, and
                 # insert the agreed version (from agreements) into the target
                 # tag pattern then expand all the tags
-                replacements = dict([(r[head_element], r[targ_element]) for r in agr_cls.replacements])
+                replacements = dict(
+                    [(r[head_element], r[targ_element]) for r in agr_cls.replacements]
+                )
                 agr_target = replacements.get(agr_inner)
                 try:
-                    target_tags_set = parse_tag(targ_patterns.replace('AGR', agr_target))
+                    target_tags_set = parse_tag(
+                        targ_patterns.replace("AGR", agr_target)
+                    )
                 except Exception as e:
                     print(e)
-                    print(" * Could not match agreement, is it defined in agreements.yaml?")
-                    print('name: ' + repr(agr_cls.name))
-                    print('tag_pattern: ' + repr(tag_pattern))
-                    print('targ_patterns: ' + repr(targ_patterns))
-                    print('head: ' + repr(head))
-                    print('targets: ' + repr(targets))
-                    print('replacements: ' + repr(replacements))
+                    print(
+                        " * Could not match agreement, is it defined in agreements.yaml?"
+                    )
+                    print("name: " + repr(agr_cls.name))
+                    print("tag_pattern: " + repr(tag_pattern))
+                    print("targ_patterns: " + repr(targ_patterns))
+                    print("head: " + repr(head))
+                    print("targets: " + repr(targets))
+                    print("replacements: " + repr(replacements))
                     sys.exit()
 
                 def target_match(t):
@@ -344,8 +356,10 @@ class Agreement(object):
                 # TODO: no head found error
 
                 # Get the possible target tags from the supplied tags
-                target_elems = [(t.get('element'), element_tags.get(t.get('element')))
-                                for t in agr_cls.targets]
+                target_elems = [
+                    (t.get("element"), element_tags.get(t.get("element")))
+                    for t in agr_cls.targets
+                ]
 
                 if len(agr_cls.targets) > 1:
                     print("Multiple targets. TODO.", file=sys.stderr)
@@ -355,12 +369,11 @@ class Agreement(object):
                 target_elems = target_elems[0][1]
 
                 # filter out non-agreeing target tags
-                head, agr_targets = agr_cls.match_and_replace(head_element, target_elems)
+                head, agr_targets = agr_cls.match_and_replace(
+                    head_element, target_elems
+                )
 
-                agreement = {
-                    agr_cls.head_name: head,
-                    target_elems_name: agr_targets
-                }
+                agreement = {agr_cls.head_name: head, target_elems_name: agr_targets}
 
                 return agreement
 
@@ -368,33 +381,31 @@ class Agreement(object):
                 agr_cls.agr_info = agr_info
                 agr_cls.name = agreementname
 
-                is_head = lambda x: x and x.get('head', False) or False
+                is_head = lambda x: x and x.get("head", False) or False
                 isnt_head = lambda x: not is_head(x)
 
                 # TODO: need to make agr_info target elements available because
                 # need tag for match and replace above, also potential that
                 # there are mutliple targets, ugh, maybe should just ignore it
                 # for now
-                agr_cls.targets = list(filter(isnt_head, agr_info['elements']))
+                agr_cls.targets = list(filter(isnt_head, agr_info["elements"]))
 
                 # TODO: testing
                 # print 'omg'
                 # print agr_cls.targets
-                agr_cls.head = list(filter(is_head, agr_info['elements']))
+                agr_cls.head = list(filter(is_head, agr_info["elements"]))
 
                 if len(agr_cls.head) == 1:
                     agr_cls.head = agr_cls.head[0]
-                    agr_cls.head_name = agr_cls.head['element']
+                    agr_cls.head_name = agr_cls.head["element"]
                 else:
                     # TODO: errors for multiple and no agr head specified
                     agr_cls.head = False
                     agr_cls.head_name = False
 
-                agr_cls.replacements = agr_info['agreements']
+                agr_cls.replacements = agr_info["agreements"]
 
         return Agr()
-
-
 
     def __init__(self, agreementfilename):
         import yaml
@@ -405,15 +416,17 @@ class Agreement(object):
         self._agreement_by_element_name_question = False
         self._agreement_by_element_name_answer = False
 
-
-        with open(agreementfilename, 'r') as F:
+        with open(agreementfilename, "r") as F:
             self.agreement_data = yaml.load(F)
 
     def agreement_requires_element(self, agreement_name, element_name):
         agreement_item = self.agreement_by_name.get(agreement_name, False)
 
-        non_heads = [element_['element'] for element_ in agreement_item['elements']
-                        if element_.get('head', False) != True]
+        non_heads = [
+            element_["element"]
+            for element_ in agreement_item["elements"]
+            if element_.get("head", False) != True
+        ]
 
         if len(non_heads) > 0:
             if element_name in non_heads:
@@ -424,11 +437,11 @@ class Agreement(object):
             return False
 
     def find_possible_agreements(self, element_names, question_or_answer=False):
-        """ Take a list of element names, and return possible agreement types.
+        """Take a list of element names, and return possible agreement types.
 
-            @param question_or_answer (False) - if set to question or answer,
-            then only search for possible agreement items that have to do with
-            that context.
+        @param question_or_answer (False) - if set to question or answer,
+        then only search for possible agreement items that have to do with
+        that context.
         """
 
         # TODO: maybe need a list of partial agreement things if a head is
@@ -444,112 +457,109 @@ class Agreement(object):
             for agr_name in agreement_names:
                 for non_head in non_heads:
                     if self.agreement_requires_element(agr_name, non_head):
-                        element_names_agreements_and_tails_exist.append((element_name, agr_name))
+                        element_names_agreements_and_tails_exist.append(
+                            (element_name, agr_name)
+                        )
 
         return element_names_agreements_and_tails_exist
 
 
-
-
-
 class QObj(GrammarDefaults):
-    """ Contains methods necessary for testing questions for Morfa-C.
-        Eventually, this may be used to assemble Question objects and
-        store them in the database, and then also used to create the
-        questions in the actual game.
+    """Contains methods necessary for testing questions for Morfa-C.
+    Eventually, this may be used to assemble Question objects and
+    store them in the database, and then also used to create the
+    questions in the actual game.
 
-        If this is used to store database info, it seems like it Would
-        almost be better to store tags and semantic types instead of creating
-        a ton of WordQElements, because just as much sorting would need to be
-        done to either read from WordQElements as it would be to sort through
-        forms-- or at least this would be worth testing.
+    If this is used to store database info, it seems like it Would
+    almost be better to store tags and semantic types instead of creating
+    a ton of WordQElements, because just as much sorting would need to be
+    done to either read from WordQElements as it would be to sort through
+    forms-- or at least this would be worth testing.
 
 
     """
 
     # Question-Answer agreement
-    QAPN = {    'Sg':'Sg',            # Dïhte? Dïhte.
-                'Pl':'Pl',            # Dah? Dah.
-
-                'Sg1':'Sg2',        # Manne? Datne.
-                'Sg2':'Sg1',        # Datne? Manne.
-                'Sg3':'Sg3',        # Dïhte? Dïhte.
-
-                'Du1':'Du2',        # Månnoeh? Dåtnoeh.
-                'Du2':'Du1',        # Dåtnoeh? Månnoeh.
-                'Du3':'Du3',        # Dah guaktah? Dah guaktah.
-
-                'Pl1':'Pl2',        # Mijjieh? Dijjieh.
-                'Pl2':'Pl1',        # Dijjieh? Mijjieh.
-                'Pl3':'Pl3'}        # Dah? Dah.
+    QAPN = {
+        "Sg": "Sg",  # Dïhte? Dïhte.
+        "Pl": "Pl",  # Dah? Dah.
+        "Sg1": "Sg2",  # Manne? Datne.
+        "Sg2": "Sg1",  # Datne? Manne.
+        "Sg3": "Sg3",  # Dïhte? Dïhte.
+        "Du1": "Du2",  # Månnoeh? Dåtnoeh.
+        "Du2": "Du1",  # Dåtnoeh? Månnoeh.
+        "Du3": "Du3",  # Dah guaktah? Dah guaktah.
+        "Pl1": "Pl2",  # Mijjieh? Dijjieh.
+        "Pl2": "Pl1",  # Dijjieh? Mijjieh.
+        "Pl3": "Pl3",
+    }  # Dah? Dah.
 
     def handleMeta(self):
-        """ assign qtypes and question IDs
-        """
+        """assign qtypes and question IDs"""
 
-        self.qtype = ','.join([_data(q) for q in _elements(self.node, 'qtype')])
-        self.qid = _attribute(self.node, 'id')
+        self.qtype = ",".join([_data(q) for q in _elements(self.node, "qtype")])
+        self.qid = _attribute(self.node, "id")
 
     def parseElements(self, elements):
         """
-                <element id="SUBJ">
-                    <sem class="PROFESSION"/>
-                    <grammar pos="N"/>
-                </element>
-                <element id="MAINV">
-                    <sem class="MOVEMENT_V"/>
-                    <grammar tag="V+Ind+Tense+Person-Number"/>
-                </element>
+        <element id="SUBJ">
+            <sem class="PROFESSION"/>
+            <grammar pos="N"/>
+        </element>
+        <element id="MAINV">
+            <sem class="MOVEMENT_V"/>
+            <grammar tag="V+Ind+Tense+Person-Number"/>
+        </element>
         """
 
         element_queries = []
         for element in elements:
-            elem_q = {'query': {}}
+            elem_q = {"query": {}}
 
-            game, content, task, elem_id, sem, grammar, word_lemma, hid = [None]*8
+            game, content, task, elem_id, sem, grammar, word_lemma, hid = [None] * 8
 
             elem_id = _attribute(element, "id")
             task = _boolify(_attribute(element, "task"))
             game = _attribute(element, "game")
             content = _attribute(element, "content")
 
-            elem_q['meta'] = {
-                'id': elem_id,
-                'task': task,
-                'game': game,
+            elem_q["meta"] = {
+                "id": elem_id,
+                "task": task,
+                "game": game,
             }
 
             if content:
-                elem_q['meta']['content'] = content
+                elem_q["meta"]["content"] = content
 
-            sem = _elements(element, 'sem')
+            sem = _elements(element, "sem")
 
             if sem:
-                sem = [_attribute(s, 'class') for s in sem]
+                sem = [_attribute(s, "class") for s in sem]
                 if len(sem) > 0:
-                    elem_q['query']['semtypes'] = sem
+                    elem_q["query"]["semtypes"] = sem
 
-            grammar = _elements(element, 'grammar')
+            grammar = _elements(element, "grammar")
             default_lemma = False
             if elem_id in self.defaults:
-                if 'lemmas' in self.defaults[elem_id]:
-                    default_lemma = self.defaults[elem_id]['lemmas']
+                if "lemmas" in self.defaults[elem_id]:
+                    default_lemma = self.defaults[elem_id]["lemmas"]
                 else:
                     default_lemma = False
 
-                if 'tags' in self.defaults[elem_id]:
-                    default_tags = self.defaults[elem_id]['tags']
+                if "tags" in self.defaults[elem_id]:
+                    default_tags = self.defaults[elem_id]["tags"]
                 else:
                     default_tags = False
 
             if grammar:
-                g_pos = _attribute(grammar[0], 'pos')
+                g_pos = _attribute(grammar[0], "pos")
                 if g_pos:
-                    elem_q['query']['pos'] = g_pos
+                    elem_q["query"]["pos"] = g_pos
                 else:
                     g_pos = False
 
-                tags = [_attribute(c, 'tag') for c in grammar]
+                tags = [_attribute(c, "tag") for c in grammar]
                 tags = [a for a in tags if a.strip()]
 
                 if not tags:
@@ -563,29 +573,27 @@ class QObj(GrammarDefaults):
                 # otherwise...
                 if expanded_tags:
                     if g_pos:
-                        t_match = g_pos + '+'
+                        t_match = g_pos + "+"
                         expanded_tags = [t for t in expanded_tags if t_match in t]
-                    elem_q['query']['tags'] = expanded_tags
+                    elem_q["query"]["tags"] = expanded_tags
 
                 # grammar tag specified, but grammar pos not.
                 if tags and not g_pos:
-                    g_pos = tags[0].partition('+')[0]
-                    elem_q['query']['pos'] = g_pos
+                    g_pos = tags[0].partition("+")[0]
+                    elem_q["query"]["pos"] = g_pos
                     # errormsg = '*** Grammar tag specified, but Grammar PoS not specified'
                     # self.errors['self.parseElements'] = [errormsg]
 
-
-
-            word_lemma = _firstelement(element, 'id')
+            word_lemma = _firstelement(element, "id")
 
             if default_lemma:
-                elem_q['query']['lemma'] = default_lemma
+                elem_q["query"]["lemma"] = default_lemma
             elif word_lemma:
-                lemma, hid = _data(word_lemma), _attribute(word_lemma, 'hid')
+                lemma, hid = _data(word_lemma), _attribute(word_lemma, "hid")
                 if lemma:
-                    elem_q['query']['lemma'] = lemma
+                    elem_q["query"]["lemma"] = lemma
                 if hid:
-                    elem_q['query']['hid'] = int(hid)
+                    elem_q["query"]["hid"] = int(hid)
 
             element_queries.append((elem_id, elem_q))
 
@@ -593,14 +601,14 @@ class QObj(GrammarDefaults):
 
     def elementizeText(self, text, elements):
         """
-            >>> q = QObj()
-            >>> text = "Mika SUBJ MAINV"
-            >>> elements = [('SUBJ', {}), ('MAINV', {})]
-            >>> q.elementizeText(text, elements)
-            [('Mika', None), ('SUBJ', {}), ('MAINV', {})]
+        >>> q = QObj()
+        >>> text = "Mika SUBJ MAINV"
+        >>> elements = [('SUBJ', {}), ('MAINV', {})]
+        >>> q.elementizeText(text, elements)
+        [('Mika', None), ('SUBJ', {}), ('MAINV', {})]
 
         """
-        tokens = text.split(' ')
+        tokens = text.split(" ")
         new_elements = []
         elements_d = dict(elements)
         for token in tokens:
@@ -612,7 +620,7 @@ class QObj(GrammarDefaults):
         return new_elements
 
     def filter_dialect(self, formqueryset):
-        """ TODO: make this faster """
+        """TODO: make this faster"""
         return formqueryset
         if not self.dialect:
             return formqueryset
@@ -629,21 +637,20 @@ class QObj(GrammarDefaults):
 
         return exclude_ng
 
-
     def queryElements(self, elements):
         element_to_query = {
-            'tags': 'tag__string',
-            'semtypes': 'word__semtype__semtype',
-            'pos': 'word__pos',
-            'lemma': 'word__lemma',
-            'hid': 'word__hid',
+            "tags": "tag__string",
+            "semtypes": "word__semtype__semtype",
+            "pos": "word__pos",
+            "lemma": "word__lemma",
+            "hid": "word__hid",
         }
         for item, data in elements:
             qkwargs = {}
             if data:
-                if 'query' in data:
+                if "query" in data:
                     qkwargs = {}
-                    for k, v in list(data['query'].items()):
+                    for k, v in list(data["query"].items()):
                         if type(v) == list:
                             if len(v) > 0:
                                 v = choice(v)
@@ -660,34 +667,36 @@ class QObj(GrammarDefaults):
 
                     nocopy = False
 
-                    if 'copy' in data:
-                        if data['copy'] == True:
+                    if "copy" in data:
+                        if data["copy"] == True:
                             copies = dict(self.question_elements)[item]
-                            data['wordforms'] = copies['wordforms']
-                            if 'selected' in data:
-                                data['selected'] = copies['selected']
+                            data["wordforms"] = copies["wordforms"]
+                            if "selected" in data:
+                                data["selected"] = copies["selected"]
                             else:
-                                data['selected'] = item
+                                data["selected"] = item
                         else:
                             nocopy = True
                     else:
                         nocopy = True
 
                     if nocopy:
-                        data['wordforms'] = wfs = self.filter_dialect(Form.objects.filter(**qkwargs))
-                        wfs = wfs.order_by('?')
+                        data["wordforms"] = wfs = self.filter_dialect(
+                            Form.objects.filter(**qkwargs)
+                        )
+                        wfs = wfs.order_by("?")
                         try:
-                            data['selected'] = wfs[0]
+                            data["selected"] = wfs[0]
                         except:
                             if not self.NO_ERRORS:
-                                errormsg = 'Query failed\n'
-                                errormsg += 'Question ID: %s\n' % self.qid
-                                errormsg += 'Question element: %s\n' % repr(item)
-                                errormsg += 'Query arguments: %s\n' % repr(qkwargs)
-                                errormsg += 'Zero forms found.\n'
+                                errormsg = "Query failed\n"
+                                errormsg += "Question ID: %s\n" % self.qid
+                                errormsg += "Question element: %s\n" % repr(item)
+                                errormsg += "Query arguments: %s\n" % repr(qkwargs)
+                                errormsg += "Zero forms found.\n"
                                 if len(list(qkwargs.keys())) > 0:
                                     qkw_tup = [(a, b) for a, b in list(qkwargs.items())]
-                                    n_comb = list(range(1, len(qkw_tup)+1))
+                                    n_comb = list(range(1, len(qkw_tup) + 1))
                                     query_product = []
                                     for c in n_comb:
                                         for a in combinations(qkw_tup, r=c):
@@ -695,34 +704,36 @@ class QObj(GrammarDefaults):
 
                                     for kp in query_product:
                                         count = Form.objects.filter(**kp).count()
-                                        errormsg += '  Subquery: \n'
+                                        errormsg += "  Subquery: \n"
                                         for partk, partv in list(kp.items()):
-                                            errormsg += '    - %s: %s\n' % (partk, partv)
-                                        errormsg += '    => Object count: %d\n' % count
+                                            errormsg += "    - %s: %s\n" % (
+                                                partk,
+                                                partv,
+                                            )
+                                        errormsg += "    => Object count: %d\n" % count
 
-                                self.errors['self.queryElements'] = errormsg.splitlines()
-
+                                self.errors["self.queryElements"] = (
+                                    errormsg.splitlines()
+                                )
 
         return elements
 
     def elementsToSentence(self, elements, blanks=False):
-        """    Expects list of tuples, element data with ['wordforms']
-
-        """
+        """Expects list of tuples, element data with ['wordforms']"""
 
         # TODO: should just append fullform to data, instead.
         # For testing now this is good.
         sentence = []
         for item, data in elements:
             if data:
-                if 'wordforms' in data:
-                    if 'selected' in data:
-                        wf = data['selected']
+                if "wordforms" in data:
+                    if "selected" in data:
+                        wf = data["selected"]
                         if type(wf) == Form:
-                            if 'meta' in data:
-                                if 'task' in data['meta']:
-                                    if data['meta']['task']:
-                                        sentence.append('__')
+                            if "meta" in data:
+                                if "task" in data["meta"]:
+                                    if data["meta"]["task"]:
+                                        sentence.append("__")
                                     else:
                                         sentence.append(wf.fullform)
                                 else:
@@ -734,18 +745,18 @@ class QObj(GrammarDefaults):
             else:
                 sentence.append(item)
 
-        return ' '.join([force_str(s) for s in sentence])
+        return " ".join([force_str(s) for s in sentence])
 
     def personQA(self, tag):
         QA_tags = []
 
-        tag_elem = tag.split('+')
+        tag_elem = tag.split("+")
         new_elems = []
         for elem in tag_elem:
             if elem in list(self.QAPN.keys()):
                 elem = self.QAPN[elem]
             new_elems.append(elem)
-        new_elems = '+'.join(new_elems)
+        new_elems = "+".join(new_elems)
 
         return new_elems
 
@@ -770,23 +781,28 @@ class QObj(GrammarDefaults):
             targets = agree.targets
             head_elem = elements_d[head]
 
-            try:                head_elem.pop('wordforms')
-            except:             pass
+            try:
+                head_elem.pop("wordforms")
+            except:
+                pass
 
-            try:                head_elem.pop('copy')
-            except:             pass
+            try:
+                head_elem.pop("copy")
+            except:
+                pass
 
-            try:                head_elem.pop('selected')
-            except:             pass
+            try:
+                head_elem.pop("selected")
+            except:
+                pass
 
             elements_d[head] = head_elem
             # assign head to each target
             for target in targets:
-                e_d = elements_d.get(target['element'], False)
+                e_d = elements_d.get(target["element"], False)
                 if e_d:
-                    e_d['meta']['agreement'] = head
-                    elements_d[target['element']] = e_d
-
+                    e_d["meta"]["agreement"] = head
+                    elements_d[target["element"]] = e_d
 
         elements_reorder = []
         for a, v in elements:
@@ -794,50 +810,57 @@ class QObj(GrammarDefaults):
 
         return elements_reorder
 
-
     def checkSyntaxOld(self, elements):
         elements_d = dict(elements)
         agr = False
 
-        if 'SUBJ' in elements_d and 'MAINV' in elements_d:
-            if elements_d['MAINV']['meta']:
-                elements_d['MAINV']['meta']['agreement'] = 'SUBJ'
+        if "SUBJ" in elements_d and "MAINV" in elements_d:
+            if elements_d["MAINV"]["meta"]:
+                elements_d["MAINV"]["meta"]["agreement"] = "SUBJ"
 
-        if 'MAINV' in elements_d and 'RPRON' in elements_d:
-            if elements_d['RPRON']['meta']:
-                elements_d['RPRON']['meta']['agreement'] = 'MAINV'
+        if "MAINV" in elements_d and "RPRON" in elements_d:
+            if elements_d["RPRON"]["meta"]:
+                elements_d["RPRON"]["meta"]["agreement"] = "MAINV"
 
         # Check for Question-Answer person agreement (see QAPN)
-        if 'SUBJ' in elements_d:
+        if "SUBJ" in elements_d:
             try:
-                copy_key = 'copy' in elements_d['SUBJ']
+                copy_key = "copy" in elements_d["SUBJ"]
             except AttributeError:
-                print('     *** Missing SUBJ element in question %s.' % self.qid, file=sys.stderr)
+                print(
+                    "     *** Missing SUBJ element in question %s." % self.qid,
+                    file=sys.stderr,
+                )
                 copy_key = False
             if copy_key:
-                if elements_d['SUBJ']['copy']:
-                    SUBJ = elements_d.get('SUBJ')
+                if elements_d["SUBJ"]["copy"]:
+                    SUBJ = elements_d.get("SUBJ")
 
-                    if SUBJ['query']['pos'] == 'Pron':
+                    if SUBJ["query"]["pos"] == "Pron":
                         # TODO: error handling - If this fails, there's something wrong with
                         # tags.txt or grammar_defaults, tags need to be
                         # corrected and reinstalled
-                        subj_tags = SUBJ['query']['tags']
+                        subj_tags = SUBJ["query"]["tags"]
                         # Pop these items so that queryElements gets new forms.
 
-                        try:                SUBJ.pop('wordforms')
-                        except:                pass
+                        try:
+                            SUBJ.pop("wordforms")
+                        except:
+                            pass
 
-                        try:                SUBJ.pop('copy')
-                        except:                pass
+                        try:
+                            SUBJ.pop("copy")
+                        except:
+                            pass
 
-                        try:                SUBJ.pop('selected')
-                        except:                pass
+                        try:
+                            SUBJ.pop("selected")
+                        except:
+                            pass
 
-                        SUBJ['query']['tags'] = [self.personQA(subj_tags)]
+                        SUBJ["query"]["tags"] = [self.personQA(subj_tags)]
 
-
-                    elements_d['SUBJ'] = SUBJ
+                    elements_d["SUBJ"] = SUBJ
 
         elements_reorder = []
         for a, v in elements:
@@ -848,8 +871,7 @@ class QObj(GrammarDefaults):
     def selectItems(self, elements):
 
         def adjust_lookup_methods(D):
-            """ Remove __in and select an item, used in filtering below
-            """
+            """Remove __in and select an item, used in filtering below"""
             new_D = {}
             for k, v in D.items():
                 if type(v) == list:
@@ -875,13 +897,14 @@ class QObj(GrammarDefaults):
 
         heads, agrees = False, False
         if agreement:
-            possible_agreements = agreement.find_possible_agreements(list(elements_d.keys()))
+            possible_agreements = agreement.find_possible_agreements(
+                list(elements_d.keys())
+            )
             if len(possible_agreements) > 0:
                 heads = [pe[0] for pe in possible_agreements]
                 agrees = [agreement.get_agreement(pe[1]) for pe in possible_agreements]
                 # TODO: testing
                 # print possible_agreements
-
 
         unchecked_elements = elements_d.copy()
 
@@ -894,39 +917,45 @@ class QObj(GrammarDefaults):
                 head = elements_d.get(head_elem)
                 # Choose a random head tag
                 new_head = head.copy()
-                if 'tags' in head['query']:
-                    if type(head['query']['tags']) == list:
-                        new_head['query']['tags'] = choice(head['query']['tags'])
+                if "tags" in head["query"]:
+                    if type(head["query"]["tags"]) == list:
+                        new_head["query"]["tags"] = choice(head["query"]["tags"])
                 else:
                     print(self.defaults)
-                    head['query']['tags'] = self.defaults
+                    head["query"]["tags"] = self.defaults
                     input()
 
                 # Agreement targets...
-                targets_in_sentence = [t for t in agree.targets if t['element'] in list(elements_d.keys())]
+                targets_in_sentence = [
+                    t for t in agree.targets if t["element"] in list(elements_d.keys())
+                ]
 
                 for targ in targets_in_sentence:
-                    t = elements_d.get(targ['element'])
+                    t = elements_d.get(targ["element"])
                     if not t:
-                        msg = ("* Unable to build element <%s>, "
-                                "not specified in questionfile or grammar" % targ['element'])
-                        self.errors['self.selectItems'] = [msg]
+                        msg = (
+                            "* Unable to build element <%s>, "
+                            "not specified in questionfile or grammar" % targ["element"]
+                        )
+                        self.errors["self.selectItems"] = [msg]
                         continue
                     else:
-                        targ_elem = elements_d[targ['element']]
+                        targ_elem = elements_d[targ["element"]]
 
                     # Filter agreement based on the head tag
-                    agreed_t = agree.agree_for({
-                        head_elem: new_head['query']['tags'],
-                        targ['element']: t['query']['tags']
-                    })
-                    filtered_by_agreement = agreed_t[targ['element']]
+                    agreed_t = agree.agree_for(
+                        {
+                            head_elem: new_head["query"]["tags"],
+                            targ["element"]: t["query"]["tags"],
+                        }
+                    )
+                    filtered_by_agreement = agreed_t[targ["element"]]
                     # Replace tags with filtered tags
-                    targ_elem['query']['tags'] = filtered_by_agreement
-                    targ_elem['query'] = adjust_lookup_methods(targ_elem['query'])
+                    targ_elem["query"]["tags"] = filtered_by_agreement
+                    targ_elem["query"] = adjust_lookup_methods(targ_elem["query"])
 
-                    elements_d[targ['element']] = targ_elem
-                    unchecked_elements.pop(targ['element'])
+                    elements_d[targ["element"]] = targ_elem
+                    unchecked_elements.pop(targ["element"])
 
                 unchecked_elements.pop(head_elem)
 
@@ -935,17 +964,16 @@ class QObj(GrammarDefaults):
             if elem_data:
                 e_data = elem_data.copy()
 
-                if 'query' in e_data:
-                    for k, v in list(e_data['query'].items()):
+                if "query" in e_data:
+                    for k, v in list(e_data["query"].items()):
                         if type(v) == list:
                             if len(v) > 0:
                                 random_query = choice(v)
-                                k_s = k.replace('__in', '')
-                                e_data['query'][k_s] = random_query
+                                k_s = k.replace("__in", "")
+                                e_data["query"][k_s] = random_query
                                 if k_s != k:
-                                    e_data['query'][k] = ''
+                                    e_data["query"][k] = ""
                 elements_d[elem_id] = e_data
-
 
         elements_reorder = []
         for a, v in elements:
@@ -956,10 +984,10 @@ class QObj(GrammarDefaults):
         return elements_reorder
 
     def handleQuestions(self):
-        question = _firstelement(self.node, 'question')
+        question = _firstelement(self.node, "question")
 
-        text = _data(_firstelement(question, 'text'))
-        elements = _elements(question, 'element')
+        text = _data(_firstelement(question, "text"))
+        elements = _elements(question, "element")
         pelements = self.parseElements(elements)
 
         # TODO: Is this where we have to stop in order to use this class to
@@ -982,10 +1010,8 @@ class QObj(GrammarDefaults):
 
         sentence_text = self.elementsToSentence(queried_elements)
 
-
         self.question_elements = queried_elements
-        self.question_text = sentence_text + '?'
-
+        self.question_text = sentence_text + "?"
 
     def copyQuestion(self, aelements):
         aelements_d = dict(aelements)
@@ -995,10 +1021,10 @@ class QObj(GrammarDefaults):
             if not v:
                 copied = dict(self.question_elements).get(k)
                 if copied:
-                    copied['copy'] = True
+                    copied["copy"] = True
             else:
                 copied = v
-                copied['copy'] = False
+                copied["copy"] = False
             copy_elements[k] = copied
 
         aelements_copied = []
@@ -1007,20 +1033,20 @@ class QObj(GrammarDefaults):
         return aelements_copied
 
     def selectTask(self, elements):
-        """ Takes a list of elements, and returns selects the task.
-            This should occur after the queries phase.
+        """Takes a list of elements, and returns selects the task.
+        This should occur after the queries phase.
         """
 
         for element_id, element_data in elements:
             if element_data:
-                if 'meta' in element_data:
-                    if 'task' in element_data['meta']:
-                        if element_data['meta']['task']:
+                if "meta" in element_data:
+                    if "task" in element_data["meta"]:
+                        if element_data["meta"]["task"]:
                             return dict([(element_id, element_data)])
         return False
 
     def handleAnswers(self):
-        answers = _elements(self.node, 'answer')
+        answers = _elements(self.node, "answer")
         # TODO: There is a forloop here, but this actually
         # only stores whatever question comes last in the loop.
 
@@ -1030,8 +1056,8 @@ class QObj(GrammarDefaults):
         self.answer_set = []
 
         for answer in answers:
-            text = _data(_firstelement(answer, 'text'))
-            elements = _elements(answer, 'element')
+            text = _data(_firstelement(answer, "text"))
+            elements = _elements(answer, "element")
             pelements = self.parseElements(elements)
             text_with_elements = self.elementizeText(text, pelements)
             answer_elements = self.copyQuestion(text_with_elements)
@@ -1056,20 +1082,18 @@ class QObj(GrammarDefaults):
             answer.task = self.selectTask(queried_elements)
 
             answer.answer_elements = queried_elements
-            answer.answer_full_text = force_str(sentence_text + '.')
-            answer.answer_text_blank = force_str(sentence_text_blank + '.')
+            answer.answer_full_text = force_str(sentence_text + ".")
+            answer.answer_text_blank = force_str(sentence_text_blank + ".")
             self.answer_set.append(answer)
 
     def reselect(self):
-        """ Selects a new iteration of the same question.
-        """
+        """Selects a new iteration of the same question."""
         # TODO: handleAnswers needs to set attributes for all steps,
         # uff.
         pass
 
     def requery(self):
-        """ Reruns the queries, and selects a new iteration.
-        """
+        """Reruns the queries, and selects a new iteration."""
 
         pass
 
@@ -1081,7 +1105,7 @@ class QObj(GrammarDefaults):
         if grammar_defaults:
             self.defaults = grammar_defaults.grammar_definitions
         else:
-            defaults_file = file('data_sma/meta/grammar_defaults.xml')
+            defaults_file = file("data_sma/meta/grammar_defaults.xml")
             defaults_tree = _dom.parse(defaults_file)
 
             self.defaults = GrammarDefaults(defaults_tree).grammar_definitions
@@ -1092,13 +1116,12 @@ class QObj(GrammarDefaults):
         self.handleAnswers()
 
 
-
-
 # # #
 #
 #  Command class
 #
 # # #
+
 
 class FileLog(object):
 
@@ -1107,7 +1130,7 @@ class FileLog(object):
 
         if fname:
             self.fname = fname
-            self.logfile = open(fname, 'w')
+            self.logfile = open(fname, "w")
         else:
             self.fname = "stdout"
             self.logfile = False
@@ -1117,13 +1140,14 @@ class FileLog(object):
         import codecs
         import locale
         import sys
+
         sys.stdout = codecs.getwriter(locale.getpreferredencoding())(sys.stdout)
         sys.stderr = codecs.getwriter(locale.getpreferredencoding())(sys.stderr)
 
-        if not string.endswith('\n'):
-            string += '\n'
+        if not string.endswith("\n"):
+            string += "\n"
 
-        string = force_str(string).encode('utf-8')
+        string = force_str(string).encode("utf-8")
 
         if self.logfile:
             self.logfile.write(string)
@@ -1132,11 +1156,11 @@ class FileLog(object):
 
         if not pipe:
             pipe = sys.stderr
-        print(string.rstrip('\n'), file=pipe)
+        print(string.rstrip("\n"), file=pipe)
 
 
 class Command(BaseCommand):
-    args = '--grammarfile FILE --questionfile FILE'
+    args = "--grammarfile FILE --questionfile FILE"
     help = """
     """
 
@@ -1157,7 +1181,7 @@ class Command(BaseCommand):
                     pronoun = form.PronPNBase[pers]
                     neg_verb = NEGATIVE_VERB_PRES[pers]
 
-                    form.pron = '%s %s' % (pronoun, neg_verb)
+                    form.pron = "%s %s" % (pronoun, neg_verb)
                 elif tag.personnumber:
                     pronbase = PRONOUNS_LIST[tag.personnumber]
                     pronoun = pronbase
@@ -1169,9 +1193,9 @@ class Command(BaseCommand):
                     # TODO: conneg only in Prs
 
             # Odne 'today', ikte 'yesterday'
-            if (tag.tense in ['Prs','Prt']) and (tag.mood == 'Ind'):
+            if (tag.tense in ["Prs", "Prt"]) and (tag.mood == "Ind"):
                 time = TENSE_PRESENTATION.get(tag.tense, False)
-                form.pron = '(%s) %s' % (pronoun, time) #' '.join([time, pronoun])
+                form.pron = "(%s) %s" % (pronoun, time)  #' '.join([time, pronoun])
 
             if ("+Der/Pass" in tag.string) and ("+V" in tag.string):
                 # Odne mun ___
@@ -1186,11 +1210,13 @@ class Command(BaseCommand):
                 time = TENSE_PRESENTATION.get(tag.tense, False)
                 pronoun = PASSIVE_PRONOUNS_LIST[pers]
 
-                number = ''
-                if pers in ['Sg3', 'Pl3']:
-                    number = '(%s)' % DEMONSTRATIVE_PRESENTATION.get(tag.personnumber, False)
+                number = ""
+                if pers in ["Sg3", "Pl3"]:
+                    number = "(%s)" % DEMONSTRATIVE_PRESENTATION.get(
+                        tag.personnumber, False
+                    )
 
-                form.pron = ' '.join([time, pronoun, number])
+                form.pron = " ".join([time, pronoun, number])
 
             # All pres?
             if tag.string.find("Der/AV") > -1:
@@ -1199,34 +1225,37 @@ class Command(BaseCommand):
             if word.object:
                 form.object = word.object
 
-
         log_name = "morfa_%s" % tag.pos
         forms = Form.objects.filter(tag=tag, word__lemma=word.lemma)
         if len(forms) > 0:
             fullform = forms[0]
         else:
-            fullform = '??'
+            fullform = "??"
             # TODO: when no form is generated, what?
 
-
-        if '+3PlO' in tag.string:
+        if "+3PlO" in tag.string:
             try:
-                pl_object = Form.objects.filter(word__lemma=form.object, tag__string__in=['N+IN+Sg', 'N+AN+Sg'])
+                pl_object = Form.objects.filter(
+                    word__lemma=form.object, tag__string__in=["N+IN+Sg", "N+AN+Sg"]
+                )
                 pl_object_string = pl_object[0].fullform
             except Form.DoesNotExist:
-                pl_object_string = form.object + '+Pl'
+                pl_object_string = form.object + "+Pl"
             except IndexError:
-                pl_object_string = form.object + '+Pl'
+                pl_object_string = form.object + "+Pl"
             object = pl_object_string
-        elif '+3SgO' in tag.string:
+        elif "+3SgO" in tag.string:
             object = form.object
         else:
             object = form.object
 
-
         q_word = word.lemma
         q_tag = tag.string
-        q_string = "%(pron)s _________ %(obj)s" % {'pron': form.pron, 'obj': object, 'fullform': fullform}
+        q_string = "%(pron)s _________ %(obj)s" % {
+            "pron": form.pron,
+            "obj": object,
+            "fullform": fullform,
+        }
         return (q_word, q_tag, q_string)
 
     def handle(self, *args, **options):
@@ -1234,24 +1263,31 @@ class Command(BaseCommand):
         # Nouns:  type, book
         # Verbs: tense, tens_anim
 
-
         Form = oahpa_module.drill.models.Form
         Word = oahpa_module.drill.models.Word
         Tag = oahpa_module.drill.models.Tag
 
         import sys, os
-        word_query = Q(pos='V') & Q(trans_anim__in=['TI', 'AI']) & Q(object__isnull=False)
+
+        word_query = (
+            Q(pos="V") & Q(trans_anim__in=["TI", "AI"]) & Q(object__isnull=False)
+        )
         ws = Word.objects.filter(word_query)
         words_with_objects = []
         for w in ws:
             if w.object:
                 words_with_objects.append(w)
 
-        print('words with possible objects:  ' + str(len(words_with_objects)), file=sys.stderr)
+        print(
+            "words with possible objects:  " + str(len(words_with_objects)),
+            file=sys.stderr,
+        )
 
         allowed_tags = Tag.objects.filter(
-            Q(pos='V') & Q(tense__in=['Prs', 'Prt']) & Q(personnumber__in=['1Sg', '2Sg', '3Sg']) &\
-                Q(mood='Ind')
+            Q(pos="V")
+            & Q(tense__in=["Prs", "Prt"])
+            & Q(personnumber__in=["1Sg", "2Sg", "3Sg"])
+            & Q(mood="Ind")
         )
 
         frames = []
@@ -1264,6 +1300,6 @@ class Command(BaseCommand):
         print(len(sorted_fs), file=sys.stderr)
 
         for q_words, q_string, a in frames:
-            print(q_words.encode('utf-8'), file=sys.stdout)
-            print(a.encode('utf-8'), file=sys.stdout)
-            print('  '.encode('utf-8'), file=sys.stdout)
+            print(q_words.encode("utf-8"), file=sys.stdout)
+            print(a.encode("utf-8"), file=sys.stdout)
+            print("  ".encode("utf-8"), file=sys.stdout)

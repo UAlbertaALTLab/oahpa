@@ -6,18 +6,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('drill', '0001_initial'),
+        ("drill", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='morphphontag',
-            name='reflexive',
+            model_name="morphphontag",
+            name="reflexive",
             field=models.BooleanField(blank=True, null=True),
         ),
         migrations.AlterField(
-            model_name='word',
-            name='reflexive',
+            model_name="word",
+            name="reflexive",
             field=models.BooleanField(blank=True, null=True),
         ),
     ]

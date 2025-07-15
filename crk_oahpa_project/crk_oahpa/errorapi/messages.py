@@ -1,17 +1,15 @@
 ﻿class FeedbackMessageStore(object):
-    """ Reads and stores messages in memory.
-    """
+    """Reads and stores messages in memory."""
 
     # Example of format. This will be rewritten on file load.
     # TODO: parse XML errors
     messages = {
-        'sme': {
-            'CGErr': [
+        "sme": {
+            "CGErr": [
                 {
                     "description": "Message string.",
                     "title": "Message title.",
                     "article": "http://path/to/article.html",
-
                     "task": "Sg+Gen",
                     "tag": "CGErr",
                 },
@@ -22,7 +20,7 @@
                     "tag": "CGErr",
                 },
             ],
-            'DiphErr': [
+            "DiphErr": [
                 {
                     "description": "Message description.",
                     "article": "http://path/to/article.html",
@@ -36,8 +34,8 @@
                 },
             ],
         },
-        'nob': {
-            'CGErr': [
+        "nob": {
+            "CGErr": [
                 {
                     "description": "Message description.",
                     "task": "Sg+Gen",
@@ -49,7 +47,7 @@
                     "tag": "CGErr",
                 },
             ],
-            'DiphErr': [
+            "DiphErr": [
                 {
                     "description": "Message description.",
                     "task": "Sg+Gen",
@@ -66,21 +64,21 @@
 
     @property
     def error_tags(self):
-        if not hasattr(self, '_error_tags'):
+        if not hasattr(self, "_error_tags"):
             # Extract tags we care about from XML
             e_tags = []
             for l, msgs in self.messages.items():
-                _ks = sum( [list(k) for k in list(msgs.keys())], [])
+                _ks = sum([list(k) for k in list(msgs.keys())], [])
                 e_tags.extend(_ks)
             self._error_tags = set(e_tags)
         return self._error_tags
 
     def get_message(self, iso, error_tag, task=False):
         """
-            >>> messagestore.get_message("sme", "CGErr")
-            "You forgot consonant gradation!"
-            >>> messagestore.get_message("sme", "CGErr", task="Sg+Gen")
-            "You forgot consonant gradation (genitive sg.)!"
+        >>> messagestore.get_message("sme", "CGErr")
+        "You forgot consonant gradation!"
+        >>> messagestore.get_message("sme", "CGErr", task="Sg+Gen")
+        "You forgot consonant gradation (genitive sg.)!"
         """
 
         def copy_item(m):
@@ -92,7 +90,9 @@
 
         if messages:
             if task:
-                task_messages = [a for a in map(copy_item, messages) if a.get('task', '') == task]
+                task_messages = [
+                    a for a in map(copy_item, messages) if a.get("task", "") == task
+                ]
                 return task_messages
             else:
                 return list(map(copy_item, messages))
@@ -100,7 +100,7 @@
         return False
 
     def parse(self, file_path):
-        """ Reads the XML file and stores all messages """
+        """Reads the XML file and stores all messages"""
 
         from xml.dom import minidom as _dom
         from collections import defaultdict
@@ -114,14 +114,14 @@
         parsed_messages = defaultdict(list)
 
         for m in messages:
-            tag = [m.getAttribute('tag')]
-            tag2 = m.getAttribute('tag2')
+            tag = [m.getAttribute("tag")]
+            tag2 = m.getAttribute("tag2")
             if tag2 is not None:
                 if tag2.strip():
                     tag.append(tag2)
             tags = frozenset(tag)
-            task = m.getAttribute('task')
-            _article = m.getAttribute('article')
+            task = m.getAttribute("task")
+            _article = m.getAttribute("article")
             if _article.strip():
                 article = _article.strip()
             else:
@@ -136,13 +136,15 @@
                 description = _description[0].firstChild.nodeValue.strip()
             else:
                 description = False
-            parsed_messages[tags].append({
-                "title": title,
-                "description": description,
-                "task": task,
-                "tags": tags,
-                "article": article,
-            })
+            parsed_messages[tags].append(
+                {
+                    "title": title,
+                    "description": description,
+                    "task": task,
+                    "tags": tags,
+                    "article": article,
+                }
+            )
 
         self.messages[lang] = parsed_messages
 
@@ -152,5 +154,8 @@
         for x in xml_paths:
             self.parse(x)
 
+
 if __name__ == "__main__":
-    m = FeedbackMessageStore('../../sme_oahpa_project/sme_data/meta_data/morfaerrorfstmessages.xml')
+    m = FeedbackMessageStore(
+        "../../sme_oahpa_project/sme_data/meta_data/morfaerrorfstmessages.xml"
+    )

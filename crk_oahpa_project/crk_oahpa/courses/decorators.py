@@ -1,8 +1,10 @@
-""" Replacement authentication decorators that work around redirection loops,
-as well as the trackGrade decorator. """
+"""Replacement authentication decorators that work around redirection loops,
+as well as the trackGrade decorator."""
+
 from .local_conf import LLL1
 import importlib
-oahpa_module = importlib.import_module(LLL1+'_oahpa')
+
+oahpa_module = importlib.import_module(LLL1 + "_oahpa")
 
 try:
     from functools import wraps
@@ -14,20 +16,23 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden, HttpResponseRedirect
 from urllib.parse import quote
 
-__all__ = ['login_required', 'permission_required', 'user_passes_test', 'trackGrade']
+__all__ = ["login_required", "permission_required", "user_passes_test", "trackGrade"]
 
 ###
 ### Authentication decorators
 ###
 
-def user_passes_test(test_func, login_url=None,
-                     redirect_field_name=REDIRECT_FIELD_NAME):
+
+def user_passes_test(
+    test_func, login_url=None, redirect_field_name=REDIRECT_FIELD_NAME
+):
     """Replacement for django.contrib.auth.decorators.user_passes_test that
     returns 403 Forbidden if the user is already logged in.
     """
 
     if not login_url:
         from django.conf import settings
+
         login_url = settings.LOGIN_URL
 
     def decorator(view_func):
@@ -36,12 +41,17 @@ def user_passes_test(test_func, login_url=None,
             if test_func(request.user):
                 return view_func(request, *args, **kwargs)
             elif request.user.is_authenticated:
-                return HttpResponseForbidden('<h1>Permission denied</h1>')
+                return HttpResponseForbidden("<h1>Permission denied</h1>")
             else:
-                path = '%s?%s=%s' % (login_url, redirect_field_name,
-                                     quote(request.get_full_path()))
+                path = "%s?%s=%s" % (
+                    login_url,
+                    redirect_field_name,
+                    quote(request.get_full_path()),
+                )
                 return HttpResponseRedirect(path)
+
         return wrapper
+
     return decorator
 
 
@@ -59,7 +69,7 @@ def permission_required(perm, login_url=None):
 
 
 class trackGrade(object):
-    """ This decorator expects that an HttpResponse has a context attribute,
+    """This decorator expects that an HttpResponse has a context attribute,
     which it uses to retrieve the context. This is passed on to trackGrade.
 
     In order to use this import the following things
@@ -83,8 +93,7 @@ class trackGrade(object):
         self.log_name = log_name
 
     def __call__(self, view_function):
-        """ This must return the HttpResponse from the original function
-        """
+        """This must return the HttpResponse from the original function"""
 
         def decorated_function(*args, **kwargs):
             trackGrade = oahpa_module.courses.views.trackGrade

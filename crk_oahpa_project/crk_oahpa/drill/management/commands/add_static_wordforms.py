@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 from .local_conf import LLL1
 import importlib
-oahpa_module = importlib.import_module(LLL1+'_oahpa')
+
+oahpa_module = importlib.import_module(LLL1 + "_oahpa")
 
 from django.core.management.base import BaseCommand
 
@@ -12,11 +13,12 @@ Tag = oahpa_module.drill.models.Tag
 
 def install_file(filename, pos):
     from collections import defaultdict
+
     words_to_install = defaultdict(list)
-    with open(filename, 'r') as F:
+    with open(filename, "r") as F:
         for l in F.readlines():
-            _tag, _, form = l.strip().partition('\t')
-            lemma, _, tag = _tag.partition('+')
+            _tag, _, form = l.strip().partition("\t")
+            lemma, _, tag = _tag.partition("+")
 
             if lemma not in words_to_install:
                 words_to_install[lemma] = {}
@@ -29,29 +31,28 @@ def install_file(filename, pos):
     from itertools import zip_longest
 
     for lemma, forms in words_to_install.items():
-        print('lemma: ', lemma)
+        print("lemma: ", lemma)
         ws = Word.objects.filter(lemma=lemma, pos=pos)
         try:
             w = ws[0]
             for tag, wfs in forms.items():
                 fs = Form.objects.filter(word__lemma=lemma, tag__string=tag)
                 fs.delete()
-                print('  ', tag)
+                print("  ", tag)
                 last_db = False
                 t, _c = Tag.objects.get_or_create(string=tag)
                 if _c:
                     t.save()
                 for new_form in wfs:
-                    print('    ', new_form)
-                    new = Form.objects.create(word=w,
-                                        tag=t,
-                                        fullform=new_form,)
+                    print("    ", new_form)
+                    new = Form.objects.create(
+                        word=w,
+                        tag=t,
+                        fullform=new_form,
+                    )
                     new.save()
         except IndexError:
-            print('error:', IndexError)
-
-
-
+            print("error:", IndexError)
 
 
 # # #
@@ -60,46 +61,47 @@ def install_file(filename, pos):
 #
 # # #
 
+
 def mergetags(tfilter=False):
     if tfilter:
         qset = Tag.objects.filter(string=tfilter)
     else:
         qset = Tag.objects.all()
 
-    strings = qset.values_list('string', flat=True)
+    strings = qset.values_list("string", flat=True)
     strings = list(set(strings))
 
-    print('Merging:')
+    print("Merging:")
     for string in strings:
         tag = Tag.objects.filter(string=string)
 
         if tag.count() > 1:
-            print('Merging conflict in %s' % tag[0].string)
+            print("Merging conflict in %s" % tag[0].string)
             merge(tag)
 
 
 class Command(BaseCommand):
-    args = '--tagelement'
+    args = "--tagelement"
     help = """
     Strips tags of an element and then merges them all.
     """
+
     def add_arguments(self, parser):
         parser.add_argument(
-            "-f", "--filename",
-                    dest="filename",
-                    default=False,
-                    help="Static file to read from")
+            "-f",
+            "--filename",
+            dest="filename",
+            default=False,
+            help="Static file to read from",
+        )
         parser.add_argument(
-                    "-p", "--pos",
-                    dest="pos",
-                    default=False,
-                help="Part of speech")
-
+            "-p", "--pos", dest="pos", default=False, help="Part of speech"
+        )
 
     def handle(self, *args, **options):
         import sys, os
 
-        filename = options['filename']
-        pos = options['pos']
+        filename = options["filename"]
+        pos = options["pos"]
 
         install_file(filename=filename, pos=pos)

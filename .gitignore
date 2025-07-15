@@ -10,3 +10,4 @@ containerized_deploy/mysql-5.6.51-linux-glibc2.12-x86_64.tar.gz
 *.pyc
 *.sqlite3
 */static/
+error_fst_log.txt

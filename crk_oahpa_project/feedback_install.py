@@ -127,8 +127,9 @@ various permutations of morphosyntactic features.
 from local_conf import LLL1
 import importlib
 from functools import reduce
-settings = importlib.import_module(LLL1+'_oahpa.settings')
-sdm = importlib.import_module(LLL1+'_oahpa.drill.models')
+
+settings = importlib.import_module(LLL1 + "_oahpa.settings")
+sdm = importlib.import_module(LLL1 + "_oahpa.drill.models")
 
 hst = settings.hostname
 
@@ -145,49 +146,53 @@ import operator
 
 from django.utils.encoding import force_str
 
+
 def fix_encoding(s):
     try:
-        s = s.decode('utf-8')
+        s = s.decode("utf-8")
     except:
         pass
 
     return force_str(s)
+
 
 try:
     from collections import OrderedDict
 except ImportError:
     from conf.ordereddict import OrderedDict
 
+
 def chunks(l, n):
-    """ Yield successive n-sized chunks from l.
-    """
+    """Yield successive n-sized chunks from l."""
     for i in range(0, len(l), n):
-        yield l[i:i+n]
+        yield l[i : i + n]
+
 
 def get_attrs(item, attr_names):
-    """ For an object, get attributes from a list of attributes.
-    """
+    """For an object, get attributes from a list of attributes."""
     vals = []
     for attr in attr_names:
         val = item.__getattribute__(attr)
         if val:
             vals.append(fix_encoding(val))
         else:
-            vals.append('')
+            vals.append("")
     return vals
+
 
 def render_kwargs(D):
     lines = []
     for k, vs in D.items():
-        line = ' %s = %s ' % (k, ', '.join(vs))
+        line = " %s = %s " % (k, ", ".join(vs))
         lines.append(line)
 
-    return '\n'.join(lines).encode('utf-8')
+    return "\n".join(lines).encode("utf-8")
+
 
 def get_attrs_with_defaults(element, attr_list, defaults):
-    """ Collect attributes from an XML element node, if there is no
+    """Collect attributes from an XML element node, if there is no
     value, use a default value supplied from a defaults dictionary,
-    return an OrderedDict of the attr_list and values. """
+    return an OrderedDict of the attr_list and values."""
     # TODO: Pos, Comp, Superl, currently only returns Comp, Superl
     vals = []
     for attr in attr_list:
@@ -205,20 +210,20 @@ def get_attrs_with_defaults(element, attr_list, defaults):
         vals.append(val)
 
     x = OrderedDict(list(zip(attr_list, vals)))
-    grade = x.get('grade', False)
+    grade = x.get("grade", False)
     if grade:
-        if x['grade'] == ['Pos']:
-            x['grade'] == ['']
+        if x["grade"] == ["Pos"]:
+            x["grade"] == [""]
 
-    subclass = x.get('subclass', False)
+    subclass = x.get("subclass", False)
     if subclass:
-        if x['subclass'] == ['Active']:
-            x['subclass'] == ['']
+        if x["subclass"] == ["Active"]:
+            x["subclass"] == [""]
 
-    possessive = x.get('possessive', False)
+    possessive = x.get("possessive", False)
     if possessive:
-        if x['possessive'] == ['Non-Px']:
-            x['possessive'] = ['']
+        if x["possessive"] == ["Non-Px"]:
+            x["possessive"] = [""]
 
     return x
 
@@ -250,7 +255,6 @@ class Entry(object):
             else:
                 args.append([arg])
 
-
         return product(*args)
 
 
@@ -262,26 +266,41 @@ class Feedback_install(object):
     # Each part of speech followed by relevant word/lemma attributes
     # TODO: need to fill out these values depending on which
     # attributes they have
-    word_attribute_names = OrderedDict([
-        ("N", ['stem',  'animacy', 'rime', 't2c']),
-        ("Pron", []),
-        # TODO: ("A", ['stem',  'rime', 'attrsuffix', 'compsuffix',]),
-        # TODO: ("Num", ['stem',  'rime', ]),
-        ("V", ['stem',  'trans_anim', 'initial', 'rime']),
-    ])
+    word_attribute_names = OrderedDict(
+        [
+            ("N", ["stem", "animacy", "rime", "t2c"]),
+            ("Pron", []),
+            # TODO: ("A", ['stem',  'rime', 'attrsuffix', 'compsuffix',]),
+            # TODO: ("Num", ['stem',  'rime', ]),
+            ("V", ["stem", "trans_anim", "initial", "rime"]),
+        ]
+    )
 
     # Each part of speech followed by relevant tag/wordform attributes
-    tag_attribute_names = OrderedDict([
-        ("N", ('case', 'number', 'possessive', 'derivation')),
-        ("Pron", ['subclass', 'number', 'distance']),
-        # TODO: ("A", ('case', 'number', 'grade', 'attributive', )),
-        # TODO: ("Num", ('case', 'number',)),
-        ("V", ('subclass', 'infinite', 'mood', 'tense', 'personnumber', 'object', 'mode', 'intentional_definite')),
-    ])
+    tag_attribute_names = OrderedDict(
+        [
+            ("N", ("case", "number", "possessive", "derivation")),
+            ("Pron", ["subclass", "number", "distance"]),
+            # TODO: ("A", ('case', 'number', 'grade', 'attributive', )),
+            # TODO: ("Num", ('case', 'number',)),
+            (
+                "V",
+                (
+                    "subclass",
+                    "infinite",
+                    "mood",
+                    "tense",
+                    "personnumber",
+                    "object",
+                    "mode",
+                    "intentional_definite",
+                ),
+            ),
+        ]
+    )
 
     # NOTE: processing of dialects and lemma exclusions is not something that
     # is available here, see below for ideas for adding similar things
-
 
     def __init__(self):
         self.tagset = {}
@@ -301,10 +320,10 @@ class Feedback_install(object):
         self._global_form_filter = False
         self._non_possessive_form_filter = False
 
-        self._lexicon_dialects = False # TODO: this
-        self._feedback_global_dialect = False # TODO: this
+        self._lexicon_dialects = False  # TODO: this
+        self._feedback_global_dialect = False  # TODO: this
 
-    def read_messages(self,infile):
+    def read_messages(self, infile):
 
         xmlfile = file(infile)
         tree = _dom.parse(infile)
@@ -312,7 +331,7 @@ class Feedback_install(object):
         lang = lex.getAttribute("xml:lang")
 
         for el in tree.getElementsByTagName("message"):
-            mid=el.getAttribute("id")
+            mid = el.getAttribute("id")
             order = ""
             order = el.getAttribute("order")
             # _user_lvl = el.getAttribute("user_level")
@@ -324,22 +343,25 @@ class Feedback_install(object):
             # When XML contains <![CDATA[]]> there is no need to treat the data
             # differently, as <a /> nodes will be treated as text
             message = el.firstChild.data
-            message = message.replace('href="/', 'href="http://'+hst+"/")
+            message = message.replace('href="/', 'href="http://' + hst + "/")
             # links = []
             # for node in el.childNodes:
-                # if node.nodeType == node.TEXT_NODE:
-                    # message = message + node.data
-                # else:
-                    # link = node.toxml(encoding="utf-8") # in case the feedback contains a link
-                    # message = message + link
-            print(message.encode('utf-8'), file=sys.stdout)
+            # if node.nodeType == node.TEXT_NODE:
+            # message = message + node.data
+            # else:
+            # link = node.toxml(encoding="utf-8") # in case the feedback contains a link
+            # message = message + link
+            print(message.encode("utf-8"), file=sys.stdout)
             fm, created = sdm.Feedbackmsg.objects.get_or_create(msgid=mid)
             fm.save()
 
-            fmtext, created = sdm.Feedbacktext.objects.get_or_create(language=lang,feedbackmsg=fm,order=order,)
-            fmtext.message=message
+            fmtext, created = sdm.Feedbacktext.objects.get_or_create(
+                language=lang,
+                feedbackmsg=fm,
+                order=order,
+            )
+            fmtext.message = message
             fmtext.save()
-
 
     @property
     def feedbacktree(self):
@@ -381,7 +403,9 @@ class Feedback_install(object):
         return self._file_pos
 
     @property
-    def global_form_filter(self): # filter for noun forms with possessive suffix and derivational verb forms
+    def global_form_filter(
+        self,
+    ):  # filter for noun forms with possessive suffix and derivational verb forms
         if not self._global_form_filter:
             root = self.feedbacktree.getElementsByTagName("feedback")[0]
             global_filter = root.getAttribute("tag__string__contains").strip()
@@ -392,7 +416,9 @@ class Feedback_install(object):
         return self._global_form_filter
 
     @property
-    def non_possessive_form_filter(self):  # filter for noun forms without possessive suffix
+    def non_possessive_form_filter(
+        self,
+    ):  # filter for noun forms without possessive suffix
         if not self._non_possessive_form_filter:
             root = self.feedbacktree.getElementsByTagName("feedback")[0]
             poss_filter = root.getAttribute("tag__possessive")
@@ -423,13 +449,12 @@ class Feedback_install(object):
     def tag_attr_names(self):
         return self.tag_attribute_names.get(self.file_pos)
 
-
     def find_intersection(self):
-        """ Find the intersection of lexicon and feedback attribute values,
-        return intersection, but also print it """
+        """Find the intersection of lexicon and feedback attribute values,
+        return intersection, but also print it"""
 
         def get_word_argument_and_lemma(el, attr_names_list=self.word_attr_names):
-            " For a lexicon word element, get all of the morphological attributes "
+            "For a lexicon word element, get all of the morphological attributes"
             vals = [el.getAttribute(attr) for attr in attr_names_list]
             # attributes and lemma
             return (OrderedDict(list(zip(attr_names_list, vals))), el.firstChild.data)
@@ -438,52 +463,103 @@ class Feedback_install(object):
             return get_word_argument_and_lemma(el)[0]
 
         def get_msg_argument(el):
-            " For a lexicon word element, get all of the morphological attributes "
+            "For a lexicon word element, get all of the morphological attributes"
             vals = [el.getAttribute(attr) for attr in self.tag_attr_names]
             # attributes and lemma
             return OrderedDict(list(zip(self.tag_attr_names, vals)))
 
         def get_tag_argument(attr_):
-            " For a Tag object, get all of the morphological attributes "
-            vals = list(set(sdm.Tag.objects.filter(pos=self.file_pos).values_list(attr_, flat=True)))
+            "For a Tag object, get all of the morphological attributes"
+            vals = list(
+                set(
+                    sdm.Tag.objects.filter(pos=self.file_pos).values_list(
+                        attr_, flat=True
+                    )
+                )
+            )
             if vals == []:
                 return (attr_, [])
-            if vals[0] != '':
-                vals = sorted([''] + vals) # empty value necessary
+            if vals[0] != "":
+                vals = sorted([""] + vals)  # empty value necessary
             else:
                 vals = sorted(vals)
             # attributes and lemma
             return (attr_, vals)
 
         # Fetch all word attributes for all entries in the lexicon
-        word_attributes = list(map(get_word_argument_and_lemma, self.lexicon_word_elements))
+        word_attributes = list(
+            map(get_word_argument_and_lemma, self.lexicon_word_elements)
+        )
 
         # Collate all the possible values in a dictionary
         # {'rime': ['a', 'e', 'i', 'o', 'u', etc ... ],
         #  'soggi': ['a', 'b', 'c', etc ..]}
         #
-        self.word_possible_values = OrderedDict([
-            (attr_name, list(set([''] + [word_attr.get(attr_name, None) for word_attr, lemma in word_attributes])))
-            for attr_name in self.word_attr_names
-        ])
+        self.word_possible_values = OrderedDict(
+            [
+                (
+                    attr_name,
+                    list(
+                        set(
+                            [""]
+                            + [
+                                word_attr.get(attr_name, None)
+                                for word_attr, lemma in word_attributes
+                            ]
+                        )
+                    ),
+                )
+                for attr_name in self.word_attr_names
+            ]
+        )
 
         # Do the same for Tag objects.
         #
-        self.tag_possible_values = OrderedDict(list(map(get_tag_argument, self.tag_attr_names)))
+        self.tag_possible_values = OrderedDict(
+            list(map(get_tag_argument, self.tag_attr_names))
+        )
 
         # Collect Feedback <l /> attributes
         feedback_attributes = list(map(get_word_argument, self.feedback_elements))
-        self.feedback_possible_values = OrderedDict([
-            (attr_name, list(set([''] + [word_attr.get(attr_name, None) for word_attr in feedback_attributes])))
-            for attr_name in self.word_attr_names
-        ])
+        self.feedback_possible_values = OrderedDict(
+            [
+                (
+                    attr_name,
+                    list(
+                        set(
+                            [""]
+                            + [
+                                word_attr.get(attr_name, None)
+                                for word_attr in feedback_attributes
+                            ]
+                        )
+                    ),
+                )
+                for attr_name in self.word_attr_names
+            ]
+        )
 
         # Collect Feedback <msg /> attributes
-        feedback_msg_attributes = list(map(get_msg_argument, self.feedback_msg_elements))
-        self.feedback_msg_possible_values = OrderedDict([
-            (attr_name, list(set([''] + [tag_attr.get(attr_name, None) for tag_attr in feedback_msg_attributes])))
-            for attr_name in self.tag_attr_names
-        ])
+        feedback_msg_attributes = list(
+            map(get_msg_argument, self.feedback_msg_elements)
+        )
+        self.feedback_msg_possible_values = OrderedDict(
+            [
+                (
+                    attr_name,
+                    list(
+                        set(
+                            [""]
+                            + [
+                                tag_attr.get(attr_name, None)
+                                for tag_attr in feedback_msg_attributes
+                            ]
+                        )
+                    ),
+                )
+                for attr_name in self.tag_attr_names
+            ]
+        )
 
         # TODO: msg attributes and Tag comparison
 
@@ -491,27 +567,27 @@ class Feedback_install(object):
         # attributes
         #
         def diff(attribute):
-            return set(self.feedback_possible_values.get(attribute)) | \
-                    set(self.word_possible_values.get(attribute))
+            return set(self.feedback_possible_values.get(attribute)) | set(
+                self.word_possible_values.get(attribute)
+            )
 
-        self.attributes_intersection = OrderedDict([
-            (attr_name, diff(attr_name))
-            for attr_name in self.word_attr_names
-        ])
+        self.attributes_intersection = OrderedDict(
+            [(attr_name, diff(attr_name)) for attr_name in self.word_attr_names]
+        )
 
         def tag_diff(attribute):
-            d = set(self.feedback_msg_possible_values.get(attribute)) | \
-                    set(self.tag_possible_values.get(attribute))
+            d = set(self.feedback_msg_possible_values.get(attribute)) | set(
+                self.tag_possible_values.get(attribute)
+            )
             return d
 
-        self.tag_attributes_intersection = OrderedDict([
-            (attr_name, tag_diff(attr_name))
-            for attr_name in self.tag_attr_names
-        ])
+        self.tag_attributes_intersection = OrderedDict(
+            [(attr_name, tag_diff(attr_name)) for attr_name in self.tag_attr_names]
+        )
 
         self.default_attributes = OrderedDict(
-            list(self.attributes_intersection.items()) +
-            list(self.tag_attributes_intersection.items())
+            list(self.attributes_intersection.items())
+            + list(self.tag_attributes_intersection.items())
         )
 
         return self.attributes_intersection
@@ -521,18 +597,17 @@ class Feedback_install(object):
         def fmt_dict(D):
             lines = []
             for k, v in D.items():
-                vs = ', '.join(sorted(v))
+                vs = ", ".join(sorted(v))
                 line = "        %s: %s" % (k, vs)
                 lines.append(line)
             try:
-                return fix_encoding('\n'.join(lines))
+                return fix_encoding("\n".join(lines))
             except:
-                return '\n'.join(lines)
-
+                return "\n".join(lines)
 
         print("\n  LEXICON", file=sys.stdout)
         print("    Attributes in word file:", file=sys.stdout)
-        print(fmt_dict(self.word_possible_values).encode('utf-8'), file=sys.stdout)
+        print(fmt_dict(self.word_possible_values).encode("utf-8"), file=sys.stdout)
 
         print("    Tag attributes in lexicon for %s:" % self.file_pos, file=sys.stdout)
         print(fmt_dict(self.tag_possible_values), file=sys.stdout)
@@ -544,43 +619,51 @@ class Feedback_install(object):
         print("    <msg />  attributes in feedback file:", file=sys.stdout)
         print(fmt_dict(self.feedback_msg_possible_values), file=sys.stdout)
 
-
         print("\n  COMPARISON", file=sys.stdout)
         print("    Symmetric difference between lexicon and feedback:", file=sys.stdout)
 
-        for attribute_name, lexicon_attribute_values in self.word_possible_values.items():
+        for (
+            attribute_name,
+            lexicon_attribute_values,
+        ) in self.word_possible_values.items():
             fb_attr_vals = self.feedback_possible_values.get(attribute_name, False)
             missing = []
             if fb_attr_vals:
                 missing.extend(list(set(fb_attr_vals) ^ set(lexicon_attribute_values)))
-            _str = "        %s: %s" % (attribute_name, ', '.join(missing))
+            _str = "        %s: %s" % (attribute_name, ", ".join(missing))
             try:
-                print(_str.encode('utf-8'), file=sys.stdout)
+                print(_str.encode("utf-8"), file=sys.stdout)
             except:
                 print(_str, file=sys.stdout)
 
-
-        print('\n', file=sys.stdout)
+        print("\n", file=sys.stdout)
 
         print("    Symmetric difference between Tag and <msg />:", file=sys.stdout)
 
-        for attribute_name, lexicon_attribute_values in self.tag_possible_values.items():
+        for (
+            attribute_name,
+            lexicon_attribute_values,
+        ) in self.tag_possible_values.items():
             fb_attr_vals = self.feedback_msg_possible_values.get(attribute_name, False)
             missing = []
             if fb_attr_vals:
                 missing.extend(list(set(fb_attr_vals) ^ set(lexicon_attribute_values)))
-            print("        %s: %s" % (attribute_name, ', '.join(missing)), file=sys.stdout)
+            print(
+                "        %s: %s" % (attribute_name, ", ".join(missing)), file=sys.stdout
+            )
 
-        print('\n', file=sys.stdout)
-
+        print("\n", file=sys.stdout)
 
     def read_feedback(self, feedbackfile, wordfile, append):
         """
-            TODO: update this.
+        TODO: update this.
         """
 
         if sdm.Feedbackmsg.objects.count() == 0:
-            print("No message strings have been installed (messages.sme.xml, etc).", file=sys.stderr)
+            print(
+                "No message strings have been installed (messages.sme.xml, etc).",
+                file=sys.stderr,
+            )
             sys.exit()
         self.feedbackfilename = feedbackfile
         self.wordfilename = wordfile
@@ -600,20 +683,26 @@ class Feedback_install(object):
 
         # collect all form attributes to lessen size of permutation objects
         def word_and_tag_keys(f):
-            vals = tuple(get_attrs(f.word, self.word_attr_names) + \
-                            get_attrs(f.tag, self.tag_attr_names))
+            vals = tuple(
+                get_attrs(f.word, self.word_attr_names)
+                + get_attrs(f.tag, self.tag_attr_names)
+            )
             keys = list(self.word_attr_names) + list(self.tag_attr_names)
             return OrderedDict(list(zip(keys, vals)))
 
-        values = ['word__' + w_attr for w_attr in self.word_attr_names] + \
-                    ['tag__' + t_attr for t_attr in self.tag_attr_names] + \
-                    ['dialects__dialect', 'id', 'word__lemma', 'tag__string']
+        values = (
+            ["word__" + w_attr for w_attr in self.word_attr_names]
+            + ["tag__" + t_attr for t_attr in self.tag_attr_names]
+            + ["dialects__dialect", "id", "word__lemma", "tag__string"]
+        )
 
         print("Fetching wordform attributes.", file=sys.stdout)
 
-        forms = self.form_objects.only(*values) # Get only the things we need.
+        forms = self.form_objects.only(*values)  # Get only the things we need.
 
-        if self.non_possessive_form_filter == "":   # Noun forms without possessive suffix: attribute tag__possessive=""
+        if (
+            self.non_possessive_form_filter == ""
+        ):  # Noun forms without possessive suffix: attribute tag__possessive=""
             forms = forms.filter(tag__possessive=self.non_possessive_form_filter)
         if self.global_form_filter:
             forms = forms.filter(tag__string__contains=self.global_form_filter)
@@ -622,19 +711,19 @@ class Feedback_install(object):
         form_keys = {}
 
         # Since this isn't really in the database, it won't be included in iteration later
-        if self.file_pos == 'A':
-            self.default_attributes['grade'].add('Pos')
+        if self.file_pos == "A":
+            self.default_attributes["grade"].add("Pos")
             # self.default_attributes['grade'].remove("")
 
-        if self.file_pos == 'V':
-            self.default_attributes['subclass'].add('Active')
+        if self.file_pos == "V":
+            self.default_attributes["subclass"].add("Active")
 
-        if self.file_pos == 'N':
-            self.default_attributes['possessive'].add('Non-Px')
+        if self.file_pos == "N":
+            self.default_attributes["possessive"].add("Non-Px")
 
         # TODO: test this.
         # if self.file_pos == 'N':
-            # self.default_attributes['rime'].add('0')
+        # self.default_attributes['rime'].add('0')
 
         # .iterator() necessary because QuerySet is very large.
         for f in forms.iterator():
@@ -644,22 +733,25 @@ class Feedback_install(object):
             # Exception here because there is no 'Pos' in the db, but 'Pos' in
             # feedback. TODO: make a generaelized version of this for a class
             # setting
-            if self.file_pos == 'A':
-                if not w_key_vals['grade'] in ['Comp', 'Superl']:
-                    w_key_vals['grade'] = 'Pos'
+            if self.file_pos == "A":
+                if not w_key_vals["grade"] in ["Comp", "Superl"]:
+                    w_key_vals["grade"] = "Pos"
 
-            if self.file_pos == 'V':
-                if not w_key_vals['subclass'] in ['Der/PassL', 'Der/PassS', 'Der/AV']:
-                    w_key_vals['subclass'] = 'Active'
+            if self.file_pos == "V":
+                if not w_key_vals["subclass"] in ["Der/PassL", "Der/PassS", "Der/AV"]:
+                    w_key_vals["subclass"] = "Active"
 
-            if self.file_pos == 'N':  # the attribute 'possessive' is empty for non-possessive forms
-                if w_key_vals['possessive'] == ['']:
-                    w_key_vals['possessive'] = 'Non-Px'
+            if (
+                self.file_pos == "N"
+            ):  # the attribute 'possessive' is empty for non-possessive forms
+                if w_key_vals["possessive"] == [""]:
+                    w_key_vals["possessive"] = "Non-Px"
 
             w_keys = tuple(w_key_vals.values())
 
-            dialects = [''] + [d.dialect for d in f.dialects.all()
-                        if d.dialect in self.dialects]
+            dialects = [""] + [
+                d.dialect for d in f.dialects.all() if d.dialect in self.dialects
+            ]
 
             # TODO: global dialects?
 
@@ -670,7 +762,7 @@ class Feedback_install(object):
             else:
                 form_keys[w_keys] = [w_vals]
 
-            if total%1000 == 0:
+            if total % 1000 == 0:
                 print("  Fetching wordform attributes: %d left" % total)
 
         form_keys_key_set = set(form_keys.keys())
@@ -706,14 +798,16 @@ class Feedback_install(object):
         # defined. Each permutation is then associated with a message id
         # (n-suffix, etc.)
         #
-        print("Compiling word/tag attribute permutations and msg names", file=sys.stdout)
+        print(
+            "Compiling word/tag attribute permutations and msg names", file=sys.stdout
+        )
         attrs_and_messages = {}
         # collect form and msg ids here
         form_infos = []
         for el in self.feedback_elements:
-            kwargs = get_attrs_with_defaults(el,
-                                            self.word_attr_names,
-                                            self.default_attributes)
+            kwargs = get_attrs_with_defaults(
+                el, self.word_attr_names, self.default_attributes
+            )
 
             msgs = el.getElementsByTagName("msg")
 
@@ -725,31 +819,46 @@ class Feedback_install(object):
 
             for msg in msgs:
                 m = msg.firstChild.data
-                tagkwargs = get_attrs_with_defaults(msg,
-                                                    self.tag_attr_names,
-                                                    self.default_attributes)
+                tagkwargs = get_attrs_with_defaults(
+                    msg, self.tag_attr_names, self.default_attributes
+                )
 
                 # Px_all denotes all possible Px tags. This is to avoid writing the same thing 9 times in the feedback file.
                 # Px_Sg - possessive singular 1-3
                 # Px_DuPl - possessive dual 1-3 and plural 1-3
-                if 'possessive' in tagkwargs:
-                    if tagkwargs['possessive'][0] == 'Px_all':
-                        tagkwargs['possessive'] = ['PxSg1', 'PxSg2', 'PxSg3', 'PxDu1', 'PxDu2', 'PxDu3', 'PxPl1', 'PxPl2', 'PxPl3']
-                    if tagkwargs['possessive'][0] == 'Px_Sg':
-                        tagkwargs['possessive'] = ['PxSg1', 'PxSg2', 'PxSg3']
-                    if tagkwargs['possessive'][0] == 'Px_DuPl':
-                        tagkwargs['possessive'] = ['PxDu1', 'PxDu2', 'PxDu3', 'PxPl1', 'PxPl2', 'PxPl3']
+                if "possessive" in tagkwargs:
+                    if tagkwargs["possessive"][0] == "Px_all":
+                        tagkwargs["possessive"] = [
+                            "PxSg1",
+                            "PxSg2",
+                            "PxSg3",
+                            "PxDu1",
+                            "PxDu2",
+                            "PxDu3",
+                            "PxPl1",
+                            "PxPl2",
+                            "PxPl3",
+                        ]
+                    if tagkwargs["possessive"][0] == "Px_Sg":
+                        tagkwargs["possessive"] = ["PxSg1", "PxSg2", "PxSg3"]
+                    if tagkwargs["possessive"][0] == "Px_DuPl":
+                        tagkwargs["possessive"] = [
+                            "PxDu1",
+                            "PxDu2",
+                            "PxDu3",
+                            "PxPl1",
+                            "PxPl2",
+                            "PxPl3",
+                        ]
 
                 # TODO: global dialects
                 dial = msg.getAttribute("dialect")
 
                 if dial and not self.feedback_global_dialect:
-                    if dial.startswith('NOT-'):
+                    if dial.startswith("NOT-"):
                         # Get all other dialects
                         feedback_dialects = [
-                            d
-                            for d in self.dialects
-                            if d != dial.replace('NOT-', '')
+                            d for d in self.dialects if d != dial.replace("NOT-", "")
                         ]
                     else:
                         feedback_dialects = [dial]
@@ -765,7 +874,7 @@ class Feedback_install(object):
 
                 prod_count = reduce(
                     operator.mul,
-                    [len(a) for a in list(kwargs.values()) + list(tagkwargs.values())]
+                    [len(a) for a in list(kwargs.values()) + list(tagkwargs.values())],
                 )
 
                 def intersect_param_set(param_set):
@@ -809,12 +918,12 @@ class Feedback_install(object):
                 for perm in Entry(kwargs, tagkwargs).permutations:
                     # p, e, r, m, i, n, a = perm
                     # if [p, e, r] == [u'2syll', u'yes', u'no']:
-                        # print perm
+                    # print perm
                     param_set_.add(tuple(perm))
 
                     perm_count += 1
                     if prod_count > 100000:
-                        if perm_count%100000 == 0:
+                        if perm_count % 100000 == 0:
                             print("  %s processed." % perm_count)
 
                     if len(param_set_) > 1000000:
@@ -827,16 +936,17 @@ class Feedback_install(object):
                 # doing a series of if statements.
                 # TODO: intersect in chunks for much biggger sets, probs intersect in 1mil?
 
-
-
         # TODO: store words with no matches somewhere?
 
         # Prefetch all feedback ids and msgids: {'bisyllabic_stem': 4, etc ...}
-        feedbackmsg_ids = dict([(fix_encoding(msg.msgid), msg.id)
-                                for msg in sdm.Feedbackmsg.objects.iterator()])
+        feedbackmsg_ids = dict(
+            [
+                (fix_encoding(msg.msgid), msg.id)
+                for msg in sdm.Feedbackmsg.objects.iterator()
+            ]
+        )
 
         total_forms = self.form_objects.count()
-
 
         # Now we iterate through the prefetched form attributes and form IDs,
         # etc., and collect the message ids (n-suffix, t-suffix, etc.) for each
@@ -855,15 +965,14 @@ class Feedback_install(object):
             msg_id = feedbackmsg_ids.get(f_msg)
             form_id_msg_id.append((f_id, msg_id))
 
-
         # Expand (id, [msgid, msgid, msgid]) into
         #        [(id, msgid), (id, msgid), (id, msgid)]
         # Produce a set to avoid duplicates for bulk insert.
         #
         # form_id_msg_ids = list(set([
-            # (id, msgid)
-            # for _, _, _, id, msgids in form_to_msgs
-            # for msgid in msgids
+        # (id, msgid)
+        # for _, _, _, id, msgids in form_to_msgs
+        # for msgid in msgids
         # ]))
 
         form_id_msg_ids = [(a, b) for a, b in list(set(form_id_msg_id)) if a and b]
@@ -885,12 +994,15 @@ class Feedback_install(object):
             except Exception as e:
                 print(Exception, e, file=sys.stderr)
                 print(repr(chunk[0:10]) + " ... ", file=sys.stderr)
-                print("Chunk contains null values, are messages.xml files installed?", file=sys.stderr)
+                print(
+                    "Chunk contains null values, are messages.xml files installed?",
+                    file=sys.stderr,
+                )
                 print("Removing null values and inserting...", file=sys.stderr)
                 chunk = [(a, b) for a, b in chunk if a and b]
                 sdm.Form.objects.bulk_add_form_messages(chunk)
             progress += chunk_size
-            if progress%10000 == 0:
-                print('%d/%d Form-Feedbackmsg relations' % (progress, total_objs))
+            if progress % 10000 == 0:
+                print("%d/%d Form-Feedbackmsg relations" % (progress, total_objs))
 
         print("Done!", file=sys.stdout)

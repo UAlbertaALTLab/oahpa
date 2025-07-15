@@ -9,17 +9,31 @@ from django.db import transaction
 from django.utils.encoding import smart_str
 
 CHAPTER_CHOICES = {
-    'Intr1' : ['I1','I2','I3'],
-    'Intr2' : ['I4', 'I5'],
-    'Intr3' : ['I6', 'I7'],
-    'Intr4' : ['I8', 'I9', 'I10', 'I11', 'I12'],
-    'Intr1_2' : ['I1','I2','I3', 'I4', 'I5'],
-    'Intr1_3' : ['I1','I2','I3', 'I4', 'I5', 'I6', 'I7'],
-    'Intr1_4' : ['I1','I2','I3', 'I4', 'I5', 'I6', 'I7', 'I8', 'I9', 'I10', 'I11', 'I12'],
+    "Intr1": ["I1", "I2", "I3"],
+    "Intr2": ["I4", "I5"],
+    "Intr3": ["I6", "I7"],
+    "Intr4": ["I8", "I9", "I10", "I11", "I12"],
+    "Intr1_2": ["I1", "I2", "I3", "I4", "I5"],
+    "Intr1_3": ["I1", "I2", "I3", "I4", "I5", "I6", "I7"],
+    "Intr1_4": [
+        "I1",
+        "I2",
+        "I3",
+        "I4",
+        "I5",
+        "I6",
+        "I7",
+        "I8",
+        "I9",
+        "I10",
+        "I11",
+        "I12",
+    ],
 }
 
+
 class BulkManager(models.Manager):
-    """ This Manager adds additional methods to Feedback.objects. That allows
+    """This Manager adds additional methods to Feedback.objects. That allows
     for bulk inserting via custom SQL query (calling INSERT INTO on a list of
     dictionaries), this is much faster than using the standard .create() if
     many objects need to be added.
@@ -33,104 +47,129 @@ class BulkManager(models.Manager):
 
     @transaction.atomic
     def bulk_insert(self, fields, objs):
-        """ Takes a list of fields and a list dictionaries of fields and values,
+        """Takes a list of fields and a list dictionaries of fields and values,
         iterates and inserts. @transaction.atomic is active, and the
         transaction is committed after insert.
         """
         qn = connection.ops.quote_name
         cursor = connection.cursor()
 
-        flds = ', '.join([qn(f) for f in fields])
-        values_list = [ r[f] for r in objs for f in fields]
-        arg_string = ', '.join(['(' + ', '.join(['%s']*len(fields)) + ')'] * len(objs))
-        sql = "INSERT INTO %s (%s) VALUES %s" % (self.model._meta.db_table, flds, arg_string,)
+        flds = ", ".join([qn(f) for f in fields])
+        values_list = [r[f] for r in objs for f in fields]
+        arg_string = ", ".join(
+            ["(" + ", ".join(["%s"] * len(fields)) + ")"] * len(objs)
+        )
+        sql = "INSERT INTO %s (%s) VALUES %s" % (
+            self.model._meta.db_table,
+            flds,
+            arg_string,
+        )
         cursor.execute(sql, values_list)
-        #transaction.commit()
+        # transaction.commit()
 
     @transaction.atomic
     def bulk_add_form_messages(self, objs):
-        """ Takes a list of IDs, (feedback_id, feedback_message_id) and inserts
-        these to the many-to-many table, committing on complete.  """
+        """Takes a list of IDs, (feedback_id, feedback_message_id) and inserts
+        these to the many-to-many table, committing on complete."""
         qn = connection.ops.quote_name
         cursor = connection.cursor()
 
-        fields = ['form_id', 'feedbackmsg_id']
+        fields = ["form_id", "feedbackmsg_id"]
 
         vals = [dict(list(zip(fields, a))) for a in objs]
-        flds = ', '.join([qn(f) for f in fields])
-        values_list = [ r[f] for r in vals for f in fields]
+        flds = ", ".join([qn(f) for f in fields])
+        values_list = [r[f] for r in vals for f in fields]
 
-        arg_string = ', '.join(['(' + ', '.join(['%s']*len(fields)) + ')'] * len(vals))
+        arg_string = ", ".join(
+            ["(" + ", ".join(["%s"] * len(fields)) + ")"] * len(vals)
+        )
 
         # postgres seems to automatically ignore, mysql does not
         try:
             postgres = connection.ops._postgres_version
-            ignore = ''
+            ignore = ""
         except AttributeError:
             postgres = False
-            ignore = 'IGNORE'
+            ignore = "IGNORE"
 
-        sql = "INSERT %s INTO %s (%s) VALUES %s" % (ignore, "drill_form_feedback", flds, arg_string,)
+        sql = "INSERT %s INTO %s (%s) VALUES %s" % (
+            ignore,
+            "drill_form_feedback",
+            flds,
+            arg_string,
+        )
 
         cursor.execute(sql, values_list)
-        #transaction.commit()
+        # transaction.commit()
 
     @transaction.atomic
     def bulk_remove_form_messages(self, form_qs):
-        """ Takes a form queryset, bulk removes all feedbacks for words with those ids """
+        """Takes a form queryset, bulk removes all feedbacks for words with those ids"""
 
-        form_ids = form_qs.values_list('id', flat=True)
+        form_ids = form_qs.values_list("id", flat=True)
 
         qn = connection.ops.quote_name
         cursor = connection.cursor()
 
         table = "drill_form_feedback"
-        fld = qn('form_id')
-        args = ', '.join([str(f) for f in form_ids])
+        fld = qn("form_id")
+        args = ", ".join([str(f) for f in form_ids])
 
         sql = "DELETE FROM %s WHERE %s in (%s)" % (table, fld, args)
 
         cursor.execute(sql)
-        #transaction.commit()
-
+        # transaction.commit()
 
     @transaction.atomic
     def bulk_add_messages(self, objs):
-        """ Takes a list of IDs, (feedback_id, feedback_message_id) and inserts
-        these to the many-to-many table, committing on complete.  """
+        """Takes a list of IDs, (feedback_id, feedback_message_id) and inserts
+        these to the many-to-many table, committing on complete."""
         qn = connection.ops.quote_name
         cursor = connection.cursor()
 
-        fields = ['feedback_id', 'feedbackmsg_id']
+        fields = ["feedback_id", "feedbackmsg_id"]
 
         vals = [dict(list(zip(fields, a))) for a in objs]
-        flds = ', '.join([qn(f) for f in fields])
-        values_list = [ r[f] for r in vals for f in fields]
+        flds = ", ".join([qn(f) for f in fields])
+        values_list = [r[f] for r in vals for f in fields]
 
-        arg_string = ', '.join(['(' + ', '.join(['%s']*len(fields)) + ')'] * len(vals))
-        sql = "INSERT INTO %s (%s) VALUES %s" % ("drill_feedback_messages", flds, arg_string,)
+        arg_string = ", ".join(
+            ["(" + ", ".join(["%s"] * len(fields)) + ")"] * len(vals)
+        )
+        sql = "INSERT INTO %s (%s) VALUES %s" % (
+            "drill_feedback_messages",
+            flds,
+            arg_string,
+        )
 
         cursor.execute(sql, values_list)
-        #transaction.commit()
+        # transaction.commit()
 
     @transaction.atomic
     def bulk_add_dialects(self, objs):
-        """ Takes a list of IDs, (feedback_id, dialect_id) and inserts these to
-        the many-to-many table, committing on complete.  """
+        """Takes a list of IDs, (feedback_id, dialect_id) and inserts these to
+        the many-to-many table, committing on complete."""
         qn = connection.ops.quote_name
         cursor = connection.cursor()
 
-        fields = ['feedback_id', 'dialect_id']
+        fields = ["feedback_id", "dialect_id"]
 
         vals = [dict(list(zip(fields, a))) for a in objs]
-        flds = ', '.join([qn(f) for f in fields])
-        values_list = [ r[f] for r in vals for f in fields]
+        flds = ", ".join([qn(f) for f in fields])
+        values_list = [r[f] for r in vals for f in fields]
 
-        arg_string = ', '.join(['(' + ', '.join(['%s']*len(fields)) + ')'] * len(vals))
-        sql = "INSERT INTO %s (%s) VALUES %s" % ("drill_feedback_dialects", flds, arg_string,)
+        arg_string = ", ".join(
+            ["(" + ", ".join(["%s"] * len(fields)) + ")"] * len(vals)
+        )
+        sql = "INSERT INTO %s (%s) VALUES %s" % (
+            "drill_feedback_dialects",
+            flds,
+            arg_string,
+        )
 
         cursor.execute(sql, values_list)
-        #transaction.commit()
+        # transaction.commit()
+
 
 # Should insert some indexes here, should improve search time since a lot of these have repeated values
 
@@ -204,29 +243,31 @@ class BulkManager(models.Manager):
 ### 		S = '/'.join([a for a in attrs if a.strip()])
 ### 		return S
 
-    # def save(self, *args, **kwargs):
-    # 	"""
-    # 		Normalize syllables.
-    # 	"""
-    # 	syllables = {
-    # 		'2syll': '2syll',
-    # 		'3syll': '3syll',
-    # 		'bisyllabic': '2syll',
-    # 		'trisyllabic': '3syll',
-    # 		'': '',
-    # 	}
-    #
-    # 	if self.stem in syllables.keys():
-    # 		self.stem = syllables[self.stem]
-    #
-    # 	super(Feedback, self).save(*args, **kwargs)
+# def save(self, *args, **kwargs):
+# 	"""
+# 		Normalize syllables.
+# 	"""
+# 	syllables = {
+# 		'2syll': '2syll',
+# 		'3syll': '3syll',
+# 		'bisyllabic': '2syll',
+# 		'trisyllabic': '3syll',
+# 		'': '',
+# 	}
+#
+# 	if self.stem in syllables.keys():
+# 		self.stem = syllables[self.stem]
+#
+# 	super(Feedback, self).save(*args, **kwargs)
+
 
 def filter_set_by_dialect(form_set, dialect):
     from django.db.models import Q
 
-    QUERY = Q(~Q(dialects__dialect='NG'),
-            Q(dialects__dialect=dialect) | \
-            Q(dialects__isnull=True))
+    QUERY = Q(
+        ~Q(dialects__dialect="NG"),
+        Q(dialects__dialect=dialect) | Q(dialects__isnull=True),
+    )
 
     result = form_set.filter(QUERY)
 
@@ -247,10 +288,12 @@ def filter_set_by_dialect(form_set, dialect):
 
     # return form_set
 
+
 class Comment(models.Model):
     lang = models.CharField(max_length=5)
     comment = models.CharField(max_length=100)
     level = models.CharField(max_length=5)
+
 
 class Log(models.Model):
     game = models.CharField(max_length=30)
@@ -258,36 +301,36 @@ class Log(models.Model):
     userinput = models.CharField(max_length=200)
     iscorrect = models.BooleanField()
     correct = models.TextField()
-    example = models.CharField(max_length=200,null=True)
-    feedback = models.CharField(max_length=200,null=True)
+    example = models.CharField(max_length=200, null=True)
+    feedback = models.CharField(max_length=200, null=True)
     comment = models.CharField(max_length=200)
-    messageid = models.CharField(max_length=100,null=True)
+    messageid = models.CharField(max_length=100, null=True)
     lang = models.CharField(max_length=3)
 
     def outputEntry(self, printattrs=False, delimiter=False):
-        """ Renders log information in a one-line string.
+        """Renders log information in a one-line string.
 
-            @attr printattrs - Supply a list of attributes to print via printattrs,
-                          or specify none for all attributes.
+        @attr printattrs - Supply a list of attributes to print via printattrs,
+                      or specify none for all attributes.
 
-            @attr delimiter - Optionally a delimiter may be specified.
+        @attr delimiter - Optionally a delimiter may be specified.
 
         """
         import datetime
 
         if not delimiter:
-            delimiter = '|'
+            delimiter = "|"
 
         if not printattrs:
             attrs = [
-                'game',
-                'date',
-                'userinput',
-                'correct',
-                'iscorrect',
-                'example',
-                'feedback',
-                'comment'
+                "game",
+                "date",
+                "userinput",
+                "correct",
+                "iscorrect",
+                "example",
+                "feedback",
+                "comment",
             ]
         else:
             attrs = printattrs
@@ -298,25 +341,25 @@ class Log(models.Model):
 
             if not type(ap) in [str, str]:
                 if type(ap) == datetime.date:
-                    ap = '%d/%d/%d' % (ap.year, ap.month, ap.day)
+                    ap = "%d/%d/%d" % (ap.year, ap.month, ap.day)
                 else:
                     ap = repr(ap)
             else:
                 try:
-                    ap = ap.decode('utf-8')
+                    ap = ap.decode("utf-8")
                 except UnicodeEncodeError:
                     pass
 
             if not ap:
-                ap = 'None'
+                ap = "None"
 
             vals.append(ap)
-
 
         return str(delimiter.join(vals))
 
     def __str__(self):
         return self.outputEntry()
+
 
 class Semtype(models.Model):
     semtype = models.CharField(max_length=50)
@@ -324,10 +367,10 @@ class Semtype(models.Model):
     def __str__(self):
         return smart_str(self.semtype)
 
+
 class Source(models.Model):
     type = models.CharField(max_length=20)
     name = models.CharField(max_length=20)
-
 
     def __str__(self):
         S = ""
@@ -337,10 +380,12 @@ class Source(models.Model):
             S = "%s" % self.name
         return smart_str(S)
 
+
 # First, define the Manager subclass.
 class NPosManager(models.Manager):
     def get_query_set(self):
-        return super(NPosManager, self).get_query_set().filter(pos='N')
+        return super(NPosManager, self).get_query_set().filter(pos="N")
+
 
 class Dialect(models.Model):
     dialect = models.CharField(max_length=5)
@@ -355,15 +400,21 @@ class Dialect(models.Model):
             S = "%s" % self.dialect
         return smart_str(S)
 
+
 def Translations2(target_lang):
     if target_lang in ["nob", "crk", "eng", "dan", "no"]:
-        if target_lang == "nob" or "no":	related = 'translations2nob'
-        if target_lang == "crk":	related = 'translations2crk'
-        if target_lang == "eng":	related = 'translations2eng'
-        if target_lang == "fin":	related = 'translations2fin'
+        if target_lang == "nob" or "no":
+            related = "translations2nob"
+        if target_lang == "crk":
+            related = "translations2crk"
+        if target_lang == "eng":
+            related = "translations2eng"
+        if target_lang == "fin":
+            related = "translations2fin"
         return related
     else:
         return None
+
 
 # class Nob(models.Manager):
 # 	def get_query_set(self):
@@ -371,119 +422,131 @@ def Translations2(target_lang):
 
 # PI suggestion: could we make these choice fields?
 
-class MorphPhonTag(models.Model): # redone for Russian
-    stem		 = models.CharField(max_length=20)
-    gender           = models.CharField(max_length=20)
-    animacy          = models.CharField(max_length=20)
-    inflection_class = models.CharField(max_length=20) # Zaliznyak's number class
+
+class MorphPhonTag(models.Model):  # redone for Russian
+    stem = models.CharField(max_length=20)
+    gender = models.CharField(max_length=20)
+    animacy = models.CharField(max_length=20)
+    inflection_class = models.CharField(max_length=20)  # Zaliznyak's number class
     # stress_class     = models.CharField(max_length=20) # Zaliznyak's stress class
-    declension       = models.CharField(max_length=20) # Doing it this way until an fst is up
-    reflexive        = models.BooleanField(null=True, blank=True)
+    declension = models.CharField(max_length=20)  # Doing it this way until an fst is up
+    reflexive = models.BooleanField(null=True, blank=True)
 
-# PI: Zaliznyak's codes aren't sufficient to get the correct conjugation
-# for reflexive verbs
+    # PI: Zaliznyak's codes aren't sufficient to get the correct conjugation
+    # for reflexive verbs
 
-# PI: Do we encode minor things like problematic plurals etc.?
+    # PI: Do we encode minor things like problematic plurals etc.?
 
     def __str__(self):
-        attrs = [self.stem,
-             self.gender,
-             self.animacy,
-             self.declension,
-             self.inflection_class,
-#			 self.stress_class,
-             self.reflexive]
+        attrs = [
+            self.stem,
+            self.gender,
+            self.animacy,
+            self.declension,
+            self.inflection_class,
+            # 			 self.stress_class,
+            self.reflexive,
+        ]
 
-        S = smart_str('/'.join([a for a in attrs if a.strip()])).encode('utf-8')
+        S = smart_str("/".join([a for a in attrs if a.strip()])).encode("utf-8")
         return S
 
     class Meta:
-        unique_together = ("stem",
-                   "gender",
-                   "animacy",
-                   "declension",
-                   "inflection_class",
-#				   "stress_class",
-                   "reflexive",)
+        unique_together = (
+            "stem",
+            "gender",
+            "animacy",
+            "declension",
+            "inflection_class",
+            # 				   "stress_class",
+            "reflexive",
+        )
 
 
-def leksa_filter(Model,
-                    lang=False,
-                    tx_lang=False,
-                    semtype_incl=False,
-                    semtype_excl=False,
-                    source=False,
-                    geography=False,
-                    frequency=False,
-                    ids=False):
+def leksa_filter(
+    Model,
+    lang=False,
+    tx_lang=False,
+    semtype_incl=False,
+    semtype_excl=False,
+    source=False,
+    geography=False,
+    frequency=False,
+    ids=False,
+):
     EXCL = {}
     QUERY = {}
 
     if semtype_excl:
-        EXCL['semtype__semtype__in'] = semtype_excl
+        EXCL["semtype__semtype__in"] = semtype_excl
 
-    QUERY['language'] = lang
-    QUERY['wordtranslation__language'] = tx_lang
+    QUERY["language"] = lang
+    QUERY["wordtranslation__language"] = tx_lang
 
     if geography:
-        QUERY['geography'] = geography
+        QUERY["geography"] = geography
     else:
-        a = 'semtype__semtype__in'
+        a = "semtype__semtype__in"
         if a in EXCL:
-            EXCL[a].append('PLACES')
+            EXCL[a].append("PLACES")
         else:
-            EXCL[a] = ['PLACES']
+            EXCL[a] = ["PLACES"]
 
     if semtype_incl:
-        QUERY['semtype__semtype__in'] = list(semtype_incl)
+        QUERY["semtype__semtype__in"] = list(semtype_incl)
 
     if frequency:
-        QUERY['frequency__in'] = frequency
+        QUERY["frequency__in"] = frequency
 
-    if source and source not in ['all', 'All']:
+    if source and source not in ["all", "All"]:
         if source in CHAPTER_CHOICES:
-            QUERY['chapter__in'] = CHAPTER_CHOICES[source]
+            QUERY["chapter__in"] = CHAPTER_CHOICES[source]
         else:
-            QUERY['source__name__in'] = [source]
+            QUERY["source__name__in"] = [source]
 
-
-    query_set = Model.objects.exclude(**EXCL).filter(**QUERY).order_by('?')[:10]
-    query_ids = query_set.values_list('id', 'lemma')
+    query_set = Model.objects.exclude(**EXCL).filter(**QUERY).order_by("?")[:10]
+    query_ids = query_set.values_list("id", "lemma")
 
     return query_ids
 
 
-
 class Word(models.Model):
     """
-        >>> a = Word.objects.create(lemma='omg')
-        >>> a.wordnob_set.create(lemma='bbq')
+    >>> a = Word.objects.create(lemma='omg')
+    >>> a.wordnob_set.create(lemma='bbq')
     """
+
     wordid = models.CharField(max_length=200, db_index=True)
-    language = models.CharField(max_length=5, default='crk', db_index=True)
+    language = models.CharField(max_length=5, default="crk", db_index=True)
     lemma = models.CharField(max_length=200, db_index=True)
     lemma_stressed = models.CharField(max_length=200, db_index=True)  # added by HU
-    presentationform = models.CharField(max_length=5) # PI: what's this?
-    pos = models.CharField(max_length=12) # Accomodate larger PoS
+    presentationform = models.CharField(max_length=5)  # PI: what's this?
+    pos = models.CharField(max_length=12)  # Accomodate larger PoS
     stem = models.CharField(max_length=20)
     animacy = models.CharField(max_length=20)
-    trans_anim = models.CharField(max_length=20) # for verbs: transitivity-animacy
+    trans_anim = models.CharField(max_length=20)  # for verbs: transitivity-animacy
     object = models.CharField(max_length=40)
     gender = models.CharField(max_length=20)
     declension = models.CharField(max_length=20)
-    loc2 = models.BooleanField(default=False) # indicates if the word has Locative2 or not
-    gen2 = models.BooleanField(default=False) # indicates if the word has Genitive2 or not
+    loc2 = models.BooleanField(
+        default=False
+    )  # indicates if the word has Locative2 or not
+    gen2 = models.BooleanField(
+        default=False
+    )  # indicates if the word has Genitive2 or not
     reflexive = models.BooleanField(null=True, blank=True)
-    inflection_class = models.CharField(max_length=20) # Zaliznyak's number class
+    inflection_class = models.CharField(max_length=20)  # Zaliznyak's number class
     zaliznjak = models.CharField(max_length=20)
-    audio = models.CharField(max_length=20) # audio file name
+    audio = models.CharField(max_length=20)  # audio file name
     wordclass = models.CharField(max_length=8)
     # valency = models.CharField(max_length=10)
-    hid = models.IntegerField(null=True, default=None) # PI: what's this?
+    hid = models.IntegerField(null=True, default=None)  # PI: what's this?
     semtype = models.ManyToManyField(Semtype)
-    source = models.ManyToManyField(Source) # The textbook(s) where the word is introduced
+    source = models.ManyToManyField(
+        Source
+    )  # The textbook(s) where the word is introduced
     chapter = models.CharField(max_length=10)
-    compare = models.CharField(max_length=5) # PI: what's this?
+    compare = models.CharField(max_length=5)  # PI: what's this?
     # translations2nob = models.ManyToManyField('Wordnob')
     # translations2swe = models.ManyToManyField('Wordswe')
     # translations2sme = models.ManyToManyField('Wordsme')
@@ -491,18 +554,17 @@ class Word(models.Model):
     # translations2deu = models.ManyToManyField('Worddeu')
     frequency = models.CharField(max_length=10)
     geography = models.CharField(max_length=10)
-    objects = models.Manager() # The default manager.
-    N_objects = NPosManager() # The Noun-specific manager
+    objects = models.Manager()  # The default manager.
+    N_objects = NPosManager()  # The Noun-specific manager
     tcomm = models.BooleanField(default=False)
     # nob = Nob()
     morphophon = models.ForeignKey(MorphPhonTag, null=True, on_delete=models.CASCADE)
     dialects = models.ManyToManyField(Dialect)
-    aspect = models.CharField(max_length=20) # aspect partner (verbs only)
-    motion = models.CharField(max_length=20) # motion partner (verbs only)
+    aspect = models.CharField(max_length=20)  # aspect partner (verbs only)
+    motion = models.CharField(max_length=20)  # motion partner (verbs only)
     rime = models.CharField(max_length=8)
     initial = models.CharField(max_length=8)
     t2c = models.CharField(max_length=8)
-
 
     def morphTag(self, nosave=True):
         try:
@@ -511,11 +573,11 @@ class Word(models.Model):
             mphon = False
         if not mphon:
             kwargs = {
-                'gender':	self.gender,
-                'animacy':	self.animacy,
-                'declension':	self.declension,
-                'reflexive':	self.reflexive,
-                'inflection_class': self.inflection_class
+                "gender": self.gender,
+                "animacy": self.animacy,
+                "declension": self.declension,
+                "reflexive": self.reflexive,
+                "inflection_class": self.inflection_class,
             }
 
             morphtag, create = MorphPhonTag.objects.get_or_create(**kwargs)
@@ -526,7 +588,6 @@ class Word(models.Model):
                 self.morphophon = morphtag
                 self.save()
 
-
     def __init__(self, *args, **kwargs):
         super(Word, self).__init__(*args, **kwargs)
         self.definition = self.lemma
@@ -535,10 +596,10 @@ class Word(models.Model):
 
         from functools import partial
 
-        self.translations2nob = partial(self.translations2, target_lang='nob')()
-        self.translations2eng = partial(self.translations2, target_lang='eng')()
-        self.translations2crk = partial(self.translations2, target_lang='crk')()
-        self.translations2fin = partial(self.translations2, target_lang='fin')()
+        self.translations2nob = partial(self.translations2, target_lang="nob")()
+        self.translations2eng = partial(self.translations2, target_lang="eng")()
+        self.translations2crk = partial(self.translations2, target_lang="crk")()
+        self.translations2fin = partial(self.translations2, target_lang="fin")()
 
     def create(self, *args, **kwargs):
         morphtag = self.morphTag()
@@ -547,9 +608,9 @@ class Word(models.Model):
         super(Word, self).create(*args, **kwargs)
 
     def save(self, *args, **kwargs):
-        """ Words model has an override to uppercase pos attribute on save,
-            in case data isn't saved properly.
-            """
+        """Words model has an override to uppercase pos attribute on save,
+        in case data isn't saved properly.
+        """
         morphtag = self.morphTag()
         self.pos = self.pos.lower().capitalize()
         self.morphophon = morphtag
@@ -560,14 +621,16 @@ class Word(models.Model):
         return smart_str(self.lemma)
 
     def sem_types_admin(self):
-        return ', '.join([item.semtype for item in self.semtype.order_by('semtype').all()])
+        return ", ".join(
+            [item.semtype for item in self.semtype.order_by("semtype").all()]
+        )
 
     def source_admin(self):
-        return ', '.join([item.name for item in self.source.order_by('name').all()])
+        return ", ".join([item.name for item in self.source.order_by("name").all()])
 
     def translations2(self, target_lang):
         """
-            Returns obj.translations2XXX for string
+        Returns obj.translations2XXX for string
         """
         target_lang = target_lang[-3::]
         # related = Translations2(target_lang)
@@ -576,46 +639,50 @@ class Word(models.Model):
 
     def baseform(self):
         """
-            Returns the infinitive/recitation Form for the Word.
+        Returns the infinitive/recitation Form for the Word.
 
-            V - Inf
-            N - Nom
-            A - Attr
+        V - Inf
+        N - Nom
+        A - Attr
 
-            Take a look at code in game.BareGame.get_baseform and move that here.
+        Take a look at code in game.BareGame.get_baseform and move that here.
         """
 
         pos_base = {
-            'V': 'Ind+Prs+3Sg', # Usually: Inf but crk: Ind+Prs+3Sg
-            'N': 'Sg', # Usually: Nom. But the baseform in crk is N+AN+Sg or N+IN+Sg
-            'A': 'Attr',
-            'Pron': 'Nom',
+            "V": "Ind+Prs+3Sg",  # Usually: Inf but crk: Ind+Prs+3Sg
+            "N": "Sg",  # Usually: Nom. But the baseform in crk is N+AN+Sg or N+IN+Sg
+            "A": "Attr",
+            "Pron": "Nom",
         }
-        if self.pos == 'A':
-            if self.tag.string.find('Attr') > -1:
-                form_filter = 'A+Sg+Nom'
+        if self.pos == "A":
+            if self.tag.string.find("Attr") > -1:
+                form_filter = "A+Sg+Nom"
             else:
-                form_filter = 'A+Attr'
+                form_filter = "A+Attr"
             try:
                 return self.form_set.filter(tag__string=form_filter)[0]
             except:
                 return None
         else:
             try:
-                return self.form_set.filter(tag__string__icontains=pos_base[self.pos])[0]
+                return self.form_set.filter(tag__string__icontains=pos_base[self.pos])[
+                    0
+                ]
             except:
                 return None
+
 
 # TODO: Wordxxx need to be one object
 # TODO: admin interface is going to have problems loading tons of words, should use search field instead
 
 
 class WordTranslation(models.Model):
-    """ Abstract parent class for all translations.
-        Meta.abstract = True
+    """Abstract parent class for all translations.
+    Meta.abstract = True
 
-        TODO: null=True necessary?
+    TODO: null=True necessary?
     """
+
     word = models.ForeignKey(Word, db_index=True, on_delete=models.CASCADE)
     language = models.CharField(max_length=5, db_index=True)
     wordid = models.CharField(max_length=200, db_index=True)
@@ -646,7 +713,7 @@ class WordTranslation(models.Model):
         elif self.explanation:
             return self.explanation
         else:
-            return ''
+            return ""
 
     def _getAnswer(self):
         word_answers = []
@@ -663,15 +730,14 @@ class WordTranslation(models.Model):
         self.definition = self._getTrans()
         super(WordTranslation, self).save(*args, **kwargs)
 
-
     def __init__(self, *args, **kwargs):
         super(WordTranslation, self).__init__(*args, **kwargs)
         self.definition = self._getTrans()
         self.word_answers = self._getAnswer()
 
-
     # class Meta:
     # 	abstract = True
+
 
 # Following are subclassed from above, no need to add anything special.
 #
@@ -686,11 +752,13 @@ class WordTranslation(models.Model):
 # class Worddeu(WordTranslation):
 # 	class Meta: abstract = True
 
+
 class Tagset(models.Model):
     tagset = models.CharField(max_length=25)
 
     def __str__(self):
         return smart_str(self.tagset)
+
 
 class Tagname(models.Model):
     tagname = models.CharField(max_length=25)
@@ -699,8 +767,9 @@ class Tagname(models.Model):
     def __str__(self):
         return smart_str(self.tagname)
 
+
 class Tag(models.Model):
-    string = models.CharField(max_length=40, unique=True) # tag sequence
+    string = models.CharField(max_length=40, unique=True)  # tag sequence
     # TODO: pos = models.CharField(max_length=12)
     attributive = models.CharField(max_length=5)
     case = models.CharField(max_length=5)
@@ -737,40 +806,40 @@ class Tag(models.Model):
         # TODO: check that all tagsets are in here
         tagset_names = {
             # object attribute: tagset name
-            'attributive': 'Attributive',
-            'case': 'Case',
-            'animacy': 'Animacy',
-#			'conneg': 'ConNeg',
-#			'grade': 'Grade',
-            'infinite': 'Infinite',
+            "attributive": "Attributive",
+            "case": "Case",
+            "animacy": "Animacy",
+            # 			'conneg': 'ConNeg',
+            # 			'grade': 'Grade',
+            "infinite": "Infinite",
             # 'mood': 'Mood',
-            'mode': 'Mode',
-            'preverb': 'Preverb',
-            'distance': 'Distance',
-            'object': 'Object',
-            'number': 'Number',
-            'personnumber': 'Person-Number',
-            'trans_anim': 'Transitivity-Animacy',
-            'intentional_definite': 'Intentional-Definite',
-            'polarity': 'Polarity',
-            'pos': 'Wordclass',
-            'possessive': 'Possessive',
-            'derivation': 'Derivation',
-            'subclass': 'Subclass',
-            'tense': 'Tense',
-            'gender': 'Gender',
+            "mode": "Mode",
+            "preverb": "Preverb",
+            "distance": "Distance",
+            "object": "Object",
+            "number": "Number",
+            "personnumber": "Person-Number",
+            "trans_anim": "Transitivity-Animacy",
+            "intentional_definite": "Intentional-Definite",
+            "polarity": "Polarity",
+            "pos": "Wordclass",
+            "possessive": "Possessive",
+            "derivation": "Derivation",
+            "subclass": "Subclass",
+            "tense": "Tense",
+            "gender": "Gender",
         }
 
         tagname_to_set = {}
         for attr, tsetname in list(tagset_names.items()):
-            tagnames = Tagname.objects.filter(tagset__tagset=tsetname)\
-                            .values_list('tagname', flat=True)
+            tagnames = Tagname.objects.filter(tagset__tagset=tsetname).values_list(
+                "tagname", flat=True
+            )
 
             for t in tagnames:
-                    tagname_to_set[t] = attr
+                tagname_to_set[t] = attr
 
-
-        for piece in self.string.split('+'):
+        for piece in self.string.split("+"):
             attrname = tagname_to_set.get(piece, False)
 
             if attrname:
@@ -784,12 +853,13 @@ class Tag(models.Model):
     # 	self.fix_attributes()
     # 	super(Tag, self).save(*args, **kwargs)
 
+
 class Form(models.Model):
     word = models.ForeignKey(Word, on_delete=models.CASCADE)
     tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
     fullform = models.CharField(max_length=200)
     dialects = models.ManyToManyField(Dialect)
-    feedback = models.ManyToManyField('Feedbackmsg')
+    feedback = models.ManyToManyField("Feedbackmsg")
     objects = BulkManager()
 
     @property
@@ -802,26 +872,26 @@ class Form(models.Model):
         # return '%s; %s+%s' % (self.fullform, self.word.lemma, self.tag)
 
     def getBaseform(self, match_num=False, return_all=False):
-        """ Gets the base form (e.g., citation/dictionary form) for
-            the wordform. Nouns -> Nom+Sg, Verbs -> Inf
+        """Gets the base form (e.g., citation/dictionary form) for
+        the wordform. Nouns -> Nom+Sg, Verbs -> Inf
 
-            @param match_num:
-                True - If the form supplied is a noun and plural
-                       the baseform will be Nominative Plural
+        @param match_num:
+            True - If the form supplied is a noun and plural
+                   the baseform will be Nominative Plural
 
-            TODO: baseforms for
-            Pron+Refl+Sg+Nom
-             ** no form
+        TODO: baseforms for
+        Pron+Refl+Sg+Nom
+         ** no form
 
-            Pron+Refl+Pl+Nom
-              ** no form
+        Pron+Refl+Pl+Nom
+          ** no form
 
-            All Recipr+Pl forms are not returning baseforms
-                Pron+Recipr+Pl+Acc+PxDu2
-                Pron+Recipr+Pl+Ill+PxDu2
-                Pron+Recipr+Pl+Loc+PxDu2
-                Pron+Recipr+Pl+Com+PxDu2
-                 ... etc
+        All Recipr+Pl forms are not returning baseforms
+            Pron+Recipr+Pl+Acc+PxDu2
+            Pron+Recipr+Pl+Ill+PxDu2
+            Pron+Recipr+Pl+Loc+PxDu2
+            Pron+Recipr+Pl+Com+PxDu2
+             ... etc
         """
 
         # Exceptional behavior for Der/AV, and other possibilities, f. ex., Der/AN
@@ -848,35 +918,39 @@ class Form(models.Model):
         # 			match_num=match_num,
         # 			return_all=False)
 
-        if self.tag.pos in ['N', 'n', 'Num']:
+        if self.tag.pos in ["N", "n", "Num"]:
             if match_num:
                 number = self.tag.number
             else:
-                number = 'Sg'
-            #if (self.tag.string == 'N+AN+Sg' or self.tag.string == 'N+IN+Sg'):  # task N-DIM
-            #	baseform_num = self.word.form_set.filter(tag__case='', tag__possessive='', tag__derivation='Der/Dim')
-            if self.tag.possessive == '': # N-PL and N-LOC
-                baseform_num = self.word.form_set.filter(tag__case='', tag__possessive='', tag__derivation='')
+                number = "Sg"
+            # if (self.tag.string == 'N+AN+Sg' or self.tag.string == 'N+IN+Sg'):  # task N-DIM
+            # 	baseform_num = self.word.form_set.filter(tag__case='', tag__possessive='', tag__derivation='Der/Dim')
+            if self.tag.possessive == "":  # N-PL and N-LOC
+                baseform_num = self.word.form_set.filter(
+                    tag__case="", tag__possessive="", tag__derivation=""
+                )
             else:  # N-PX
-                baseform_num = self.word.form_set.filter(tag__case='', tag__possessive='Px1Sg', tag__derivation='')
+                baseform_num = self.word.form_set.filter(
+                    tag__case="", tag__possessive="Px1Sg", tag__derivation=""
+                )
 
-            #print 'baseforms before number filtering:', baseform_num
+            # print 'baseforms before number filtering:', baseform_num
             baseform = baseform_num.filter(tag__number=number)
-            if baseform.count() == 0 and number == 'Sg' and baseform_num.count() > 0:
+            if baseform.count() == 0 and number == "Sg" and baseform_num.count() > 0:
                 baseform = baseform_num
-        elif self.tag.pos == 'Pron':
+        elif self.tag.pos == "Pron":
 
             person_match_attr = False
             if self.tag.personnumber:
-                person_match_attr = 'personnumber'
+                person_match_attr = "personnumber"
             elif self.tag.possessive:
-                person_match_attr = 'possessive'
+                person_match_attr = "possessive"
 
             number_match = False
             if self.tag.number:
                 number_match = self.tag.number
             else:
-                number_match = 'Sg'
+                number_match = "Sg"
 
             kwargs = {}
 
@@ -885,55 +959,66 @@ class Form(models.Model):
                     person_value = self.tag__getattribute(person_match_attr)
                 except AttributeError:
                     # TODO: handle error?
-                    person_value = ''
-                kwargs['tag__' + person_match_attr] = person_value
+                    person_value = ""
+                kwargs["tag__" + person_match_attr] = person_value
 
-            base_case = 'Nom'
-            if self.tag.subclass in ['Recipr', 'Refl']:
-                base_case = 'Gen'
+            base_case = "Nom"
+            if self.tag.subclass in ["Recipr", "Refl"]:
+                base_case = "Gen"
 
-            if self.tag.subclass in ['Recipr', 'Dem', 'Rel']: # Rel added by Heli
-                kwargs['tag__number'] = number_match
+            if self.tag.subclass in ["Recipr", "Dem", "Rel"]:  # Rel added by Heli
+                kwargs["tag__number"] = number_match
 
-            #if self.tag.subclass:
-             #    kwargs['tag__subclass'] = self.tag.subclass # added by Heli
+            # if self.tag.subclass:
+            #    kwargs['tag__subclass'] = self.tag.subclass # added by Heli
             # print kwargs
             baseform_num = self.word.form_set.filter(tag__case=base_case)
-            #print baseform_num
+            # print baseform_num
             baseform = baseform_num.filter(**kwargs)
 
-            if baseform.count() == 0 and number_match == 'Sg' and baseform_num.count() > 0:
+            if (
+                baseform.count() == 0
+                and number_match == "Sg"
+                and baseform_num.count() > 0
+            ):
                 baseform = baseform_num
 
-        elif self.tag.pos in ['V', 'v']:
-            kwarg = {'tag__personnumber':'3Sg', 'tag__tense':'Prs', 'tag__mood':'Ind'} # For crk the baseform is not V+IA or V+Inf but Ind+Prs+3Sg
+        elif self.tag.pos in ["V", "v"]:
+            kwarg = {
+                "tag__personnumber": "3Sg",
+                "tag__tense": "Prs",
+                "tag__mood": "Ind",
+            }  # For crk the baseform is not V+IA or V+Inf but Ind+Prs+3Sg
 
             # Non-derived verbs need to exclude Der
-            baseform = self.word.form_set.exclude(tag__string__contains='Der')\
-                                            .filter(**kwarg)
+            baseform = self.word.form_set.exclude(tag__string__contains="Der").filter(
+                **kwarg
+            )
             if baseform.count() == 0:
-                baseform = self.word.form_set.filter(tag__personnumber='Sg3')
+                baseform = self.word.form_set.filter(tag__personnumber="Sg3")
             if baseform.count() == 0:
                 raise Form.DoesNotExist
 
-        elif self.tag.pos in ['A', 'a']:
+        elif self.tag.pos in ["A", "a"]:
             # TODO: veljer systemet Coll og Ord grunnformen?
             if match_num:  # added by Heli, by example of N
                 number = self.tag.number
             else:
-                number = 'Sg'
+                number = "Sg"
 
             if self.tag.subclass:
                 subclass = self.tag.subclass
             else:
-                subclass = ''
+                subclass = ""
 
             print(subclass)
-            baseform = self.word.form_set.filter(tag__case='Nom',
-                                                    tag__number=number,
-                                                    tag__grade='',
-                                                    tag__subclass=subclass,
-                                                    tag__attributive='')
+            baseform = self.word.form_set.filter(
+                tag__case="Nom",
+                tag__number=number,
+                tag__grade="",
+                tag__subclass=subclass,
+                tag__attributive="",
+            )
             # print baseform
             if baseform.count() == 0:
                 baseform = self.word.form_set.all()
@@ -963,10 +1048,12 @@ class Form(models.Model):
 
 ############# MORFA FEEDBACK
 
+
 class Feedbackmsg(models.Model):
     """
-        XML code for messages in messages.xml
+    XML code for messages in messages.xml
     """
+
     msgid = models.CharField(max_length=100)
 
     def __str__(self):
@@ -975,8 +1062,9 @@ class Feedbackmsg(models.Model):
 
 class Feedbacktext(models.Model):
     """
-        Message text in messages.xml
+    Message text in messages.xml
     """
+
     message = models.TextField()
     language = models.CharField(max_length=6)
     feedbackmsg = models.ForeignKey(Feedbackmsg, on_delete=models.CASCADE)
@@ -984,17 +1072,16 @@ class Feedbacktext(models.Model):
 
     def __str__(self):
         attrs = [
-                self.language,
-                self.order,
-                self.message,
-            ]
-        S = str('/'.join([a for a in attrs if a.strip()])).encode('utf-8')
-        return smart_str(self.language + ':' + self.message)
-
-
+            self.language,
+            self.order,
+            self.message,
+        ]
+        S = str("/".join([a for a in attrs if a.strip()])).encode("utf-8")
+        return smart_str(self.language + ":" + self.message)
 
 
 ########### CONTEXT-MORFA, VASTA
+
 
 class Question(models.Model):
     qid = models.CharField(max_length=200)
@@ -1003,54 +1090,60 @@ class Question(models.Model):
     string = models.CharField(max_length=200)
     qtype = models.CharField(max_length=20)
     qatype = models.CharField(max_length=20)
-    question = models.ForeignKey('self',
-                                 blank=True,
-                                 null=True,
-                                 related_name='answer_set',
-                                 on_delete=models.CASCADE)
+    question = models.ForeignKey(
+        "self",
+        blank=True,
+        null=True,
+        related_name="answer_set",
+        on_delete=models.CASCADE,
+    )
     gametype = models.CharField(max_length=7)
     lemmacount = models.IntegerField()
     source = models.ManyToManyField(Source)
+
     def __str__(self):
-        return self.qid + ': ' + self.string
+        return self.qid + ": " + self.string
+
 
 class QElement(models.Model):
     """
-        QElements are individual elements of a question, such as a pronoun, subject, N-ACC, etc.
-        They contain a set of WordQElements which represent each possible Word item in the database
-        which could be filled in for a given slot in a question.
+    QElements are individual elements of a question, such as a pronoun, subject, N-ACC, etc.
+    They contain a set of WordQElements which represent each possible Word item in the database
+    which could be filled in for a given slot in a question.
 
-        WordQElements are filtered when installed by the database, as such there should be no need
-        to filter in qagame (???)
+    WordQElements are filtered when installed by the database, as such there should be no need
+    to filter in qagame (???)
 
 
     """
+
     question = models.ForeignKey(Question, null=True, on_delete=models.CASCADE)
     syntax = models.CharField(max_length=50)
     identifier = models.CharField(max_length=20)
     task = models.CharField(max_length=20)  # added for VastaS
     gametype = models.CharField(max_length=7)
-    agreement = models.ForeignKey('self',
-                                  blank=True,
-                                  null=True,
-                                  related_name='agreement_set',
-                                  on_delete=models.CASCADE)
+    agreement = models.ForeignKey(
+        "self",
+        blank=True,
+        null=True,
+        related_name="agreement_set",
+        on_delete=models.CASCADE,
+    )
 
     semtype = models.ManyToManyField(Semtype)
     tags = models.ManyToManyField(Tag)
     game = models.CharField(max_length=20)
-    copy = models.ForeignKey('self',
-                             blank=True,
-                             null=True,
-                             related_name='copy_set',
-                             on_delete=models.CASCADE)
+    copy = models.ForeignKey(
+        "self", blank=True, null=True, related_name="copy_set", on_delete=models.CASCADE
+    )
+
     def __str__(self):
-        return smart_str(self.question.string + ': ' + self.identifier)
+        return smart_str(self.question.string + ": " + self.identifier)
+
 
 class WordQElement(models.Model):
-    """
+    """ """
 
-    """
     word = models.ForeignKey(Word, null=True, on_delete=models.CASCADE)
     qelement = models.ForeignKey(QElement, null=True, on_delete=models.CASCADE)
     # semtype = models.ForeignKey(Semtype, null=True, on_delete=models.CASCADE)
@@ -1058,37 +1151,43 @@ class WordQElement(models.Model):
 
 ############ SAHKA
 
+
 class Dialogue(models.Model):
-    name = models.CharField(max_length=50,blank=True,null=True)
+    name = models.CharField(max_length=50, blank=True, null=True)
+
 
 class Utterance(models.Model):
-    utterance = models.CharField(max_length=500,blank=True,null=True)
-    utttype = models.CharField(max_length=20,blank=True,null=True)
-    links = models.ManyToManyField('LinkUtterance')
-    name = models.CharField(max_length=200,blank=True,null=True)
-    topic = models.ForeignKey('Topic', on_delete=models.CASCADE)
+    utterance = models.CharField(max_length=500, blank=True, null=True)
+    utttype = models.CharField(max_length=20, blank=True, null=True)
+    links = models.ManyToManyField("LinkUtterance")
+    name = models.CharField(max_length=200, blank=True, null=True)
+    topic = models.ForeignKey("Topic", on_delete=models.CASCADE)
     formlist = models.ManyToManyField(Form)
+
 
 class UElement(models.Model):
-    utterance=models.ForeignKey(Utterance, null=True, on_delete=models.CASCADE)
+    utterance = models.ForeignKey(Utterance, null=True, on_delete=models.CASCADE)
     syntax = models.CharField(max_length=50)
-    tag = models.ForeignKey(Tag,null=True,blank=True, on_delete=models.CASCADE)
+    tag = models.ForeignKey(Tag, null=True, blank=True, on_delete=models.CASCADE)
+
 
 class LinkUtterance(models.Model):
-    link = models.ForeignKey(Utterance,null=True,blank=True, on_delete=models.CASCADE)
-    target = models.CharField(max_length=20,null=True,blank=True)
-    variable = models.CharField(max_length=20,null=True,blank=True)
-    constant = models.CharField(max_length=20,null=True,blank=True)
+    link = models.ForeignKey(Utterance, null=True, blank=True, on_delete=models.CASCADE)
+    target = models.CharField(max_length=20, null=True, blank=True)
+    variable = models.CharField(max_length=20, null=True, blank=True)
+    constant = models.CharField(max_length=20, null=True, blank=True)
+
 
 class Topic(models.Model):
-    topicname = models.CharField(max_length=50,blank=True,null=True)
+    topicname = models.CharField(max_length=50, blank=True, null=True)
     dialogue = models.ForeignKey(Dialogue, on_delete=models.CASCADE)
     number = models.IntegerField(null=True)
-    image = models.CharField(max_length=50,null=True,blank=True)
+    image = models.CharField(max_length=50, null=True, blank=True)
     formlist = models.ManyToManyField(Form)
+
 
 ######### EXTRA
 class Grammarlinks(models.Model):
-    name = models.CharField(max_length=200,blank=True,null=True)
-    address = models.CharField(max_length=800,blank=True,null=True)
-    language = models.CharField(max_length=5,blank=True,null=True)
+    name = models.CharField(max_length=200, blank=True, null=True)
+    address = models.CharField(max_length=800, blank=True, null=True)
+    language = models.CharField(max_length=5, blank=True, null=True)

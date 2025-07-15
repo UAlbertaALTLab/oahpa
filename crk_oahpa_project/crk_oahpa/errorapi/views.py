@@ -80,7 +80,11 @@ from django.conf import settings
 from django.shortcuts import render
 
 from rest_framework.response import Response
-from rest_framework.decorators import api_view, authentication_classes, permission_classes
+from rest_framework.decorators import (
+    api_view,
+    authentication_classes,
+    permission_classes,
+)
 
 from .messages import *
 from .processes import FeedbackFST
@@ -88,21 +92,22 @@ from .log import ERROR_FST_LOG
 
 ERROR_FST_SETTINGS = settings.ERROR_FST_SETTINGS
 
-_fst_file = ERROR_FST_SETTINGS.get('fst_path')
+_fst_file = ERROR_FST_SETTINGS.get("fst_path")
 
 if not os.path.isfile(_fst_file):
     print("FST file at <%s> does not exist.", file=sys.stderr)
     print("Check the path in settings.py and try again.", file=sys.stderr)
 
-error_files = list(ERROR_FST_SETTINGS.get('error_message_files', {}).values())
+error_files = list(ERROR_FST_SETTINGS.get("error_message_files", {}).values())
 feedback_messages = FeedbackMessageStore(*error_files)
 feedback = FeedbackFST(feedback_messages)
 
-@api_view(['GET', 'POST'])
+
+@api_view(["GET", "POST"])
 @authentication_classes([])
 @permission_classes([])
 def error_feedback_view(request):
-    """ Error lookup view takes a JSON object containing the following
+    """Error lookup view takes a JSON object containing the following
     parameters:
 
         @param lookup (string) - this is the input wordform wordform
@@ -126,32 +131,35 @@ def error_feedback_view(request):
     # TODO: @tag2 attribute
 
     response_data = {
-        'success': False,
+        "success": False,
     }
 
     if request.POST:
         response_data = {
-            'success': True,
+            "success": True,
         }
 
-        lookup_query = request.DATA.get('lookup', False)
-        task = request.DATA.get('task', False)
-        intended_lemma = request.DATA.get('intended_lemma', False)
+        lookup_query = request.DATA.get("lookup", False)
+        task = request.DATA.get("task", False)
+        intended_lemma = request.DATA.get("intended_lemma", False)
 
         message_kwargs = {
-            'display_lang': 'nob',
+            "display_lang": "nob",
         }
 
         if task:
-            message_kwargs['task'] = task
+            message_kwargs["task"] = task
         if intended_lemma:
-            message_kwargs['intended_lemma'] = intended_lemma
+            message_kwargs["intended_lemma"] = intended_lemma
 
         if lookup_query:
             lookup_query = lookup_query
-            response_data = feedback.get_all_feedback_for_form(lookup_query, **message_kwargs)
+            response_data = feedback.get_all_feedback_for_form(
+                lookup_query, **message_kwargs
+            )
 
     return Response(response_data)
 
+
 def test_page(request):
-    return render(request,'test_page.html')
+    return render(request, "test_page.html")

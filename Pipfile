@@ -17,5 +17,9 @@ black = "*"
 mypy = "*"
 django-stubs = "~=5.2"
 
+[scripts]
+# format
+format = "black crk_oahpa_project"
+
 [requires]
 python_version = "3.12"

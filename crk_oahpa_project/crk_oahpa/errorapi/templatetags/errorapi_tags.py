@@ -6,6 +6,7 @@ from django.template.loader import get_template
 
 register = template.Library()
 
+
 @register.simple_tag
 def header_js_includes():
-	return get_template('header_includes.html').render(Context())
+    return get_template("header_includes.html").render(Context())
