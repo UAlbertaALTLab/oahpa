@@ -42,7 +42,7 @@ http://giellatekno.uit.no/oahpa/sme/useoahpa/morfa.nno.html
 	        <select class="exclude_form_update">
                 {% if settings.gametype == "bare" %}
 		            <option {% if settings.pos == "N" %} selected{% else %}{% endif %} value="{% url 'morfa_s.noun' %}">{% trans 'Nouns' %}</option>
-		            <option {% if settings.pos == "V" %} selected{% else %}{% endif %}  value="{% url 'morfa_s.verb' %}">{% trans 'Verbs' %}</option>
+		            <option {% if settings.pos == "V" %} selected{% else %}{% endif %} value="{% url 'morfa_s.verb' %}">{% trans 'Verbs' %}</option>
                 {% else %}
 		            <option {% if settings.pos == "N" %} selected{% else %}{% endif %} value="{% url 'morfa_c.noun' %}">{% trans 'Nouns' %}</option>
 		            <option {% if settings.pos == "V" %} selected{% else %}{% endif %} value="{% url 'morfa_c.verb' %}">{% trans 'Verbs' %}</option>

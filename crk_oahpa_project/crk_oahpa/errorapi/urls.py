@@ -1,8 +1,8 @@
-from django.conf.urls import *
+from django.urls import re_path
 
 urlpatterns = [
-    url(r"^lookup/$", "views.error_feedback_view"),
-    url(r"^test_page/$", "views.test_page"),
+    re_path(r"^lookup/$", "views.error_feedback_view"),
+    re_path(r"^test_page/$", "views.test_page"),
 ]
 
 # vim: set ts=4 sw=4 tw=72 syntax=python :

@@ -173,20 +173,9 @@
 		</div>
 	</div>
     {% block disable_nds %}
-    <script type="text/javascript"
-            src="{{ STATIC_URL }}/js/neahttadigisanit.jquery.min.js"></script>
-
+    
     <script type="text/javascript">
         // Wait for the document to load...
-        $(document).ready(function (){
-            window.NDS_API_HOST = 'https://itwewina.altlab.app/';
-
-            // Initialize and configure NDS
-            $(document).selectToLookup({
-                // This specifies the dictionary set to
-                api_host: 'https://itwewina.altlab.app/',
-            });
-        });
     </script>
     {% endblock %}
 

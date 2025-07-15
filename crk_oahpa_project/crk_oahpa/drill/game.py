@@ -1413,7 +1413,7 @@ class Klokka(NumGame):
         # norm, allnum = output.split('\n\n')[0:2]
 
         norm_list = []
-        for num in output.decode("utf-8").splitlines():
+        for num in output.replace(b"+Use/NA", b"").decode("utf-8").splitlines():
             line = num.strip()
             if line:
                 nums = line.split("\t")
