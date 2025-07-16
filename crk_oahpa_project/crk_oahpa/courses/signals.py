@@ -80,9 +80,10 @@ DEFAULT_ROOTS = [
 
 @disable_for_loaddata
 def create_profile(sender, **kwargs):
-    """This signal creates UserProfile objects when the Django
+    """TODO This signal creates UserProfile objects when the Django
     user models are saved.
     """
+    return True
     from openid_provider.models import OpenID, TrustedRoot
 
     user_obj = kwargs["instance"]
@@ -143,7 +144,8 @@ def course_relationship_postsave(sender, **kwargs):
 
 @disable_for_loaddata
 def user_presave(sender, instance, **kwargs):
-    """Increments user login count."""
+    """TODO Increments user login count."""
+    return False
     user = instance
 
     try:
