@@ -11,7 +11,7 @@ Have a look at the files in ped/crk/meta:
 
 There is an attribute rime in the <l>-element in the N-file (you are free to rename it) and it is used like this:
 {{{
-    <l animacy="AN">    
+    <l animacy="A">    
       <msg number="Pl">plural-ak</msg> 
       <note> </note>
     </l>
@@ -19,7 +19,7 @@ There is an attribute rime in the <l>-element in the N-file (you are free to ren
 This message is given to all AN-nouns for Pl tasks 
 (one could limit it with adding rime="0")
 {{{
-    <l animacy="AN" rime="k">
+    <l animacy="A" rime="k">
       <msg number="Pl">k-gives-w</msg>  
       <note> </note>
     </l>
@@ -50,23 +50,23 @@ Locative, based on Okimâsis s. 26-27:
       <note>mihtawakay - mihtawakâhk </note>
     </l>
 
-    <l rime="eew" animacy="IN">
+    <l rime="eew" animacy="I">
       <msg case="Loc">locative-ihk</msg>
       <note>iskotêw - iskotêwihk</note>
     </l>
 
-    <l rime="oow" animacy="IN">
+    <l rime="oow" animacy="I">
       <msg case="Loc">locative-ihk</msg>
       <note>  </note> 
     </l>
 
     
-    <l rime="eew" animacy="AN">
+    <l rime="eew" animacy="A">
       <msg case="Loc">locative-naahk</msg>
       <note>iskwêw - iskwênâhk</note>
     </l>
 
-    <l rime="oow" animacy="AN">
+    <l rime="oow" animacy="A">
       <msg case="Loc">locative-naahk</msg>
       <note>âmôw - âmônâhk </note> NB: this is âmow in FST
     </l>
@@ -95,7 +95,7 @@ Possessive hints are made of two parts for circumfixes:
       <note> </note>
     </l>
 
-    <l animacy="AN">
+    <l animacy="A">
       <msg possessive="3Sg">obviative</msg>
       <msg possessive="4Sg">iyiw-Obv</msg>
       <msg possessive="1Pl">inaan</msg>

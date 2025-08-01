@@ -48,8 +48,7 @@ class WordAdmin(admin.ModelAdmin):
     list_filter = ["pos", "stem", "semtype", "source", "declension"]
     search_fields = ["lemma", "semtype__semtype"]
     inlines = [FormInline]  # TODO: , WordTranslationInline]
-    # raw_id_fields = ('wordtranslation_set', )
-    # raw_id_fields = ['translations2nob']
+
 
 
 class FormAdmin(admin.ModelAdmin):

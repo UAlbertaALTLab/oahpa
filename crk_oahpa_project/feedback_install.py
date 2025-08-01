@@ -325,7 +325,6 @@ class Feedback_install(object):
 
     def read_messages(self, infile):
 
-        xmlfile = file(infile)
         tree = _dom.parse(infile)
         lex = tree.getElementsByTagName("messages")[0]
         lang = lex.getAttribute("xml:lang")
@@ -654,7 +653,7 @@ class Feedback_install(object):
 
         print("\n", file=sys.stdout)
 
-    def read_feedback(self, feedbackfile, wordfile, append):
+    def read_feedback(self, feedbackfile, wordfile, append = False):
         """
         TODO: update this.
         """

@@ -104,7 +104,7 @@ bassi:bassi¤ ACTOR ; ! no cg Acc: bassi+N+Sg+Acc:bassi
   <question>
     <text>MAINV go SUBJ</text>
     <element type="MAINV">
-      <grammar tag="V+Ind+Prs+Person-Number"/>
+      <grammar tag="V+Ind+Person-Number"/>
       <sem class="ACTIVITY"/>
     </element>
     <element type="SUBJ">
@@ -125,7 +125,7 @@ bassi:bassi¤ ACTOR ; ! no cg Acc: bassi+N+Sg+Acc:bassi
   <question>
     <text>MAINV go SUBJ luomus</text>
     <element type="MAINV">
-      <grammar tag="V+Cond+Prs+Person-Number"/>
+      <grammar tag="V+Cond+Person-Number"/>
       <sem class="ACTIVITY"/>
     </element>
     <element type="SUBJ">
@@ -151,7 +151,7 @@ bassi:bassi¤ ACTOR ; ! no cg Acc: bassi+N+Sg+Acc:bassi
         <grammar tag="Neg+Ind+Person-Number"/>
       </element>
       <element type="CONNEG">
-        <grammar tag="V+Cond+Prs+ConNeg"/>
+        <grammar tag="V+Cond+ConNeg"/>
         <sem class="ACTIVITY"/>
       </element>
     </answer>
@@ -174,7 +174,7 @@ bassi:bassi¤ ACTOR ; ! no cg Acc: bassi+N+Sg+Acc:bassi
       </element>
       <element type="MAINV">
 	<lemma>áigut</lemma> 
-	<grammar tag="V+Cond+Prs+Sg1"/>
+	<grammar tag="V+Cond+Sg1"/>
       </element>
        <element type="MAINV2">
 	<sem class="ACTIVITY"/>
@@ -185,7 +185,7 @@ bassi:bassi¤ ACTOR ; ! no cg Acc: bassi+N+Sg+Acc:bassi
       <text>MAINV2</text>
       <element type="MAINV2">
 	<sem class="ACTIVITY"/>
-	<grammar tag="V+Imprt+Prs+Sg2"/>
+	<grammar tag="V+Imprt+Sg2"/>
       </element>
     </answer>
   </q>

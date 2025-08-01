@@ -1788,7 +1788,7 @@ Læjsa soptsesti dïhte ..... (satne+komitativ+sg) orre.
 			</element>
 			<element id="VERB">
 				<id>soptsestidh</id>
-				<grammar tag="V+Ind+Prt+Du3"/>
+				<grammar tag="PV/ki+LEMMA+V+Ind+Du3"/>
 			</element>
 		</answer>
 	</q>

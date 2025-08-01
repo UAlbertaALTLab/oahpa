@@ -1262,15 +1262,15 @@ class Command(BaseCommand):
                 {
                     "SUBJ": "N+Sg+Nom",
                     "MAINV": [
-                        "V+Ind+Prs+Sg1",
-                        "V+Ind+Prs+Sg2",
-                        "V+Ind+Prs+Sg3",
-                        "V+Ind+Prs+Du1",
-                        "V+Ind+Prs+Du2",
-                        "V+Ind+Prs+Du3",
-                        "V+Ind+Prs+Pl1",
-                        "V+Ind+Prs+Pl2",
-                        "V+Ind+Prs+Pl3",
+                        "V+Ind+Sg1",
+                        "V+Ind+Sg2",
+                        "V+Ind+Sg3",
+                        "V+Ind+Du1",
+                        "V+Ind+Du2",
+                        "V+Ind+Du3",
+                        "V+Ind+Pl1",
+                        "V+Ind+Pl2",
+                        "V+Ind+Pl3",
                     ],
                 }
             )
@@ -1282,15 +1282,15 @@ class Command(BaseCommand):
                 {
                     "SUBJ": "N+Pl+Nom",
                     "MAINV": [
-                        "V+Ind+Prs+Sg1",
-                        "V+Ind+Prs+Sg2",
-                        "V+Ind+Prs+Sg3",
-                        "V+Ind+Prs+Du1",
-                        "V+Ind+Prs+Du2",
-                        "V+Ind+Prs+Du3",
-                        "V+Ind+Prs+Pl1",
-                        "V+Ind+Prs+Pl2",
-                        "V+Ind+Prs+Pl3",
+                        "V+Ind+Sg1",
+                        "V+Ind+Sg2",
+                        "V+Ind+Sg3",
+                        "V+Ind+Du1",
+                        "V+Ind+Du2",
+                        "V+Ind+Du3",
+                        "V+Ind+Pl1",
+                        "V+Ind+Pl2",
+                        "V+Ind+Pl3",
                     ],
                 }
             )
@@ -1302,15 +1302,15 @@ class Command(BaseCommand):
                 {
                     "SUBJ": "Pron+Pers+Sg3+Nom",
                     "MAINV": [
-                        "V+Ind+Prs+Sg1",
-                        "V+Ind+Prs+Sg2",
-                        "V+Ind+Prs+Sg3",
-                        "V+Ind+Prs+Du1",
-                        "V+Ind+Prs+Du2",
-                        "V+Ind+Prs+Du3",
-                        "V+Ind+Prs+Pl1",
-                        "V+Ind+Prs+Pl2",
-                        "V+Ind+Prs+Pl3",
+                        "V+Ind+Sg1",
+                        "V+Ind+Sg2",
+                        "V+Ind+Sg3",
+                        "V+Ind+Du1",
+                        "V+Ind+Du2",
+                        "V+Ind+Du3",
+                        "V+Ind+Pl1",
+                        "V+Ind+Pl2",
+                        "V+Ind+Pl3",
                     ],
                 }
             )

@@ -86,14 +86,14 @@ Morfa-C: Px is restricted to only singular
     <question>
       <text>SUBJ cî ana</text>
       <element id="SUBJ">
-            <grammar tag="N+AN+Sg+Px2Sg"/>
+            <grammar tag="N+A+Sg+Px2Sg"/>
         <sem class="KIN"/>
       </element>
     </question>
     <answer> 
       <text>ehâ, N-PX awa</text>
       <element game='morfa' id="N-PX" content="SUBJ" task="yes">
-        <grammar tag="N+AN+Sg+Px1Sg"/>
+        <grammar tag="N+A+Sg+Px1Sg"/>
       </element>
     </answer>
   </q>
@@ -106,14 +106,14 @@ MORFA-C: Maybe only singulars?
     <question>
       <text>awîniki êhayâcik N-LOC</text>
       <element id="N-LOC">
-        <grammar tag="N+IN+Loc"/>
+        <grammar tag="N+I+Loc"/>
         <sem class="PLACE"/>
       </element>
     </question>
     <answer> 
       <text>SUBJ N-LOC êhayâcik</text>
       <element game='morfa' id="SUBJ" task="yes">
-            <grammar tag="N+AN+Pl"/>
+            <grammar tag="N+A+Pl"/>
         <sem class="mPEOPLE-PL"/>
       </element>
     </answer>
@@ -122,9 +122,9 @@ MORFA-C: Maybe only singulars?
 
 {{{
 gen_only="Sg"
-<l pos="N" animacy="AN" rime="0" gen_only="Pl,Sg" audio="kohkos">kohkôs</l>
-    <l pos="N" animacy="IN" rime="0" gen_only="Sg">kohkôsiwiyin</l>
-    <l pos="N" animacy="AN" rime="0" gen_only="Pl,Sg,Loc">pahkwêsikan</l>
+<l pos="N" animacy="A" rime="0" gen_only="Pl,Sg" audio="kohkos">kohkôs</l>
+    <l pos="N" animacy="I" rime="0" gen_only="Sg">kohkôsiwiyin</l>
+    <l pos="N" animacy="A" rime="0" gen_only="Pl,Sg,Loc">pahkwêsikan</l>
 
 "rime"-codes are trigger codes!
 }}}

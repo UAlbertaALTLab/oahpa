@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- default grammatical information for elements in question files -->
-
+<!-- NOTE: Tags used here MUST Have a mapping in e.g. v_paradigms.txt -->
+<!-- NOTE: Grammar tags can be made optional with a ? at the end, e.g., Tense? -->
+<!-- NOTE: Preverbs are currently added at the end to match the implementation. This should be changed in the future. Thus they should be the last TagSet group.-->
 <definitions>
   <tags>
     <element id="SUBJ">
      <!-- <grammar pos="Pron" tag="Pron+Pers+Person-Number+Nom"/> -->
       <grammar pos="N" tag="N+Animacy+NumberN"/>
-      <grammar pos="N" tag="N+Animacy+NumberN+Possessive"/>
+      <grammar pos="N" tag="N+Animacy+Dependent?+Possessive+NumberN"/>
     </element>
     <!-- <element id="HAB">
       <grammar pos="Pron" tag="Pron+Pers+Person-Number+Loc"/>
@@ -33,26 +35,27 @@
       <grammar pos="Pron" tag="Pron+Recipr+Du+Nom" />
     </element> -->
     <element id="MAINV">
-      <grammar pos="V" tag="V+Transitivity-Animacy+Mood+Tense+Person-Number"/>
+      <grammar pos="V" tag="V+Transitivity-Animacy+Mood+Imptype?+Tense?+Person-Number+Preverb?"/>
     </element>  
     <element id="MAINVOBJ">
-      <grammar pos="V" tag="V+Transitivity-Animacy+Mood+Tense+Person-Number+Object"/>
+      <grammar pos="V" tag="V+Transitivity-Animacy+Mood+Imptype?+Tense?+Person-Number+Object+Preverb?"/>
     </element>  
     <element id="N-LOC">
       <grammar pos="N" tag="N+Animacy+Loc"/>
     </element>
-    <element id="N-PX">
+    <!--<element id="N-PX">
       <grammar pos="N" tag="N+Animacy+Number+Possessive"/>
-    </element>
+    </element>-->
     <element id="OBJ">
       <grammar pos="N" tag="N+Animacy+NumberN"/>
+      <grammar pos="N" tag="N+Animacy+Obv"/>
     </element>
     <element id="N-DIM">
       <grammar pos="N+Animacy+Der/Dim+N+Animacy+Number" />
 <!--      <grammar pos="N+Animacy+Der/Dim+N+Animacy+Number+Obv" /> -->
     </element>
     <element id="P-DEM">
-      <grammar pos="Pron" />
+      <grammar pos="Pron+Dem+Distance+Animacy+Number" />
     </element>
     <element id="NULL">
       <grammar pos="Pron" />

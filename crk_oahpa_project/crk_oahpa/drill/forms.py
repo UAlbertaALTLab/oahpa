@@ -281,9 +281,9 @@ TRANS_ANIM_CHOICES = (
 )
 
 VERB_QUESTION_ANSWER = {
-    "V-AI-PRS": [("V+IA", "V+AI+Ind+Prs+Person-Number")],
-    "V-AI-PRT": [("V+IA", "V+AI+Ind+Prt+Person-Number")],
-    # 	'V-AI-FUT': [('V+IA', 'V+AI+Ind+Fut+Person-Number')],
+    "V-AI-PRS": [("V+AI", "V+AI+Ind+Person-Number")],
+    "PV/ki+LEMMA+V-AI-PRT": [("V+AI", "V+AI+Ind+Person-Number")],
+    # 	'V-AI-FUT': [('V+AI', 'V+AI+Ind+Fut+Person-Number')],
     # 	'PRS': [('V+Inf', 'V+Ind+Prs+Person-Number')],
     # 	'PRT': [('V+Inf', 'V+Ind+Prt+Person-Number')],
 }
@@ -441,7 +441,7 @@ DERIVATION_CHOICES = (
 )
 
 DERIVATION_QUESTION_ANSWER = {
-    "A-DER-V": [("A+Sg+Nom", "A+Der/AV+V+Ind+Prs+Person-Number")],
+    "A-DER-V": [("A+Sg+Nom", "A+Der/AV+V+Ind+Person-Number")],
 }
 
 DERIVATION_FILTER_DEFINITION = False
@@ -1521,7 +1521,7 @@ class MorfaQuestion(OahpaQuestion):
 
         # hack for Diminutive which has questions presented in the form,
         # and answers in nom
-        if correct.tag.string in ["N+AN+Sg", "N+IN+Sg"]:
+        if correct.tag.string in ["N+A+Sg", "N+I+Sg"]:
             q_form = word.form_set.filter(tag=tag)
             if len(q_form) > 0:
                 self.get_feedback(q_form[0], language)
@@ -2162,8 +2162,6 @@ class ContextMorfaQuestion(OahpaQuestion):
 
         # Set tooltip translations
         transl = answer_word_el.translations2(language)
-        # if len(transl) == 0:
-        # transl = answer_word_el.translations2('eng') # Norwegian as default
         if len(transl) > 0:
             xl = transl[0]
             self.translations = xl.definition

@@ -15,14 +15,14 @@ Requirements, from different perspectives:
 ! Leksa:
 * audio-files (crk-oahpa, vro-oahpa)
 ** for the time being: audio files are not functioning with Safari
-{{{ <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg" audio="kohkos">kohkôs</l>}}}
+{{{ <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg" audio="kohkos">kohkôs</l>}}}
 * "almost correct"-feedback to the student (tcomm) for sma-oahpa, sme-oahpa   
 {{{         <t pos="n" stat="pref">mors eldre søster</t>
             <t pos="n">eldre søster til mor</t>
             <t pos="n" tcomm="yes">tante</t>
  }}}
 * different colours in teh interface for different animacy (crk-oahpa)
-** crk-oahpa: green for N+AN, or animacy="AN"
+** crk-oahpa: green for N+A, or animacy="A"
 * Place names as an option (sme-oahpa, sma-oahpa)
 * Multiword expressions as an option in menu (sme-oahpa, sma-oahpa)
 ** the target language is multiword expression \\

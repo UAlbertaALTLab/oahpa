@@ -114,11 +114,11 @@ class QAGame(Game):
             "3Pl": "3Pl",
         }
 
-        # N+AN+Sg - +3Pl+4Sg/PlO
-        # N+AN+Pl - +3Pl+4Sg/PlO
+        # N+A+Sg - +3Pl+4Sg/PlO
+        # N+A+Pl - +3Pl+4Sg/PlO
 
-        # N+AN+Sg+Obv - +3Pl+4Sg/PlO
-        # N+AN+Pl+Obv - +3Pl+4Sg/PlO
+        # N+A+Sg+Obv - +3Pl+4Sg/PlO
+        # N+A+Pl+Obv - +3Pl+4Sg/PlO
 
         # obviative subject, further obviative
         # +4Sg/Pl+5Sg/PlO

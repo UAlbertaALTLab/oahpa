@@ -261,11 +261,11 @@ VTYPE_CHOICES = (
 )
 
 VERB_QUESTION_ANSWER = {
-    "V-PRS": [("V+IA", "V+IA+Ind+Prs+Person-Number")],
-    "V-PRT": [("V+IA", "V+IA+Ind+Prt+Person-Number")],
-    # 	'V-FUT': [('V+IA', 'V+IA+Ind+Fut+Person-Number')],
+    "V-PRS": [("V+AI", "V+AI+Ind+Person-Number")],
+    "V-PRT": [("V+AI", "PV/ki+LEMMA+V+AI+Ind+Person-Number")],
+    # 	'V-FUT': [('V+AI', 'V+AI+Ind+Fut+Person-Number')],
     # 	'PRS': [('V+Inf', 'V+Ind+Prs+Person-Number')],
-    # 	'PRT': [('V+Inf', 'V+Ind+Prt+Person-Number')],
+    # 	'PRT': [('V+Inf', 'PV/ki+LEMMA+V+Ind+Person-Number')],
     # 	'PRF': [('V+Inf', 'V+PrfPrc')],
     # 	'GER': [('V+Inf', 'V+Ger')],
     # 	'COND': [('V+Inf', 'V+Cond+Prs+Person-Number')],
@@ -358,7 +358,7 @@ DERIVATION_CHOICES = (
 )
 
 DERIVATION_QUESTION_ANSWER = {
-    "A-DER-V": [("A+Sg+Nom", "A+Der/AV+V+Ind+Prs+Person-Number")],
+    "A-DER-V": [("A+Sg+Nom", "A+Der/AV+V+Ind+Person-Number")],
 }
 
 DERIVATION_FILTER_DEFINITION = False
@@ -1922,14 +1922,9 @@ class ContextMorfaQuestion(OahpaQuestion):
 
         # Set tooltip translations
         transl = answer_word_el.translations2(language)
-        # if len(transl) == 0:
-        # transl = answer_word_el.translations2('eng') # Norwegian as default
         if len(transl) > 0:
             xl = transl[0]
             self.translations = xl.definition
-
-        # if answer_word_el.pos == 'V':
-        # 	self.wordclass = answer_word_el.wordclass
 
         # If the asked word is in Pl, generate nominal form
 

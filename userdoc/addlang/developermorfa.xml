@@ -46,7 +46,7 @@ Here starts the documentation for making Morfa work for new languages. The goal 
     &lt;answer> 
       &lt;text>Ikte SUBJ MAINV&lt;/text> 
       &lt;element game='morfa' id="MAINV" task="yes">
-	&lt;grammar tag="V+Ind+Prt+Sg3"/>
+	&lt;grammar tag="PV/ki+LEMMA+V+Ind+Sg3"/>
 	&lt;sem class="ACTIVITY"/>
       &lt;/element>
     &lt;/answer> 
@@ -86,7 +86,7 @@ Here starts the documentation for making Morfa work for new languages. The goal 
 	&lt;sem class="FAMILY"/>
       &lt;/element>
       &lt;element id="MAINV">
-	&lt;grammar tag="V+Ind+Prs+Sg3"/>
+	&lt;grammar tag="V+Ind+Sg3"/>
 	&lt;sem class="MOVEMENT_V"/>
       &lt;/element>
     &lt;/question>

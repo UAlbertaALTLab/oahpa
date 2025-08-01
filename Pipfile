@@ -9,9 +9,10 @@ djangorestframework = "*"
 markdown = "*"
 pexpect = "*"
 schematics = "*"
-kitchen = "*"
 uwsgi = "*"
 docutils = "*"
+pyyaml = "*"
+hfst = "*"
 
 [dev-packages]
 black = "*"

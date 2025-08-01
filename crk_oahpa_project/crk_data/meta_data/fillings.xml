@@ -2,7 +2,7 @@
 <r xml:lang="crk">
    <e>
       <lg>
-         <l pos="Pron" subclass="Dem" distance="Prox" animacy="AN" number="Sg">awa</l>
+         <l pos="Pron" subclass="Dem" distance="Prox" animacy="A" number="Sg">awa</l>
       </lg>
       <dialect class=""/>
       <sources/>
@@ -18,7 +18,7 @@
    </e>
    <e>
       <lg>
-         <l pos="Pron" subclass="Dem" distance="Med" animacy="AN" number="Sg">ana</l>
+         <l pos="Pron" subclass="Dem" distance="Med" animacy="A" number="Sg">ana</l>
       </lg>
       <dialect class=""/>
       <sources/>
@@ -33,7 +33,7 @@
    </e>
    <e>
       <lg>
-         <l pos="Pron" subclass="Dem" distance="Dem" animacy="IN" number="Pl">ôhi</l>
+         <l pos="Pron" subclass="Dem" distance="Dem" animacy="I" number="Pl">ôhi</l>
       </lg>
       <dialect class=""/>
       <sources/>
@@ -49,7 +49,7 @@
    </e>
    <e>
       <lg>
-         <l pos="Pron" subclass="Dem" distance="Med" animacy="IN" number="Pl">anihi</l>
+         <l pos="Pron" subclass="Dem" distance="Med" animacy="I" number="Pl">anihi</l>
       </lg>
       <dialect class=""/>
       <sources/>
@@ -64,7 +64,7 @@
    </e>
    <e>
       <lg>
-         <l pos="Pron" subclass="Dem" distance="Prox" animacy="IN" number="Sg">ôma</l>
+         <l pos="Pron" subclass="Dem" distance="Prox" animacy="I" number="Sg">ôma</l>
       </lg>
       <dialect class=""/>
       <sources/>
@@ -80,7 +80,7 @@
    </e>
    <e>
       <lg>
-         <l pos="Pron" subclass="Dem" distance="Med" animacy="IN" number="Sg">anima</l>
+         <l pos="Pron" subclass="Dem" distance="Med" animacy="I" number="Sg">anima</l>
       </lg>
       <dialect class=""/>
       <sources/>
@@ -96,7 +96,7 @@
    </e>
    <e>
       <lg>
-         <l pos="Pron" subclass="Dem" distance="Med" animacy="AN" number="Pl">aniki</l>
+         <l pos="Pron" subclass="Dem" distance="Med" animacy="A" number="Pl">aniki</l>
       </lg>
       <dialect class=""/>
       <sources/>
@@ -111,7 +111,7 @@
    </e>
    <e>
       <lg>
-         <l pos="Pron" subclass="Dem" distance="Prox" animacy="AN" number="Pl">ôki</l>
+         <l pos="Pron" subclass="Dem" distance="Prox" animacy="A" number="Pl">ôki</l>
       </lg>
       <dialect class=""/>
       <sources/>
@@ -413,7 +413,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN">akocikan</l>
+         <l pos="N" animacy="I">akocikan</l>
       </lg>
       <dialect class=""/>
       <sources/>
@@ -430,7 +430,7 @@
 
    <e>
       <lg>
-         <l pos="N" animacy="IN">apahkwân</l>
+         <l pos="N" animacy="I">apahkwân</l>
       </lg>
       <dialect class=""/>
       <sources/>
@@ -446,7 +446,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN">apisci-wâskahikan</l>
+         <l pos="N" animacy="I">apisci-wâskahikan</l>
       </lg>
       <dialect class=""/>
       <sources/>
@@ -462,7 +462,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN">askîhkân-atoskêwikamik</l>
+         <l pos="N" animacy="I">askîhkân-atoskêwikamik</l>
       </lg>
       <dialect class=""/>
       <sources/>
@@ -478,7 +478,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN">ayânikamik</l>
+         <l pos="N" animacy="I">ayânikamik</l>
       </lg>
       <dialect class=""/>
       <sources/>
@@ -494,7 +494,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN">cîstahikan</l>
+         <l pos="N" animacy="I">cîstahikan</l>
       </lg>
       <dialect class=""/>
       <sources/>
@@ -510,7 +510,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN">kapêsiwikamik</l>
+         <l pos="N" animacy="I">kapêsiwikamik</l>
       </lg>
       <dialect class=""/>
       <sources/>
@@ -526,7 +526,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN">kohkôsi-wiyin</l>
+         <l pos="N" animacy="I">kohkôsi-wiyin</l>
       </lg>
       <dialect class=""/>
       <sources/>
@@ -542,7 +542,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN">napwênis</l>
+         <l pos="N" animacy="A">napwênis</l>
       </lg>
       <dialect class=""/>
       <sources/>
@@ -558,7 +558,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN">okistikêw</l>
+         <l pos="N" animacy="A">okistikêw</l>
       </lg>
       <dialect class=""/>
       <sources/>
@@ -574,7 +574,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN">opiminawasow</l>
+         <l pos="N" animacy="A">opiminawasow</l>
       </lg>
       <dialect class=""/>
       <sources/>

@@ -106,7 +106,7 @@ Variables written with capital letters, and defined.
         <sem class="PEOPLE"/>
       </element>
       <element id="MAINV">
-        <grammar tag="V+Act+Ind+Prs+Sg3"/>
+        <grammar tag="V+Act+Ind+Sg3"/>
         <id>syöđä</id>
       </element>
     </question>

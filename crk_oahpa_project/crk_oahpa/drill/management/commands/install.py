@@ -1,13 +1,14 @@
-from django.core.management.base import BaseCommand, CommandError
+import os
+import sys
 
-# from_yaml(cls, loader, node)
+from django.core.management.base import BaseCommand
+import yaml
+
 from ling import Paradigm
 from words_install import Words
 from extra_install import Extra
 from feedback_install import Feedback_install
 from questions_install import Questions
-
-import sys
 
 
 def WordGeneration(conf, install_summary, options):
@@ -48,7 +49,14 @@ def WordGeneration(conf, install_summary, options):
 
 class Command(BaseCommand):
     args = "<config_file ...>"
-    help = "Installs data"
+    help = """
+    Installs data.  Example uses (adapted for cree) coming from the django.jspwiki docs:
+    (note that currently the parafedaba.sh script seems to call all of them)
+    # Tags first
+    python manage.py install -r crk_data/meta_data/paradigms.txt  -t crk_data/meta_data/tags.txt -b
+    # Add Lexicon
+    python manage.py install -r crk_data/meta_data/paradigms.txt  -t crk_data/meta_data/tags.txt -f 
+    """
 
     def add_arguments(self, parser):
         parser.add_argument(
@@ -253,9 +261,7 @@ class Command(BaseCommand):
         # TODO: option to specify filename without path, and
         # automatically grab that line from the config and install.
 
-        import os, sys
-        import yaml
-
+        # FELIPE: Never gibven in parafedaba.sh
         if options["config"]:
             conf_fname = options["config"]
 
@@ -275,13 +281,20 @@ class Command(BaseCommand):
         # More options go here.
         linginfo = Paradigm()
         words = Words()
+        extra = Extra()
+        feedback = Feedback_install()
+        questions = Questions()
+
         # Options from install.py
         if options["tagfile"]:
             linginfo.handle_tags(options["tagfile"], options["add_db"])
 
         if options["paradigmfile"]:
             linginfo.read_paradigms(
-                options["paradigmfile"], options["tagfile"], options["add_db"]
+                options["paradigmfile"], 
+                options["tagfile"], 
+                options["add_db"], 
+                pos=options["pos"]
             )
 
         if options["wordid"]:
@@ -304,6 +317,7 @@ class Command(BaseCommand):
             feedback.read_feedback(options["feedbackfile"], options["infile"])
             sys.exit()
 
+        #
         if options["infile"]:
             words.install_lexicon(
                 infile=options["infile"],

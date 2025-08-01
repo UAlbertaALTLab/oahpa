@@ -1,23 +1,15 @@
 # -*- coding: utf-8 -*-
-from local_conf import LLL1
 import importlib
+import sys
+from xml.dom import minidom as _dom
 
+from django.utils.encoding import force_str
+
+from local_conf import LLL1
 settings = importlib.import_module(LLL1 + "_oahpa.settings")
 sdm = importlib.import_module(LLL1 + "_oahpa.drill.models")
 sco = importlib.import_module(LLL1 + "_oahpa.conf.ordereddict")
 
-from django.db.models import Q
-from xml.dom import minidom as _dom
-from django.utils.encoding import force_str
-import sys
-
-# from collections import OrderedDict
-from django.db.utils import IntegrityError
-
-from kitchen.text.converters import getwriter
-
-UTF8Writer = getwriter("utf8")
-sys.stdout = UTF8Writer(sys.stdout)
 
 # For easier debugging.
 # _D = open('/dev/ttys005', 'w')
@@ -71,10 +63,10 @@ except:
 			}
 
 			INFINITIVE_ADD = {
-				'nob': ur'å \g<lemma>',
-				'swe': ur'att \g<lemma>',
-				'eng': ur'to \g<lemma>',
-				'deu': ur'zu \g<lemma>',
+				'nob': ur'å \\g<lemma>',
+				'swe': ur'att \\g<lemma>',
+				'eng': ur'to \\g<lemma>',
+				'deu': ur'zu \\g<lemma>',
 			}
 
 	"""
@@ -136,7 +128,7 @@ class Analysis(object):
             "mood": self.classes.get("Mood", ""),
             "subclass": self.classes.get("Subclass", ""),
             "attributive": self.classes.get("Attributive", ""),
-            #'animacy': self.classes.get('Animacy',""),
+            'animacy': self.classes.get('Animacy',""),
         }
 
         t, created = sdm.Tag.objects.get_or_create(**tag_kwargs)
@@ -1104,7 +1096,7 @@ class Words(object):
                         "pos": g.get("Wordclass", ""),
                         "number": g.get("Number", ""),
                         "case": g.get("Case", ""),
-                        #'possessive':		g.get('Possessive',""),
+                        'possessive':		g.get('Possessive',""),
                         "grade": g.get("Grade", ""),
                         "infinite": g.get("Infinite", ""),
                         "personnumber": g.get("Person-Number", ""),
@@ -1116,9 +1108,10 @@ class Words(object):
                         "mood": g.get("Mood", ""),
                         "subclass": g.get("Subclass", ""),
                         "attributive": g.get("Attributive", ""),
+                        "dependent": g.get("Dependent", ""),
                         "trans_anim": g.get("Transitivity-Animacy", ""),
                         "mode": g.get("Mode", ""),
-                        #'animacy':        g.get('Animacy',""),
+                        'animacy':        g.get('Animacy',""),
                     }
 
                     try:
@@ -1127,8 +1120,6 @@ class Words(object):
                         t = sdm.Tag.objects.create(**tag_kwargs)
 
                     t.save()
-
-                    # form = Form(fullform=f.form,tag=t,word=w)
 
                     form, _ = sdm.Form.objects.get_or_create(
                         fullform=f.form, tag=t, word=w

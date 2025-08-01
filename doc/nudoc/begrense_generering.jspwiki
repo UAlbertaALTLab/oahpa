@@ -6,7 +6,7 @@ Her er lister over hvilke attributter vi brukerfor å begrense genereringa i uni
 ** gen_only="Neg"
 
 * for verb som bare har 3. person entall, uten subjekt, f.eks. arvit
-** gen_only="Inf,Ind+Prt+Sg3,Pot+Prs+Sg3,Cond+Prs+Sg3,ConNeg,PrfPrc"
+** gen_only="PV/ki+LEMMA+Inf,Ind+Sg3,Pot+Prs+Sg3,Cond+Sg3,ConNeg,PrfPrc"
 
 * for verb som bare 3. person entall og flertall, med subjekt,
 ** gen_only="Inf,PrfPrc,Ger,ConNeg,3"

@@ -38,8 +38,8 @@
 
       <!-- word/l attributes vs tag attributes -->
       <attribute name="animacy" value=""/>
-      <attribute name="animacy" value="AN"/>
-      <attribute name="animacy" value="IN"/>
+      <attribute name="animacy" value="A"/>
+      <attribute name="animacy" value="I"/>
 
       <attribute name="rime" value=""/>
       <attribute name="rime" value="0"/>
@@ -132,25 +132,25 @@ iyiw-Obv
          belongs to an AN noun, but only for +Pl forms
       -->
 
-    <l animacy="AN">
+    <l animacy="A">
       <msg number="Pl">animate</msg>
     </l>
 
-    <l animacy="IN">
+    <l animacy="I">
       <msg number="Pl">inanimate</msg>
     </l>
 
-    <l animacy="AN" rime="k">
+    <l animacy="A" rime="k">
       <msg number="Pl">k-gives-w</msg>
       <note> </note>
     </l>
 	
-	<l animacy="IN" rime="k">
+	<l animacy="I" rime="k">
 	  <msg number="Pl">k-gives-w</msg>
 	   <note>kotawânâpiskwa</note>
 	</l>
 
-    <l animacy="IN" rime="i">
+    <l animacy="I" rime="i">
       <msg number="Pl">plural-i-a</msg>
       <note> </note>
     </l> 
@@ -220,7 +220,7 @@ iyiw-Obv
       <note>mihtawakay - mihtawakâhk</note>
     </l>
 
-    <l rime="irr" animacy="IN">
+    <l rime="irr" animacy="I">
       <msg case="Loc">irreg</msg>
       <note>iskotêw - iskotêwihk</note>
     </l>
@@ -230,12 +230,12 @@ iyiw-Obv
       <note>wâwi - wâwihk</note>
     </l>
   
- <!--      <l rime="irr" animacy="AN">
+ <!--      <l rime="irr" animacy="A">
       <msg case="Loc">locative-naahk</msg>
       <note>iskwêw - iskwênâhk</note>
     </l>
 
-    <l rime="irr" animacy="AN">
+    <l rime="irr" animacy="A">
       <msg case="Loc">distributive</msg>
       <note>iskwêw - iskwênâhk</note>
     </l>
@@ -383,7 +383,7 @@ iyiw-Obv
       <note> </note>
     </l>
 
-    <l animacy="AN">
+    <l animacy="A">
       <msg possessive="Px3Sg">obviative</msg>
       <msg possessive="Px4Sg">obviative</msg>
 	  <msg possessive="Px4Pl">obviative</msg>

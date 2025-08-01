@@ -1,8 +1,8 @@
-Pron+Dem+Med+AN+Pl
-Pron+Dem+Med+AN+Sg
-Pron+Dem+Med+IN+Pl
-Pron+Dem+Med+IN+Sg
-Pron+Dem+Prox+AN+Pl
-Pron+Dem+Prox+AN+Sg
-Pron+Dem+Prox+IN+Pl
-Pron+Dem+Prox+IN+Sg
+Pron+Dem+Med+A+Pl
+Pron+Dem+Med+A+Sg
+Pron+Dem+Med+I+Pl
+Pron+Dem+Med+I+Sg
+Pron+Dem+Prox+A+Pl
+Pron+Dem+Prox+A+Sg
+Pron+Dem+Prox+I+Pl
+Pron+Dem+Prox+I+Sg

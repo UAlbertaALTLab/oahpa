@@ -5,7 +5,7 @@
     <question>
       <text>MAINV cî mwêstas</text>
       <element id="MAINV">
-            <grammar tag="V+AI+Ind+Fut+Int+2Sg"/>
+            <grammar tag="V+AI+Ind+2Sg+PV/wi"/>
         <sem class="mACTIVITY"/>
         <sem class="mACTIVITYFUT"/>
       </element>
@@ -13,7 +13,7 @@
     <answer> 
       <text>êha, MAINV mwêstas</text>
       <element game='morfa' id="MAINV" content="MAINV" task="yes">
-        <grammar tag="V+AI+Ind+Fut+Int+1Sg"/>
+        <grammar tag="V+AI+Ind+1Sg+PV/wi"/>
         <sem class="mACTIVITY"/>
         <sem class="mACTIVITYFUT"/>
       </element>
@@ -21,7 +21,7 @@
     <answer> 
       <text>namôya, namôya MAINV mwêstas</text>
       <element game='morfa' id="MAINV" content="MAINV" task="yes">
-        <grammar tag="V+AI+Ind+Fut+Int+1Sg"/>
+        <grammar tag="V+AI+Ind+1Sg+PV/wi"/>
         <sem class="mACTIVITY"/>
         <sem class="mACTIVITYFUT"/>
       </element>
@@ -32,7 +32,7 @@
     <question>
       <text>MAINV cî mwêstas</text>
       <element id="MAINV">
-            <grammar tag="V+AI+Ind+Fut+Int+2Pl"/>
+            <grammar tag="V+AI+Ind+2Pl+PV/wi"/>
         <sem class="mACTIVITY"/>
         <sem class="mACTIVITYFUT"/>
       </element>
@@ -40,7 +40,7 @@
     <answer> 
       <text>êha, MAINV mwêstas</text>
       <element game='morfa' id="MAINV" content="MAINV" task="yes">
-        <grammar tag="V+AI+Ind+Fut+Int+1Pl"/>
+        <grammar tag="V+AI+Ind+1Pl+PV/wi"/>
         <sem class="mACTIVITY"/>
         <sem class="mACTIVITYFUT"/>
       </element>
@@ -48,7 +48,7 @@
     <answer> 
       <text>namôya, namôya MAINV mwêstas</text>
       <element game='morfa' id="MAINV" content="MAINV" task="yes">
-        <grammar tag="V+AI+Ind+Fut+Int+1Pl"/>
+        <grammar tag="V+AI+Ind+1Pl+PV/wi"/>
         <sem class="mACTIVITY"/>
         <sem class="mACTIVITYFUT"/>
       </element>
@@ -59,7 +59,7 @@
     <question>
       <text>MAINV cî mwêstas</text>
       <element id="MAINV">
-            <grammar tag="V+AI+Ind+Fut+Int+3Sg"/>
+            <grammar tag="V+AI+Ind+3Sg+PV/wi"/>
         <sem class="mACTIVITY"/>
         <sem class="mACTIVITYFUT"/>
       </element>
@@ -67,7 +67,7 @@
     <answer> 
       <text>êha, MAINV mwêstas</text>
       <element game='morfa' id="MAINV" content="MAINV" task="yes">
-        <grammar tag="V+AI+Ind+Fut+Int+3Sg"/>
+        <grammar tag="V+AI+Ind+3Sg+PV/wi"/>
         <sem class="mACTIVITY"/>
         <sem class="mACTIVITYFUT"/>
       </element>
@@ -75,7 +75,7 @@
     <answer> 
       <text>namôya, namôya MAINV mwêstas</text>
       <element game='morfa' id="MAINV" content="MAINV" task="yes">
-        <grammar tag="V+AI+Ind+Fut+Int+3Sg"/>
+        <grammar tag="V+AI+Ind+3Sg+PV/wi"/>
         <sem class="mACTIVITY"/>
         <sem class="mACTIVITYFUT"/>
       </element>
@@ -86,7 +86,7 @@
     <question>
       <text>MAINV cî mwêstas</text>
       <element id="MAINV">
-            <grammar tag="V+AI+Ind+Fut+Int+12Pl"/>
+            <grammar tag="V+AI+Ind+12Pl+PV/wi"/>
         <sem class="mACTIVITY"/>
         <sem class="mACTIVITYFUT"/>
       </element>
@@ -94,7 +94,7 @@
     <answer> 
       <text>êha, MAINV mwêstas</text>
       <element game='morfa' id="MAINV" content="MAINV" task="yes">
-        <grammar tag="V+AI+Ind+Fut+Int+12Pl"/>
+        <grammar tag="V+AI+Ind+12Pl+PV/wi"/>
         <sem class="mACTIVITY"/>
         <sem class="mACTIVITYFUT"/>
       </element>
@@ -102,7 +102,7 @@
     <answer> 
       <text>namôya, namôya MAINV mwêstas</text>
       <element game='morfa' id="MAINV" content="MAINV" task="yes">
-        <grammar tag="V+AI+Ind+Fut+Int+12Pl"/>
+        <grammar tag="V+AI+Ind+12Pl+PV/wi"/>
         <sem class="mACTIVITY"/>
         <sem class="mACTIVITYFUT"/>
       </element>
@@ -113,7 +113,7 @@
     <question>
       <text>MAINV cî mwêstas</text>
       <element id="MAINV">
-            <grammar tag="V+AI+Ind+Fut+Int+3Pl"/>
+            <grammar tag="V+AI+Ind+3Pl+PV/wi"/>
         <sem class="mACTIVITY"/>
         <sem class="mACTIVITYFUT"/>
       </element>
@@ -121,7 +121,7 @@
     <answer> 
       <text>êha, MAINV mwêstas</text>
       <element game='morfa' id="MAINV" content="MAINV" task="yes">
-        <grammar tag="V+AI+Ind+Fut+Int+3Pl"/>
+        <grammar tag="V+AI+Ind+3Pl+PV/wi"/>
         <sem class="mACTIVITY"/>
         <sem class="mACTIVITYFUT"/>
       </element>
@@ -129,7 +129,7 @@
     <answer> 
       <text>namôya, namôya MAINV mwêstas</text>
       <element game='morfa' id="MAINV" content="MAINV" task="yes">
-        <grammar tag="V+AI+Ind+Fut+Int+3Pl"/>
+        <grammar tag="V+AI+Ind+3Pl+PV/wi"/>
         <sem class="mACTIVITY"/>
         <sem class="mACTIVITYFUT"/>
       </element>
@@ -140,7 +140,7 @@
     <question>
       <text>MAINV cî mwêstas</text>
       <element id="MAINV">
-            <grammar tag="V+AI+Ind+Fut+Int+4Sg/Pl"/>
+            <grammar tag="V+AI+Ind+4Sg/Pl+PV/wi"/>
         <sem class="mACTIVITY"/>
         <sem class="mACTIVITYFUT"/>
       </element>
@@ -148,7 +148,7 @@
     <answer> 
       <text>êha, MAINV mwêstas</text>
       <element game='morfa' id="MAINV" content="MAINV" task="yes">
-        <grammar tag="V+AI+Ind+Fut+Int+4Sg/Pl"/>
+        <grammar tag="V+AI+Ind+4Sg/Pl+PV/wi"/>
         <sem class="mACTIVITY"/>
         <sem class="mACTIVITYFUT"/>
       </element>
@@ -156,7 +156,7 @@
     <answer> 
       <text>namôya, namôya MAINV mwêstas</text>
       <element game='morfa' id="MAINV" content="MAINV" task="yes">
-        <grammar tag="V+AI+Ind+Fut+Int+4Sg/Pl"/>
+        <grammar tag="V+AI+Ind+4Sg/Pl+PV/wi"/>
         <sem class="mACTIVITY"/>
         <sem class="mACTIVITYFUT"/>
       </element>
@@ -167,18 +167,18 @@
     <question>
       <text>MAINV cî N-LOC</text>
       <element id="MAINV">
-            <grammar tag="V+AI+Ind+Fut+Int+2Sg"/>
+            <grammar tag="V+AI+Ind+2Sg+PV/wi"/>
         <sem class="MOVE"/>
       </element>
       <element id="N-LOC">
-            <grammar tag="N+IN+Loc"/>
+            <grammar tag="N+I+Loc"/>
         <sem class="PLACE"/>
       </element>
     </question>
     <answer> 
       <text>êha, MAINV N-LOC</text>
       <element game='morfa' id="MAINV" content="MAINV" task="yes">
-        <grammar tag="V+AI+Ind+Fut+Int+1Sg"/>
+        <grammar tag="V+AI+Ind+1Sg+PV/wi"/>
       </element>
     </answer>
   </q>
@@ -187,18 +187,18 @@
     <question>
       <text>MAINV cî N-LOC</text>
       <element id="MAINV">
-            <grammar tag="V+AI+Ind+Fut+Int+2Pl"/>
+            <grammar tag="V+AI+Ind+2Pl+PV/wi"/>
         <sem class="MOVE"/>
       </element>
       <element id="N-LOC">
-            <grammar tag="N+IN+Loc"/>
+            <grammar tag="N+I+Loc"/>
         <sem class="PLACE"/>
       </element>
     </question>
     <answer> 
       <text>êha, MAINV N-LOC</text>
       <element game='morfa' id="MAINV" content="MAINV" task="yes">
-        <grammar tag="V+AI+Ind+Fut+Int+1Pl"/>
+        <grammar tag="V+AI+Ind+1Pl+PV/wi"/>
       </element>
     </answer>
   </q>
@@ -207,18 +207,18 @@
     <question>
       <text>MAINV cî N-LOC</text>
       <element id="MAINV">
-            <grammar tag="V+AI+Ind+Fut+Int+3Sg"/>
+            <grammar tag="V+AI+Ind+3Sg+PV/wi"/>
         <sem class="MOVE"/>
       </element>
       <element id="N-LOC">
-            <grammar tag="N+IN+Loc"/>
+            <grammar tag="N+I+Loc"/>
         <sem class="PLACE"/>
       </element>
     </question>
     <answer> 
       <text>êha, MAINV N-LOC</text>
       <element game='morfa' id="MAINV" content="MAINV" task="yes">
-        <grammar tag="V+AI+Ind+Fut+Int+3Sg"/>
+        <grammar tag="V+AI+Ind+3Sg+PV/wi"/>
       </element>
     </answer>
   </q>
@@ -227,18 +227,18 @@
     <question>
       <text>MAINV cî N-LOC</text>
       <element id="MAINV">
-            <grammar tag="V+AI+Ind+Fut+Int+12Pl"/>
+            <grammar tag="V+AI+Ind+12Pl+PV/wi"/>
         <sem class="MOVE"/>
       </element>
       <element id="N-LOC">
-            <grammar tag="N+IN+Loc"/>
+            <grammar tag="N+I+Loc"/>
         <sem class="PLACE"/>
       </element>
     </question>
     <answer> 
       <text>êha, MAINV N-LOC</text>
       <element game='morfa' id="MAINV" content="MAINV" task="yes">
-        <grammar tag="V+AI+Ind+Fut+Int+12Pl"/>
+        <grammar tag="V+AI+Ind+12Pl+PV/wi"/>
       </element>
     </answer>
   </q>
@@ -247,18 +247,18 @@
     <question>
       <text>MAINV cî N-LOC</text>
       <element id="MAINV">
-            <grammar tag="V+AI+Ind+Fut+Int+3Pl"/>
+            <grammar tag="V+AI+Ind+3Pl+PV/wi"/>
         <sem class="MOVE"/>
       </element>
       <element id="N-LOC">
-            <grammar tag="N+IN+Loc"/>
+            <grammar tag="N+I+Loc"/>
         <sem class="PLACE"/>
       </element>
     </question>
     <answer>
       <text>êha, MAINV N-LOC</text>
       <element game='morfa' id="MAINV" content="MAINV" task="yes">
-        <grammar tag="V+AI+Ind+Fut+Int+3Pl"/>
+        <grammar tag="V+AI+Ind+3Pl+PV/wi"/>
       </element>
     </answer>
   </q>
@@ -267,18 +267,18 @@
     <question>
       <text>MAINV cî N-LOC</text>
       <element id="MAINV">
-            <grammar tag="V+AI+Ind+Fut+Int+4Sg/Pl"/>
+            <grammar tag="V+AI+Ind+4Sg/Pl+PV/wi"/>
         <sem class="MOVE"/>
       </element>
       <element id="N-LOC">
-            <grammar tag="N+IN+Loc"/>
+            <grammar tag="N+I+Loc"/>
         <sem class="PLACE"/>
       </element>
     </question>
     <answer> 
       <text>êha, MAINV N-LOC</text>
       <element game='morfa' id="MAINV" content="MAINV" task="yes">
-        <grammar tag="V+AI+Ind+Fut+Int+4Sg/Pl"/>
+        <grammar tag="V+AI+Ind+4Sg/Pl+PV/wi"/>
       </element>
     </answer>
   </q>-->

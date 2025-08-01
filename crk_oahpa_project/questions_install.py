@@ -1,29 +1,22 @@
-# -*- coding: utf-8 -*-
-from local_conf import LLL1
 import importlib
+import sys
+from xml.dom import minidom as _dom
+from collections import OrderedDict
+from itertools import product
+from functools import wraps
+
+from django import db
+
+from local_conf import LLL1
 
 settings = importlib.import_module(LLL1 + "_oahpa.settings")
 sdm = importlib.import_module(LLL1 + "_oahpa.drill.models")
 
-from xml.dom import minidom as _dom
-from django import db
-import sys
-import re
-import string
-import codecs
-from collections import OrderedDict
-
-from kitchen.text.converters import getwriter
-
-UTF8Writer = getwriter("utf8")
-sys.stdout = UTF8Writer(sys.stdout)
 
 default_source_language = "crk"
 
 
 def monitor(function):
-    from functools import wraps
-
     @wraps(function)
     def wrapper(*args, **kwargs):
         print("--\n")
@@ -516,7 +509,7 @@ class Questions:
                 if semclasses:
                     word_pks = (
                         sdm.Word.objects.filter(form__tag__in=qe.tags.all())
-                        .filter(semtype=qe.semtype)
+                        .filter(semtype__in=qe.semtype.all())
                         .values_list("pk", flat=True)
                     )
                 else:
@@ -623,7 +616,6 @@ class Questions:
 
     def read_questions(self, infile, grammarfile):
 
-        xmlfile = file(infile)
         tree = _dom.parse(infile)
 
         self.read_grammar_defaults(grammarfile)
@@ -805,7 +797,6 @@ class Questions:
             def __repr__(self):
                 return "<GrammarDefault: %s>" % str(self)
 
-        xmlfile = file(infile)
         tree = _dom.parse(infile)
 
         self.grammar_defaults = {}
@@ -867,8 +858,6 @@ class Questions:
         is represented in tags.txt and paradigms.txt."""
 
         def fill_out(tags):
-            from itertools import product
-
             def make_list(item):
                 if type(item) == list:
                     return item
@@ -883,14 +872,18 @@ class Questions:
 
             tag_string = []
             for item in tag.split("+"):
-                if sdm.Tagname.objects.filter(tagname=item).count() > 0:
-                    tag_string.append(item)
-                elif sdm.Tagset.objects.filter(tagset=item).count() > 0:
-                    tagnames = sdm.Tagname.objects.filter(tagset__tagset=item)
-                    tag_string.append([t.tagname for t in tagnames])
+                realitem = item[:-1] if item.endswith('?') else item
+                if sdm.Tagname.objects.filter(tagname=realitem).count() > 0:
+                    if item.endswith('?'):
+                        tag_string.append([None, realitem])
+                    else:
+                        tag_string.append(realitem)
+                elif sdm.Tagset.objects.filter(tagset=realitem).count() > 0:
+                    tagnames = sdm.Tagname.objects.filter(tagset__tagset=realitem)
+                    tag_string.append([t.tagname for t in tagnames] + ([None] if item.endswith("?") else []))
 
             if len(tag_string) > 0:
-                return ["+".join(item) for item in fill_out(tag_string)]
+                return ["+".join(i for i in item if i) for item in fill_out(tag_string)] # Changes to make optional grammar notes
             else:
                 return False
 

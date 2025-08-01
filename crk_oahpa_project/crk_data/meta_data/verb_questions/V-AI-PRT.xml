@@ -5,18 +5,18 @@
     <question>
       <text>MAINV cî N-LOC</text>
       <element id="MAINV">
-            <grammar tag="V+AI+Ind+Prt+2Sg"/>
+            <grammar tag="V+AI+Ind+2Sg+PV/ki"/>
         <sem class="MOVE"/>
       </element>
       <element id="N-LOC">
-            <grammar tag="N+IN+Loc"/>
+            <grammar tag="N+I+Loc"/>
         <sem class="PLACE"/>
       </element>
     </question>
     <answer> 
       <text>êha, MAINV N-LOC</text>
       <element game='morfa' id="MAINV" content="MAINV" task="yes">
-        <grammar tag="V+AI+Ind+Prt+1Sg"/>
+        <grammar tag="V+AI+Ind+1Sg+PV/ki"/>
       </element>
     </answer>
   </q>-->
@@ -25,7 +25,7 @@
     <question>
       <text>MAINV cî otâkosîhk</text>
       <element id="MAINV">
-            <grammar tag="V+AI+Ind+Prt+2Sg"/>
+            <grammar tag="V+AI+Ind+2Sg+PV/ki"/>
         <sem class="mACTIVITY"/>
         <sem class="mACTIVITYPRT"/>
       </element>
@@ -33,7 +33,7 @@
     <answer> 
       <text>êha, MAINV otâkosîhk</text>
       <element game='morfa' id="MAINV" content="MAINV" task="yes">
-        <grammar tag="V+AI+Ind+Prt+1Sg"/>
+        <grammar tag="V+AI+Ind+1Sg+PV/ki"/>
         <sem class="mACTIVITY"/>
         <sem class="mACTIVITYPRT"/>
       </element>
@@ -44,7 +44,7 @@
     <question>
       <text>MAINV cî otâkosîhk</text>
       <element id="MAINV">
-            <grammar tag="V+AI+Ind+Prt+2Pl"/>
+            <grammar tag="V+AI+Ind+2Pl+PV/ki"/>
         <sem class="mACTIVITY"/>
         <sem class="mACTIVITYPRT"/>
       </element>
@@ -52,7 +52,7 @@
     <answer> 
       <text>êha, MAINV otâkosîhk</text>
       <element game='morfa' id="MAINV" content="MAINV" task="yes">
-        <grammar tag="V+AI+Ind+Prt+1Pl"/>
+        <grammar tag="V+AI+Ind+1Pl+PV/ki"/>
         <sem class="mACTIVITY"/>
         <sem class="mACTIVITYPRT"/>
       </element>
@@ -63,18 +63,18 @@
     <question>
       <text>MAINV cî N-LOC</text>
       <element id="MAINV">
-            <grammar tag="V+AI+Ind+Prt+2Pl"/>
+            <grammar tag="V+AI+Ind+2Pl+PV/ki"/>
         <sem class="MOVE"/>
       </element>
       <element id="N-LOC">
-            <grammar tag="N+IN+Loc"/>
+            <grammar tag="N+I+Loc"/>
         <sem class="PLACE"/>
       </element>
     </question>
     <answer> 
       <text>êha, MAINV N-LOC</text>
       <element game='morfa' id="MAINV" content="MAINV" task="yes">
-        <grammar tag="V+AI+Ind+Prt+1Pl"/>
+        <grammar tag="V+AI+Ind+1Pl+PV/ki"/>
       </element>
     </answer>
   </q>
@@ -83,18 +83,18 @@
     <question>
       <text>MAINV cî N-LOC</text>
       <element id="MAINV">
-            <grammar tag="V+AI+Ind+Prt+3Sg"/>
+            <grammar tag="V+AI+Ind+3Sg+PV/ki"/>
         <sem class="MOVE"/>
       </element>
       <element id="N-LOC">
-            <grammar tag="N+IN+Loc"/>
+            <grammar tag="N+I+Loc"/>
         <sem class="PLACE"/>
       </element>
     </question>
     <answer> 
       <text>êha, MAINV N-LOC</text>
       <element game='morfa' id="MAINV" content="MAINV" task="yes">
-        <grammar tag="V+AI+Ind+Prt+3Sg"/>
+        <grammar tag="V+AI+Ind+3Sg+PV/ki"/>
       </element>
     </answer>
   </q>-->
@@ -103,7 +103,7 @@
     <question>
       <text>MAINV cî otâkosîhk</text>
       <element id="MAINV">
-            <grammar tag="V+AI+Ind+Prt+3Sg"/>
+            <grammar tag="V+AI+Ind+3Sg+PV/ki"/>
         <sem class="mACTIVITY"/>
         <sem class="mACTIVITYPRT"/>
       </element>
@@ -111,7 +111,7 @@
     <answer> 
       <text>êha, MAINV otâkosîhk</text>
       <element game='morfa' id="MAINV" content="MAINV" task="yes">
-        <grammar tag="V+AI+Ind+Prt+3Sg"/>
+        <grammar tag="V+AI+Ind+3Sg+PV/ki"/>
         <sem class="mACTIVITY"/>
         <sem class="mACTIVITYPRT"/>
       </element>
@@ -122,18 +122,18 @@
     <question>
       <text>MAINV cî N-LOC</text>
       <element id="MAINV">
-            <grammar tag="V+AI+Ind+Prt+12Pl"/>
+            <grammar tag="V+AI+Ind+12Pl+PV/ki"/>
         <sem class="MOVE"/>
       </element>
       <element id="N-LOC">
-            <grammar tag="N+IN+Loc"/>
+            <grammar tag="N+I+Loc"/>
         <sem class="PLACE"/>
       </element>
     </question>
     <answer> 
       <text>êha, MAINV N-LOC</text>
       <element game='morfa' id="MAINV" content="MAINV" task="yes">
-        <grammar tag="V+AI+Ind+Prt+12Pl"/>
+        <grammar tag="V+AI+Ind+12Pl+PV/ki"/>
       </element>
     </answer>
   </q>-->
@@ -142,7 +142,7 @@
     <question>
       <text>MAINV cî otâkosîhk</text>
       <element id="MAINV">
-            <grammar tag="V+AI+Ind+Prt+12Pl"/>
+            <grammar tag="V+AI+Ind+12Pl+PV/ki"/>
         <sem class="mACTIVITY"/>
         <sem class="mACTIVITYPRT"/>
       </element>
@@ -150,7 +150,7 @@
     <answer> 
       <text>êha, MAINV otâkosîhk</text>
       <element game='morfa' id="MAINV" content="MAINV" task="yes">
-        <grammar tag="V+AI+Ind+Prt+12Pl"/>
+        <grammar tag="V+AI+Ind+12Pl+PV/ki"/>
         <sem class="mACTIVITY"/>
         <sem class="mACTIVITYPRT"/>
       </element>
@@ -161,18 +161,18 @@
     <question>
       <text>MAINV cî N-LOC</text>
       <element id="MAINV">
-            <grammar tag="V+AI+Ind+Prt+3Pl"/>
+            <grammar tag="V+AI+Ind+3Pl+PV/ki"/>
         <sem class="MOVE"/>
       </element>
       <element id="N-LOC">
-            <grammar tag="N+IN+Loc"/>
+            <grammar tag="N+I+Loc"/>
         <sem class="PLACE"/>
       </element>
     </question>
     <answer> 
       <text>êha, MAINV N-LOC</text>
       <element game='morfa' id="MAINV" content="MAINV" task="yes">
-        <grammar tag="V+AI+Ind+Prt+3Pl"/>
+        <grammar tag="V+AI+Ind+3Pl+PV/ki"/>
       </element>
     </answer>
   </q>-->
@@ -181,7 +181,7 @@
     <question>
       <text>MAINV cî otâkosîhk</text>
       <element id="MAINV">
-            <grammar tag="V+AI+Ind+Prt+3Pl"/>
+            <grammar tag="V+AI+Ind+3Pl+PV/ki"/>
         <sem class="mACTIVITY"/>
         <sem class="mACTIVITYPRT"/>
       </element>
@@ -189,7 +189,7 @@
     <answer> 
       <text>êha, MAINV otâkosîhk</text>
       <element game='morfa' id="MAINV" content="MAINV" task="yes">
-        <grammar tag="V+AI+Ind+Prt+3Pl"/>
+        <grammar tag="V+AI+Ind+3Pl+PV/ki"/>
         <sem class="mACTIVITY"/>
         <sem class="mACTIVITYPRT"/>
       </element>
@@ -200,18 +200,18 @@
     <question>
       <text>MAINV cî N-LOC</text>
       <element id="MAINV">
-            <grammar tag="V+AI+Ind+Prt+4Sg/Pl"/>
+            <grammar tag="V+AI+Ind+4Sg/Pl+PV/ki"/>
         <sem class="MOVE"/>
       </element>
       <element id="N-LOC">
-            <grammar tag="N+IN+Loc"/>
+            <grammar tag="N+I+Loc"/>
         <sem class="PLACE"/>
       </element>
     </question>
     <answer> 
       <text>êha, MAINV N-LOC</text>
       <element game='morfa' id="MAINV" content="MAINV" task="yes">
-        <grammar tag="V+AI+Ind+Prt+4Sg/Pl"/>
+        <grammar tag="V+AI+Ind+4Sg/Pl+PV/ki"/>
       </element>
     </answer>
   </q>-->
@@ -220,7 +220,7 @@
     <question>
       <text>MAINV cî otâkosîhk</text>
       <element id="MAINV">
-            <grammar tag="V+AI+Ind+Prt+4Sg/Pl"/>
+            <grammar tag="V+AI+Ind+4Sg/Pl+PV/ki"/>
         <sem class="mACTIVITY"/>
         <sem class="mACTIVITYPRT"/>
       </element>
@@ -228,7 +228,7 @@
     <answer> 
       <text>êha, MAINV otâkosîhk</text>
       <element game='morfa' id="MAINV" content="MAINV" task="yes">
-        <grammar tag="V+AI+Ind+Prt+4Sg/Pl"/>
+        <grammar tag="V+AI+Ind+4Sg/Pl+PV/ki"/>
         <sem class="mACTIVITY"/>
         <sem class="mACTIVITYPRT"/>
       </element>

@@ -5,14 +5,14 @@
     <question>
       <text>awîniki ê-ayâcik N-LOC</text>
       <element id="N-LOC">
-        <grammar tag="N+IN+Loc"/>
+        <grammar tag="N+I+Loc"/>
         <sem class="mPLACE"/>
       </element>
     </question>
     <answer> 
       <text>N-LOC ê-ayâcik SUBJ</text>
       <element game='morfa' id="SUBJ" task="yes">
-            <grammar tag="N+AN+Pl"/>
+            <grammar tag="N+A+Pl"/>
         <sem class="PEOPLE"/>
       </element>
     </answer>
@@ -25,7 +25,7 @@
     <answer> 
       <text>ninitawêyihtên SUBJ</text>
       <element game='morfa' id="SUBJ" task="yes">
-            <grammar tag="N+IN+Pl"/>
+            <grammar tag="N+I+Pl"/>
 		<sem class="FOOD"/>
 		<sem class="FURNITURE"/>
 		<sem class="CLOTHING"/>
@@ -43,18 +43,18 @@
     <question>
       <text>tânitê MAIN SUBJ</text>
       <element id="SUBJ">
-            <grammar tag="N+AN+Sg"/>
+            <grammar tag="N+A+Sg"/>
         <sem class="PEOPLE"/>
       </element>
       <element id="MAIN">
-        <grammar tag="V+II+Cnj+Prs+3Sg"/>
+        <grammar tag="V+II+Cnj+3Sg+PV/e"/>
         <id>itohtêw</id>
       </element>
     </question>
     <answer> 
       <text>N-LOC MAIN SUBJ</text>
       <element game='morfa' id="N-LOC" task="yes">
-        <grammar tag="N+IN+Loc"/>
+        <grammar tag="N+I+Loc"/>
         <sem class="mPLACE"/>
       </element>
     </answer>
@@ -64,18 +64,18 @@
     <question>
       <text>tânitê MAIN SUBJ</text>
       <element id="SUBJ">
-            <grammar tag="N+AN+Pl"/>
+            <grammar tag="N+A+Pl"/>
         <sem class="PEOPLE"/>
       </element>
       <element id="MAIN">
-        <grammar tag="V+II+Cnj+Prs+3Pl"/>
+        <grammar tag="V+II+Cnj+3Pl+PV/e"/>
         <id>itohtêw</id>
       </element>
     </question>
     <answer> 
       <text>N-LOC MAIN SUBJ</text>
       <element game='morfa' id="N-LOC" task="yes">
-        <grammar tag="N+IN+Loc"/>
+        <grammar tag="N+I+Loc"/>
         <sem class="mPLACE"/>
       </element>
     </answer>
@@ -85,18 +85,18 @@
     <question>
       <text>tânitê MAINV</text>
       <element id="MAINV">
-        <grammar tag="V+AI+Cnj+Prt+2Sg"/>
+        <grammar tag="V+AI+Cnj+2Sg+PV/e+PV/ki"/>
         <id>itohtêw </id>
       </element>
     </question>
     <answer> 
       <text>MAINV N-LOC</text>
       <element game='morfa' id="N-LOC" task="yes">
-        <grammar tag="N+IN+Loc"/>
+        <grammar tag="N+I+Loc"/>
         <sem class="mPLACE"/>
       </element>
       <element id="MAINV">
-        <grammar tag="V+AI+Cnj+Prt+1Sg"/>
+        <grammar tag="V+AI+Cnj+1Sg+PV/e+PV/ki"/>
         <id>itohtêw</id>
       </element>
     </answer>
@@ -106,14 +106,14 @@
     <question>
       <text>SUBJ cî ana</text>
       <element id="SUBJ">
-            <grammar tag="N+AN+Sg+Px2Sg"/>
+            <grammar tag="N+A+D+Px2Sg+Sg"/>
         <sem class="mKIN"/>
       </element>
     </question>
     <answer> 
       <text>êha, N-PX awa</text>
       <element game='morfa' id="N-PX" content="SUBJ" task="yes">
-        <grammar tag="N+AN+Sg+Px1Sg"/>
+        <grammar tag="N+A+D+Px1Sg+Sg"/>
       </element>
     </answer>
   </q>
@@ -239,14 +239,14 @@
     <question>
       <text>SUBJ pîhcihtin minihkwâcikanisihk</text>
       <element id="SUBJ">
-        <grammar tag="N+IN+Sg"/>
+        <grammar tag="N+I+Sg"/>
         <sem class="DRINK"/>
       </element>
     </question>
     <answer> 
       <text>pîhcihtin minihkwâcikanisihk ohci N-DIM</text>
       <element game='morfa' id="N-DIM" content="SUBJ" task="yes">
-        <grammar tag="N+IN+Der/Dim+N+IN+Sg"/>
+        <grammar tag="N+I+Der/Dim+N+I+Sg"/>
       </element>
     </answer>
   </q>

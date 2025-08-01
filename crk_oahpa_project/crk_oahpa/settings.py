@@ -36,7 +36,7 @@ INTERNAL_IPS = ("127.0.0.1",)
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
-ALLOWED_HOSTS = ["https://oahpa.altlab.dev", "127.0.0.1", "localhost"]
+ALLOWED_HOSTS = ["https://oahpa.altlab.dev", "127.0.0.1", "localhost", "vm-dev"]
 CSRF_TRUSTED_ORIGINS = [
     "https://oahpa.altlab.dev",
     "http://127.0.0.1",
@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.contrib.admindocs"
 ]
 
 MIDDLEWARE = [
@@ -206,14 +207,14 @@ MEDIA_URL = "/%s/media/" % URL_PREFIX
 
 STATIC_URL = "static/"
 STATIC_ROOT = "static/"
-STATICFILES_DIRS = []
+STATICFILES_DIRS = ["../containerized_deploy/media"]
 # #
 #
 # USER PROFILES
 #
 # #
 
-AUTH_PROFILE_MODULE = LLL1 + "_oahpa.courses.UserProfile"
+# AUTH_PROFILE_MODULE = LLL1 + "_oahpa.courses.UserProfile" # VARIABLE DEPRECATED AND REMOVED
 LOGIN_REDIRECT_URL = "/%s/courses/" % URL_PREFIX
 LOGIN_URL = "/%s/courses/login/" % URL_PREFIX
 

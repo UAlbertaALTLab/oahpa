@@ -9,11 +9,6 @@ from django.db.models import Q
 from xml.dom import minidom as _dom
 import sys
 
-from kitchen.text.converters import getwriter
-
-UTF8Writer = getwriter("utf8")
-sys.stdout = UTF8Writer(sys.stdout)
-
 # TODO: get these from settings
 
 languages = [
@@ -112,7 +107,6 @@ class Extra:
     # defined in sme/xml/semantic_sets.xml
     def read_semtypes(self, infile):
 
-        xmlfile = file(infile)
         tree = _dom.parse(infile)
 
         for el in tree.getElementsByTagName("subclasses"):

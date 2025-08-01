@@ -5,32 +5,32 @@
     <question>
       <text>MAINVOBJ cî mâna OBJECT</text>
       <element id="MAINVOBJ">
-            <grammar tag="V+TA+Ind+Prs+2Sg+3SgO"/>
+            <grammar tag="V+TA+Ind+2Sg+3SgO"/>
 			<sem class="mACTIVITY"/>
 			<sem class="mACTIVITYPRS"/>
 			</element>
       <element id="OBJECT">
-            <grammar tag="N+AN+Sg"/>
+            <grammar tag="N+A+Sg"/>
 			<sem class="PEOPLE"/>
       </element>
     </question>
     <answer> 
       <text>êha, MAINVOBJ mâna OBJECT</text>
       <element game='morfa' id="MAINVOBJ" content="MAINVOBJ" task="yes">
-        <grammar tag="V+TA+Ind+Prs+1Sg+3SgO"/>
+        <grammar tag="V+TA+Ind+1Sg+3SgO"/>
 		<sem class="mACTIVITY"/>
       </element>
       <element id="OBJECT">
-        <grammar tag="N+AN+Sg"/>
+        <grammar tag="N+A+Sg"/>
       </element>
     </answer>
     <answer> 
       <text>namôya, namôya MAINVOBJ mâna OBJECT</text>
       <element game='morfa' id="MAINVOBJ" content="MAINVOBJ" task="yes">
-        <grammar tag="V+TA+Ind+Prs+1Sg+3SgO"/>
+        <grammar tag="V+TA+Ind+1Sg+3SgO"/>
       </element>
       <element id="OBJECT">
-        <grammar tag="N+AN+Sg"/>
+        <grammar tag="N+A+Sg"/>
       </element>
     </answer>
   </q>
@@ -39,32 +39,32 @@
     <question>
       <text>MAINVOBJ cî mâna OBJECT</text>
       <element id="MAINVOBJ">
-            <grammar tag="V+TA+Ind+Prs+2Sg+3SgO"/>
+            <grammar tag="V+TA+Ind+2Sg+3SgO"/>
 			<sem class="TASTE"/>
 			<sem class="PREPARE_FOOD"/>
 			</element>
       <element id="OBJECT">
-            <grammar tag="N+AN+Sg"/>
+            <grammar tag="N+A+Sg"/>
 			<sem class="FOOD"/>
       </element>
     </question>
     <answer> 
       <text>êha, MAINVOBJ mâna OBJECT</text>
       <element game='morfa' id="MAINVOBJ" content="MAINVOBJ" task="yes">
-        <grammar tag="V+TA+Ind+Prs+1Sg+3SgO"/>
+        <grammar tag="V+TA+Ind+1Sg+3SgO"/>
 		<sem class="mACTIVITY"/>
       </element>
       <element id="OBJECT">
-        <grammar tag="N+AN+Sg"/>
+        <grammar tag="N+A+Sg"/>
       </element>
     </answer>
     <answer> 
       <text>namôya, namôya MAINVOBJ mâna OBJECT</text>
       <element game='morfa' id="MAINVOBJ" content="MAINVOBJ" task="yes">
-        <grammar tag="V+TA+Ind+Prs+1Sg+3SgO"/>
+        <grammar tag="V+TA+Ind+1Sg+3SgO"/>
       </element>
       <element id="OBJECT">
-        <grammar tag="N+AN+Sg"/>
+        <grammar tag="N+A+Sg"/>
       </element>
     </answer>
   </q>
@@ -73,31 +73,31 @@
     <question>
       <text>MAINVOBJ cî mâna OBJECT</text>
       <element id="MAINVOBJ">
-            <grammar tag="V+TA+Ind+Prs+3Sg+4Sg/PlO"/>
+            <grammar tag="V+TA+Ind+3Sg+4Sg/PlO"/>
 		<sem class="TASTE"/>
 		<sem class="PREPARE_FOOD"/>
       </element>
       <element id="OBJECT">
-            <grammar tag="N+AN+Sg+Obv"/>
+            <grammar tag="N+A+Obv"/>
 			<sem class="FOOD"/>
       </element>
     </question>
     <answer> 
       <text>êha, MAINVOBJ mâna OBJECT</text>
       <element game='morfa' id="MAINVOBJ" content="MAINVOBJ" task="yes">
-        <grammar tag="V+TA+Ind+Prs+3Sg+4Sg/PlO"/>
+        <grammar tag="V+TA+Ind+3Sg+4Sg/PlO"/>
       </element>
       <element id="OBJECT">
-        <grammar tag="N+AN+Sg+Obv"/>
+        <grammar tag="N+A+Obv"/>
       </element>
     </answer>
     <answer> 
       <text>namôya, namôya MAINVOBJ mâna OBJECT</text>
       <element game='morfa' id="MAINVOBJ" content="MAINVOBJ" task="yes">
-        <grammar tag="V+TA+Ind+Prs+3Sg+4Sg/PlO"/>
+        <grammar tag="V+TA+Ind+3Sg+4Sg/PlO"/>
       </element>
       <element id="OBJECT">
-        <grammar tag="N+AN+Sg+Obv"/>
+        <grammar tag="N+A+Obv"/>
       </element>
     </answer>
   </q>
@@ -106,31 +106,31 @@
     <question>
       <text>MAINVOBJ cî mâna OBJECT</text>
       <element id="MAINVOBJ">
-            <grammar tag="V+TA+Ind+Prs+3Sg+4Sg/PlO"/>
+            <grammar tag="V+TA+Ind+3Sg+4Sg/PlO"/>
 		<sem class="mACTIVITY"/>
 		<sem class="mACTIVITYPRS"/>
       </element>
       <element id="OBJECT">
-            <grammar tag="N+AN+Sg+Obv"/>
+            <grammar tag="N+A+Obv"/>
 			<sem class="PEOPLE"/>
       </element>
     </question>
     <answer> 
       <text>êha, MAINVOBJ mâna OBJECT</text>
       <element game='morfa' id="MAINVOBJ" content="MAINVOBJ" task="yes">
-        <grammar tag="V+TA+Ind+Prs+3Sg+4Sg/PlO"/>
+        <grammar tag="V+TA+Ind+3Sg+4Sg/PlO"/>
       </element>
       <element id="OBJECT">
-        <grammar tag="N+AN+Sg+Obv"/>
+        <grammar tag="N+A+Obv"/>
       </element>
     </answer>
     <answer> 
       <text>namôya, namôya MAINVOBJ mâna OBJECT</text>
       <element game='morfa' id="MAINVOBJ" content="MAINVOBJ" task="yes">
-        <grammar tag="V+TA+Ind+Prs+3Sg+4Sg/PlO"/>
+        <grammar tag="V+TA+Ind+3Sg+4Sg/PlO"/>
       </element>
       <element id="OBJECT">
-        <grammar tag="N+AN+Sg+Obv"/>
+        <grammar tag="N+A+Obv"/>
       </element>
     </answer>
   </q>
@@ -139,31 +139,31 @@
     <question>
       <text>MAINVOBJ cî mâna OBJECT</text>
       <element id="MAINVOBJ">
-            <grammar tag="V+TA+Ind+Prs+2Pl+3SgO"/>
+            <grammar tag="V+TA+Ind+2Pl+3SgO"/>
         <sem class="mACTIVITY"/>
         <sem class="mACTIVITYPRS"/>
       </element>
       <element id="OBJECT">
-            <grammar tag="N+AN+Sg"/>
+            <grammar tag="N+A+Sg"/>
 			<sem class="PEOPLE"/>
       </element>
     </question>
     <answer> 
       <text>êha, MAINVOBJ mâna OBJECT</text>
       <element game='morfa' id="MAINVOBJ" content="MAINVOBJ" task="yes">
-        <grammar tag="V+TA+Ind+Prs+1Pl+3SgO"/>
+        <grammar tag="V+TA+Ind+1Pl+3SgO"/>
       </element>
       <element id="OBJECT">
-        <grammar tag="N+AN+Sg"/>
+        <grammar tag="N+A+Sg"/>
       </element>
     </answer>
     <answer> 
       <text>namôya, namôya MAINVOBJ mâna OBJECT</text>
       <element game='morfa' id="MAINVOBJ" content="MAINVOBJ" task="yes">
-        <grammar tag="V+TA+Ind+Prs+1Pl+3SgO"/>
+        <grammar tag="V+TA+Ind+1Pl+3SgO"/>
       </element>
       <element id="OBJECT">
-        <grammar tag="N+AN+Sg"/>
+        <grammar tag="N+A+Sg"/>
       </element>
     </answer>
   </q>
@@ -172,31 +172,31 @@
     <question>
       <text>MAINVOBJ cî mâna OBJECT</text>
       <element id="MAINVOBJ">
-            <grammar tag="V+TA+Ind+Prs+2Pl+3SgO"/>
+            <grammar tag="V+TA+Ind+2Pl+3SgO"/>
         <sem class="TASTE"/>
         <sem class="PREPARE_FOOD"/>
       </element>
       <element id="OBJECT">
-            <grammar tag="N+AN+Sg"/>
+            <grammar tag="N+A+Sg"/>
 			<sem class="FOOD"/>
       </element>
     </question>
     <answer> 
       <text>êha, MAINVOBJ mâna OBJECT</text>
       <element game='morfa' id="MAINVOBJ" content="MAINVOBJ" task="yes">
-        <grammar tag="V+TA+Ind+Prs+1Pl+3SgO"/>
+        <grammar tag="V+TA+Ind+1Pl+3SgO"/>
       </element>
       <element id="OBJECT">
-        <grammar tag="N+AN+Sg"/>
+        <grammar tag="N+A+Sg"/>
       </element>
     </answer>
     <answer> 
       <text>namôya, namôya MAINVOBJ mâna OBJECT</text>
       <element game='morfa' id="MAINVOBJ" content="MAINVOBJ" task="yes">
-        <grammar tag="V+TA+Ind+Prs+1Pl+3SgO"/>
+        <grammar tag="V+TA+Ind+1Pl+3SgO"/>
       </element>
       <element id="OBJECT">
-        <grammar tag="N+AN+Sg"/>
+        <grammar tag="N+A+Sg"/>
       </element>
     </answer>
   </q>
@@ -205,31 +205,31 @@
     <question>
       <text>MAINVOBJ cî mâna OBJECT</text>
       <element id="MAINVOBJ">
-            <grammar tag="V+TA+Ind+Prs+12Pl+3SgO"/>
+            <grammar tag="V+TA+Ind+12Pl+3SgO"/>
 		<sem class="mACTIVITY"/>
 		<sem class="mACTIVITYPRS"/>
       </element>
       <element id="OBJECT">
-            <grammar tag="N+AN+Sg"/>
+            <grammar tag="N+A+Sg"/>
 			<sem class="PEOPLE"/>
       </element>
     </question>
     <answer> 
       <text>êha, MAINVOBJ mâna OBJECT</text>
       <element game='morfa' id="MAINVOBJ" content="MAINVOBJ" task="yes">
-        <grammar tag="V+TA+Ind+Prs+12Pl+3SgO"/>
+        <grammar tag="V+TA+Ind+12Pl+3SgO"/>
       </element>
       <element id="OBJECT">
-        <grammar tag="N+AN+Sg"/>
+        <grammar tag="N+A+Sg"/>
       </element>
     </answer>
     <answer> 
       <text>namôya, namôya MAINVOBJ mâna OBJECT</text>
       <element game='morfa' id="MAINVOBJ" content="MAINVOBJ" task="yes">
-        <grammar tag="V+TA+Ind+Prs+12Pl+3SgO"/>
+        <grammar tag="V+TA+Ind+12Pl+3SgO"/>
       </element>
       <element id="OBJECT">
-        <grammar tag="N+AN+Sg"/>
+        <grammar tag="N+A+Sg"/>
       </element>
     </answer>
   </q>
@@ -238,31 +238,31 @@
     <question>
       <text>MAINVOBJ cî mâna OBJECT</text>
       <element id="MAINVOBJ">
-            <grammar tag="V+TA+Ind+Prs+12Pl+3SgO"/>
+            <grammar tag="V+TA+Ind+12Pl+3SgO"/>
 		<sem class="TASTE"/>
 		<sem class="PREPARE_FOOD"/>
       </element>
       <element id="OBJECT">
-            <grammar tag="N+AN+Sg"/>
+            <grammar tag="N+A+Sg"/>
 			<sem class="FOOD"/>
       </element>
     </question>
     <answer> 
       <text>êha, MAINVOBJ mâna OBJECT</text>
       <element game='morfa' id="MAINVOBJ" content="MAINVOBJ" task="yes">
-        <grammar tag="V+TA+Ind+Prs+12Pl+3SgO"/>
+        <grammar tag="V+TA+Ind+12Pl+3SgO"/>
       </element>
       <element id="OBJECT">
-        <grammar tag="N+AN+Sg"/>
+        <grammar tag="N+A+Sg"/>
       </element>
     </answer>
     <answer> 
       <text>namôya, namôya MAINVOBJ mâna OBJECT</text>
       <element game='morfa' id="MAINVOBJ" content="MAINVOBJ" task="yes">
-        <grammar tag="V+TA+Ind+Prs+12Pl+3SgO"/>
+        <grammar tag="V+TA+Ind+12Pl+3SgO"/>
       </element>
       <element id="OBJECT">
-        <grammar tag="N+AN+Sg"/>
+        <grammar tag="N+A+Sg"/>
       </element>
     </answer>
   </q>
@@ -271,31 +271,31 @@
     <question>
       <text>MAINVOBJ cî mâna OBJECT</text>
       <element id="MAINVOBJ">
-            <grammar tag="V+TA+Ind+Prs+3Pl+4Sg/PlO"/>
+            <grammar tag="V+TA+Ind+3Pl+4Sg/PlO"/>
 		<sem class="mACTIVITY"/>
 		<sem class="mACTIVITYPRS"/>
       </element>
       <element id="OBJECT">
-            <grammar tag="N+AN+Sg+Obv"/>
+            <grammar tag="N+A+Obv"/>
 			<sem class="PEOPLE"/>
       </element>
     </question>
     <answer> 
       <text>êha, MAINVOBJ mâna OBJECT</text>
       <element game='morfa' id="MAINVOBJ" content="MAINVOBJ" task="yes">
-        <grammar tag="V+TA+Ind+Prs+3Pl+4Sg/PlO"/>
+        <grammar tag="V+TA+Ind+3Pl+4Sg/PlO"/>
       </element>
       <element id="OBJECT">
-        <grammar tag="N+AN+Sg+Obv"/>
+        <grammar tag="N+A+Obv"/>
       </element>
     </answer>
     <answer> 
       <text>namôya, namôya MAINVOBJ mâna OBJECT</text>
       <element game='morfa' id="MAINVOBJ" content="MAINVOBJ" task="yes">
-        <grammar tag="V+TA+Ind+Prs+3Pl+4Sg/PlO"/>
+        <grammar tag="V+TA+Ind+3Pl+4Sg/PlO"/>
       </element>
       <element id="OBJECT">
-        <grammar tag="N+AN+Sg+Obv"/>
+        <grammar tag="N+A+Obv"/>
       </element>
     </answer>
   </q>
@@ -304,31 +304,31 @@
     <question>
       <text>MAINVOBJ cî mâna OBJECT</text>
       <element id="MAINVOBJ">
-            <grammar tag="V+TA+Ind+Prs+3Pl+4Sg/PlO"/>
+            <grammar tag="V+TA+Ind+3Pl+4Sg/PlO"/>
 		<sem class="TASTE"/>
 		<sem class="PREPARE_FOOD"/>
       </element>
       <element id="OBJECT">
-            <grammar tag="N+AN+Sg+Obv"/>
+            <grammar tag="N+A+Obv"/>
 			<sem class="FOOD"/>
       </element>
     </question>
     <answer> 
       <text>êha, MAINVOBJ mâna OBJECT</text>
       <element game='morfa' id="MAINVOBJ" content="MAINVOBJ" task="yes">
-        <grammar tag="V+TA+Ind+Prs+3Pl+4Sg/PlO"/>
+        <grammar tag="V+TA+Ind+3Pl+4Sg/PlO"/>
       </element>
       <element id="OBJECT">
-        <grammar tag="N+AN+Sg+Obv"/>
+        <grammar tag="N+A+Obv"/>
       </element>
     </answer>
     <answer> 
       <text>namôya, namôya MAINVOBJ mâna OBJECT</text>
       <element game='morfa' id="MAINVOBJ" content="MAINVOBJ" task="yes">
-        <grammar tag="V+TA+Ind+Prs+3Pl+4Sg/PlO"/>
+        <grammar tag="V+TA+Ind+3Pl+4Sg/PlO"/>
       </element>
       <element id="OBJECT">
-        <grammar tag="N+AN+Sg+Obv"/>
+        <grammar tag="N+A+Obv"/>
       </element>
     </answer>
   </q>
@@ -337,31 +337,31 @@
     <question>
       <text>John okosisa MAINVOBJ cî mâna OBJECT</text>
       <element id="MAINVOBJ">
-            <grammar tag="V+TA+Ind+Prs+4Sg/Pl+5Sg/PlO"/>
+            <grammar tag="V+TA+Ind+4Sg/Pl+5Sg/PlO"/>
 		<sem class="mACTIVITY"/>
 		<sem class="mACTIVITYPRS"/>
       </element>
       <element id="OBJECT">
-            <grammar tag="N+AN+Sg+Obv"/>
+            <grammar tag="N+A+Obv"/>
 			<sem class="PEOPLE"/>
       </element>
     </question>
     <answer> 
       <text>êha, MAINVOBJ mâna OBJECT</text>
       <element game='morfa' id="MAINVOBJ" content="MAINVOBJ" task="yes">
-        <grammar tag="V+TA+Ind+Prs+4Sg/Pl+5Sg/PlO"/>
+        <grammar tag="V+TA+Ind+4Sg/Pl+5Sg/PlO"/>
       </element>
       <element id="OBJECT">
-        <grammar tag="N+AN+Sg+Obv"/>
+        <grammar tag="N+A+Obv"/>
       </element>
     </answer>
     <answer> 
       <text>namôya, namôya MAINVOBJ mâna OBJECT</text>
       <element game='morfa' id="MAINVOBJ" content="MAINVOBJ" task="yes">
-        <grammar tag="V+TA+Ind+Prs+4Sg/Pl+5Sg/PlO"/>
+        <grammar tag="V+TA+Ind+4Sg/Pl+5Sg/PlO"/>
       </element>
       <element id="OBJECT">
-        <grammar tag="N+AN+Sg+Obv"/>
+        <grammar tag="N+A+Obv"/>
       </element>
     </answer>
   </q>
@@ -370,31 +370,31 @@
     <question>
       <text>Mary otânisa MAINVOBJ cî mâna OBJECT</text>
       <element id="MAINVOBJ">
-          <grammar tag="V+TA+Ind+Prs+4Sg/Pl+5Sg/PlO"/>
+          <grammar tag="V+TA+Ind+4Sg/Pl+5Sg/PlO"/>
 		<sem class="TASTE"/>
 		<sem class="PREPARE_FOOD"/>
       </element>
       <element id="OBJECT">
-            <grammar tag="N+AN+Sg+Obv"/>
+            <grammar tag="N+A+Obv"/>
 			<sem class="FOOD"/>
       </element>
     </question>
     <answer> 
       <text>êha, MAINVOBJ mâna OBJECT</text>
       <element game='morfa' id="MAINVOBJ" content="MAINVOBJ" task="yes">
-          <grammar tag="V+TA+Ind+Prs+4Sg/Pl+5Sg/PlO"/>
+          <grammar tag="V+TA+Ind+4Sg/Pl+5Sg/PlO"/>
       </element>
       <element id="OBJECT">
-        <grammar tag="N+AN+Sg+Obv"/>
+        <grammar tag="N+A+Obv"/>
       </element>
     </answer>
     <answer> 
       <text>namôya, namôya MAINVOBJ mâna OBJECT</text>
       <element game='morfa' id="MAINVOBJ" content="MAINVOBJ" task="yes">
-          <grammar tag="V+TA+Ind+Prs+4Sg/Pl+5Sg/PlO"/>
+          <grammar tag="V+TA+Ind+4Sg/Pl+5Sg/PlO"/>
       </element>
       <element id="OBJECT">
-        <grammar tag="N+AN+Sg+Obv"/>
+        <grammar tag="N+A+Obv"/>
       </element>
     </answer>
   </q>
@@ -403,32 +403,32 @@
     <question>
       <text>MAINVOBJ cî mâna OBJECT</text>
       <element id="MAINVOBJ">
-            <grammar tag="V+TA+Ind+Prs+2Sg+3SgO"/>
+            <grammar tag="V+TA+Ind+2Sg+3SgO"/>
 			<sem class="mWANT"/>
 			<sem class="mPOSSESS"/>
 			</element>
       <element id="OBJECT">
-            <grammar tag="N+AN+Sg"/>
+            <grammar tag="N+A+Sg"/>
 			<sem class="mOBJECT"/>
       </element>
     </question>
     <answer> 
       <text>êha, MAINVOBJ mâna OBJECT</text>
       <element game='morfa' id="MAINVOBJ" content="MAINVOBJ" task="yes">
-        <grammar tag="V+TA+Ind+Prs+1Sg+3SgO"/>
+        <grammar tag="V+TA+Ind+1Sg+3SgO"/>
 		<sem class="mACTIVITY"/>
       </element>
       <element id="OBJECT">
-        <grammar tag="N+AN+Sg"/>
+        <grammar tag="N+A+Sg"/>
       </element>
     </answer>
     <answer> 
       <text>namôya, namôya MAINVOBJ mâna OBJECT</text>
       <element game='morfa' id="MAINVOBJ" content="MAINVOBJ" task="yes">
-        <grammar tag="V+TA+Ind+Prs+1Sg+3SgO"/>
+        <grammar tag="V+TA+Ind+1Sg+3SgO"/>
       </element>
       <element id="OBJECT">
-        <grammar tag="N+AN+Sg"/>
+        <grammar tag="N+A+Sg"/>
       </element>
     </answer>
   </q>
@@ -437,31 +437,31 @@
     <question>
       <text>MAINVOBJ cî mâna OBJECT</text>
       <element id="MAINVOBJ">
-            <grammar tag="V+TA+Ind+Prs+3Sg+4Sg/PlO"/>
+            <grammar tag="V+TA+Ind+3Sg+4Sg/PlO"/>
 		<sem class="mWANT"/>
 		<sem class="mPOSSESS"/>
       </element>
       <element id="OBJECT">
-            <grammar tag="N+AN+Sg+Obv"/>
+            <grammar tag="N+A+Obv"/>
 			<sem class="mOBJECT"/>
       </element>
     </question>
     <answer> 
       <text>êha, MAINVOBJ mâna OBJECT</text>
       <element game='morfa' id="MAINVOBJ" content="MAINVOBJ" task="yes">
-        <grammar tag="V+TA+Ind+Prs+3Sg+4Sg/PlO"/>
+        <grammar tag="V+TA+Ind+3Sg+4Sg/PlO"/>
       </element>
       <element id="OBJECT">
-        <grammar tag="N+AN+Sg+Obv"/>
+        <grammar tag="N+A+Obv"/>
       </element>
     </answer>
     <answer> 
       <text>namôya, namôya MAINVOBJ mâna OBJECT</text>
       <element game='morfa' id="MAINVOBJ" content="MAINVOBJ" task="yes">
-        <grammar tag="V+TA+Ind+Prs+3Sg+4Sg/PlO"/>
+        <grammar tag="V+TA+Ind+3Sg+4Sg/PlO"/>
       </element>
       <element id="OBJECT">
-        <grammar tag="N+AN+Sg+Obv"/>
+        <grammar tag="N+A+Obv"/>
       </element>
     </answer>
   </q>
@@ -470,31 +470,31 @@
     <question>
       <text>MAINVOBJ cî mâna OBJECT</text>
       <element id="MAINVOBJ">
-            <grammar tag="V+TA+Ind+Prs+2Pl+3SgO"/>
+            <grammar tag="V+TA+Ind+2Pl+3SgO"/>
         <sem class="mWANT"/>
         <sem class="mPOSSESS"/>
       </element>
       <element id="OBJECT">
-            <grammar tag="N+AN+Sg"/>
+            <grammar tag="N+A+Sg"/>
 			<sem class="mOBJECT"/>
       </element>
     </question>
     <answer> 
       <text>êha, MAINVOBJ mâna OBJECT</text>
       <element game='morfa' id="MAINVOBJ" content="MAINVOBJ" task="yes">
-        <grammar tag="V+TA+Ind+Prs+1Pl+3SgO"/>
+        <grammar tag="V+TA+Ind+1Pl+3SgO"/>
       </element>
       <element id="OBJECT">
-        <grammar tag="N+AN+Sg"/>
+        <grammar tag="N+A+Sg"/>
       </element>
     </answer>
     <answer> 
       <text>namôya, namôya MAINVOBJ mâna OBJECT</text>
       <element game='morfa' id="MAINVOBJ" content="MAINVOBJ" task="yes">
-        <grammar tag="V+TA+Ind+Prs+1Pl+3SgO"/>
+        <grammar tag="V+TA+Ind+1Pl+3SgO"/>
       </element>
       <element id="OBJECT">
-        <grammar tag="N+AN+Sg"/>
+        <grammar tag="N+A+Sg"/>
       </element>
     </answer>
   </q>
@@ -503,31 +503,31 @@
     <question>
       <text>MAINVOBJ cî mâna OBJECT</text>
       <element id="MAINVOBJ">
-            <grammar tag="V+TA+Ind+Prs+12Pl+3SgO"/>
+            <grammar tag="V+TA+Ind+12Pl+3SgO"/>
 		<sem class="mWANT"/>
 		<sem class="mPOSSESS"/>
       </element>
       <element id="OBJECT">
-            <grammar tag="N+AN+Sg"/>
+            <grammar tag="N+A+Sg"/>
 			<sem class="mOBJECT"/>
       </element>
     </question>
     <answer> 
       <text>êha, MAINVOBJ mâna OBJECT</text>
       <element game='morfa' id="MAINVOBJ" content="MAINVOBJ" task="yes">
-        <grammar tag="V+TA+Ind+Prs+12Pl+3SgO"/>
+        <grammar tag="V+TA+Ind+12Pl+3SgO"/>
       </element>
       <element id="OBJECT">
-        <grammar tag="N+AN+Sg"/>
+        <grammar tag="N+A+Sg"/>
       </element>
     </answer>
     <answer> 
       <text>namôya, namôya MAINVOBJ mâna OBJECT</text>
       <element game='morfa' id="MAINVOBJ" content="MAINVOBJ" task="yes">
-        <grammar tag="V+TA+Ind+Prs+12Pl+3SgO"/>
+        <grammar tag="V+TA+Ind+12Pl+3SgO"/>
       </element>
       <element id="OBJECT">
-        <grammar tag="N+AN+Sg"/>
+        <grammar tag="N+A+Sg"/>
       </element>
     </answer>
   </q>
@@ -536,31 +536,31 @@
     <question>
       <text>Mary otânisa MAINVOBJ cî mâna OBJECT</text>
       <element id="MAINVOBJ">
-          <grammar tag="V+TA+Ind+Prs+4Sg/Pl+5Sg/PlO"/>
+          <grammar tag="V+TA+Ind+4Sg/Pl+5Sg/PlO"/>
 		<sem class="mWANT"/>
 		<sem class="mPOSSESS"/>
       </element>
       <element id="OBJECT">
-            <grammar tag="N+AN+Sg+Obv"/>
+            <grammar tag="N+A+Obv"/>
 			<sem class="mOBJECT"/>
       </element>
     </question>
     <answer> 
       <text>êha, MAINVOBJ mâna OBJECT</text>
       <element game='morfa' id="MAINVOBJ" content="MAINVOBJ" task="yes">
-          <grammar tag="V+TA+Ind+Prs+4Sg/Pl+5Sg/PlO"/>
+          <grammar tag="V+TA+Ind+4Sg/Pl+5Sg/PlO"/>
       </element>
       <element id="OBJECT">
-        <grammar tag="N+AN+Sg+Obv"/>
+        <grammar tag="N+A+Obv"/>
       </element>
     </answer>
     <answer> 
       <text>namôya, namôya MAINVOBJ mâna OBJECT</text>
       <element game='morfa' id="MAINVOBJ" content="MAINVOBJ" task="yes">
-          <grammar tag="V+TA+Ind+Prs+4Sg/Pl+5Sg/PlO"/>
+          <grammar tag="V+TA+Ind+4Sg/Pl+5Sg/PlO"/>
       </element>
       <element id="OBJECT">
-        <grammar tag="N+AN+Sg+Obv"/>
+        <grammar tag="N+A+Obv"/>
       </element>
     </answer>
   </q>
@@ -569,31 +569,31 @@
     <question>
       <text>MAINVOBJ cî mâna OBJECT</text>
       <element id="MAINVOBJ">
-            <grammar tag="V+TA+Ind+Prs+3Pl+4Sg/PlO"/>
+            <grammar tag="V+TA+Ind+3Pl+4Sg/PlO"/>
 		<sem class="mWANT"/>
 		<sem class="mPOSSESS"/>
       </element>
       <element id="OBJECT">
-            <grammar tag="N+AN+Sg+Obv"/>
+            <grammar tag="N+A+Obv"/>
 			<sem class="mOBJECT"/>
       </element>
     </question>
     <answer> 
       <text>êha, MAINVOBJ mâna OBJECT</text>
       <element game='morfa' id="MAINVOBJ" content="MAINVOBJ" task="yes">
-        <grammar tag="V+TA+Ind+Prs+3Pl+4Sg/PlO"/>
+        <grammar tag="V+TA+Ind+3Pl+4Sg/PlO"/>
       </element>
       <element id="OBJECT">
-        <grammar tag="N+AN+Sg+Obv"/>
+        <grammar tag="N+A+Obv"/>
       </element>
     </answer>
     <answer> 
       <text>namôya, namôya MAINVOBJ mâna OBJECT</text>
       <element game='morfa' id="MAINVOBJ" content="MAINVOBJ" task="yes">
-        <grammar tag="V+TA+Ind+Prs+3Pl+4Sg/PlO"/>
+        <grammar tag="V+TA+Ind+3Pl+4Sg/PlO"/>
       </element>
       <element id="OBJECT">
-        <grammar tag="N+AN+Sg+Obv"/>
+        <grammar tag="N+A+Obv"/>
       </element>
     </answer>
   </q>

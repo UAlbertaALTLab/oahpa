@@ -15,13 +15,14 @@ Card
 #Derivation
 Der/Dim
 #Animacy
-IN
-AN
+I
+A
 #Passive
 #Demtype
 Dat
 #Attributive
 Pos
+Attr
 #Possessive
 Px12Pl
 Px1Pl
@@ -36,7 +37,6 @@ Px4Sg
 #Polarity
 Neg
 #Tense
-Prs
 Prt
 Fut
 #Intentional-Definite
@@ -75,8 +75,6 @@ Obv
 Date
 Range
 #Infinite
-#Attributive
-Attr
 #Person-Number
 12Pl
 1Pl
@@ -153,6 +151,11 @@ ConNeg
 <eng>
 #Preverb
 PV/e
+PV/ki
+PV/ka
+PV/wi
 #Mode
 Ind
 Cnj
+#Dependent
+D

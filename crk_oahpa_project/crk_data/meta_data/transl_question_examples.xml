@@ -8,7 +8,7 @@
     <answer> 
       <text>NULL maskisina P-DEM</text>
       <element game='morfa' id="P-DEM" task="yes">
-        <grammar tag="Pron+Dem+Med+IN+Pl"/>
+        <grammar tag="Pron+Dem+Med+I+Pl"/>
         <id>ôma</id>
       </element>
      </answer>
@@ -19,7 +19,7 @@
     <question>
       <text>maskisina P-DEM</text>
       <element game='morfa' id="P-DEM" task="yes">
-        <grammar tag="Pron+Dem+Med+IN+Pl"/>
+        <grammar tag="Pron+Dem+Med+I+Pl"/>
         <id>ôma</id>
       </element>
     </question>

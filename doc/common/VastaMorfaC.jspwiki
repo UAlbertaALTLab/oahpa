@@ -10,9 +10,9 @@
 Both the paradigms file and tags file are important for Morfa-S and Morfa-C to function. paradigms.txt is simply a list of all of the tags for the wordforms that will be generated. These are separated by newlines.
 
 {{{
-    V+Ind+Prs+Sg1
-    V+Ind+Prs+Sg2
-    V+Ind+Prs+Sg3
+    V+Ind+Sg1
+    V+Ind+Sg2
+    V+Ind+Sg3
 	etc...
 }}}
 

@@ -1,11 +1,7 @@
-# -*- coding: utf-8 -*-
-from django.db import models
+from functools import partial
+
+from django.db import models, connection, transaction
 from django.utils.translation import gettext_lazy as _
-from django.db.models import Q
-
-from django.db import connection
-from django.db import transaction
-
 from django.utils.encoding import smart_str
 
 CHAPTER_CHOICES = {
@@ -85,12 +81,7 @@ class BulkManager(models.Manager):
         )
 
         # postgres seems to automatically ignore, mysql does not
-        try:
-            postgres = connection.ops._postgres_version
-            ignore = ""
-        except AttributeError:
-            postgres = False
-            ignore = "IGNORE"
+        ignore = "" if connection.vendor in ['postgresql', 'sqlite'] else "IGNORE";
 
         sql = "INSERT %s INTO %s (%s) VALUES %s" % (
             ignore,
@@ -401,28 +392,6 @@ class Dialect(models.Model):
         return smart_str(S)
 
 
-def Translations2(target_lang):
-    if target_lang in ["nob", "crk", "eng", "dan", "no"]:
-        if target_lang == "nob" or "no":
-            related = "translations2nob"
-        if target_lang == "crk":
-            related = "translations2crk"
-        if target_lang == "eng":
-            related = "translations2eng"
-        if target_lang == "fin":
-            related = "translations2fin"
-        return related
-    else:
-        return None
-
-
-# class Nob(models.Manager):
-# 	def get_query_set(self):
-# 		return super(Nob, self).get_query_set().filter(language='nob')
-
-# PI suggestion: could we make these choice fields?
-
-
 class MorphPhonTag(models.Model):  # redone for Russian
     stem = models.CharField(max_length=20)
     gender = models.CharField(max_length=20)
@@ -547,11 +516,6 @@ class Word(models.Model):
     )  # The textbook(s) where the word is introduced
     chapter = models.CharField(max_length=10)
     compare = models.CharField(max_length=5)  # PI: what's this?
-    # translations2nob = models.ManyToManyField('Wordnob')
-    # translations2swe = models.ManyToManyField('Wordswe')
-    # translations2sme = models.ManyToManyField('Wordsme')
-    # translations2eng = models.ManyToManyField('Wordeng')
-    # translations2deu = models.ManyToManyField('Worddeu')
     frequency = models.CharField(max_length=10)
     geography = models.CharField(max_length=10)
     objects = models.Manager()  # The default manager.
@@ -594,12 +558,6 @@ class Word(models.Model):
         # if self.stem in ['3syll', 'trisyllabic']: # Sami-specific
         # 	self.wordclass = 'Odd'
 
-        from functools import partial
-
-        self.translations2nob = partial(self.translations2, target_lang="nob")()
-        self.translations2eng = partial(self.translations2, target_lang="eng")()
-        self.translations2crk = partial(self.translations2, target_lang="crk")()
-        self.translations2fin = partial(self.translations2, target_lang="fin")()
 
     def create(self, *args, **kwargs):
         morphtag = self.morphTag()
@@ -649,8 +607,8 @@ class Word(models.Model):
         """
 
         pos_base = {
-            "V": "Ind+Prs+3Sg",  # Usually: Inf but crk: Ind+Prs+3Sg
-            "N": "Sg",  # Usually: Nom. But the baseform in crk is N+AN+Sg or N+IN+Sg
+            "V": "Ind+Prs+3Sg",  # Usually: Inf but crk: Ind+3Sg
+            "N": "Sg",  # Usually: Nom. But the baseform in crk is N+A+Sg or N+I+Sg
             "A": "Attr",
             "Pron": "Nom",
         }
@@ -772,6 +730,7 @@ class Tag(models.Model):
     string = models.CharField(max_length=40, unique=True)  # tag sequence
     # TODO: pos = models.CharField(max_length=12)
     attributive = models.CharField(max_length=5)
+    dependent = models.CharField(max_length=5)
     case = models.CharField(max_length=5)
     animacy = models.CharField(max_length=5)
     trans_anim = models.CharField(max_length=5)
@@ -828,6 +787,7 @@ class Tag(models.Model):
             "subclass": "Subclass",
             "tense": "Tense",
             "gender": "Gender",
+            "dependent": "Dependent"
         }
 
         tagname_to_set = {}
@@ -923,7 +883,7 @@ class Form(models.Model):
                 number = self.tag.number
             else:
                 number = "Sg"
-            # if (self.tag.string == 'N+AN+Sg' or self.tag.string == 'N+IN+Sg'):  # task N-DIM
+            # if (self.tag.string == 'N+A+Sg' or self.tag.string == 'N+I+Sg'):  # task N-DIM
             # 	baseform_num = self.word.form_set.filter(tag__case='', tag__possessive='', tag__derivation='Der/Dim')
             if self.tag.possessive == "":  # N-PL and N-LOC
                 baseform_num = self.word.form_set.filter(
@@ -988,7 +948,7 @@ class Form(models.Model):
                 "tag__personnumber": "3Sg",
                 "tag__tense": "Prs",
                 "tag__mood": "Ind",
-            }  # For crk the baseform is not V+IA or V+Inf but Ind+Prs+3Sg
+            }  # For crk the baseform is not V+AI or V+Inf but Ind+Prs+3Sg
 
             # Non-derived verbs need to exclude Der
             baseform = self.word.form_set.exclude(tag__string__contains="Der").filter(

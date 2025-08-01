@@ -972,6 +972,7 @@ class Words(object):
                         "mood": g.get("Mood", ""),
                         "subclass": g.get("Subclass", ""),
                         "attributive": g.get("Attributive", ""),
+                        "dependent": g.get("Dependent", "")
                     }
 
                     t, created = sdm.Tag.objects.get_or_create(**tag_kwargs)

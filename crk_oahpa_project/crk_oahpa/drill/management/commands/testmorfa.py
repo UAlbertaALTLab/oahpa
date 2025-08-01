@@ -1236,7 +1236,7 @@ class Command(BaseCommand):
         if "+3PlO" in tag.string:
             try:
                 pl_object = Form.objects.filter(
-                    word__lemma=form.object, tag__string__in=["N+IN+Sg", "N+AN+Sg"]
+                    word__lemma=form.object, tag__string__in=["N+I+Sg", "N+A+Sg"]
                 )
                 pl_object_string = pl_object[0].fullform
             except Form.DoesNotExist:

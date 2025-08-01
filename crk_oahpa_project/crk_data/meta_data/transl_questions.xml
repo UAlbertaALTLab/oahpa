@@ -8,8 +8,8 @@
     <answer> 
       <text>maskisina P-DEM</text>
       <element game='morfa' id="P-DEM" task="yes">
-        <grammar tag="Pron+Dem+Med+IN+Pl"/>
-        <id>awa</id>
+        <grammar tag="Pron+Dem+Med+I+Pl"/>
+        <id>anihi</id>
       </element>
      </answer>
   </q>
@@ -21,8 +21,8 @@
     <answer> 
       <text>maskisina P-DEM</text>
       <element game='morfa' id="P-DEM" task="yes">
-        <grammar tag="Pron+Dem+Prox+IN+Pl"/>
-        <id>awa</id>
+        <grammar tag="Pron+Dem+Prox+I+Pl"/>
+        <id>ôhi</id>
       </element>
      </answer>
   </q>
@@ -34,8 +34,8 @@
     <answer> 
       <text>môhkomân P-DEM</text>
       <element game='morfa' id="P-DEM" task="yes">
-        <grammar tag="Pron+Dem+Prox+IN+Sg"/>
-        <id>awa</id>
+        <grammar tag="Pron+Dem+Prox+I+Sg"/>
+        <id>ôma</id>
       </element>
      </answer>
   </q>
@@ -47,8 +47,8 @@
     <answer> 
       <text>môhkomân P-DEM</text>
       <element game='morfa' id="P-DEM" task="yes">
-        <grammar tag="Pron+Dem+Med+IN+Sg"/>
-        <id>awa</id>
+        <grammar tag="Pron+Dem+Med+I+Sg"/>
+        <id>anima</id>
       </element>
      </answer>
   </q>
@@ -60,8 +60,8 @@
     <answer> 
       <text>êmihkwânak P-DEM</text>
       <element game='morfa' id="P-DEM" task="yes">
-        <grammar tag="Pron+Dem+Med+AN+Pl"/>
-        <id>awa</id>
+        <grammar tag="Pron+Dem+Med+A+Pl"/>
+        <id>aniki</id>
       </element>
      </answer>
   </q>
@@ -73,8 +73,8 @@
     <answer> 
       <text>êmihkwânak P-DEM</text>
       <element game='morfa' id="P-DEM" task="yes">
-        <grammar tag="Pron+Dem+Prox+AN+Pl"/>
-        <id>awa</id>
+        <grammar tag="Pron+Dem+Prox+A+Pl"/>
+        <id>ôki</id>
       </element>
      </answer>
   </q>
@@ -86,7 +86,7 @@
     <answer> 
       <text>êmihkwân P-DEM</text>
       <element game='morfa' id="P-DEM" task="yes">
-        <grammar tag="Pron+Dem+Prox+AN+Sg"/>
+        <grammar tag="Pron+Dem+Prox+A+Sg"/>
         <id>awa</id>
       </element>
      </answer>
@@ -99,7 +99,7 @@
     <answer> 
       <text>êmihkwân P-DEM</text>
       <element game='morfa' id="P-DEM" task="yes">
-        <grammar tag="Pron+Dem+Med+AN+Sg"/>
+        <grammar tag="Pron+Dem+Med+A+Sg"/>
         <id>awa</id>
       </element>
      </answer>
@@ -112,8 +112,8 @@
     <answer> 
       <text>P-DEM maskisina</text>
       <element game='morfa' id="P-DEM" task="yes">
-        <grammar tag="Pron+Dem+Med+IN+Pl"/>
-        <id>awa</id>
+        <grammar tag="Pron+Dem+Med+I+Pl"/>
+        <id>anihi</id>
       </element>
      </answer>
   </q>
@@ -125,8 +125,8 @@
     <answer> 
       <text>P-DEM maskisina</text>
       <element game='morfa' id="P-DEM" task="yes">
-        <grammar tag="Pron+Dem+Prox+IN+Pl"/>
-        <id>awa</id>
+        <grammar tag="Pron+Dem+Prox+I+Pl"/>
+        <id>ôhi</id>
       </element>
      </answer>
   </q>
@@ -138,8 +138,8 @@
     <answer> 
       <text>P-DEM môhkomân</text>
       <element game='morfa' id="P-DEM" task="yes">
-        <grammar tag="Pron+Dem+Prox+IN+Sg"/>
-        <id>awa</id>
+        <grammar tag="Pron+Dem+Prox+I+Sg"/>
+        <id>ôma</id>
       </element>
      </answer>
   </q>
@@ -151,8 +151,8 @@
     <answer> 
       <text>P-DEM môhkomân</text>
       <element game='morfa' id="P-DEM" task="yes">
-        <grammar tag="Pron+Dem+Med+IN+Sg"/>
-        <id>awa</id>
+        <grammar tag="Pron+Dem+Med+I+Sg"/>
+        <id>anima</id>
       </element>
      </answer>
   </q>
@@ -164,8 +164,8 @@
     <answer> 
       <text>P-DEM êmihkwânak</text>
       <element game='morfa' id="P-DEM" task="yes">
-        <grammar tag="Pron+Dem+Med+AN+Pl"/>
-        <id>awa</id>
+        <grammar tag="Pron+Dem+Med+A+Pl"/>
+        <id>aniki</id>
       </element>
      </answer>
   </q>
@@ -177,8 +177,8 @@
     <answer> 
       <text>P-DEM êmihkwânak</text>
       <element game='morfa' id="P-DEM" task="yes">
-        <grammar tag="Pron+Dem+Prox+AN+Pl"/>
-        <id>awa</id>
+        <grammar tag="Pron+Dem+Prox+A+Pl"/>
+        <id>ôki</id>
       </element>
      </answer>
   </q>
@@ -190,7 +190,7 @@
     <answer> 
       <text>P-DEM êmihkwân</text>
       <element game='morfa' id="P-DEM" task="yes">
-        <grammar tag="Pron+Dem+Prox+AN+Sg"/>
+        <grammar tag="Pron+Dem+Prox+A+Sg"/>
         <id>awa</id>
       </element>
      </answer>
@@ -203,7 +203,7 @@
     <answer> 
       <text>P-DEM êmihkwân</text>
       <element game='morfa' id="P-DEM" task="yes">
-        <grammar tag="Pron+Dem+Med+AN+Sg"/>
+        <grammar tag="Pron+Dem+Med+A+Sg"/>
         <id>awa</id>
       </element>
      </answer>
@@ -216,7 +216,7 @@
     <answer> 
       <text>P-DEM pahkwêsikan</text>
       <element game='morfa' id="P-DEM" task="yes">
-        <grammar tag="Pron+Dem+Med+AN+Sg"/>
+        <grammar tag="Pron+Dem+Med+A+Sg"/>
         <id>awa</id>
       </element>
      </answer>
@@ -229,7 +229,7 @@
     <answer> 
       <text>sîwinikan P-DEM</text>
       <element game='morfa' id="P-DEM" task="yes">
-        <grammar tag="Pron+Dem+Med+AN+Sg"/>
+        <grammar tag="Pron+Dem+Med+A+Sg"/>
         <id>awa</id>
       </element>
      </answer>
@@ -242,8 +242,8 @@
     <answer> 
       <text>P-DEM oskâtâskwak</text>
       <element game='morfa' id="P-DEM" task="yes">
-        <grammar tag="Pron+Dem+Med+AN+Pl"/>
-        <id>awa</id>
+        <grammar tag="Pron+Dem+Med+A+Pl"/>
+        <id>aniki</id>
       </element>
      </answer>
   </q>
@@ -255,8 +255,8 @@
     <answer> 
       <text>atimwak P-DEM</text>
       <element game='morfa' id="P-DEM" task="yes">
-        <grammar tag="Pron+Dem+Med+AN+Pl"/>
-        <id>awa</id>
+        <grammar tag="Pron+Dem+Med+A+Pl"/>
+        <id>aniki</id>
       </element>
      </answer>
   </q>
@@ -268,8 +268,8 @@
     <answer> 
       <text>P-DEM nâpêwak</text>
       <element game='morfa' id="P-DEM" task="yes">
-        <grammar tag="Pron+Dem+Prox+AN+Pl"/>
-        <id>awa</id>
+        <grammar tag="Pron+Dem+Prox+A+Pl"/>
+        <id>ôki</id>
       </element>
      </answer>
   </q>
@@ -281,8 +281,8 @@
     <answer> 
       <text>minôsak P-DEM</text>
       <element game='morfa' id="P-DEM" task="yes">
-        <grammar tag="Pron+Dem+Prox+AN+Pl"/>
-        <id>awa</id>
+        <grammar tag="Pron+Dem+Prox+A+Pl"/>
+        <id>ôki</id>
       </element>
      </answer>
   </q>
@@ -294,7 +294,7 @@
     <answer> 
       <text>P-DEM iskwêw</text>
       <element game='morfa' id="P-DEM" task="yes">
-        <grammar tag="Pron+Dem+Prox+AN+Sg"/>
+        <grammar tag="Pron+Dem+Prox+A+Sg"/>
         <id>awa</id>
       </element>
      </answer>
@@ -307,7 +307,7 @@
     <answer> 
       <text>kinosêw P-DEM</text>
       <element game='morfa' id="P-DEM" task="yes">
-        <grammar tag="Pron+Dem+Prox+AN+Sg"/>
+        <grammar tag="Pron+Dem+Prox+A+Sg"/>
         <id>awa</id>
       </element>
      </answer>
@@ -320,8 +320,8 @@
     <answer> 
       <text>P-DEM wiyâs</text>
       <element game='morfa' id="P-DEM" task="yes">
-        <grammar tag="Pron+Dem+Prox+IN+Sg"/>
-        <id>awa</id>
+        <grammar tag="Pron+Dem+Prox+I+Sg"/>
+        <id>ôma</id>
       </element>
      </answer>
   </q>
@@ -333,8 +333,8 @@
     <answer> 
       <text>môhkomânis P-DEM</text>
       <element game='morfa' id="P-DEM" task="yes">
-        <grammar tag="Pron+Dem+Prox+IN+Sg"/>
-        <id>awa</id>
+        <grammar tag="Pron+Dem+Prox+I+Sg"/>
+        <id>ôma</id>
       </element>
      </answer>
   </q>
@@ -346,8 +346,8 @@
     <answer> 
       <text>P-DEM kohkôsiwiyin</text>
       <element game='morfa' id="P-DEM" task="yes">
-        <grammar tag="Pron+Dem+Med+IN+Sg"/>
-        <id>awa</id>
+        <grammar tag="Pron+Dem+Med+I+Sg"/>
+        <id>anima</id>
       </element>
      </answer>
   </q>
@@ -359,8 +359,8 @@
     <answer> 
       <text>tohtôsâpoy P-DEM</text>
       <element game='morfa' id="P-DEM" task="yes">
-        <grammar tag="Pron+Dem+Med+IN+Sg"/>
-        <id>awa</id>
+        <grammar tag="Pron+Dem+Med+I+Sg"/>
+        <id>anima</id>
       </element>
      </answer>
   </q>
@@ -372,8 +372,8 @@
     <answer> 
       <text>P-DEM atâwêwikamikwa</text>
       <element game='morfa' id="P-DEM" task="yes">
-        <grammar tag="Pron+Dem+Prox+IN+Pl"/>
-        <id>awa</id>
+        <grammar tag="Pron+Dem+Prox+I+Pl"/>
+        <id>ôhi</id>
       </element>
      </answer>
   </q>
@@ -385,8 +385,8 @@
     <answer> 
       <text>wâwa P-DEM</text>
       <element game='morfa' id="P-DEM" task="yes">
-        <grammar tag="Pron+Dem+Prox+IN+Pl"/>
-        <id>awa</id>
+        <grammar tag="Pron+Dem+Prox+I+Pl"/>
+        <id>ôhi</id>
       </element>
      </answer>
   </q>
@@ -398,8 +398,8 @@
     <answer> 
       <text>P-DEM têhtapiwinak</text>
       <element game='morfa' id="P-DEM" task="yes">
-        <grammar tag="Pron+Dem+Med+IN+Pl"/>
-        <id>awa</id>
+        <grammar tag="Pron+Dem+Med+I+Pl"/>
+        <id>anihi</id>
       </element>
      </answer>
   </q>
@@ -411,8 +411,8 @@
     <answer> 
       <text>askipwâwa P-DEM</text>
       <element game='morfa' id="P-DEM" task="yes">
-        <grammar tag="Pron+Dem+Med+IN+Pl"/>
-        <id>awa</id>
+        <grammar tag="Pron+Dem+Med+I+Pl"/>
+        <id>anihi</id>
       </element>
      </answer>
   </q>

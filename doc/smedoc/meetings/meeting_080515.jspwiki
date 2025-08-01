@@ -52,12 +52,12 @@ Example of tagging:
  +Der3+Der/n+N+Ess:»Y5men K ;     !SUB                  !SUB                                                                                                                               
  +Der3+Der/n+N+SgCmp:»Y5n R ;
 
- +V+IV+Pot+Prs+Sg3:%>eažžá%> K ;        !^NG^     		!West                                                                                                                                    
- +V+IV+Pot+Prs+Sg3:%>eaš K ;            !^NG^                                                                                                                                            
- +V+IV+Pot+Prs+Sg3:%>eš K ;                             !East
- +V+IV+Pot+Prs+ConNeg:%>eačča%> K ;     !^NG^    		!West                                                                                                                                      
- +V+IV+Pot+Prs+ConNeg:%>eaš K ;         !^NG^                                                                                                                                            
- +V+IV+Pot+Prs+ConNeg:%>eš K ;							!East
+ +V+IV+Pot+Sg3:%>eažžá%> K ;        !^NG^     		!West                                                                                                                                    
+ +V+IV+Pot+Sg3:%>eaš K ;            !^NG^                                                                                                                                            
+ +V+IV+Pot+Sg3:%>eš K ;                             !East
+ +V+IV+Pot+ConNeg:%>eačča%> K ;     !^NG^    		!West                                                                                                                                      
+ +V+IV+Pot+ConNeg:%>eaš K ;         !^NG^                                                                                                                                            
+ +V+IV+Pot+ConNeg:%>eš K ;							!East
 
 
 The rule is: 

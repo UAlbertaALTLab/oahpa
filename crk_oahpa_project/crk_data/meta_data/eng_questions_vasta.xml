@@ -8,7 +8,7 @@
 		        <grammar tag="Pron+Dem+Med+Sg+&lt;eng&gt;"/>
 	        </element>
 	        <element id='MAINV'>
-		        <grammar tag="V+Ind+Prs+3Sg+&lt;eng&gt;"/>
+		        <grammar tag="V+Ind+3Sg+&lt;eng&gt;"/>
 		        <id>be</id>
 	        </element>
 	        <element id='OBJ'>
@@ -19,7 +19,7 @@
    <answer> 
       <text>maskisina V-P-DEM</text> 
       <element game='morfa' id="V-P-DEM" task="yes">
-        <grammar tag="Pron+Dem+Med+IN+Pl"/>
+        <grammar tag="Pron+Dem+Med+I+Pl"/>
         <id>awa</id>
       </element>
      </answer>
@@ -32,7 +32,7 @@
   		      <grammar tag="Pron+Dem+Med+Pl+&lt;eng&gt;"/>
   	      </element>
   	      <element id='MAINV'>
-  		      <grammar tag="V+Ind+Prs+3Pl+&lt;eng&gt;"/>
+  		      <grammar tag="V+Ind+3Pl+&lt;eng&gt;"/>
   		      <id>be</id>
   	      </element>
   	      <element id='OBJ'>
@@ -43,7 +43,7 @@
       <answer> 
         <text>maskisina V-P-DEM</text> 
         <element game='morfa' id="V-P-DEM" task="yes">
-          <grammar tag="Pron+Dem+Med+IN+Pl"/>
+          <grammar tag="Pron+Dem+Med+I+Pl"/>
           <id>awa</id>
         </element>
        </answer>
@@ -56,7 +56,7 @@
 			   <grammar tag="Pron+Dem+Prox+Sg+&lt;eng&gt;"/>
 		   </element>
 		   <element id='MAINV'>
-			   <grammar tag="V+Ind+Prs+3Sg+&lt;eng&gt;"/>
+			   <grammar tag="V+Ind+3Sg+&lt;eng&gt;"/>
 			   <id>be</id>
 		   </element>
 		   <element id='OBJ'>
@@ -67,7 +67,7 @@
 	   <answer> 
 	      <text>maskisina V-P-DEM</text> 
 	      <element game='morfa' id="V-P-DEM" task="yes">
-	        <grammar tag="Pron+Dem+Med+IN+Pl"/>
+	        <grammar tag="Pron+Dem+Med+I+Pl"/>
 	        <id>awa</id>
 	      </element>
 	   </answer>
@@ -80,7 +80,7 @@
 	  		    <grammar tag="Pron+Dem+Prox+Pl+&lt;eng&gt;"/>
 	  	    </element>
 	  	    <element id='MAINV'>
-	  		    <grammar tag="V+Ind+Prs+3Pl+&lt;eng&gt;"/>
+	  		    <grammar tag="V+Ind+3Pl+&lt;eng&gt;"/>
 	  		    <id>be</id>
 	  	    </element>
 	  	    <element id='OBJ'>
@@ -91,7 +91,7 @@
 	    <answer> 
 	        <text>maskisina V-P-DEM</text> 
 	        <element game='morfa' id="V-P-DEM" task="yes">
-	          <grammar tag="Pron+Dem+Med+IN+Pl"/>
+	          <grammar tag="Pron+Dem+Med+I+Pl"/>
 	          <id>awa</id>
 	        </element>
 	       </answer>
@@ -111,7 +111,7 @@
 	      <answer> 
 	      <text>maskisina V-P-DEM</text> 
 	      <element game='morfa' id="V-P-DEM" task="yes">
-	        <grammar tag="Pron+Dem+Med+IN+Pl"/>
+	        <grammar tag="Pron+Dem+Med+I+Pl"/>
 	        <id>awa</id>
 	      </element>
 	     </answer>
@@ -131,7 +131,7 @@
 	      <answer> 
 	        <text>maskisina V-P-DEM</text> 
 	        <element game='morfa' id="V-P-DEM" task="yes">
-	          <grammar tag="Pron+Dem+Med+IN+Pl"/>
+	          <grammar tag="Pron+Dem+Med+I+Pl"/>
 	          <id>awa</id>
 	        </element>
 	       </answer>
@@ -151,7 +151,7 @@
 		    <answer> 
 		      <text>maskisina V-P-DEM</text> 
 		      <element game='morfa' id="V-P-DEM" task="yes">
-		        <grammar tag="Pron+Dem+Med+IN+Pl"/>
+		        <grammar tag="Pron+Dem+Med+I+Pl"/>
 		        <id>awa</id>
 		      </element>
 		     </answer>
@@ -171,7 +171,7 @@
 		      <answer> 
 		        <text>maskisina V-P-DEM</text> 
 		        <element game='morfa' id="V-P-DEM" task="yes">
-		          <grammar tag="Pron+Dem+Med+IN+Pl"/>
+		          <grammar tag="Pron+Dem+Med+I+Pl"/>
 		          <id>awa</id>
 		        </element>
 		       </answer>
@@ -186,7 +186,7 @@
                       <grammar tag="N+Sg+Def+&lt;eng&gt;"/>
                   </element>
                   <element id='MAINV'>
-                      <grammar tag="V+Ind+Prs+3Sg+&lt;eng&gt;"/>
+                      <grammar tag="V+Ind+3Sg+&lt;eng&gt;"/>
                   </element>
                   <element id='ADJ'>
                       <grammar tag="A+Pos+&lt;eng&gt;"/>
@@ -203,7 +203,7 @@
                       <grammar tag="N+Pl+Def+&lt;eng&gt;"/>
                   </element>
                   <element id='MAINV'>
-                      <grammar tag="V+Ind+Prs+3Pl+&lt;eng&gt;"/>
+                      <grammar tag="V+Ind+3Pl+&lt;eng&gt;"/>
                   </element>
                   <element id='ADJ'>
                       <grammar tag="A+Pos+&lt;eng&gt;"/>
@@ -222,7 +222,7 @@
                       <grammar tag="N+Pl+&lt;eng&gt;"/>
                   </element>
                   <element id='MAINV'>
-                      <grammar tag="V+Ind+Prs+3Pl+&lt;eng&gt;"/>
+                      <grammar tag="V+Ind+3Pl+&lt;eng&gt;"/>
                   </element>
                   <element id='ADJ'>
                       <grammar tag="A+Pos+&lt;eng&gt;"/>
@@ -241,7 +241,7 @@
                       <grammar tag="N+Pl+&lt;eng&gt;"/>
                   </element>
                   <element id='MAINV'>
-                      <grammar tag="V+Ind+Prs+3Sg+&lt;eng&gt;"/>
+                      <grammar tag="V+Ind+3Sg+&lt;eng&gt;"/>
                   </element>
                   <element id='ADJ'>
                       <grammar tag="A+Pos+&lt;eng&gt;"/>
@@ -260,7 +260,7 @@
                       <grammar tag="N+Pl+&lt;eng&gt;"/>
                   </element>
                   <element id='MAINV'>
-                      <grammar tag="V+Ind+Prs+3Pl+&lt;eng&gt;"/>
+                      <grammar tag="V+Ind+3Pl+&lt;eng&gt;"/>
                   </element>
                   <element id='ADJ'>
                       <grammar tag="A+Pos+&lt;eng&gt;"/>
@@ -279,7 +279,7 @@
                       <grammar tag="N+Sg+&lt;eng&gt;"/>
                   </element>
                   <element id='MAINV'>
-                      <grammar tag="V+Ind+Prs+3Sg+&lt;eng&gt;"/>
+                      <grammar tag="V+Ind+3Sg+&lt;eng&gt;"/>
                   </element>
                   <element id='ADJ'>
                       <grammar tag="A+Pos+&lt;eng&gt;"/>
@@ -298,7 +298,7 @@
                       <grammar tag="N+Pl+&lt;eng&gt;"/>
                   </element>
                   <element id='MAINV'>
-                      <grammar tag="V+Ind+Prs+3Pl+&lt;eng&gt;"/>
+                      <grammar tag="V+Ind+3Pl+&lt;eng&gt;"/>
                   </element>
                   <element id='ADJ'>
                       <grammar tag="A+Pos+&lt;eng&gt;"/>
@@ -317,7 +317,7 @@
                       <grammar tag="N+Pl+&lt;eng&gt;"/>
                   </element>
                   <element id='MAINV'>
-                      <grammar tag="V+Ind+Prs+3Sg+&lt;eng&gt;"/>
+                      <grammar tag="V+Ind+3Sg+&lt;eng&gt;"/>
                   </element>
                   <element id='ADJ'>
                       <grammar tag="A+Pos+&lt;eng&gt;"/>

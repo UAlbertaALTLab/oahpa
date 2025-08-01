@@ -37,11 +37,11 @@ Programmet skal analysere tekster og gjør dem slik lettere tilgjengelig for stu
 ** regex som matcher tagger: <xxx_xxx>
 
 !! ConNeg form av verb
-* Oppgavene inneholder taggene Ind+Prs+ConNeg og Ind+Prt+ConNeg
+* Oppgavene inneholder taggene Ind+ConNeg og Ind+Prt+ConNeg
 * Distractors av samme lemma:
-** V+Ind+Prs+Sg1
-** V+Ind+Prs+Sg2  
-** V+Ind+Prs+Sg3  
+** V+Ind+Sg1
+** V+Ind+Sg2  
+** V+Ind+Sg3  
 ** V+Ind+Prt+Sg1  
 ** V+Ind+Prt+Sg2
 ** V+Ind+Prt+Sg3
@@ -54,21 +54,21 @@ Programmet skal analysere tekster og gjør dem slik lettere tilgjengelig for stu
 * Oppgavene inneholder en av disse taggene: Sg1, Sg2, Sg3, Du1, Du2, Du3, Pl1, Pl2, Pl3
 * Vi satser på å ikke oppgi tiden (Prt, Prs), studenten skal finne ut selv hva hun trur er best.
 * Distractors av samme lemma __Ind__:
-** V+Ind+Prs+ConNeg
+** V+Ind+ConNeg
 ** V+Ind+Prt+ConNeg
 ** V+Actio+Ess  
 ** V+Ind+Prt+Sg1  
 ** V+Ind+Prt+Sg2  
 ** V+Ind+Prt+Sg3  
-** V+Ind+Prs+Sg1  
-** V+Ind+Prs+Sg2  
-** V+Ind+Prs+Sg3  
+** V+Ind+Sg1  
+** V+Ind+Sg2  
+** V+Ind+Sg3  
 ** V+Ind+Prt+Du1  
 ** V+Ind+Prt+Du2  
 ** V+Ind+Prt+Du3  
-** V+Ind+Prs+Du1  
-** V+Ind+Prs+Du2  
-** V+Ind+Prs+Du3
+** V+Ind+Du1  
+** V+Ind+Du2  
+** V+Ind+Du3
 * Distractors av samme lemma __Imprt__:
 ** V+Imprt+Sg1  
 ** V+Imprt+Sg2  
@@ -80,24 +80,24 @@ Programmet skal analysere tekster og gjør dem slik lettere tilgjengelig for stu
 ** V+Imprt+Pl2  
 ** V+Imprt+Pl3
 * Distractors av samme lemma __Cond__:
-** V+Cond+Prs+Sg1  
-** V+Cond+Prs+Sg2  
-** V+Cond+Prs+Sg3  
-** V+Cond+Prs+Du1  
-** V+Cond+Prs+Du2  
-** V+Cond+Prs+Du3  
-** V+Cond+Prs+Pl1  
-** V+Cond+Prs+Pl2  
-** V+Cond+Prs+Pl3
+** V+Cond+Sg1  
+** V+Cond+Sg2  
+** V+Cond+Sg3  
+** V+Cond+Du1  
+** V+Cond+Du2  
+** V+Cond+Du3  
+** V+Cond+Pl1  
+** V+Cond+Pl2  
+** V+Cond+Pl3
 * Distractors av samme lemma __Pot__:
-** V+Pot+Prs+Sg1  
-** V+Pot+Prs+Sg2  
-** V+Pot+Prs+Sg3  
-** V+Pot+Prs+Du1  
-** V+Pot+Prs+Du2  
-** V+Pot+Prs+Du3  
-** V+Pot+Prs+Pl1  
-** V+Pot+Prs+Pl2  
+** V+Pot+Sg1  
+** V+Pot+Sg2  
+** V+Pot+Sg3  
+** V+Pot+Du1  
+** V+Pot+Du2  
+** V+Pot+Du3  
+** V+Pot+Pl1  
+** V+Pot+Pl2  
 * Distractors for __Neg__:
 ** ii+V+Neg+Ind+Sg1  
 ** ii+V+Neg+Ind+Sg2  
@@ -121,15 +121,15 @@ Programmet skal analysere tekster og gjør dem slik lettere tilgjengelig for stu
 ** V+Ind+Prt+Sg1  
 ** V+Ind+Prt+Sg2  
 ** V+Ind+Prt+Sg3  
-** V+Ind+Prs+Sg1  
-** V+Ind+Prs+Sg2  
-** V+Ind+Prs+Sg3  
+** V+Ind+Sg1  
+** V+Ind+Sg2  
+** V+Ind+Sg3  
 ** V+Ind+Prt+Du1  
 ** V+Ind+Prt+Du2  
 ** V+Ind+Prt+Du3  
-** V+Ind+Prs+Du1  
-** V+Ind+Prs+Du2  
-** V+Ind+Prs+Du3  
+** V+Ind+Du1  
+** V+Ind+Du2  
+** V+Ind+Du3  
 ! Anbefalte linker
 * http://kursa.oahpa.no/2013/05/15/2-4-buohcame/
 * http://kursa.oahpa.no/2013/12/30/ipmilmeahttun-dalki/

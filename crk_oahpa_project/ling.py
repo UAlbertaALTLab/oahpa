@@ -20,7 +20,7 @@ import codecs
 # _D = open('/dev/ttys005', 'w')
 _D = open("/dev/null", "w")
 
-PREVERBS = ["PV/e"]
+PREVERBS = ["PV/e", "PV/ki", "PV/ka", "PV/wi"]
 
 
 try:
@@ -32,17 +32,14 @@ except:
 language = settings.MAIN_LANGUAGE[0]
 
 if "eng" in sys.argv:
-    lookup = settings.ENG_LOOKUP_TOOL
+    lookup = settings.HFST_LOOKUP
     fstdir = settings.ENG_FST_DIRECTORY
     gen_norm_fst = settings.ENG_DIALECTS.get("main")[0]
     language = "eng"
 else:
-    lookup = settings.LOOKUP_TOOL
-    # numfst = fstdir + "/" + language + "-num.fst"
-    numfst = fstdir + "/" + "transcriptor-numbers-digit2text.filtered.lookup.xfst"
-    # gen_norm_fst = fstdir + "/" + "generator-oahpa-gt-norm.hfstol" # this is xfst
-    gen_norm_fst = fstdir + "/" + "generator-oahpa-gt-norm.xfst"  # this is xfst
-    # gen_norm_fst = fstdir + "/" + "generator-oahpa-gt-norm.hfstol" # this is hfst
+    lookup = settings.HFST_LOOKUP
+    numfst = fstdir + "/" + "transcriptor-numbers-digit2text.filtered.lookup.hfstol"
+    gen_norm_fst = fstdir + "/" + "generator-oahpa-gt-norm.hfstol"
 
 STDERR = sys.stderr
 STDOUT = sys.stdout
@@ -53,20 +50,27 @@ STDOUT = sys.stdout
 """ Omorfi Daemon
 	"""
 
-import subprocess as sp
+import asyncio
 import os
 import sys
 
 
-def Popen(cmd, data=False, ret_err=False, ret_proc=False):
+async def Popen(cmd, arg, data=False, ret_err=False, ret_proc=False):
     """
     Wrapper around subprocess Popen to save some time.
     Expects command and data, ideally data is already single unicode
     string.
     """
-    PIPE = sp.PIPE
-    proc = sp.Popen(cmd.split(" "), shell=False, stdout=PIPE, stderr=PIPE, stdin=PIPE)
+    PIPE = asyncio.subprocess.PIPE
+    proc = await asyncio.create_subprocess_exec(cmd, arg, stdout=PIPE, stderr=PIPE, stdin=PIPE)
     if data:
+        if type(data) == list:
+            data = [a.strip() for a in data if a.strip()]
+            #        with open("FSTDATA.lookups",'w')  as f:
+            #            for line in data:
+            #                f.write(f"{line}\n")
+            data = "\n".join(data).encode("utf-8")
+
         if type(data) == str:
             try:
                 data = data.encode("utf-8")
@@ -87,7 +91,7 @@ def Popen(cmd, data=False, ret_err=False, ret_proc=False):
     else:
         kwargs = {}
 
-    output, err = proc.communicate(**kwargs)
+    output, err = await proc.communicate(**kwargs)
 
     try:
         if err:
@@ -96,30 +100,34 @@ def Popen(cmd, data=False, ret_err=False, ret_proc=False):
         pass
 
     if ret_err:
-        return output, err
+        return output.decode("utf-8"), err
     else:
-        return output
+        return output.decode("utf-8")
 
+def Popen_mapreduce(cmd, file, data, processes):
+    async def runner():
+        chunksize = max(1, int(len(data)/processes))
+        chunks = (data[i:i+chunksize] for i in range(0, len(data), chunksize))
+        tasks = []
+        async with asyncio.TaskGroup() as tg:
+            for chunk in chunks:
+                tasks.append(tg.create_task(Popen(cmd,file, chunk)))
+        return "".join([x.result() for x in tasks])
+    return asyncio.run(runner())
 
-def FSTLookup(data, fst_file):
+def FSTLookup(data, fst_file, processes=os.cpu_count()):
     gen_fst = fst_file
     # cmd = 'hfst-optimized-lookup /opt/local/share/omorfi/mor-omorfi.apertium.hfst.ol'
     # cmd = lookup + " -flags mbTT -utf8 -d " + gen_fst
-
-    if type(data) == list:
-        data = [a.strip() for a in list(set(data)) if a.strip()]
-        data = "\n".join(data).encode("utf-8")
-        cmd = lookup + " " + gen_fst
     print("Generating forms in %s" % gen_fst, file=STDOUT)
     try:
-        lookups = Popen(cmd, data)
+        lookups = Popen_mapreduce(lookup, gen_fst, list(set(data)), processes)
         # new_cmd = lookups_with_weights + " | cut -f1,2"
         # lookups = Popen(new_cmd)
         # print >> STDOUT, "The next row of hfst output: %s" % lookups
     except OSError:
-        print("Problem in command: %s" % cmd, file=STDERR)
+        print("Problem in command: %s" % (lookup+" "+gen_fst), file=STDERR)
         sys.exit(2)
-    lookups = lookups.decode("utf-8")
 
     return lookups
 
@@ -181,7 +189,7 @@ class Paradigm:
                     tagset_dict[k] = [v]
             self.tagset = tagset_dict
 
-    def read_paradigms(self, paradigmfile, tagfile, add_database, pos=False):
+    def read_paradigms(self, paradigmfile, tagfile, add_database, pos):
         """The function is called from install.py and its aim is to install the contents of the paradigm file (e.g. paradigms.txt) into the database."""
         if not self.tagset:
             self.handle_tags(tagfile, True)
@@ -200,9 +208,8 @@ class Paradigm:
 
             matchObj = posObj.search(line)
 
-            if not pos:
-                if matchObj:
-                    pos = matchObj.expand(r"\g<posString>")
+            if matchObj:
+                pos = matchObj.expand(r"\g<posString>")
             try:
                 if pos not in self.paradigms:
                     self.paradigms[pos] = []
@@ -363,7 +370,7 @@ class Paradigm:
                 parts = result[0].split("+")
                 no_pv = [p for p in parts if p not in PREVERBS]
                 lemma = no_pv[0]
-                if lemma:
+                if lemma:   # TODO: This stores many failures like Analysis+? still, which likely should be dealt with.
                     generated_form = result[1]
                 else:
                     generated_form = ""
@@ -580,7 +587,7 @@ class Paradigm:
                 g.classes = {}
                 lemma = matchObj.expand(r"\g<lemmaString>")
                 g.form = matchObj.expand(r"\g<formString>")
-                if re.compile("\?").match(g.form):
+                if re.compile(r"\?").match(g.form):
                     continue
                 g.tags = matchObj.expand(r"\g<tagString>")
 
@@ -660,6 +667,7 @@ class Paradigm:
                     mode=g.get("Mode", ""),
                     subclass=g.get("Subclass", ""),
                     attributive=g.get("Attributive", ""),
+                    dependent=g.get("Dependent", "")
                 )
 
                 t.save()

@@ -4,7 +4,7 @@
 <r xml:lang="crk">
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg" audio="kohkos">kohkôs</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv" audio="kohkos">kohkôs</l>
          <sources>
             <book name="Audio"/>
             <book chapter="I2"/>
@@ -26,7 +26,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="yes" rime="k" gen_only="Pl,Sg">oskâtâsk</l>
+         <l pos="N" animacy="A" t2c="yes" rime="k" gen_only="Pl,Sg,Obv">oskâtâsk</l>
          <sources>
             <book chapter="I1"/>
          </sources>
@@ -46,7 +46,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">oskâcâskos</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">oskâcâskos</l>
          <sources>
             <book chapter="I1"/>
          </sources>
@@ -68,7 +68,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="aw" gen_only="Sg">sôniyâw</l>
+         <l pos="N" animacy="A" t2c="no" rime="aw" gen_only="Sg">sôniyâw</l>
          <sources>
             <book chapter="I1"/>
          </sources>
@@ -88,7 +88,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="no" rime="0" gen_only="Sg,Loc">kohkôsiwiyin</l>
+         <l pos="N" animacy="I" t2c="no" rime="0" gen_only="Sg,Loc,Obv">kohkôsiwiyin</l>
          <sources>
             <book chapter="I1"/>
          </sources>
@@ -108,7 +108,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="yes" rime="0" gen_only="Pl,Sg">mahtâmin</l>
+         <l pos="N" animacy="A" t2c="yes" rime="0" gen_only="Pl,Sg,Obv">mahtâmin</l>
          <sources>
             <book chapter="I1"/>
          </sources>
@@ -127,7 +127,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="eew" gen_only="Pl,Sg">kinosêw</l>
+         <l pos="N" animacy="A" t2c="no" rime="eew" gen_only="Pl,Sg,Obv">kinosêw</l>
          <sources>
             <book chapter="I1"/>
          </sources>
@@ -148,7 +148,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Sg">sîwinikan</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Sg,Obv">sîwinikan</l>
          <sources>
             <book chapter="I1"/>
          </sources>
@@ -167,7 +167,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">êmihkwânis</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">êmihkwânis</l>
          <sources>
             <book chapter="I1"/>
          </sources>
@@ -188,7 +188,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">awâsis</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">awâsis</l>
          <sources>
             <book chapter="I3"/>
          </sources>
@@ -208,7 +208,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">picikwâs</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">picikwâs</l>
          <sources>
             <book chapter="I1"/>
          </sources>
@@ -228,7 +228,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">pahkwêsikan</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">pahkwêsikan</l>
          <sources>
             <book chapter="I4"/>
          </sources>
@@ -249,7 +249,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">minôs</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">minôs</l>
          <sources>
             <book chapter="I1"/>
          </sources>
@@ -269,7 +269,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg" audio="sisip">sîsîp</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv" audio="sisip">sîsîp</l>
          <sources>
             <book name="Audio"/>
             <book chapter="I2"/>
@@ -290,7 +290,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="aw" gen_only="Pl,Sg">okimâw</l>
+         <l pos="N" animacy="A" t2c="no" rime="aw" gen_only="Pl,Sg,Obv">okimâw</l>
          <sources>
             <book name="advan"/>
          </sources>
@@ -313,7 +313,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="yes" rime="und-w" gen_only="Pl,Sg" audio="mostos">mostos</l>
+         <l pos="N" animacy="A" t2c="yes" rime="und-w" gen_only="Pl,Sg,Obv" audio="mostos">mostos</l>
          <sources>
             <book chapter="I2"/>
             <book name="Audio"/>
@@ -335,7 +335,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="yes" rime="0" gen_only="Pl,Sg">apistacihkos</l>
+         <l pos="N" animacy="A" t2c="yes" rime="0" gen_only="Pl,Sg,Obv">apistacihkos</l>
          <sources>
             <book name="advan"/>
          </sources>
@@ -354,7 +354,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">apisimôsos</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">apisimôsos</l>
          <sources>
             <book name="advan"/>
          </sources>
@@ -373,7 +373,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">anikwacâs</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">anikwacâs</l>
          <sources>
             <book name="advan"/>
          </sources>
@@ -392,7 +392,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">asikan</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">asikan</l>
          <sources>
             <book chapter="I1"/>
          </sources>
@@ -412,7 +412,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="iy" gen_only="AN+Pl,AN+Sg">asiniy</l>
+         <l pos="N" animacy="A" t2c="no" rime="iy" gen_only="A+Pl,A+Sg">asiniy</l>
          <sources>
             <book chapter="I10"/>
          </sources>
@@ -432,7 +432,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="yes" rime="k" gen_only="Pl,Sg">atihk</l>
+         <l pos="N" animacy="A" t2c="yes" rime="k" gen_only="Pl,Sg,Obv">atihk</l>
          <sources>
             <book name="advan"/>
          </sources>
@@ -451,7 +451,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="ow" gen_only="Pl,Sg">cahcahkâyow</l>
+         <l pos="N" animacy="A" t2c="no" rime="ow" gen_only="Pl,Sg,Obv">cahcahkâyow</l>
          <sources>
             <book name="advan"/>
          </sources>
@@ -470,7 +470,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="iw" gen_only="Pl,Sg">iyiniw</l>
+         <l pos="N" animacy="A" t2c="no" rime="iw" gen_only="Pl,Sg,Obv">iyiniw</l>
          <sources>
             <book name="advan"/>
          </sources>
@@ -492,7 +492,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="eew" gen_only="Pl,Sg">iskwêw</l>
+         <l pos="N" animacy="A" t2c="no" rime="eew" gen_only="Pl,Sg,Obv">iskwêw</l>
          <sources>
             <book chapter="I1"/>
          </sources>
@@ -511,7 +511,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg" audio="iskwesis">iskwêsis</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv" audio="iskwesis">iskwêsis</l>
          <sources>
             <book name="Audio"/>
             <book chapter="I1"/>
@@ -531,7 +531,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="wa" gen_only="Pl,Sg">maskwa</l>
+         <l pos="N" animacy="A" t2c="no" rime="wa" gen_only="Pl,Sg,Obv">maskwa</l>
          <sources>
             <book chapter="I1"/>
          </sources>
@@ -550,7 +550,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="yes" rime="k" gen_only="Pl,Sg">mâyatihk</l>
+         <l pos="N" animacy="A" t2c="yes" rime="k" gen_only="Pl,Sg,Obv">mâyatihk</l>
          <sources>
             <book name="advan"/>
          </sources>
@@ -570,7 +570,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="wa" gen_only="Pl,Sg" audio="moswa">môswa</l>
+         <l pos="N" animacy="A" t2c="no" rime="wa" gen_only="Pl,Sg,Obv" audio="moswa">môswa</l>
          <sources>
             <book name="Audio"/>
             <book chapter="I1"/>
@@ -591,7 +591,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="eew" gen_only="Pl,Sg" audio="napew">nâpêw</l>
+         <l pos="N" animacy="A" t2c="no" rime="eew" gen_only="Pl,Sg,Obv" audio="napew">nâpêw</l>
          <sources>
             <book name="Audio"/>
             <book chapter="I1"/>
@@ -611,7 +611,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">nâpêsis</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">nâpêsis</l>
          <sources>
             <book chapter="I1"/>
          </sources>
@@ -633,7 +633,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="aw" gen_only="Pl,Sg">nêhiyaw</l>
+         <l pos="N" animacy="A" t2c="no" rime="aw" gen_only="Pl,Sg,Obv">nêhiyaw</l>
          <sources>
             <book chapter="I1"/>
          </sources>
@@ -652,7 +652,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="v-is" gen_only="none">niska</l>
+         <l pos="N" animacy="A" t2c="no" rime="v-is" gen_only="none">niska</l>
          <sources>
             <book chapter="I1"/>
          </sources>
@@ -672,7 +672,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="ow" gen_only="Pl,Sg" audio="ohow">ôhow</l>
+         <l pos="N" animacy="A" t2c="no" rime="ow" gen_only="Pl,Sg,Obv" audio="ohow">ôhow</l>
          <sources>
             <book name="Audio"/>
             <book name="advan"/>
@@ -692,7 +692,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="yes" rime="0" gen_only="Pl,Sg">okistatowân</l>
+         <l pos="N" animacy="A" t2c="yes" rime="0" gen_only="Pl,Sg,Obv">okistatowân</l>
          <sources>
             <book name="advan"/>
          </sources>
@@ -711,7 +711,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="iw" gen_only="Pl,Sg">pisiw</l>
+         <l pos="N" animacy="A" t2c="no" rime="iw" gen_only="Pl,Sg,Obv">pisiw</l>
          <sources>
             <book name="advan"/>
          </sources>
@@ -734,7 +734,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">sihkihp</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">sihkihp</l>
          <sources>
             <book name="advan"/>
          </sources>
@@ -754,7 +754,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="k" gen_only="Pl,Sg">sikâk</l>
+         <l pos="N" animacy="A" t2c="no" rime="k" gen_only="Pl,Sg,Obv">sikâk</l>
          <sources>
             <book chapter="I1"/>
          </sources>
@@ -774,7 +774,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="k" gen_only="Pl,Sg">wâpask</l>
+         <l pos="N" animacy="A" t2c="no" rime="k" gen_only="Pl,Sg,Obv">wâpask</l>
          <sources>
             <book name="advan"/>
          </sources>
@@ -793,7 +793,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="iw" gen_only="Pl,Sg">wâwâskêsiw</l>
+         <l pos="N" animacy="A" t2c="no" rime="iw" gen_only="Pl,Sg,Obv">wâwâskêsiw</l>
          <sources>
             <book chapter="I10"/>
          </sources>
@@ -813,7 +813,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">êmihkwân</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">êmihkwân</l>
          <sources>
             <book chapter="I2"/>
          </sources>
@@ -833,7 +833,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="oy" gen_only="Pl,Sg">âmow</l>
+         <l pos="N" animacy="A" t2c="no" rime="oy" gen_only="Pl,Sg,Obv">âmow</l>
          <sources>
             <book name="advan"/>
          </sources>
@@ -852,7 +852,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="und-w" gen_only="Pl,Sg" audio="pisim">pîsim</l>
+         <l pos="N" animacy="A" t2c="no" rime="und-w" gen_only="Pl,Sg,Obv" audio="pisim">pîsim</l>
          <sources>
             <book name="Audio"/>
             <book chapter="I1"/>
@@ -875,7 +875,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">wîkimâkan</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">wîkimâkan</l>
          <sources>
             <book name="advan"/>
          </sources>
@@ -896,7 +896,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="und-w" gen_only="Pl,Sg">wâpos</l>
+         <l pos="N" animacy="A" t2c="no" rime="und-w" gen_only="Pl,Sg,Obv">wâpos</l>
          <sources>
             <book chapter="I1"/>
          </sources>
@@ -916,7 +916,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="k" gen_only="Pl,Sg">amisk</l>
+         <l pos="N" animacy="A" t2c="no" rime="k" gen_only="Pl,Sg,Obv">amisk</l>
          <sources>
             <book chapter="I10"/>
          </sources>
@@ -935,7 +935,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="yes" rime="k" gen_only="AN+Pl,AN+Sg">mistik</l>
+         <l pos="N" animacy="A" t2c="yes" rime="k" gen_only="A+Pl,A+Sg">mistik</l>
          <sources>
             <book name="advan"/>
          </sources>
@@ -957,7 +957,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="k" gen_only="Pl,Sg">askihk</l>
+         <l pos="N" animacy="A" t2c="no" rime="k" gen_only="Pl,Sg,Obv">askihk</l>
          <sources>
             <book chapter="I1"/>
          </sources>
@@ -977,7 +977,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="no" rime="k" gen_only="Pl,Sg,Loc">mahkahk</l>
+         <l pos="N" animacy="I" t2c="no" rime="k" gen_only="Pl,Sg,Loc">mahkahk</l>
          <sources>
             <book name="advan"/>
          </sources>
@@ -999,7 +999,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="yes" rime="atim" gen_only="Pl,Sg" audio="atim">atim</l>
+         <l pos="N" animacy="A" t2c="yes" rime="atim" gen_only="Pl,Sg,Obv" audio="atim">atim</l>
          <sources>
             <book name="Audio"/>
             <book chapter="I1"/>
@@ -1020,7 +1020,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="yes" rime="atim" gen_only="Pl,Sg">mistatim</l>
+         <l pos="N" animacy="A" t2c="yes" rime="atim" gen_only="Pl,Sg,Obv">mistatim</l>
          <sources>
             <book chapter="I2"/>
          </sources>
@@ -1039,7 +1039,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="yes" rime="0" gen_only="Pl,Sg">mitâs</l>
+         <l pos="N" animacy="A" t2c="yes" rime="0" gen_only="Pl,Sg,Obv">mitâs</l>
          <sources>
             <book chapter="I1"/>
          </sources>
@@ -1058,7 +1058,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="yes" rime="0" gen_only="none">nitânis</l>
+         <l pos="N" animacy="A" t2c="yes" rime="0" gen_only="none">nitânis</l>
          <sources>
             <book chapter="I4"/>
          </sources>
@@ -1078,7 +1078,7 @@
    </e>
    <e exclude="Leksa">
       <lg>
-         <l pos="N" animacy="AN" t2c="yes" rime="0" gen_only="Pl,Sg">-tânis</l>
+         <l pos="N" animacy="A" t2c="yes" rime="0" gen_only="Pl,Sg,Obv">nitânis</l>
          <sources>
             <book chapter="I4"/>
          </sources>
@@ -1098,7 +1098,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="none">nikosis</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="none">nikosis</l>
          <sources>
             <book chapter="I4"/>
          </sources>
@@ -1118,7 +1118,7 @@
    </e>
    <e exclude="Leksa">
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">-kosis</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">nikosis</l>
          <sources>
             <book chapter="I4"/>
          </sources>
@@ -1138,7 +1138,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="k" gen_only="none">ninêkihikwak</l>
+         <l pos="N" animacy="A" t2c="no" rime="k" gen_only="none">ninêkihikwak</l>
          <sources>
             <book chapter="I4"/>
          </sources>
@@ -1158,7 +1158,7 @@
    </e>
    <e exclude="Leksa">
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="k" gen_only="Pl">nîkihik</l>
+         <l pos="N" animacy="A" t2c="no" rime="k" gen_only="Pl">nîkihik</l>
          <sources>
             <book chapter="I4"/>
          </sources>
@@ -1177,7 +1177,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="" gen_only="none">nimosôm</l>
+         <l pos="N" animacy="A" t2c="no" rime="" gen_only="none">nimosôm</l>
          <sources>
             <book chapter="I4"/>
          </sources>
@@ -1197,7 +1197,7 @@
    </e>
    <e exclude="Leksa">
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">-mosôm</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">nimosôm</l>
          <sources>
             <book chapter="I4"/>
          </sources>
@@ -1217,7 +1217,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="" gen_only="none">nôhkom</l>
+         <l pos="N" animacy="A" t2c="no" rime="" gen_only="none">nôhkom</l>
          <sources>
             <book chapter="I4"/>
          </sources>
@@ -1237,7 +1237,7 @@
    </e>
    <e exclude="Leksa">
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">-ohkom</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">nôhkom</l>
          <sources>
             <book chapter="I4"/>
          </sources>
@@ -1257,7 +1257,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="yes" rime="0" gen_only="none">nîtisân</l>
+         <l pos="N" animacy="A" t2c="yes" rime="0" gen_only="none">nîtisân</l>
          <sources>
             <book chapter="I4"/>
          </sources>
@@ -1278,7 +1278,7 @@
    </e>
    <e exclude="Leksa">
       <lg>
-         <l pos="N" animacy="AN" t2c="yes" rime="0" gen_only="Pl,Sg">-tisân</l>
+         <l pos="N" animacy="A" t2c="yes" rime="0" gen_only="Pl,Sg,Obv">nîtisân</l>
          <sources>
             <book chapter="I4"/>
          </sources>
@@ -1299,7 +1299,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="none">nisîmis</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="none">nisîmis</l>
          <sources>
             <book chapter="I4"/>
          </sources>
@@ -1321,7 +1321,7 @@
    </e>
    <e exclude="Leksa">
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">-sîmis</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">nisîmis</l>
          <sources>
             <book chapter="I4"/>
          </sources>
@@ -1342,7 +1342,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="yes" rime="0" gen_only="none">nitôtêm</l>
+         <l pos="N" animacy="A" t2c="yes" rime="0" gen_only="none">nitôtêm</l>
          <sources>
             <book chapter="I4"/>
          </sources>
@@ -1363,7 +1363,7 @@
    </e>
    <e exclude="Leksa">
       <lg>
-         <l pos="N" animacy="AN" t2c="yes" rime="0" gen_only="Pl,Sg">-tôtêm</l>
+         <l pos="N" animacy="A" t2c="yes" rime="0" gen_only="Pl,Sg,Obv">nitôtêm</l>
          <sources>
             <book chapter="I4"/>
          </sources>
@@ -1384,7 +1384,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="iy" gen_only="none">nikâwiy</l>
+         <l pos="N" animacy="A" t2c="no" rime="iy" gen_only="none">nikâwiy</l>
          <sources>
             <book chapter="I4"/>
          </sources>
@@ -1405,7 +1405,7 @@
    </e>
    <e exclude="Leksa">
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="iy" gen_only="Pl,Sg">-kâwiy</l>
+         <l pos="N" animacy="A" t2c="no" rime="iy" gen_only="Pl,Sg,Obv">nikâwiy</l>
          <sources>
             <book chapter="I4"/>
          </sources>
@@ -1426,7 +1426,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="yes" rime="iy" gen_only="none">nohtâwiy</l>
+         <l pos="N" animacy="A" t2c="yes" rime="iy" gen_only="none">nohtâwiy</l>
          <sources>
             <book chapter="I4"/>
          </sources>
@@ -1447,7 +1447,7 @@
    </e>
    <e exclude="Leksa">
       <lg>
-         <l pos="N" animacy="AN" t2c="yes" rime="iy" gen_only="Pl,Sg">-ohtâwiy</l>
+         <l pos="N" animacy="A" t2c="yes" rime="iy" gen_only="Pl,Sg,Obv">nôhtâwiy</l>
          <sources>
             <book chapter="I4"/>
          </sources>
@@ -1468,7 +1468,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="none">nimis</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="none">nimis</l>
          <sources>
             <book name="advan"/>
          </sources>
@@ -1490,7 +1490,7 @@
    </e>
    <e exclude="Leksa">
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">-mis</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">nimis</l>
          <sources>
             <book name="advan"/>
          </sources>
@@ -1512,7 +1512,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="none">nikâwis</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="none">nikâwis</l>
          <sources>
             <book chapter="I4"/>
          </sources>
@@ -1534,7 +1534,7 @@
    </e>
    <e exclude="Leksa">
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">-kâwîs</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">nikâwîs</l>
          <sources>
             <book chapter="I4"/>
          </sources>
@@ -1556,7 +1556,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="none">nisis</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="none">nisis</l>
          <sources>
             <book name="advan"/>
          </sources>
@@ -1580,7 +1580,7 @@
    </e>
    <e exclude="Leksa">
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">-sis</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">nisis</l>
          <sources>
             <book name="advan"/>
          </sources>
@@ -1602,7 +1602,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="none">nohcâwîs</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="none">nohcâwîs</l>
          <sources>
             <book name="advan"/>
          </sources>
@@ -1624,7 +1624,7 @@
    </e>
    <e exclude="Leksa">
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">-ôhcâwîs</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">nôhcâwîs</l>
          <sources>
             <book name="advan"/>
          </sources>
@@ -1646,7 +1646,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="none">nihciwâmis</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="none">nihciwâmis</l>
          <sources>
             <book name="advan"/>
          </sources>
@@ -1667,7 +1667,7 @@
    </e>
    <e exclude="Leksa">
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">-hciwâmis</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">niciwâmis</l>
          <sources>
             <book name="advan"/>
          </sources>
@@ -1688,7 +1688,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="yes" rime="0" gen_only="none">nistês</l>
+         <l pos="N" animacy="A" t2c="yes" rime="0" gen_only="none">nistês</l>
          <sources>
             <book name="advan"/>
          </sources>
@@ -1710,7 +1710,7 @@
    </e>
    <e exclude="Leksa">
       <lg>
-         <l pos="N" animacy="AN" t2c="yes" rime="0" gen_only="Sg">-stês</l>
+         <l pos="N" animacy="A" t2c="yes" rime="0" gen_only="Sg">-stês</l>
          <sources>
             <book name="advan"/>
          </sources>
@@ -1729,7 +1729,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="none">niscâs</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="none">niscâs</l>
          <sources>
             <book name="advan"/>
          </sources>
@@ -1752,7 +1752,7 @@
    </e>
    <e exclude="Leksa">
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">-scâs</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">nîscâs</l>
          <sources>
             <book name="advan"/>
          </sources>
@@ -1775,7 +1775,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="none">nicâhkos</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="none">nicâhkos</l>
          <sources>
             <book name="advan"/>
          </sources>
@@ -1798,7 +1798,7 @@
    </e>
    <e exclude="Leksa">
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">-câhkos</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">nicâhkos</l>
          <sources>
             <book name="advan"/>
          </sources>
@@ -1821,7 +1821,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="none">nôsisim</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="none">nôsisim</l>
          <sources>
             <book name="advan"/>
          </sources>
@@ -1843,7 +1843,7 @@
    </e>
     <e exclude="Leksa">
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">-ôsisim</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">nôsisim</l>
          <sources>
             <book name="advan"/>
          </sources>
@@ -1865,7 +1865,7 @@
    </e>
   <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="" gen_only="none">ninâpêm</l>
+         <l pos="N" animacy="A" t2c="no" rime="" gen_only="none">ninâpêm</l>
          <sources>
             <book chapter="I4"/>
          </sources>
@@ -1886,7 +1886,7 @@
    </e>
   <e exclude="Leksa">
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">-nâpêm</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">ninâpêm</l>
          <sources>
             <book chapter="I4"/>
          </sources>
@@ -1906,7 +1906,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="no" rime="i" gen_only="Pl,Sg,Loc">sîsîp-wâwi</l>
+         <l pos="N" animacy="I" t2c="no" rime="i" gen_only="Pl,Sg,Loc,Obv">sîsîp-wâwi</l>
          <sources>
             <book name="advan"/>
          </sources>
@@ -1927,7 +1927,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="yes" rime="0" gen_only="Pl,Sg,Loc">wayasit</l>
+         <l pos="N" animacy="I" t2c="yes" rime="0" gen_only="Pl,Sg,Loc">wayasit</l>
          <sources>
             <book name="advan"/>
          </sources>
@@ -1946,7 +1946,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="yes" rime="0" gen_only="Pl,Sg,Loc">têhtapiwin</l>
+         <l pos="N" animacy="I" t2c="yes" rime="0" gen_only="Pl,Sg,Loc">têhtapiwin</l>
          <sources>
             <book chapter="I2"/>
          </sources>
@@ -1966,7 +1966,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="no" rime="k" gen_only="Pl,Sg,Loc">mîcisowikamik</l>
+         <l pos="N" animacy="I" t2c="no" rime="k" gen_only="Pl,Sg,Loc">mîcisowikamik</l>
          <sources>
             <book chapter="I2"/>
          </sources>
@@ -1986,7 +1986,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="no" rime="0" gen_only="Pl,Sg,Loc">sâkahikan</l>
+         <l pos="N" animacy="I" t2c="no" rime="0" gen_only="Pl,Sg,Loc">sâkahikan</l>
          <sources>
             <book chapter="advan"/>
          </sources>
@@ -2005,7 +2005,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="yes" rime="aw" gen_only="Pl,Sg,Loc">ispatinaw</l>
+         <l pos="N" animacy="I" t2c="yes" rime="aw" gen_only="Pl,Sg,Loc">ispatinaw</l>
          <sources>
             <book chapter="advan"/>
          </sources>
@@ -2025,7 +2025,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="yes" rime="k" gen_only="Pl,Sg,Loc">mêtawêwikamik</l>
+         <l pos="N" animacy="I" t2c="yes" rime="k" gen_only="Pl,Sg,Loc">mêtawêwikamik</l>
          <sources>
             <book chapter="advan"/>
          </sources>
@@ -2046,7 +2046,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="no" rime="k" gen_only="Pl,Sg,Loc">âhkosîwikamik</l>
+         <l pos="N" animacy="I" t2c="no" rime="k" gen_only="Pl,Sg,Loc">âhkosîwikamik</l>
          <sources>
             <book chapter="advan"/>
          </sources>
@@ -2065,7 +2065,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="no" rime="k" gen_only="Pl,Sg,Loc">sôniyâwikamik</l>
+         <l pos="N" animacy="I" t2c="no" rime="k" gen_only="Pl,Sg,Loc">sôniyâwikamik</l>
          <sources>
             <book chapter="I2"/>
          </sources>
@@ -2086,7 +2086,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="no" rime="oy" gen_only="Pl,Sg,Loc">mîcimâpoy</l>
+         <l pos="N" animacy="I" t2c="no" rime="oy" gen_only="Pl,Sg,Loc,Obv">mîcimâpoy</l>
          <sources>
             <book chapter="I1"/>
          </sources>
@@ -2107,7 +2107,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="no" rime="i" gen_only="Pl,Sg,Loc">wâwi</l>
+         <l pos="N" animacy="I" t2c="no" rime="i" gen_only="Pl,Sg,Loc,Obv">wâwi</l>
          <sources>
             <book chapter="I1"/>
          </sources>
@@ -2128,7 +2128,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="no" rime="i" gen_only="Pl,Sg,Loc">askipwâwi</l>
+         <l pos="N" animacy="I" t2c="no" rime="i" gen_only="Pl,Sg,Loc,Obv">askipwâwi</l>
          <sources>
             <book chapter="I1"/>
          </sources>
@@ -2148,7 +2148,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="no" rime="aw" gen_only="Pl,Sg,Loc">mêskanaw</l>
+         <l pos="N" animacy="I" t2c="no" rime="aw" gen_only="Pl,Sg,Loc">mêskanaw</l>
          <sources>
             <book chapter="I1"/>
          </sources>
@@ -2169,7 +2169,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="no" rime="0" gen_only="Pl,Sg,Loc">maskisin</l>
+         <l pos="N" animacy="I" t2c="no" rime="0" gen_only="Pl,Sg,Loc">maskisin</l>
          <sources>
             <book chapter="I2"/>
          </sources>
@@ -2189,7 +2189,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="no" rime="0" gen_only="Pl,Sg,Loc">môhkomân</l>
+         <l pos="N" animacy="I" t2c="no" rime="0" gen_only="Pl,Sg,Loc">môhkomân</l>
          <sources>
             <book chapter="I1"/>
          </sources>
@@ -2209,7 +2209,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="no" rime="0" gen_only="Sg,Loc">wiyâs</l>
+         <l pos="N" animacy="I" t2c="no" rime="0" gen_only="Sg,Loc,Obv">wiyâs</l>
          <sources>
             <book chapter="I7"/>
          </sources>
@@ -2229,7 +2229,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="no" rime="oy" gen_only="Sg,Loc">sîwâpoy</l>
+         <l pos="N" animacy="I" t2c="no" rime="oy" gen_only="Sg,Loc">sîwâpoy</l>
          <sources>
             <book chapter="advan"/>
          </sources>
@@ -2250,7 +2250,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="yes" rime="oy" gen_only="Sg,Loc">tohtôsâpoy</l>
+         <l pos="N" animacy="I" t2c="yes" rime="oy" gen_only="Sg,Loc">tohtôsâpoy</l>
          <sources>
             <book chapter="I1"/>
          </sources>
@@ -2270,7 +2270,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="no" rime="iy" gen_only="Sg,Loc">nipiy</l>
+         <l pos="N" animacy="I" t2c="no" rime="iy" gen_only="Sg,Loc">nipiy</l>
          <sources>
             <book chapter="I1"/>
          </sources>
@@ -2290,7 +2290,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="no" rime="oy" gen_only="Sg,Loc">maskihkîwâpoy</l>
+         <l pos="N" animacy="I" t2c="no" rime="oy" gen_only="Sg,Loc">maskihkîwâpoy</l>
          <sources>
             <book chapter="I1"/>
          </sources>
@@ -2310,7 +2310,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="yes" rime="0" gen_only="Sg,Loc">sîwîhtâkan</l>
+         <l pos="N" animacy="I" t2c="yes" rime="0" gen_only="Sg,Loc,Obv">sîwîhtâkan</l>
          <sources>
             <book chapter="I1"/>
          </sources>
@@ -2329,7 +2329,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="no" rime="v-is" gen_only="Sg,Loc">papêskomina</l>
+         <l pos="N" animacy="I" t2c="no" rime="v-is" gen_only="Sg,Loc,Obv">papêskomina</l>
          <sources>
             <book chapter="I1"/>
          </sources>
@@ -2349,7 +2349,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="yes" rime="iy" gen_only="Sg,Loc">tohtôsâpoy</l>
+         <l pos="N" animacy="I" t2c="yes" rime="iy" gen_only="Sg,Loc,Obv">tohtôsâpoy</l>
          <sources>
             <book chapter="I1"/>
          </sources>
@@ -2368,7 +2368,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="no" rime="0" gen_only="Pl,Sg,Loc">cîscahikanis</l>
+         <l pos="N" animacy="I" t2c="no" rime="0" gen_only="Pl,Sg,Loc">cîscahikanis</l>
          <sources>
             <book chapter="I1"/>
          </sources>
@@ -2388,7 +2388,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="no" rime="0" gen_only="Pl,Sg,Loc">wiyâkan</l>
+         <l pos="N" animacy="I" t2c="no" rime="0" gen_only="Pl,Sg,Loc">wiyâkan</l>
          <sources>
             <book chapter="I1"/>
          </sources>
@@ -2409,7 +2409,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="no" rime="0" gen_only="Pl,Sg,Loc">minihkwâcikanis</l>
+         <l pos="N" animacy="I" t2c="no" rime="0" gen_only="Pl,Sg,Loc">minihkwâcikanis</l>
          <sources>
             <book chapter="I1"/>
          </sources>
@@ -2429,7 +2429,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="no" rime="0" gen_only="Pl,Sg,Loc">masinahikan</l>
+         <l pos="N" animacy="I" t2c="no" rime="0" gen_only="Pl,Sg,Loc">masinahikan</l>
          <sources>
             <book chapter="I6"/>
          </sources>
@@ -2449,7 +2449,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="no" rime="0" gen_only="Pl,Sg,Loc">wâskahikan</l>
+         <l pos="N" animacy="I" t2c="no" rime="0" gen_only="Pl,Sg,Loc">wâskahikan</l>
          <sources>
             <book chapter="I5"/>
          </sources>
@@ -2469,7 +2469,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="no" rime="0" gen_only="Pl,Sg,Loc">wîkiwin</l>
+         <l pos="N" animacy="I" t2c="no" rime="0" gen_only="Pl,Sg,Loc">wîkiwin</l>
          <sources>
             <book chapter="I5"/>
          </sources>
@@ -2491,7 +2491,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="yes" rime="" gen_only="none" audio="nisit">nisit</l>
+         <l pos="N" animacy="I" t2c="yes" rime="" gen_only="none" audio="nisit">nisit</l>
          <sources>
             <book name="Audio"/>
             <book chapter="I3"/>
@@ -2511,7 +2511,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="yes" rime="0" gen_only="Pl,Sg">misit</l>
+         <l pos="N" animacy="I" t2c="yes" rime="0" gen_only="Pl,Sg,Obv">misit</l>
          <sources>
             <book chapter="I3"/>
          </sources>
@@ -2531,7 +2531,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="yes" rime="0" gen_only="Pl,Sg">mistikwân</l>
+         <l pos="N" animacy="I" t2c="yes" rime="0" gen_only="Pl,Sg,Obv">mistikwân</l>
          <sources>
             <book chapter="I3"/>
          </sources>
@@ -2551,7 +2551,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="yes" rime="0" gen_only="none">nistikwân</l>
+         <l pos="N" animacy="I" t2c="yes" rime="0" gen_only="none">nistikwân</l>
          <sources>
             <book chapter="I3"/>
          </sources>
@@ -2570,7 +2570,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="no" rime="v-is" gen_only="Pl">mîscakâsa</l>
+         <l pos="N" animacy="I" t2c="no" rime="v-is" gen_only="Pl">mîscakâsa</l>
          <sources>
             <book chapter="I3"/>
          </sources>
@@ -2589,7 +2589,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="yes" rime="0" gen_only="Pl,Sg">miskât</l>
+         <l pos="N" animacy="I" t2c="yes" rime="0" gen_only="Pl,Sg,Obv">miskât</l>
          <sources>
             <book chapter="I3"/>
          </sources>
@@ -2609,7 +2609,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="yes" rime="0" gen_only="Pl,Sg,Loc">mitôn</l>
+         <l pos="N" animacy="I" t2c="yes" rime="0" gen_only="Pl,Sg,Loc">mitôn</l>
          <sources>
             <book chapter="I3"/>
          </sources>
@@ -2629,7 +2629,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="no" rime="k" gen_only="Pl,Sg">miskîsik</l>
+         <l pos="N" animacy="I" t2c="no" rime="k" gen_only="Pl,Sg,Obv">miskîsik</l>
          <sources>
             <book chapter="I3"/>
          </sources>
@@ -2649,7 +2649,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="yes" rime="0" gen_only="Pl,Sg,Loc">mikot</l>
+         <l pos="N" animacy="I" t2c="yes" rime="0" gen_only="Pl,Sg,Loc">mikot</l>
          <sources>
             <book chapter="I3"/>
          </sources>
@@ -2669,7 +2669,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="yes" rime="ay" gen_only="Pl,Sg,Loc">mihtawakay</l>
+         <l pos="N" animacy="I" t2c="yes" rime="ay" gen_only="Pl,Sg,Loc">mihtawakay</l>
          <sources>
             <book chapter="I3"/>
          </sources>
@@ -2689,7 +2689,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="no" rime="aw" gen_only="Pl,Sg">miyaw</l>
+         <l pos="N" animacy="I" t2c="no" rime="aw" gen_only="Pl,Sg,Obv">miyaw</l>
          <sources>
             <book chapter="I3"/>
          </sources>
@@ -2709,7 +2709,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="no" rime="aw" gen_only="Sg,Loc">sakâw</l>
+         <l pos="N" animacy="I" t2c="no" rime="aw" gen_only="Sg,Loc">sakâw</l>
          <sources>
             <book name="advan"/>
          </sources>
@@ -2730,7 +2730,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="no" rime="0" gen_only="Pl,Sg,Loc">ôcênâs</l>
+         <l pos="N" animacy="I" t2c="no" rime="0" gen_only="Pl,Sg,Loc">ôcênâs</l>
          <sources>
             <book chapter="I4"/>
          </sources>
@@ -2749,7 +2749,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="yes" rime="0" gen_only="Pl,Sg,Loc">mistikowat</l>
+         <l pos="N" animacy="I" t2c="yes" rime="0" gen_only="Pl,Sg,Loc">mistikowat</l>
          <sources>
             <book name="advan"/>
          </sources>
@@ -2769,7 +2769,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="iw" gen_only="Sg">pikiw</l>
+         <l pos="N" animacy="A" t2c="no" rime="iw" gen_only="Sg">pikiw</l>
          <sources>
             <book name="advan"/>
          </sources>
@@ -2789,7 +2789,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="yes" rime="0" gen_only="Pl,Sg,Loc">iskwâhtêm</l>
+         <l pos="N" animacy="I" t2c="yes" rime="0" gen_only="Pl,Sg,Loc">iskwâhtêm</l>
          <sources>
             <book name="advan"/>
          </sources>
@@ -2809,7 +2809,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="yes" rime="irr" gen_only="Sg,Loc">iskotêw</l>
+         <l pos="N" animacy="I" t2c="yes" rime="irr" gen_only="Sg,Loc">iskotêw</l>
          <sources>
             <book name="advan"/>
          </sources>
@@ -2828,7 +2828,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="no" rime="0" gen_only="Sg,Loc">iskocês</l>
+         <l pos="N" animacy="I" t2c="no" rime="0" gen_only="Sg,Loc">iskocês</l>
          <sources>
             <book name="advan"/>
          </sources>
@@ -2848,7 +2848,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="no" rime="0" gen_only="Pl,Sg">miskan</l>
+         <l pos="N" animacy="I" t2c="no" rime="0" gen_only="Pl,Sg,Obv">miskan</l>
          <sources>
             <book name="advan"/>
          </sources>
@@ -2867,7 +2867,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="no" rime="0" gen_only="Pl,Sg,Loc">wiyâkanis</l>
+         <l pos="N" animacy="I" t2c="no" rime="0" gen_only="Pl,Sg,Loc">wiyâkanis</l>
          <sources>
             <book chapter="I6"/>
          </sources>
@@ -2888,7 +2888,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="no" rime="v-is" gen_only="Pl,Sg">kîkisepâ</l>
+         <l pos="N" animacy="I" t2c="no" rime="v-is" gen_only="Pl,Sg,Obv">kîkisepâ</l>
          <sources>
             <book name="advan"/>
          </sources>
@@ -2907,7 +2907,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="no" rime="i" gen_only="Pl,Sg,Loc" audio="osi">ôsi</l>
+         <l pos="N" animacy="I" t2c="no" rime="i" gen_only="Pl,Sg,Loc" audio="osi">ôsi</l>
          <sources>
             <book name="Audio"/>
             <book name="advan"/>
@@ -2929,7 +2929,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="yes" rime="k" gen_only="Pl,Sg,Loc">atâwêwikamik</l>
+         <l pos="N" animacy="I" t2c="yes" rime="k" gen_only="Pl,Sg,Loc">atâwêwikamik</l>
          <sources>
             <book chapter="I2"/>
          </sources>
@@ -2950,7 +2950,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="yes" rime="aw" gen_only="Pl,Sg,Loc">ôtênaw</l>
+         <l pos="N" animacy="I" t2c="yes" rime="aw" gen_only="Pl,Sg,Loc">ôtênaw</l>
          <sources>
             <book chapter="I4"/>
          </sources>
@@ -2970,7 +2970,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="no" rime="0" gen_only="Pl,Sg,Loc">ocenâsis</l>
+         <l pos="N" animacy="I" t2c="no" rime="0" gen_only="Pl,Sg,Loc">ocenâsis</l>
          <sources>
             <book chapter="I4"/>
          </sources>
@@ -2989,7 +2989,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="no" rime="0" gen_only="Pl,Sg,Loc">mîkiwâhp</l>
+         <l pos="N" animacy="I" t2c="no" rime="0" gen_only="Pl,Sg,Loc">mîkiwâhp</l>
          <sources>
             <book chapter="I5"/>
          </sources>
@@ -3008,7 +3008,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="yes" rime="ay" gen_only="Pl,Sg,Loc">miskotâkay</l>
+         <l pos="N" animacy="I" t2c="yes" rime="ay" gen_only="Pl,Sg,Loc">miskotâkay</l>
          <sources>
             <book chapter="I6"/>
          </sources>
@@ -3028,7 +3028,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="no" rime="ay" gen_only="Pl,Sg,Loc">maniway</l>
+         <l pos="N" animacy="I" t2c="no" rime="ay" gen_only="Pl,Sg,Loc">maniway</l>
          <sources>
             <book name="advan"/>
          </sources>
@@ -3048,7 +3048,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="yes" rime="0" gen_only="Pl,Sg">mîpit</l>
+         <l pos="N" animacy="I" t2c="yes" rime="0" gen_only="Pl,Sg,Obv">mîpit</l>
          <sources>
             <book chapter="I3"/>
          </sources>
@@ -3068,7 +3068,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="no" rime="0" gen_only="Pl,Sg">mahkwan</l>
+         <l pos="N" animacy="I" t2c="no" rime="0" gen_only="Pl,Sg,Obv">mahkwan</l>
          <sources>
             <book name="advan"/>
          </sources>
@@ -3088,7 +3088,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="yes" rime="0" gen_only="Pl,Sg">mispiton</l>
+         <l pos="N" animacy="I" t2c="yes" rime="0" gen_only="Pl,Sg,Obv">mispiton</l>
          <sources>
             <book chapter="I3"/>
          </sources>
@@ -3108,7 +3108,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="no" rime="iy" gen_only="Pl,Sg,Loc">micihciy</l>
+         <l pos="N" animacy="I" t2c="no" rime="iy" gen_only="Pl,Sg,Loc">micihciy</l>
          <sources>
             <book chapter="I3"/>
          </sources>
@@ -3128,7 +3128,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="no" rime="0" gen_only="Pl,Sg">mihkwâkan</l>
+         <l pos="N" animacy="I" t2c="no" rime="0" gen_only="Pl,Sg,Obv">mihkwâkan</l>
          <sources>
             <book chapter="I3"/>
          </sources>
@@ -3148,7 +3148,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">acimosis</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">acimosis</l>
          <sources>
             <book chapter="I3"/>
          </sources>
@@ -3168,7 +3168,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">acosis</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">acosis</l>
          <sources>
             <book book="advan"/>
          </sources>
@@ -3190,7 +3190,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">acâhkos</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">acâhkos</l>
          <sources>
             <book chapter="I10"/>
          </sources>
@@ -3211,7 +3211,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="yes" rime="0" gen_only="Pl,Sg">akihtâson</l>
+         <l pos="N" animacy="I" t2c="yes" rime="0" gen_only="Pl,Sg,Obv">akihtâson</l>
          <sources>
             <book chapter="I8"/>
          </sources>
@@ -3230,7 +3230,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="yes" rime="k" gen_only="Pl,Sg">apasoyâhtik</l>
+         <l pos="N" animacy="I" t2c="yes" rime="k" gen_only="Pl,Sg,Obv">apasoyâhtik</l>
          <sources>
             <book book="advan"/>
          </sources>
@@ -3250,7 +3250,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="oy" gen_only="Pl,Sg">apoy</l>
+         <l pos="N" animacy="A" t2c="no" rime="oy" gen_only="Pl,Sg,Obv">apoy</l>
          <sources>
             <book chapter="I10"/>
          </sources>
@@ -3271,7 +3271,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Sg">asinîwipayihcikan</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Sg">asinîwipayihcikan</l>
          <sources>
             <book book="advan"/>
          </sources>
@@ -3290,7 +3290,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">askihkohkân</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">askihkohkân</l>
          <sources>
             <book book="advan"/>
          </sources>
@@ -3311,7 +3311,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">askihkohkânis</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">askihkohkânis</l>
          <sources>
             <book book="advan"/>
          </sources>
@@ -3332,7 +3332,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="no" rime="iy" gen_only="Pl,Sg,Loc">askiy</l>
+         <l pos="N" animacy="I" t2c="no" rime="iy" gen_only="Pl,Sg,Loc">askiy</l>
          <sources>
             <book chapter="I3"/>
          </sources>
@@ -3352,7 +3352,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="yes" rime="0" gen_only="AN+Pl,AN+Sg">astis</l>
+         <l pos="N" animacy="A" t2c="yes" rime="0" gen_only="A+Pl,A+Sg">astis</l>
          <sources>
             <book book="advan"/>
          </sources>
@@ -3374,7 +3374,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="yes" rime="0" gen_only="Pl,Sg,Loc">astotin</l>
+         <l pos="N" animacy="I" t2c="yes" rime="0" gen_only="Pl,Sg,Loc">astotin</l>
          <sources>
             <book chapter="I6"/>
          </sources>
@@ -3395,7 +3395,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">asâm</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">asâm</l>
          <sources>
             <book book="advan"/>
          </sources>
@@ -3415,7 +3415,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="yes" rime="0" gen_only="Pl,Sg">atos</l>
+         <l pos="N" animacy="A" t2c="yes" rime="0" gen_only="Pl,Sg,Obv">atos</l>
          <sources>
             <book book="advan"/>
          </sources>
@@ -3435,7 +3435,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="yes" rime="k" gen_only="Pl,Sg">atâhk</l>
+         <l pos="N" animacy="A" t2c="yes" rime="k" gen_only="Pl,Sg,Obv">atâhk</l>
          <sources>
             <book chapter="I10"/>
          </sources>
@@ -3454,7 +3454,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="yes" rime="0" gen_only="Pl,Sg">atâmicâsis</l>
+         <l pos="N" animacy="A" t2c="yes" rime="0" gen_only="Pl,Sg,Obv">atâmicâsis</l>
          <sources>
             <book chapter="I6"/>
          </sources>
@@ -3474,7 +3474,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">awâsisicâpânâskos</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">awâsisicâpânâskos</l>
          <sources>
             <book book="advan"/>
          </sources>
@@ -3496,7 +3496,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">awâsisîhkân</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">awâsisîhkân</l>
          <sources>
             <book chapter="I1"/>
          </sources>
@@ -3516,7 +3516,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="yes" rime="k" gen_only="Pl,Sg">ayamihêwâhtik</l>
+         <l pos="N" animacy="A" t2c="yes" rime="k" gen_only="Pl,Sg,Obv">ayamihêwâhtik</l>
          <sources>
             <book book="advan"/>
          </sources>
@@ -3537,7 +3537,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="iy" gen_only="Pl,Sg">ayapiy</l>
+         <l pos="N" animacy="A" t2c="no" rime="iy" gen_only="Pl,Sg,Obv">ayapiy</l>
          <sources>
             <book book="advan"/>
          </sources>
@@ -3557,7 +3557,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="iw" gen_only="Pl,Sg">ayisiyiniw</l>
+         <l pos="N" animacy="A" t2c="no" rime="iw" gen_only="Pl,Sg,Obv">ayisiyiniw</l>
          <sources>
             <book chapter="I11"/>
          </sources>
@@ -3576,7 +3576,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">ayîkis</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">ayîkis</l>
          <sources>
             <book chapter="I10"/>
          </sources>
@@ -3597,7 +3597,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="no" rime="0" gen_only="Pl,Sg">cipahikanis</l>
+         <l pos="N" animacy="I" t2c="no" rime="0" gen_only="Pl,Sg,Obv">cipahikanis</l>
          <sources>
             <book chapter="I8"/>
          </sources>
@@ -3616,7 +3616,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Sg">ciscêmâs</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Sg">ciscêmâs</l>
          <sources>
             <book chapter="I1"/>
          </sources>
@@ -3636,7 +3636,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="yes" rime="aw" gen_only="Sg">cistêmâw</l>
+         <l pos="N" animacy="A" t2c="yes" rime="aw" gen_only="Sg">cistêmâw</l>
          <sources>
             <book chapter="I1"/>
          </sources>
@@ -3656,7 +3656,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="ay" gen_only="Pl,Sg">cîpay</l>
+         <l pos="N" animacy="A" t2c="no" rime="ay" gen_only="Pl,Sg,Obv">cîpay</l>
          <sources>
             <book book="advan"/>
          </sources>
@@ -3675,7 +3675,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="yes" rime="0" gen_only="Pl,Sg">iskotêwitâpân</l>
+         <l pos="N" animacy="A" t2c="yes" rime="0" gen_only="Pl,Sg,Obv">iskotêwitâpân</l>
          <sources>
             <book book="advan"/>
          </sources>
@@ -3694,7 +3694,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">iskwêsisihkân</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">iskwêsisihkân</l>
          <sources>
             <book book="advan"/>
          </sources>
@@ -3714,7 +3714,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="no" rime="oy" gen_only="Pl,Sg,Loc">iskwêsisâpoy</l>
+         <l pos="N" animacy="I" t2c="no" rime="oy" gen_only="Pl,Sg,Loc">iskwêsisâpoy</l>
          <sources>
             <book chapter="I11"/>
          </sources>
@@ -3734,7 +3734,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="k" gen_only="Pl,Sg">kinêpik</l>
+         <l pos="N" animacy="A" t2c="no" rime="k" gen_only="Pl,Sg,Obv">kinêpik</l>
          <sources>
             <book chapter="I12"/>
          </sources>
@@ -3753,7 +3753,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">kiskinawâcihôkispison</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">kiskinawâcihôkispison</l>
          <sources>
             <book book="advan"/>
          </sources>
@@ -3773,7 +3773,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="yes" rime="0" gen_only="Pl,Sg,Loc">kistikân</l>
+         <l pos="N" animacy="I" t2c="yes" rime="0" gen_only="Pl,Sg,Loc">kistikân</l>
          <sources>
             <book book="advan"/>
          </sources>
@@ -3793,7 +3793,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="yes" rime="0" gen_only="Pl,Sg">kitôpicikâkan</l>
+         <l pos="N" animacy="A" t2c="yes" rime="0" gen_only="Pl,Sg,Obv">kitôpicikâkan</l>
          <sources>
             <book book="advan"/>
          </sources>
@@ -3813,7 +3813,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">kohkôsis</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">kohkôsis</l>
          <sources>
             <book chapter="I5"/>
          </sources>
@@ -3833,7 +3833,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="yes" rime="k" gen_only="Pl,Sg,Loc">kotawânâpisk</l>
+         <l pos="N" animacy="I" t2c="yes" rime="k" gen_only="Pl,Sg,Loc">kotawânâpisk</l>
          <sources>
             <book chapter="I8"/>
          </sources>
@@ -3854,7 +3854,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">kwâpahôpâkan</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">kwâpahôpâkan</l>
          <sources>
             <book book="advan"/>
          </sources>
@@ -3875,7 +3875,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">kîskicâsis</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">kîskicâsis</l>
          <sources>
             <book chapter="I6"/>
          </sources>
@@ -3895,7 +3895,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">kîsôwahpison</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">kîsôwahpison</l>
          <sources>
             <book chapter="I6"/>
          </sources>
@@ -3916,7 +3916,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Sg">kôna</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Sg">kôna</l>
          <sources>
             <book chapter="I10"/>
          </sources>
@@ -3935,7 +3935,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="no" rime="ay" gen_only="Sg">masakay</l>
+         <l pos="N" animacy="I" t2c="no" rime="ay" gen_only="Sg">masakay</l>
          <sources>
             <book chapter="I3"/>
          </sources>
@@ -3954,7 +3954,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="yes" rime="k" gen_only="Pl,Sg">masinahikanâhtik</l>
+         <l pos="N" animacy="A" t2c="yes" rime="k" gen_only="Pl,Sg,Obv">masinahikanâhtik</l>
          <sources>
             <book chapter="I1"/>
          </sources>
@@ -3975,7 +3975,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="k" gen_only="Pl,Sg">masinahikanâpisk</l>
+         <l pos="N" animacy="A" t2c="no" rime="k" gen_only="Pl,Sg,Obv">masinahikanâpisk</l>
          <sources>
             <book chapter="I1"/>
          </sources>
@@ -3996,7 +3996,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">masinahikanâpiskos</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">masinahikanâpiskos</l>
          <sources>
             <book chapter="I1"/>
          </sources>
@@ -4016,7 +4016,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="no" rime="iy" gen_only="Pl,Sg">maskasiy</l>
+         <l pos="N" animacy="I" t2c="no" rime="iy" gen_only="Pl,Sg,Obv">maskasiy</l>
          <sources>
             <book chapter="I3"/>
          </sources>
@@ -4036,7 +4036,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">masân</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">masân</l>
          <sources>
             <book book="advan"/>
          </sources>
@@ -4056,7 +4056,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="no" rime="0" gen_only="Pl,Sg">micihcîs</l>
+         <l pos="N" animacy="I" t2c="no" rime="0" gen_only="Pl,Sg,Obv">micihcîs</l>
          <sources>
             <book chapter="I3"/>
          </sources>
@@ -4077,7 +4077,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">micohcôsimis</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">micohcôsimis</l>
          <sources>
             <book chapter="I3"/>
          </sources>
@@ -4096,7 +4096,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">micîhcîkom</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">micîhcîkom</l>
          <sources>
             <book book="advan"/>
          </sources>
@@ -4115,7 +4115,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="no" rime="0" gen_only="Pl,Sg,Loc">minihkwâcikan</l>
+         <l pos="N" animacy="I" t2c="no" rime="0" gen_only="Pl,Sg,Loc">minihkwâcikan</l>
          <sources>
             <book chapter="I1"/>
          </sources>
@@ -4139,7 +4139,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="no" rime="0" gen_only="Pl,Sg,Loc">minihkwêwiyâkanis</l>
+         <l pos="N" animacy="I" t2c="no" rime="0" gen_only="Pl,Sg,Loc">minihkwêwiyâkanis</l>
          <sources>
             <book chapter="I1"/>
          </sources>
@@ -4159,7 +4159,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">minôsis</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">minôsis</l>
          <sources>
             <book chapter="I6"/>
          </sources>
@@ -4179,7 +4179,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">miscacimosis</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">miscacimosis</l>
          <sources>
             <book chapter="I6"/>
          </sources>
@@ -4200,7 +4200,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="no" rime="0" gen_only="Pl,Sg">misicis</l>
+         <l pos="N" animacy="I" t2c="no" rime="0" gen_only="Pl,Sg,Obv">misicis</l>
          <sources>
             <book chapter="I3"/>
          </sources>
@@ -4220,7 +4220,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="yes" rime="k" gen_only="Pl,Sg">misiwêtâpânâsk</l>
+         <l pos="N" animacy="A" t2c="yes" rime="k" gen_only="Pl,Sg,Obv">misiwêtâpânâsk</l>
          <sources>
             <book book="advan"/>
          </sources>
@@ -4239,7 +4239,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="yes" rime="ay" gen_only="Pl,Sg,Loc">miskotâkay</l>
+         <l pos="N" animacy="I" t2c="yes" rime="ay" gen_only="Pl,Sg,Loc">miskotâkay</l>
          <sources>
             <book chapter="I6"/>
          </sources>
@@ -4259,7 +4259,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="yes" rime="k" gen_only="Pl,Sg">mistikwaskihk</l>
+         <l pos="N" animacy="A" t2c="yes" rime="k" gen_only="Pl,Sg,Obv">mistikwaskihk</l>
          <sources>
             <book book="advan"/>
          </sources>
@@ -4279,7 +4279,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="yes" rime="0" gen_only="Pl,Sg">mitohtôsim</l>
+         <l pos="N" animacy="A" t2c="yes" rime="0" gen_only="Pl,Sg,Obv">mitohtôsim</l>
          <sources>
             <book chapter="I3"/>
          </sources>
@@ -4299,7 +4299,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="yes" rime="0" gen_only="Pl,Sg">mitêskan</l>
+         <l pos="N" animacy="A" t2c="yes" rime="0" gen_only="Pl,Sg,Obv">mitêskan</l>
          <sources>
             <book book="advan"/>
          </sources>
@@ -4318,7 +4318,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">mêkwan</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">mêkwan</l>
          <sources>
             <book chapter="I1"/>
          </sources>
@@ -4337,7 +4337,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">mîkis</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">mîkis</l>
          <sources>
             <book chapter="I1"/>
          </sources>
@@ -4357,7 +4357,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="yes" rime="0" gen_only="Pl,Sg">mîtos</l>
+         <l pos="N" animacy="A" t2c="yes" rime="0" gen_only="Pl,Sg,Obv">mîtos</l>
          <sources>
             <book chapter="I10"/>
          </sources>
@@ -4376,7 +4376,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">môhcohkân</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">môhcohkân</l>
          <sources>
             <book book="advan"/>
          </sources>
@@ -4395,7 +4395,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="no" rime="0" gen_only="Pl,Sg">môhkomânis</l>
+         <l pos="N" animacy="I" t2c="no" rime="0" gen_only="Pl,Sg,Obv">môhkomânis</l>
          <sources>
             <book chapter="I1"/>
          </sources>
@@ -4417,7 +4417,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="yes" rime="k" gen_only="Pl,Sg">napakâhtik</l>
+         <l pos="N" animacy="A" t2c="yes" rime="k" gen_only="Pl,Sg,Obv">napakâhtik</l>
          <sources>
             <book chapter="I1"/>
          </sources>
@@ -4440,7 +4440,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">napwên</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">napwên</l>
          <sources>
             <book chapter="I1"/>
          </sources>
@@ -4461,7 +4461,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="no" rime="0" gen_only="Sg">nêhiyawêwin</l>
+         <l pos="N" animacy="I" t2c="no" rime="0" gen_only="Sg">nêhiyawêwin</l>
          <sources>
             <book chapter="I5"/>
          </sources>
@@ -4481,7 +4481,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="yes" rime="eew" gen_only="Pl,Sg">nêwokâtêw</l>
+         <l pos="N" animacy="A" t2c="yes" rime="eew" gen_only="Pl,Sg,Obv">nêwokâtêw</l>
          <sources>
             <book book="advan"/>
          </sources>
@@ -4500,7 +4500,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">nêwopêhikan</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">nêwopêhikan</l>
          <sources>
             <book chapter="I9"/>
          </sources>
@@ -4519,7 +4519,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="eew" gen_only="Pl,Sg">okimâskwêw</l>
+         <l pos="N" animacy="A" t2c="no" rime="eew" gen_only="Pl,Sg,Obv">okimâskwêw</l>
          <sources>
             <book chapter="I5"/>
          </sources>
@@ -4538,7 +4538,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="iy" gen_only="Pl,Sg">okiniy</l>
+         <l pos="N" animacy="A" t2c="no" rime="iy" gen_only="Pl,Sg,Obv">okiniy</l>
          <sources>
             <book chapter="I1"/>
          </sources>
@@ -4558,7 +4558,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">ospwâkan</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">ospwâkan</l>
          <sources>
             <book chapter="I10"/>
          </sources>
@@ -4578,7 +4578,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="no" rime="0" gen_only="Pl,Sg,Loc">osâwâs</l>
+         <l pos="N" animacy="I" t2c="no" rime="0" gen_only="Pl,Sg,Loc">osâwâs</l>
          <sources>
             <book chapter="I1"/>
          </sources>
@@ -4598,7 +4598,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="yes" rime="eew" gen_only="Pl,Sg">otasahkêw</l>
+         <l pos="N" animacy="A" t2c="yes" rime="eew" gen_only="Pl,Sg,Obv">otasahkêw</l>
          <sources>
             <book chapter="I10"/>
          </sources>
@@ -4618,7 +4618,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">pakân</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">pakân</l>
          <sources>
             <book chapter="I1"/>
          </sources>
@@ -4638,7 +4638,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="no" rime="0" gen_only="Sg,Loc">pihkahcêwâpôs</l>
+         <l pos="N" animacy="I" t2c="no" rime="0" gen_only="Sg,Loc">pihkahcêwâpôs</l>
          <sources>
             <book chapter="I7"/>
          </sources>
@@ -4658,7 +4658,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="yes" rime="oy" gen_only="Sg,Loc">pihkahtêwâpoy</l>
+         <l pos="N" animacy="I" t2c="yes" rime="oy" gen_only="Sg,Loc">pihkahtêwâpoy</l>
          <sources>
             <book chapter="I7"/>
          </sources>
@@ -4678,7 +4678,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">piyêsîs</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">piyêsîs</l>
          <sources>
             <book chapter="I12"/>
          </sources>
@@ -4699,7 +4699,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="yes" rime="0" gen_only="Pl,Sg">pâkâhtowân</l>
+         <l pos="N" animacy="A" t2c="yes" rime="0" gen_only="Pl,Sg,Obv">pâkâhtowân</l>
          <sources>
             <book chapter="I1"/>
          </sources>
@@ -4707,6 +4707,7 @@
       <mg>
          <semantics>
             <sem class="SPORT"/>
+            <sem class="mSPORT"/>
             <sem class="TOY"/>
             <sem class="mOBJECT"/>
          </semantics>
@@ -4720,7 +4721,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">pîsimohkân</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">pîsimohkân</l>
          <sources>
             <book chapter="I8"/>
          </sources>
@@ -4739,7 +4740,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">pîwâpiskos</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">pîwâpiskos</l>
          <sources>
             <book chapter="I9"/>
          </sources>
@@ -4758,7 +4759,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">sakâskwahon</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">sakâskwahon</l>
          <sources>
             <book chapter="I9"/>
          </sources>
@@ -4779,7 +4780,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="yes" rime="v-is" gen_only="Pl,Sg">sihta</l>
+         <l pos="N" animacy="A" t2c="yes" rime="v-is" gen_only="Pl,Sg,Obv">sihta</l>
          <sources>
             <book book="advan"/>
          </sources>
@@ -4800,7 +4801,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">simâkan</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">simâkan</l>
          <sources>
             <book chapter="I10"/>
          </sources>
@@ -4820,7 +4821,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">simâkanis</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">simâkanis</l>
          <sources>
             <book chapter="I10"/>
          </sources>
@@ -4840,7 +4841,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">sâpômin</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">sâpômin</l>
          <sources>
             <book book="advan"/>
          </sources>
@@ -4861,7 +4862,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">sênipân</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">sênipân</l>
          <sources>
             <book book="advan"/>
          </sources>
@@ -4881,7 +4882,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="yes" rime="k" gen_only="Pl,Sg">sêstak</l>
+         <l pos="N" animacy="A" t2c="yes" rime="k" gen_only="Pl,Sg,Obv">sêstak</l>
          <sources>
             <book book="advan"/>
          </sources>
@@ -4902,7 +4903,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="no" rime="iy" gen_only="Pl,Sg,Loc">sîpiy</l>
+         <l pos="N" animacy="I" t2c="no" rime="iy" gen_only="Pl,Sg,Loc">sîpiy</l>
          <sources>
             <book chapter="I6"/>
          </sources>
@@ -4921,7 +4922,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">sîsîpisis</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">sîsîpisis</l>
          <sources>
             <book chapter="I4"/>
          </sources>
@@ -4940,7 +4941,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">sôminis</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">sôminis</l>
          <sources>
             <book chapter="I4"/>
          </sources>
@@ -4961,7 +4962,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">sôskopayîs</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">sôskopayîs</l>
          <sources>
             <book book="advan"/>
          </sources>
@@ -4982,7 +4983,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="yes" rime="ay" gen_only="Pl,Sg">tastawasakay</l>
+         <l pos="N" animacy="A" t2c="yes" rime="ay" gen_only="Pl,Sg,Obv">tastawasakay</l>
          <sources>
             <book book="advan"/>
          </sources>
@@ -5001,7 +5002,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="yes" rime="0" gen_only="Pl,Sg">tipahikan</l>
+         <l pos="N" animacy="I" t2c="yes" rime="0" gen_only="Pl,Sg,Obv">tipahikan</l>
          <sources>
             <book chapter="I8"/>
          </sources>
@@ -5024,7 +5025,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="k" gen_only="Pl,Sg">wacask</l>
+         <l pos="N" animacy="A" t2c="no" rime="k" gen_only="Pl,Sg,Obv">wacask</l>
          <sources>
             <book chapter="I10"/>
          </sources>
@@ -5043,7 +5044,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="no" rime="iy" gen_only="Pl,Sg,Loc">waciy</l>
+         <l pos="N" animacy="I" t2c="no" rime="iy" gen_only="Pl,Sg,Loc">waciy</l>
          <sources>
             <book book="advan"/>
          </sources>
@@ -5063,7 +5064,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">wayân</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">wayân</l>
          <sources>
             <book chapter="I1"/>
          </sources>
@@ -5084,7 +5085,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="no" rime="i" gen_only="Pl,Sg,Loc">wâci</l>
+         <l pos="N" animacy="I" t2c="no" rime="i" gen_only="Pl,Sg,Loc">wâci</l>
          <sources>
             <book name="advan"/>
          </sources>
@@ -5104,7 +5105,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">wâkâs</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">wâkâs</l>
          <sources>
             <book chapter="I1"/>
          </sources>
@@ -5124,7 +5125,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="no" rime="0" gen_only="Sg">wâpan</l>
+         <l pos="N" animacy="I" t2c="no" rime="0" gen_only="Sg">wâpan</l>
          <sources>
             <book chapter="I6"/>
          </sources>
@@ -5143,7 +5144,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">wâsakâpayîs</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">wâsakâpayîs</l>
          <sources>
             <book chapter="I6"/>
          </sources>
@@ -5162,7 +5163,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="yes" rime="i" gen_only="Pl,Sg,Loc">wâti</l>
+         <l pos="N" animacy="I" t2c="yes" rime="i" gen_only="Pl,Sg,Loc">wâti</l>
          <sources>
             <book name="advan"/>
          </sources>
@@ -5183,7 +5184,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="yes" rime="iw" gen_only="Pl,Sg">wêmistikôsiw</l>
+         <l pos="N" animacy="A" t2c="yes" rime="iw" gen_only="Pl,Sg,Obv">wêmistikôsiw</l>
          <sources>
             <book chapter="I5"/>
          </sources>
@@ -5203,7 +5204,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="yes" rime="i" gen_only="Pl,Sg,Loc">wîsti</l>
+         <l pos="N" animacy="I" t2c="yes" rime="i" gen_only="Pl,Sg,Loc">wîsti</l>
          <sources>
             <book name="advan"/>
          </sources>
@@ -5223,7 +5224,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">âhcanis</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">âhcanis</l>
          <sources>
             <book book="advan"/>
          </sources>
@@ -5243,7 +5244,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="IN" t2c="no" rime="0" gen_only="Sg">âkayâsîmowin</l>
+         <l pos="N" animacy="I" t2c="no" rime="0" gen_only="Sg">âkayâsîmowin</l>
          <sources>
             <book chapter="I5"/>
          </sources>
@@ -5263,7 +5264,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">âniskamân</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">âniskamân</l>
          <sources>
             <book chapter="I5"/>
          </sources>
@@ -5285,7 +5286,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="Pl,Sg">âsiyân</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="Pl,Sg,Obv">âsiyân</l>
          <sources>
             <book chapter="I5"/>
          </sources>
@@ -5306,7 +5307,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="yes" rime="0" gen_only="Pl,Sg">âwatâswâkan</l>
+         <l pos="N" animacy="A" t2c="yes" rime="0" gen_only="Pl,Sg,Obv">âwatâswâkan</l>
          <sources>
             <book book="advan"/>
          </sources>
@@ -5325,7 +5326,7 @@
    </e>
    <e>
       <lg>
-         <l pos="N" animacy="AN" t2c="no" rime="0" gen_only="none">nicawâsimis</l>
+         <l pos="N" animacy="A" t2c="no" rime="0" gen_only="none">nicawâsimis</l>
          <sources>
             <book name="advan"/>
          </sources>

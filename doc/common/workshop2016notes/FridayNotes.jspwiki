@@ -130,7 +130,7 @@ Answer validation models
 
 * How do we handle parallel forms. Possibilities:
 ** Form-Form relationship: table containing relationship type, and form connections
-** canonical tag vs. detailed tags: {{+V+Prs+Sg1 ~ +V+Prs+Sg1+Orth/Etc}}: use the canonical tags to find all parallel forms, and then the detailed tags to determine the difference
+** canonical tag vs. detailed tags: {{+V+Sg1 ~ +V+Sg1+Orth/Etc}}: use the canonical tags to find all parallel forms, and then the detailed tags to determine the difference
 
 Question/Answer generation models:
 

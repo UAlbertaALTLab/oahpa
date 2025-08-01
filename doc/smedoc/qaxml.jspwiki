@@ -156,7 +156,7 @@ us generalize the example above.
       <grammar tag="Pron+Pers+Person-Number+Nom"/>
      </element>
     <element pos="V">
-      <grammar tag="V+Ind+Prs+Person-Number"/>
+      <grammar tag="V+Ind+Person-Number"/>
       <lemma>manat</lemma>
      </element>
   </question>

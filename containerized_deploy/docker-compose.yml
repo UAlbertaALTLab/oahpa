@@ -5,7 +5,7 @@ services:
     restart: always
     build:
       context: ..
-      dockerfile: containerized_deploy/Dockerfile
+      dockerfile: containerized_deploy/Dockerfile_empty_db
     # The tag that will automatically be applied on build:
     image: crk-oahpa:dev
     ports:
