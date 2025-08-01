@@ -54,7 +54,7 @@ INSTALLED_APPS = [
     LLL1 + "_oahpa.courses",
     LLL1 + "_oahpa.conf",
     LLL1 + "_oahpa.feedback",
-    LLL1 + "_oahpa.management",
+    # LLL1 + "_oahpa.management",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
