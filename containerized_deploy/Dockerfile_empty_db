@@ -30,7 +30,7 @@ WORKDIR /app
 COPY Pipfile Pipfile.lock ./
 
 # Install dependencies
-RUN pipenv install --deploy
+RUN pipenv install --system --deploy
 RUN mkdir /app/crk_oahpa_project
 
 # Configuration files
