@@ -62,7 +62,9 @@ async def Popen(cmd, arg, data=False, ret_err=False, ret_proc=False):
     string.
     """
     PIPE = asyncio.subprocess.PIPE
-    proc = await asyncio.create_subprocess_exec(cmd, arg, stdout=PIPE, stderr=PIPE, stdin=PIPE)
+    proc = await asyncio.create_subprocess_exec(
+        cmd, arg, stdout=PIPE, stderr=PIPE, stdin=PIPE
+    )
     if data:
         if type(data) == list:
             data = [a.strip() for a in data if a.strip()]
@@ -104,16 +106,19 @@ async def Popen(cmd, arg, data=False, ret_err=False, ret_proc=False):
     else:
         return output.decode("utf-8")
 
+
 def Popen_mapreduce(cmd, file, data, processes):
     async def runner():
-        chunksize = max(1, int(len(data)/processes))
-        chunks = (data[i:i+chunksize] for i in range(0, len(data), chunksize))
+        chunksize = max(1, int(len(data) / processes))
+        chunks = (data[i : i + chunksize] for i in range(0, len(data), chunksize))
         tasks = []
         async with asyncio.TaskGroup() as tg:
             for chunk in chunks:
-                tasks.append(tg.create_task(Popen(cmd,file, chunk)))
+                tasks.append(tg.create_task(Popen(cmd, file, chunk)))
         return "".join([x.result() for x in tasks])
+
     return asyncio.run(runner())
+
 
 def FSTLookup(data, fst_file, processes=os.cpu_count()):
     gen_fst = fst_file
@@ -126,7 +131,7 @@ def FSTLookup(data, fst_file, processes=os.cpu_count()):
         # lookups = Popen(new_cmd)
         # print >> STDOUT, "The next row of hfst output: %s" % lookups
     except OSError:
-        print("Problem in command: %s" % (lookup+" "+gen_fst), file=STDERR)
+        print("Problem in command: %s" % (lookup + " " + gen_fst), file=STDERR)
         sys.exit(2)
 
     return lookups
@@ -370,7 +375,9 @@ class Paradigm:
                 parts = result[0].split("+")
                 no_pv = [p for p in parts if p not in PREVERBS]
                 lemma = no_pv[0]
-                if lemma:   # TODO: This stores many failures like Analysis+? still, which likely should be dealt with.
+                if (
+                    lemma
+                ):  # TODO: This stores many failures like Analysis+? still, which likely should be dealt with.
                     generated_form = result[1]
                 else:
                     generated_form = ""
@@ -667,7 +674,7 @@ class Paradigm:
                     mode=g.get("Mode", ""),
                     subclass=g.get("Subclass", ""),
                     attributive=g.get("Attributive", ""),
-                    dependent=g.get("Dependent", "")
+                    dependent=g.get("Dependent", ""),
                 )
 
                 t.save()

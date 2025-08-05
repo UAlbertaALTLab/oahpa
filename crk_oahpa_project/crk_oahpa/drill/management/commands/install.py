@@ -291,10 +291,10 @@ class Command(BaseCommand):
 
         if options["paradigmfile"]:
             linginfo.read_paradigms(
-                options["paradigmfile"], 
-                options["tagfile"], 
-                options["add_db"], 
-                pos=options["pos"]
+                options["paradigmfile"],
+                options["tagfile"],
+                options["add_db"],
+                pos=options["pos"],
             )
 
         if options["wordid"]:

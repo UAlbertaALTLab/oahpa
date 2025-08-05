@@ -2,6 +2,7 @@
 Like add_static_wordforms, but uses the FST directly instead.
 First addition of new code in 2025.
 """
+
 import importlib
 from collections import defaultdict
 

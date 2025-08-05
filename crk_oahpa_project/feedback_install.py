@@ -653,7 +653,7 @@ class Feedback_install(object):
 
         print("\n", file=sys.stdout)
 
-    def read_feedback(self, feedbackfile, wordfile, append = False):
+    def read_feedback(self, feedbackfile, wordfile, append=False):
         """
         TODO: update this.
         """

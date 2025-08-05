@@ -81,7 +81,7 @@ class BulkManager(models.Manager):
         )
 
         # postgres seems to automatically ignore, mysql does not
-        ignore = "" if connection.vendor in ['postgresql', 'sqlite'] else "IGNORE";
+        ignore = "" if connection.vendor in ["postgresql", "sqlite"] else "IGNORE"
 
         sql = "INSERT %s INTO %s (%s) VALUES %s" % (
             ignore,
@@ -558,7 +558,6 @@ class Word(models.Model):
         # if self.stem in ['3syll', 'trisyllabic']: # Sami-specific
         # 	self.wordclass = 'Odd'
 
-
     def create(self, *args, **kwargs):
         morphtag = self.morphTag()
         self.morphophon = morphtag
@@ -787,7 +786,7 @@ class Tag(models.Model):
             "subclass": "Subclass",
             "tense": "Tense",
             "gender": "Gender",
-            "dependent": "Dependent"
+            "dependent": "Dependent",
         }
 
         tagname_to_set = {}

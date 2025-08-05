@@ -25,6 +25,10 @@ urlpatterns = [
     re_path(r"^%s/courses/" % prefix, include(LLL1 + "_oahpa.courses.urls")),
     re_path(r"^%s/dialect/$" % prefix, scv.dialect),
     re_path(r"^%s/media/(?P<path>.*)$" % prefix, serve, {"document_root": MEDIA_ROOT}),
-    re_path(r"^admin/doc/", include("django.contrib.admindocs.urls"), name="django-admindocs-docroot"),
+    re_path(
+        r"^admin/doc/",
+        include("django.contrib.admindocs.urls"),
+        name="django-admindocs-docroot",
+    ),
     re_path(r"^admin/", admin.site.urls),
 ]

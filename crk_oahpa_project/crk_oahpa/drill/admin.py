@@ -50,7 +50,6 @@ class WordAdmin(admin.ModelAdmin):
     inlines = [FormInline]  # TODO: , WordTranslationInline]
 
 
-
 class FormAdmin(admin.ModelAdmin):
     # list_display = ('fullform', 'tag',)
     # list_display = ('fullform', )

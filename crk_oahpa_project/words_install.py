@@ -6,6 +6,7 @@ from xml.dom import minidom as _dom
 from django.utils.encoding import force_str
 
 from local_conf import LLL1
+
 settings = importlib.import_module(LLL1 + "_oahpa.settings")
 sdm = importlib.import_module(LLL1 + "_oahpa.drill.models")
 sco = importlib.import_module(LLL1 + "_oahpa.conf.ordereddict")
@@ -128,7 +129,7 @@ class Analysis(object):
             "mood": self.classes.get("Mood", ""),
             "subclass": self.classes.get("Subclass", ""),
             "attributive": self.classes.get("Attributive", ""),
-            'animacy': self.classes.get('Animacy',""),
+            "animacy": self.classes.get("Animacy", ""),
         }
 
         t, created = sdm.Tag.objects.get_or_create(**tag_kwargs)
@@ -1096,7 +1097,7 @@ class Words(object):
                         "pos": g.get("Wordclass", ""),
                         "number": g.get("Number", ""),
                         "case": g.get("Case", ""),
-                        'possessive':		g.get('Possessive',""),
+                        "possessive": g.get("Possessive", ""),
                         "grade": g.get("Grade", ""),
                         "infinite": g.get("Infinite", ""),
                         "personnumber": g.get("Person-Number", ""),
@@ -1111,7 +1112,7 @@ class Words(object):
                         "dependent": g.get("Dependent", ""),
                         "trans_anim": g.get("Transitivity-Animacy", ""),
                         "mode": g.get("Mode", ""),
-                        'animacy':        g.get('Animacy',""),
+                        "animacy": g.get("Animacy", ""),
                     }
 
                     try:

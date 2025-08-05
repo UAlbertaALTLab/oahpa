@@ -872,18 +872,23 @@ class Questions:
 
             tag_string = []
             for item in tag.split("+"):
-                realitem = item[:-1] if item.endswith('?') else item
+                realitem = item[:-1] if item.endswith("?") else item
                 if sdm.Tagname.objects.filter(tagname=realitem).count() > 0:
-                    if item.endswith('?'):
+                    if item.endswith("?"):
                         tag_string.append([None, realitem])
                     else:
                         tag_string.append(realitem)
                 elif sdm.Tagset.objects.filter(tagset=realitem).count() > 0:
                     tagnames = sdm.Tagname.objects.filter(tagset__tagset=realitem)
-                    tag_string.append([t.tagname for t in tagnames] + ([None] if item.endswith("?") else []))
+                    tag_string.append(
+                        [t.tagname for t in tagnames]
+                        + ([None] if item.endswith("?") else [])
+                    )
 
             if len(tag_string) > 0:
-                return ["+".join(i for i in item if i) for item in fill_out(tag_string)] # Changes to make optional grammar notes
+                return [
+                    "+".join(i for i in item if i) for item in fill_out(tag_string)
+                ]  # Changes to make optional grammar notes
             else:
                 return False
 
