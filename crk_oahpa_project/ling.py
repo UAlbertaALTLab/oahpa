@@ -483,7 +483,7 @@ class Paradigm:
                         if t in self.tagset:
                             tagclasses = self.tagset[t]
                             for tagclass in tagclasses:
-                                g.classes[tagclass] = t
+                                g.classes.setdefault(tagclass, t)
 
                     # if wordtype is specified (G3, Actor, etc.,), we want only
                     # these forms, otherwise we want only forms without a
@@ -675,6 +675,7 @@ class Paradigm:
                     subclass=g.get("Subclass", ""),
                     attributive=g.get("Attributive", ""),
                     dependent=g.get("Dependent", ""),
+                    derivation=g.get("Derivation","")
                 )
 
                 t.save()

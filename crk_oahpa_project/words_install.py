@@ -1113,6 +1113,7 @@ class Words(object):
                         "trans_anim": g.get("Transitivity-Animacy", ""),
                         "mode": g.get("Mode", ""),
                         "animacy": g.get("Animacy", ""),
+                        "derivation": g.get("Derivation", "")
                     }
 
                     try:
