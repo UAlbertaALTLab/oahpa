@@ -105,7 +105,10 @@ echo "==================================================="
 # echo "done"
 # echo "==================================================="
 
-$P manage.py fixtagattributes
+# FELIPE: This command is redundant!  Also it breaks some exercises as it replaces the pos of N+A by A.
+# The key problem is an incorrect assumption about Tag encodings:  That the name of an annotation is sufficient to know its kind.
+# This is not the case, the order matters and usually the position of the annotation usually indicates its kind/type.
+#$P manage.py fixtagattributes
 
 # # NOTE: --append here, so that the install only adds the forms, but doesn't delete existing ones.
 # echo "==================================================="
@@ -596,8 +599,9 @@ echo "==================================================="
 # echo "done"
 # echo "==================================================="
 
-
-$P manage.py fixtagattributes
+# FELIPE: See comment on previous call to fixtagattributes, which should not be needed.
+# This method should be eventually eliminated by just having properly extracting the tags in a simpler way, like in itwewina.
+#$P manage.py fixtagattributes
 $P manage.py mergetags
 
 echo "==================================================="

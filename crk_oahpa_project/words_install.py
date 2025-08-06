@@ -147,7 +147,7 @@ class Analysis(object):
             if t in linginfo.tagset:
                 tagclasses = linginfo.tagset[t]
                 for tagclass in tagclasses:
-                    self.classes[tagclass] = t
+                    self.classes.setdefault(tagclass,t)
 
 
 class Entry(object):

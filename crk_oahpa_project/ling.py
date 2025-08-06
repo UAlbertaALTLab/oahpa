@@ -256,7 +256,7 @@ class Paradigm:
                 if t in self.tagset:
                     tagclasses = self.tagset[t]
                     for tagclass in tagclasses:
-                        g.classes[tagclass] = t
+                        g.classes.setdefault(tagclass, t)
             self.paradigm.append(g)
 
     def collect_gen_data(self, lemma, pos, hid, wordtype, gen_only, forms):
@@ -602,7 +602,7 @@ class Paradigm:
                     if t in self.tagset:
                         tagclasses = self.tagset[t]
                         for tagclass in tagclasses:
-                            g.classes[tagclass] = t
+                            g.classes.setdefault(tagclass, t)
                 self.paradigm.append(g)
                 # extraforms override generated ones
                 if g.tags in extraforms:
