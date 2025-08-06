@@ -369,7 +369,7 @@ class BareGame(Game):
         "N-REVDIM": ("", ["Sg"], "", "Der/Dim"),
         "N-PX": ("", ["Sg", "Pl"], "Px", ""),
         "N-2SG": ("", ["Sg"], "Px2Sg", ""),
-        "N-3SG": ("", ["Sg"], "Px3Sg", ""),
+        # FELIPE "N-3SG": ("", ["Sg"], "Px3Sg", ""),
         #'N-4SG': ("", ["Sg"], "Px4Sg", ""),
         "": "",
     }
