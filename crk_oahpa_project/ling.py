@@ -675,7 +675,7 @@ class Paradigm:
                     subclass=g.get("Subclass", ""),
                     attributive=g.get("Attributive", ""),
                     dependent=g.get("Dependent", ""),
-                    derivation=g.get("Derivation","")
+                    derivation=g.get("Derivation", ""),
                 )
 
                 t.save()

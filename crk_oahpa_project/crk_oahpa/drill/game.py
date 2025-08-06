@@ -167,7 +167,7 @@ class Game(object):
                 )  # TODO: Felipe: The extra 0 is not well documented and it broke the form. trying removing it and seeing what happens.
             except Http404 as e:
                 raise e
-            except ObjectDoesNotExist:
+            except ObjectDoesNotExist as e:
                 continue
 
             # Do not generate same question twice
@@ -566,17 +566,22 @@ class BareGame(Game):
         )  # added by Heli, changed by Pavel to skip an exception, change this back I suppose
 
         pos_mood_tense = {
-            "PRS": ("Ind", "Prs", ""),
-            "PRT": ("Ind", "Prt", ""),
-            "PRF": ("", "", "PrfPrc"),
-            "GER": ("", "", "Ger"),
-            "COND": ("Cond", "Prs", ""),
-            "IMPRT": ("Imprt", "", ""),
-            "POT": ("Pot", "Prs", ""),
+            "PRS": ("Ind", "", "", ""),
+            "PRT": (
+                "Ind",
+                "",
+                "",
+                "PV/ki",
+            ),  # Used to have a "Prt" tense, not anymore as now it is encoded as a preverb.
+            "PRF": ("", "", "PrfPrc", ""),  # TODO Check preverbs
+            "GER": ("", "", "Ger", ""),
+            "COND": ("Cond", "", "", ""),
+            "IMPRT": ("Imprt", "", "", ""),
+            "POT": ("Pot", "", "", ""),
         }
 
         if pos == "V" and "vtype" in self.settings:
-            mood, tense, infinite = pos_mood_tense[self.settings["vtype"]]
+            mood, tense, infinite, preverb = pos_mood_tense[self.settings["vtype"]]
 
         pos2 = ""
         subclass = ""
@@ -732,7 +737,13 @@ class BareGame(Game):
                 TAG_QUERY = TAG_QUERY & Q(number__in=["Sg", "Pl"])
 
         if pos == "V":
-            TAG_QUERY = TAG_QUERY & Q(tense=tense) & Q(mood=mood) & Q(infinite=infinite)
+            TAG_QUERY = (
+                TAG_QUERY
+                & Q(tense=tense)
+                & Q(mood=mood)
+                & Q(infinite=infinite)
+                & Q(preverb=preverb)
+            )
             if trans_anim:
                 if trans_anim == "AI-TI":
                     TAG_QUERY = TAG_QUERY & Q(trans_anim__in=["AI", "TI"])

@@ -606,7 +606,7 @@ class Word(models.Model):
         """
 
         pos_base = {
-            "V": "Ind+Prs+3Sg",  # Usually: Inf but crk: Ind+3Sg
+            "V": "Ind+3Sg",  # Usually: Inf but crk: Ind+3Sg
             "N": "Sg",  # Usually: Nom. But the baseform in crk is N+A+Sg or N+I+Sg
             "A": "Attr",
             "Pron": "Nom",
@@ -945,9 +945,9 @@ class Form(models.Model):
         elif self.tag.pos in ["V", "v"]:
             kwarg = {
                 "tag__personnumber": "3Sg",
-                "tag__tense": "Prs",
+                "tag__tense": "",
                 "tag__mood": "Ind",
-            }  # For crk the baseform is not V+AI or V+Inf but Ind+Prs+3Sg
+            }  # For crk the baseform is not V+AI or V+Inf but Ind+3Sg
 
             # Non-derived verbs need to exclude Der
             baseform = self.word.form_set.exclude(tag__string__contains="Der").filter(
